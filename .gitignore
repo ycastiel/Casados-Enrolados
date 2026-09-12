@@ -1,0 +1,8 @@
+backend/generated
+backend/dist 
+
+
+node_modules
+.env
+
+*.log

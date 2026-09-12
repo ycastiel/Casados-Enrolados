@@ -1,0 +1,13 @@
+{
+  "name": "@casados/database",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^7.10.0"
+  },
+  "devDependencies": {
+    "prisma": "^8.0.0-rc.13",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
