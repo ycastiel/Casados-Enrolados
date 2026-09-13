@@ -2,14 +2,37 @@
   "name": "casados-enrolados",
   "version": "1.0.0",
   "private": true,
+
   "workspaces": [
     "backend",
     "database",
     "frontend"
   ],
+
   "scripts": {
-    "dev:backend": "npm run dev --workspace backend",
+    "dev:backend": "npm run dev --workspace=backend",
     "dev:frontend": "npm run dev --workspace frontend",
+
+    "db:generate": "npm exec --workspace=database -- prisma generate --config=prisma.config.ts",
+
+    "db:migrate": "npm exec --workspace=database -- prisma migrate dev --config=prisma.config.ts",
+    "postdb:migrate": "npm run db:generate",
+
+    "db:seed": "npm exec --workspace=database -- prisma db seed --config=prisma.config.ts",
+
+    "db:reset": "npm exec --workspace=database -- prisma migrate reset --force --config=prisma.config.ts",
+    "postdb:reset": "npm run db:seed && npm run db:generate",
+
+    "db:status": "npm exec --workspace=database -- prisma migrate status --config=prisma.config.ts",
+
+    "db:format": "npm exec --workspace=database -- prisma format --config=prisma.config.ts",
+
+    "db:validate": "npm exec --workspace=database -- prisma validate --config=prisma.config.ts",
+
+    "db:check": "npm run db:status && npm run db:format",
+
+    "db:studio": "npm exec --workspace=database -- prisma studio --config=prisma.config.ts",
+
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces"
   }
