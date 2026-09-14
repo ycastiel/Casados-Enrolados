@@ -2,12 +2,18 @@
   "name": "@casados/database",
   "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@prisma/client": "^7.10.0"
-  },
+  "type": "module",
+
+  
   "devDependencies": {
-    "prisma": "^8.0.0-rc.13",
+    "@types/pg": "^8.23.1",
+    "prisma": "^7.10.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "pg": "^8.23.0"
   }
 }

@@ -1,0 +1,280 @@
+generator client {
+  provider = "prisma-client"
+  output   = "generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ======================================================
+// ENUMS
+// ======================================================
+
+enum PapelUsuario {
+  PROPRIETARIO
+  ADMINISTRADOR
+}
+
+enum TipoEvento {
+  CERIMONIA
+  RECEPCAO
+  FESTA
+  OUTRO
+}
+
+enum StatusConfirmacao {
+  PENDENTE
+  CONFIRMADO
+  RECUSADO
+}
+
+enum TipoPresente {
+  PRODUTO
+  COTA
+}
+
+enum StatusReservaPresente {
+  RESERVADA
+  CONCLUIDA
+  CANCELADA
+  EXPIRADA
+}
+
+// ======================================================
+// CASAMENTO
+// ======================================================
+
+model Casamento {
+  id String @id @default(uuid())
+
+  nomePessoa1 String
+  nomePessoa2 String
+
+  titulo    String?
+  descricao String?
+
+  slug String @unique
+
+  dataCasamento DateTime
+  fusoHorario   String   @default("America/Sao_Paulo")
+
+  ativo Boolean @default(true)
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  usuarios  Usuario[]
+  convites  Convite[]
+  eventos   Evento[]
+  presentes Presente[]
+}
+
+// ======================================================
+// USUÁRIOS ADMINISTRATIVOS
+// ======================================================
+
+model Usuario {
+  id          String @id @default(uuid())
+  casamentoId String
+
+  nome      String
+  email     String @unique
+  senhaHash String
+
+  papel PapelUsuario @default(ADMINISTRADOR)
+
+  ativo          Boolean   @default(true)
+  ultimoAcessoEm DateTime?
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  casamento Casamento @relation(fields: [casamentoId], references: [id], onDelete: Cascade)
+
+  @@index([casamentoId])
+}
+
+// ======================================================
+// CONVITES
+// ======================================================
+
+model Convite {
+  id          String @id @default(uuid())
+  casamentoId String
+
+  nomeExibicao String
+
+  token String @unique @default(uuid())
+
+  mensagem          String?
+  observacaoInterna String?
+
+  ativo Boolean @default(true)
+
+  enviadoEm DateTime?
+  expiraEm  DateTime?
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  casamento Casamento @relation(fields: [casamentoId], references: [id], onDelete: Cascade)
+
+  convidados        Convidado[]
+  reservasPresentes ReservaPresente[]
+
+  @@index([casamentoId])
+}
+
+// ======================================================
+// CONVIDADOS
+// ======================================================
+
+model Convidado {
+  id        String @id @default(uuid())
+  conviteId String
+
+  nome String
+
+  email    String?
+  telefone String?
+
+  restricaoAlimentar String?
+  observacao         String?
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  convite Convite @relation(fields: [conviteId], references: [id], onDelete: Cascade)
+
+  confirmacoes ConfirmacaoPresenca[]
+
+  @@index([conviteId])
+}
+
+// ======================================================
+// EVENTOS
+// ======================================================
+
+model Evento {
+  id          String @id @default(uuid())
+  casamentoId String
+
+  nome      String
+  descricao String?
+
+  tipo TipoEvento @default(OUTRO)
+
+  inicioEm DateTime
+  fimEm    DateTime?
+
+  local    String?
+  endereco String?
+  urlMapa  String?
+
+  exigeConfirmacao Boolean @default(true)
+  visivel          Boolean @default(true)
+
+  ordem Int @default(0)
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  casamento Casamento @relation(fields: [casamentoId], references: [id], onDelete: Cascade)
+
+  confirmacoes ConfirmacaoPresenca[]
+
+  @@index([casamentoId])
+}
+
+// ======================================================
+// RSVP / CONFIRMAÇÕES
+// ======================================================
+
+model ConfirmacaoPresenca {
+  id String @id @default(uuid())
+
+  convidadoId String
+  eventoId    String
+
+  status StatusConfirmacao @default(PENDENTE)
+
+  observacao   String?
+  respondidoEm DateTime?
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  convidado Convidado @relation(fields: [convidadoId], references: [id], onDelete: Cascade)
+
+  evento Evento @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+
+  @@unique([convidadoId, eventoId])
+  @@index([convidadoId])
+  @@index([eventoId])
+  @@index([status])
+}
+
+// ======================================================
+// PRESENTES
+// ======================================================
+
+model Presente {
+  id          String @id @default(uuid())
+  casamentoId String
+
+  nome      String
+  descricao String?
+
+  tipo TipoPresente @default(PRODUTO)
+
+  valorUnitario Decimal? @db.Decimal(10, 2)
+
+  imagemUrl  String?
+  urlExterna String?
+
+  quantidadeTotal Int @default(1)
+
+  ativo Boolean @default(true)
+  ordem Int     @default(0)
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  casamento Casamento @relation(fields: [casamentoId], references: [id], onDelete: Cascade)
+
+  reservas ReservaPresente[]
+
+  @@index([casamentoId])
+}
+
+// ======================================================
+// RESERVA DE PRESENTES
+// ======================================================
+
+model ReservaPresente {
+  id String @id @default(uuid())
+
+  presenteId String
+  conviteId  String?
+
+  nomeResponsavel  String
+  emailResponsavel String?
+
+  quantidade Int @default(1)
+
+  status StatusReservaPresente @default(RESERVADA)
+
+  reservadoEm DateTime  @default(now())
+  expiraEm    DateTime?
+  concluidoEm DateTime?
+  canceladoEm DateTime?
+
+  presente Presente @relation(fields: [presenteId], references: [id], onDelete: Restrict)
+
+  convite Convite? @relation(fields: [conviteId], references: [id], onDelete: SetNull)
+
+  @@index([presenteId])
+  @@index([conviteId])
+  @@index([status])
+}
