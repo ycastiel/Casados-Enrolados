@@ -1,21 +1,11 @@
-import { config } from "dotenv";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../prisma/generated/prisma/client.js"; 
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-config({
-  path: resolve(__dirname, "../../.env"),
-});
+import { PrismaClient } from "../prisma/generated/prisma/client.js";
 
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
   throw new Error(
-    "DATABASE_URL não foi definida. Verifique o arquivo .env na raiz do projeto.",
+    "DATABASE_URL não foi carregada antes da inicialização do Prisma Client.",
   );
 }
 
