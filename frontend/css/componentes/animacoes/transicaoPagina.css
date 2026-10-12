@@ -1,0 +1,243 @@
+.pagina-em-transicao {
+  overflow: hidden;
+}
+
+.transicao-pagina {
+  position: relative;
+  min-height: 100vh;
+}
+
+.transicao-pagina__conteudo {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  transform-origin: center center;
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.transicao-pagina__interludio {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(
+      circle at 50% 44%,
+      rgb(232 217 168 / 25%),
+      transparent 22rem
+    ),
+    radial-gradient(
+      circle at 22% 18%,
+      rgb(183 154 200 / 9%),
+      transparent 18rem
+    ),
+    var(--cor-creme);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease;
+}
+
+.transicao-pagina__interludio::before,
+.transicao-pagina__interludio::after {
+  position: absolute;
+  width: clamp(12rem, 25vw, 23rem);
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgb(142 59 70 / 20%),
+      transparent
+    );
+  content: "";
+}
+
+.transicao-pagina__interludio::before {
+  top: 25%;
+  left: 7%;
+  transform: rotate(-7deg);
+}
+
+.transicao-pagina__interludio::after {
+  right: 7%;
+  bottom: 25%;
+  transform: rotate(7deg);
+}
+
+.transicao-pagina__marca {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  transform:
+    translateY(0.7rem)
+    scale(0.96);
+  opacity: 0;
+  transition:
+    transform 240ms ease,
+    opacity 200ms ease;
+}
+
+.transicao-pagina__simbolo {
+  display: grid;
+  width: 3.6rem;
+  aspect-ratio: 1;
+  place-items: center;
+  margin-bottom: var(--espaco-3);
+  border: 1px solid rgb(142 59 70 / 15%);
+  border-radius: 50%;
+  background: rgb(255 253 248 / 88%);
+  color: var(--cor-vinho-500);
+  font-family: Georgia, serif;
+  font-size: 1.55rem;
+  box-shadow:
+    0 14px 38px rgb(62 58 55 / 7%);
+}
+
+.transicao-pagina__marca strong {
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-weight: 600;
+}
+
+.transicao-pagina__legenda {
+  margin-top: 0.2rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.transicao-pagina--saindo
+  .transicao-pagina__conteudo {
+  transform:
+    scale(0.965)
+    translateY(0.25rem);
+  filter: blur(2.5px);
+  opacity: 0.22;
+  transition:
+    transform 260ms cubic-bezier(.22, .8, .28, 1),
+    opacity 220ms ease,
+    filter 220ms ease;
+}
+
+.transicao-pagina--saindo
+  .transicao-pagina__interludio,
+.transicao-pagina--interludio
+  .transicao-pagina__interludio,
+.transicao-pagina--entrando
+  .transicao-pagina__interludio {
+  opacity: 1;
+}
+
+.transicao-pagina--saindo
+  .transicao-pagina__marca,
+.transicao-pagina--interludio
+  .transicao-pagina__marca {
+  transform:
+    translateY(0)
+    scale(1);
+  opacity: 1;
+}
+
+.transicao-pagina--interludio
+  .transicao-pagina__conteudo {
+  transform: scale(0.955);
+  filter: blur(5px);
+  opacity: 0;
+}
+
+.transicao-pagina--entrando
+  .transicao-pagina__conteudo {
+  animation:
+    entrar-pagina
+    360ms
+    cubic-bezier(.18, .8, .25, 1)
+    both;
+}
+
+.transicao-pagina--entrando
+  .transicao-pagina__interludio {
+  animation:
+    sair-interludio
+    360ms
+    ease
+    both;
+}
+
+.transicao-pagina--entrando
+  .transicao-pagina__marca {
+  animation:
+    recolher-marca
+    260ms
+    ease
+    both;
+}
+
+@keyframes entrar-pagina {
+  from {
+    transform:
+      scale(1.035)
+      translateY(-0.15rem);
+    filter: blur(4px);
+    opacity: 0;
+  }
+
+  to {
+    transform:
+      scale(1)
+      translateY(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sair-interludio {
+  from {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0.8;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes recolher-marca {
+  from {
+    transform:
+      scale(1)
+      translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform:
+      scale(1.035)
+      translateY(-0.2rem);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transicao-pagina__conteudo,
+  .transicao-pagina__interludio,
+  .transicao-pagina__marca {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .transicao-pagina__interludio {
+    display: none;
+  }
+}

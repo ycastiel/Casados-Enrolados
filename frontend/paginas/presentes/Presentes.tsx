@@ -1,13 +1,11 @@
-// ARQUIVO: frontend/paginas/presentes/Presentes.tsx
-// FUNÇÃO: Página pública da lista de presentes.
-// ALTERAÇÃO: o botão "Presentear" agora abre o fluxo real de reserva.
-
-import { Link } from "react-router-dom";
+import {
+  LinkTransicao,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
   OrnamentoFloral,
   RamoFloral,
-} from "../../javascript/componentes/Floral";
+} from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
@@ -203,19 +201,18 @@ export function Presentes() {
 
                           {!disponivel && (
                             <span>
-                              Já
-                              escolhido
+                              Já escolhido
                             </span>
                           )}
                         </div>
 
                         {disponivel ? (
-                          <Link
+                          <LinkTransicao
                             className="botao botao--primario"
                             to={`/presentes/${presente.id}/reservar`}
                           >
                             Presentear
-                          </Link>
+                          </LinkTransicao>
                         ) : (
                           <button
                             className="botao botao--primario"

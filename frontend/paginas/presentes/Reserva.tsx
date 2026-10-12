@@ -6,14 +6,17 @@ import {
 } from "react";
 
 import {
-  Link,
   useParams,
 } from "react-router-dom";
 
 import {
+  LinkTransicao,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
+
+import {
   OrnamentoFloral,
   RamoFloral,
-} from "../../javascript/componentes/Floral";
+} from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
@@ -444,12 +447,12 @@ export function ReservaPresente() {
 
             {reserva.status !==
               "RESERVADA" && (
-              <Link
+              <LinkTransicao
                 className="botao botao--primario"
                 to="/presentes"
               >
                 Voltar aos presentes
-              </Link>
+              </LinkTransicao>
             )}
           </div>
         </article>

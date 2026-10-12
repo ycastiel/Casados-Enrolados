@@ -1,0 +1,151 @@
+.cartao-ui {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius:
+    var(--raio-grande)
+    var(--raio-grande)
+    calc(var(--raio-grande) * 0.72)
+    var(--raio-grande);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 65%) inset,
+    var(--sombra-suave);
+}
+
+.cartao-ui::before {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgb(138 106 82 / 1.1%) 0,
+      rgb(138 106 82 / 1.1%) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  content: "";
+  pointer-events: none;
+}
+
+.cartao-ui__conteudo {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.cartao-ui__marca {
+  position: absolute;
+  z-index: 1;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 0.45rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cor-vinho-300);
+  box-shadow:
+    -0.7rem 0.35rem 0 -0.08rem var(--cor-amarelo-300),
+    -1.2rem -0.18rem 0 -0.13rem var(--cor-lilas);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.cartao-ui--papel {
+  background:
+    radial-gradient(
+      circle at 92% 12%,
+      rgb(232 217 168 / 13%),
+      transparent 9rem
+    ),
+    linear-gradient(
+      145deg,
+      rgb(255 255 255 / 96%),
+      rgb(247 242 234 / 84%)
+    );
+}
+
+.cartao-ui--botanico {
+  background:
+    radial-gradient(
+      circle at 100% 100%,
+      rgb(143 168 138 / 16%),
+      transparent 12rem
+    ),
+    var(--cor-verde-50);
+}
+
+.cartao-ui--vinho {
+  border-color:
+    rgb(255 253 248 / 10%);
+  background:
+    radial-gradient(
+      circle at 90% 15%,
+      rgb(232 217 168 / 12%),
+      transparent 11rem
+    ),
+    linear-gradient(
+      135deg,
+      var(--cor-vinho-700),
+      var(--cor-vinho-500)
+    );
+  color: var(--cor-marfin);
+}
+
+.cartao-ui--vinho
+  :is(h2, h3, strong) {
+  color: var(--cor-marfin);
+}
+
+.cartao-ui--vinho
+  .cartao-ui__marca {
+  background: var(--cor-amarelo-300);
+  box-shadow:
+    -0.7rem 0.35rem 0 -0.08rem var(--cor-lilas),
+    -1.2rem -0.18rem 0 -0.13rem var(--cor-verde-300);
+}
+
+.cartao-ui--sutil {
+  box-shadow: none;
+  background:
+    rgb(255 253 248 / 58%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cartao-ui--interativo {
+    transition:
+      transform var(--transicao-padrao),
+      box-shadow var(--transicao-padrao),
+      border-color var(--transicao-padrao);
+  }
+
+  .cartao-ui--interativo:hover {
+    transform:
+      translateY(-0.3rem)
+      rotate(-0.15deg);
+    border-color:
+      rgb(96 119 93 / 24%);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 70%) inset,
+      0 20px 55px rgb(62 58 55 / 11%);
+  }
+
+  .cartao-ui--interativo:hover
+    .cartao-ui__marca {
+    transform:
+      rotate(12deg)
+      scale(1.08);
+    transition:
+      transform var(--transicao-padrao);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartao-ui--interativo {
+    transition: none;
+  }
+
+  .cartao-ui--interativo:hover {
+    transform: none;
+  }
+}

@@ -18,7 +18,7 @@ import {
   type NovoConvidado,
 } from "../../javascript/paginas/noivos/Convites";
 
-import { OrnamentoFloral } from "../../javascript/componentes/Floral";
+import { OrnamentoFloral } from "../../javascript/componentes/molduras/Floral";
 
 import "../../css/paginas/noivos/convidados.css";
 

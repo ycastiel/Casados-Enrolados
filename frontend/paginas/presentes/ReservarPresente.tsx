@@ -1,19 +1,22 @@
 import {
-  type FormEvent,
+  type SyntheticEvent,
   useMemo,
   useState,
 } from "react";
 
 import {
-  Link,
-  useNavigate,
   useParams,
 } from "react-router-dom";
 
 import {
+  LinkTransicao,
+  useTransicaoPagina,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
+
+import {
   OrnamentoFloral,
   RamoFloral,
-} from "../../javascript/componentes/Floral";
+} from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
@@ -38,7 +41,10 @@ const moeda =
 
 export function ReservarPresente() {
   const { id } = useParams();
-  const navigate = useNavigate();
+
+  const {
+    navegar,
+  } = useTransicaoPagina();
 
   const {
     dados,
@@ -127,7 +133,7 @@ export function ReservarPresente() {
       : null;
 
   async function reservar(
-    evento: FormEvent<HTMLFormElement>,
+    evento: SyntheticEvent<HTMLFormElement>,
   ) {
     evento.preventDefault();
 
@@ -153,7 +159,7 @@ export function ReservarPresente() {
           },
         );
 
-      navigate(
+      navegar(
         `/presentes/reserva/${reserva.token}`,
       );
     } catch (erroCapturado) {
@@ -333,12 +339,12 @@ export function ReservarPresente() {
                 : "Presente indisponível"}
           </button>
 
-          <Link
+          <LinkTransicao
             className="reserva-voltar"
             to="/presentes"
           >
             Voltar para a lista
-          </Link>
+          </LinkTransicao>
         </form>
       </section>
     </div>

@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import {
+  LinkTransicao,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
   OrnamentoFloral,
   RamoFloral,
-} from "../../javascript/componentes/Floral";
+} from "../../javascript/componentes/molduras/Floral";
 
 export function Admin() {
   return (
@@ -65,12 +67,12 @@ export function Admin() {
               </p>
             </div>
 
-            <Link
+            <LinkTransicao
               className="botao botao--primario"
               to="/admin/convidados"
             >
               Organizar convidados
-            </Link>
+            </LinkTransicao>
           </article>
 
           <article className="admin-acao">
@@ -126,12 +128,12 @@ export function Admin() {
           porque “todo sistema precisa ter”.
         </p>
 
-        <Link
+        <LinkTransicao
           className="botao botao--secundario"
           to="/"
         >
           Ver o site dos convidados
-        </Link>
+        </LinkTransicao>
       </section>
     </div>
   );

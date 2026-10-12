@@ -2,7 +2,7 @@ import {
   MolduraFloral,
   OrnamentoFloral,
   RamoFloral,
-} from "../../javascript/componentes/Floral";
+} from "../../javascript/componentes/molduras/Floral";
 
 import "../../css/paginas/eventos/confirmacao.css";
 
