@@ -1,22 +1,18 @@
-// ARQUIVO: frontend/paginas/Home.tsx
-// FUNÇÃO: Página inicial pública.
-// ALTERAÇÃO PRINCIPAL: Agora consome useCasamento() e exibe dados reais da API.
-
 import { Link } from "react-router-dom";
 
 import {
   MolduraFloral,
   OrnamentoFloral,
   RamoFloral,
-} from "../javascript/componentes/Floral";
+} from "../../javascript/componentes/Floral";
 
-import { EstadoPagina } from "../javascript/helpers/EstadoPagina";
+import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 import {
   type EventoCasamento,
   useCasamento,
-} from "../javascript/paginas/eventos/Casamento";
+} from "../../javascript/paginas/eventos/Casamento";
 
-import "../css/paginas/home.css";
+import "../../css/paginas/home/home.css";
 
 function formatarDataCasamento(
   data: string,

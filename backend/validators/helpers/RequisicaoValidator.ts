@@ -23,14 +23,10 @@ export function validarRequisicao(
     try {
       const dados = schema.parse(req[origem]);
 
-      /*
-       * Guardamos os dados já validados e transformados
-       * em res.locals.
-       *
-       * Isso é especialmente útil para query strings,
-       * que não devemos tentar sobrescrever diretamente.
-       */
-      res.locals.validado = dados;
+      res.locals.validado = {
+        ...(res.locals.validado ?? {}),
+        [origem]: dados,
+      };
 
       next();
     } catch (erro) {
