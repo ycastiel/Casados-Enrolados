@@ -4,7 +4,7 @@ import {
   RamoFloral,
 } from "../../javascript/componentes/Floral";
 
-import "../css/paginas/eventos/confirmacao.css";
+import "../../css/paginas/eventos/confirmacao.css";
 
 export function Confirmacao() {
   function impedirEnvio(evento: React.FormEvent<HTMLFormElement>) {

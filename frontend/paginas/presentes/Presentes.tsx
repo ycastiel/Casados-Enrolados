@@ -3,7 +3,7 @@ import {
   RamoFloral,
 } from "../../javascript/componentes/Floral";
 
-import "../css/paginas/presentes.css";
+import "../../css/paginas/presentes/presentes.css";
 
 const presentes = [
   {
