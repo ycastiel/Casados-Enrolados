@@ -1,0 +1,29 @@
+.rodape-principal {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 1rem 3rem;
+  border-top: 1px solid var(--cor-borda);
+  background: var(--cor-creme);
+  text-align: center;
+}
+
+.rodape-ornamento {
+  margin-bottom: var(--espaco-3);
+  color: var(--cor-vinho-500);
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+}
+
+.rodape-frase {
+  max-width: 34rem;
+  margin: 0 auto var(--espaco-3);
+  color: var(--cor-texto-suave);
+}
+
+.rodape-marca {
+  margin: 0;
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
