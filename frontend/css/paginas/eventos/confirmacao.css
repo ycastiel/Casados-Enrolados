@@ -1,0 +1,204 @@
+.pagina-confirmacao {
+  overflow: hidden;
+}
+
+.confirmacao-hero {
+  position: relative;
+  display: grid;
+  min-height: 28rem;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(4rem, 9vw, 7rem) 1rem;
+  background:
+    radial-gradient(circle at 16% 30%, rgb(232 217 168 / 20%), transparent 21rem),
+    radial-gradient(circle at 84% 18%, rgb(183 154 200 / 10%), transparent 19rem),
+    var(--cor-verde-50);
+  isolation: isolate;
+}
+
+.confirmacao-hero-conteudo {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 47rem);
+  text-align: center;
+}
+
+.confirmacao-hero h1 {
+  margin-bottom: 0;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 500;
+}
+
+.confirmacao-hero p {
+  max-width: 39rem;
+  margin-inline: auto;
+  color: var(--cor-texto-suave);
+  font-size: 1.06rem;
+}
+
+.confirmacao-hero-floral {
+  position: absolute;
+  z-index: 1;
+  width: clamp(13rem, 25vw, 24rem);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.confirmacao-hero-floral--esquerda {
+  bottom: -5rem;
+  left: -5rem;
+  transform: rotate(-10deg);
+}
+
+.confirmacao-hero-floral--direita {
+  top: -5rem;
+  right: -5rem;
+  transform: rotate(170deg);
+}
+
+.confirmacao-area {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.confirmacao-moldura {
+  min-width: 0;
+}
+
+.confirmacao-cartao {
+  padding: clamp(2.2rem, 6vw, 4.3rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 96%), rgb(247 242 234 / 82%));
+  box-shadow: var(--sombra-media);
+}
+
+.confirmacao-cartao-cabecalho {
+  max-width: 37rem;
+  margin-bottom: var(--espaco-8);
+}
+
+.confirmacao-cartao h2,
+.confirmacao-explicacao h2 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.confirmacao-cartao-cabecalho p,
+.confirmacao-explicacao > p {
+  color: var(--cor-texto-suave);
+}
+
+.confirmacao-formulario {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.confirmacao-formulario label {
+  color: var(--cor-verde-900);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.confirmacao-busca {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--espaco-3);
+}
+
+.confirmacao-busca input {
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgb(96 119 93 / 26%);
+  border-radius: var(--raio-medio);
+  outline: none;
+  background: rgb(255 253 248 / 86%);
+  color: var(--cor-texto);
+  transition:
+    border-color var(--transicao-padrao),
+    box-shadow var(--transicao-padrao),
+    background-color var(--transicao-padrao);
+}
+
+.confirmacao-busca input::placeholder {
+  color: rgb(117 110 104 / 66%);
+}
+
+.confirmacao-busca input:focus {
+  border-color: var(--cor-verde-500);
+  background: white;
+  box-shadow: 0 0 0 4px rgb(143 168 138 / 12%);
+}
+
+.confirmacao-ajuda {
+  margin: var(--espaco-2) 0 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
+}
+
+.confirmacao-explicacao {
+  min-width: 0;
+}
+
+.confirmacao-passos {
+  display: grid;
+  gap: var(--espaco-6);
+  margin-top: var(--espaco-8);
+}
+
+.confirmacao-passo {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: var(--espaco-4);
+  align-items: start;
+}
+
+.confirmacao-passo > span {
+  display: grid;
+  width: 2.8rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgb(142 59 70 / 18%);
+  border-radius: 50%;
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-500);
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.confirmacao-passo h3 {
+  margin-bottom: var(--espaco-1);
+  font-size: 1.55rem;
+}
+
+.confirmacao-passo p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.94rem;
+}
+
+@media (max-width: 900px) {
+  .confirmacao-area {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmacao-explicacao {
+    width: min(100%, 42rem);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .confirmacao-busca {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmacao-busca .botao {
+    width: 100%;
+  }
+}
