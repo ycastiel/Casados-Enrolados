@@ -35,20 +35,27 @@ export const tratarErro: ErrorRequestHandler = (
    * POST / PUT / PATCH.
    */
   if (erro instanceof ZodError) {
-    res.status(400).json({
-      erro: {
-        codigo: "DADOS_INVALIDOS",
-        mensagem: "Os dados enviados são inválidos.",
+  res.status(400).json({
+    erro: {
+      codigo: "DADOS_INVALIDOS",
+      mensagem:
+        "Os dados enviados são inválidos.",
 
-        detalhes: erro.issues.map((issue) => ({
-          campo: issue.path.join("."),
-          mensagem: issue.message,
-        })),
-      },
-    });
+      detalhes: erro.issues.map((issue) => ({
+        campo:
+          issue.path.length > 0
+            ? issue.path.join(".")
+            : null,
 
-    return;
-  }
+        mensagem: issue.message,
+
+        codigo: issue.code,
+      })),
+    },
+  });
+
+  return;
+}
 
   /*
    * Qualquer erro que chegou até aqui é inesperado.
