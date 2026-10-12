@@ -1,10 +1,10 @@
 import express from "express";
 import helmet from "helmet";
 
-import { tratarErro } from "../middleware/helpers/Erro.js";
-import { rotaNaoEncontrada } from "../service/helpers/erros/ErrosRotas.js";
+import { tratarErro } from "../middlewares/helpers/Erro.js";
+import { rotaNaoEncontrada } from "../services/helpers/erros/ErrosRotas.js";
 
-import { router } from "../route/indexRoutes.js";
+import { router } from "../routes/indexRoutes.js";
 
 export const app = express();
 

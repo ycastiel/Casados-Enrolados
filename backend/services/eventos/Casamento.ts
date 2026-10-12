@@ -54,48 +54,6 @@ export async function buscarCasamento() {
         },
       },
 
-      convites: {
-        where: {
-          ativo: true,
-        },
-
-        orderBy: {
-          nomeExibicao: "asc",
-        },
-
-        select: {
-          id: true,
-          nomeExibicao: true,
-
-          convidados: {
-            orderBy: {
-              nome: "asc",
-            },
-
-            select: {
-              id: true,
-              nome: true,
-
-              restricaoAlimentar: true,
-
-              confirmacoes: {
-                select: {
-                  status: true,
-                  respondidoEm: true,
-
-                  evento: {
-                    select: {
-                      id: true,
-                      nome: true,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-
       presentes: {
         where: {
           ativo: true,
@@ -123,7 +81,10 @@ export async function buscarCasamento() {
           reservas: {
             where: {
               status: {
-                in: ["RESERVADA", "CONCLUIDA"],
+                in: [
+                  "RESERVADA",
+                  "CONCLUIDA",
+                ],
               },
             },
 
@@ -143,35 +104,42 @@ export async function buscarCasamento() {
     );
   }
 
-  const presentes = casamento.presentes.map((presente) => {
-    const quantidadeReservada = presente.reservas.reduce(
-      (total, reserva) => total + reserva.quantidade,
-      0,
-    );
+  const presentes =
+    casamento.presentes.map((presente) => {
+      const quantidadeReservada =
+        presente.reservas.reduce(
+          (total, reserva) =>
+            total + reserva.quantidade,
+          0,
+        );
 
-    return {
-      id: presente.id,
+      return {
+        id: presente.id,
 
-      nome: presente.nome,
-      descricao: presente.descricao,
+        nome: presente.nome,
+        descricao: presente.descricao,
 
-      tipo: presente.tipo,
+        tipo: presente.tipo,
 
-      valorUnitario:
-        presente.valorUnitario?.toString() ?? null,
+        valorUnitario:
+          presente.valorUnitario?.toString() ??
+          null,
 
-      imagemUrl: presente.imagemUrl,
-      urlExterna: presente.urlExterna,
+        imagemUrl: presente.imagemUrl,
+        urlExterna: presente.urlExterna,
 
-      quantidadeTotal: presente.quantidadeTotal,
-      quantidadeReservada,
+        quantidadeTotal:
+          presente.quantidadeTotal,
 
-      quantidadeDisponivel: Math.max(
-        presente.quantidadeTotal - quantidadeReservada,
-        0,
-      ),
-    };
-  });
+        quantidadeReservada,
+
+        quantidadeDisponivel: Math.max(
+          presente.quantidadeTotal -
+            quantidadeReservada,
+          0,
+        ),
+      };
+    });
 
   return {
     casamento: {
@@ -184,12 +152,14 @@ export async function buscarCasamento() {
       titulo: casamento.titulo,
       descricao: casamento.descricao,
 
-      dataCasamento: casamento.dataCasamento,
-      fusoHorario: casamento.fusoHorario,
+      dataCasamento:
+        casamento.dataCasamento,
+
+      fusoHorario:
+        casamento.fusoHorario,
     },
 
     eventos: casamento.eventos,
-    convites: casamento.convites,
     presentes,
   };
 }

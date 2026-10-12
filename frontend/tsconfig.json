@@ -20,6 +20,6 @@
   "include": [
     "paginas/**/*.ts",
     "paginas/**/*.tsx",
-    "viteconfig.ts"
+    "vite.config.ts"
   ]
 }

@@ -1,8 +1,8 @@
 import type { ErrorRequestHandler } from "express";
 import { ZodError } from "zod";
 
-import { ambiente } from "../../config/Ambiente.js";
-import { ErroAplicacao } from "../../service/helpers/erros/ErrosIndex.js";
+import { ambiente } from "../../configs/Ambiente.js";
+import { ErroAplicacao } from "../../services/helpers/erros/ErrosIndex.js";
 
 export const tratarErro: ErrorRequestHandler = (
   erro,

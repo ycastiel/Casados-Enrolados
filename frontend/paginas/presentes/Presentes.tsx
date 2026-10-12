@@ -3,60 +3,69 @@ import {
   RamoFloral,
 } from "../../javascript/componentes/Floral";
 
+import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
+import {
+  type PresenteCasamento,
+  useCasamento,
+} from "../../javascript/paginas/eventos/Casamento";
+
 import "../../css/paginas/presentes/presentes.css";
 
-const presentes = [
-  {
-    id: 1,
-    categoria: "Casa nova",
-    nome: "Jantar especial a dois",
-    descricao:
-      "Uma ajudinha para inaugurar a casa com uma noite gostosa e sem louça para lavar.",
-    valor: "R$ 180,00",
-  },
-  {
-    id: 2,
-    categoria: "Lua de mel",
-    nome: "Café da manhã com vista",
-    descricao:
-      "Porque acordar cedo fica consideravelmente mais fácil quando existe viagem e croissant.",
-    valor: "R$ 120,00",
-  },
-  {
-    id: 3,
-    categoria: "Casa nova",
-    nome: "Air fryer da paz doméstica",
-    descricao:
-      "Tecnologia de ponta para impedir discussões sobre quem vai fritar a batata.",
-    valor: "R$ 520,00",
-  },
-  {
-    id: 4,
-    categoria: "Lua de mel",
-    nome: "Passeio inesquecível",
-    descricao:
-      "Uma contribuição para uma experiência que vai virar história por muitos anos.",
-    valor: "R$ 250,00",
-  },
-  {
-    id: 5,
-    categoria: "Pequenos luxos",
-    nome: "Primeiro brinde em casa",
-    descricao:
-      "Taças, bebida e uma boa desculpa para comemorar a vida nova mais uma vez.",
-    valor: "R$ 160,00",
-  },
-  {
-    id: 6,
-    categoria: "Lua de mel",
-    nome: "Cota para a viagem",
-    descricao:
-      "Para participar um pouquinho da aventura mesmo sem caber na mala.",
-    valor: "R$ 100,00",
-  },
-];
+const formatadorMoeda =
+  new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+function formatarValor(
+  presente: PresenteCasamento,
+): string {
+  if (presente.valorUnitario === null) {
+    return "Valor livre";
+  }
+
+  return formatadorMoeda.format(
+    Number(presente.valorUnitario),
+  );
+}
+
+function rotuloTipo(
+  presente: PresenteCasamento,
+): string {
+  return presente.tipo === "COTA"
+    ? "Cota especial"
+    : "Presente";
+}
 
 export function Presentes() {
+  const {
+    dados,
+    carregando,
+    erro,
+    recarregar,
+  } = useCasamento();
+
+  if (carregando) {
+    return (
+      <EstadoPagina
+        tipo="carregando"
+        titulo="Preparando a lista de presentes"
+      />
+    );
+  }
+
+  if (erro || !dados) {
+    return (
+      <EstadoPagina
+        tipo="erro"
+        mensagem={erro ?? undefined}
+        aoTentarNovamente={recarregar}
+      />
+    );
+  }
+
+  const presentes = dados.presentes;
+
   return (
     <div className="pagina-presentes">
       <section className="presentes-hero">
@@ -64,14 +73,18 @@ export function Presentes() {
         <RamoFloral className="presentes-hero-floral presentes-hero-floral--direita" />
 
         <div className="presentes-hero-conteudo">
-          <span className="secao-etiqueta">Com carinho</span>
+          <span className="secao-etiqueta">
+            Com carinho
+          </span>
+
           <h1>Lista de presentes</h1>
 
           <OrnamentoFloral />
 
           <p>
-            O maior presente é celebrar esse dia juntos. Para quem quiser deixar
-            mais um carinho, reunimos algumas ideias para a nova fase.
+            O maior presente é celebrar esse dia juntos.
+            Para quem quiser deixar mais um carinho,
+            reunimos algumas ideias para a nova fase.
           </p>
         </div>
       </section>
@@ -82,58 +95,102 @@ export function Presentes() {
       >
         <div className="presentes-introducao">
           <div>
-            <span className="secao-etiqueta">Escolha com calma</span>
+            <span className="secao-etiqueta">
+              Escolha com calma
+            </span>
+
             <h2 id="titulo-presentes">
               Um pedacinho da nossa história
             </h2>
           </div>
 
           <p>
-            Estes itens ainda são exemplos visuais. Depois ligaremos cada card aos
-            presentes reais cadastrados no banco.
+            Cada item abaixo vem diretamente da lista
+            preparada pelos noivos.
           </p>
         </div>
 
-        <div className="presentes-grade">
-          {presentes.map((presente) => (
-            <article
-              className="presente-cartao"
-              key={presente.id}
-            >
-              <RamoFloral className="presente-cartao-floral" />
+        {presentes.length === 0 ? (
+          <div className="presentes-vazio">
+            <OrnamentoFloral compacto />
 
-              <div className="presente-cartao-conteudo">
-                <span className="presente-categoria">
-                  {presente.categoria}
-                </span>
+            <h3>
+              A lista ainda está sendo preparada.
+            </h3>
 
-                <h3>{presente.nome}</h3>
+            <p>
+              Volte um pouquinho mais tarde para conhecer
+              os presentes escolhidos.
+            </p>
+          </div>
+        ) : (
+          <div className="presentes-grade">
+            {presentes.map((presente) => {
+              const disponivel =
+                presente.quantidadeDisponivel > 0;
 
-                <p>{presente.descricao}</p>
+              return (
+                <article
+                  className="presente-cartao"
+                  key={presente.id}
+                >
+                  <RamoFloral className="presente-cartao-floral" />
 
-                <div className="presente-cartao-rodape">
-                  <strong>{presente.valor}</strong>
+                  <div className="presente-cartao-conteudo">
+                    <span className="presente-categoria">
+                      {rotuloTipo(presente)}
+                    </span>
 
-                  <button
-                    className="botao botao--primario"
-                    type="button"
-                  >
-                    Presentear
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                    <h3>{presente.nome}</h3>
+
+                    <p>
+                      {presente.descricao ??
+                        "Um carinho para acompanhar o casal nesta nova fase."}
+                    </p>
+
+                    <div className="presente-cartao-rodape">
+                      <div className="presente-valor">
+                        <strong>
+                          {formatarValor(presente)}
+                        </strong>
+
+                        {!disponivel && (
+                          <span>
+                            Já escolhido
+                          </span>
+                        )}
+                      </div>
+
+                      <button
+                        className="botao botao--primario"
+                        type="button"
+                        disabled={!disponivel}
+                      >
+                        {disponivel
+                          ? "Presentear"
+                          : "Indisponível"}
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       <section className="presentes-recado">
         <div>
-          <span className="secao-etiqueta">Sem obrigação</span>
+          <span className="secao-etiqueta">
+            Sem obrigação
+          </span>
+
           <h2>Sua presença já é presente.</h2>
+
           <p>
-            A lista existe para quem pediu uma ajudinha para escolher. O que a
-            gente quer mesmo é dividir o dia com pessoas queridas.
+            A lista existe para quem pediu uma ajudinha
+            para escolher. O que a gente quer mesmo é
+            dividir o dia com pessoas queridas.
           </p>
         </div>
       </section>

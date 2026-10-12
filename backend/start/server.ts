@@ -1,4 +1,4 @@
-import { ambiente } from "../config/Ambiente.js";
+import { ambiente } from "../configs/Ambiente.js";
 
 const { app } = await import("./app.js");
 

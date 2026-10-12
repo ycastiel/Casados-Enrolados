@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Presentes />,
       },
       {
-        path: "/eventos",
+        path: "/confirmacao",
         element: <Confirmacao />,
       },
     ],
