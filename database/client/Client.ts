@@ -3,7 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../prisma/generated/prisma/Client.js"; 
+import { PrismaClient } from "../prisma/generated/prisma/client.js"; 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

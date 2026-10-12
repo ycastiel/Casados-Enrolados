@@ -31,9 +31,7 @@
 
     "db:check": "npm run db:status && npm run db:format",
 
-    "db:studio": "npm exec --workspace=database -- prisma studio --config=prisma.config.ts",
+    "db:studio": "npm exec --workspace=database -- prisma studio --config=prisma.config.ts"
 
-    "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces"
   }
 }
