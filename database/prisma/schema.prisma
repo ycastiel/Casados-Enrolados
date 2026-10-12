@@ -253,26 +253,21 @@ model Presente {
 // ======================================================
 
 model ReservaPresente {
-  id String @id @default(uuid())
-
-  presenteId String
-  conviteId  String?
-
+  id               String                @id @default(uuid())
+  token            String                @unique @default(uuid())
+  presenteId       String
+  conviteId        String?
   nomeResponsavel  String
   emailResponsavel String?
-
-  quantidade Int @default(1)
-
-  status StatusReservaPresente @default(RESERVADA)
-
-  reservadoEm DateTime  @default(now())
-  expiraEm    DateTime?
-  concluidoEm DateTime?
-  canceladoEm DateTime?
+  quantidade       Int                   @default(1)
+  status           StatusReservaPresente @default(RESERVADA)
+  reservadoEm      DateTime              @default(now())
+  expiraEm         DateTime?
+  concluidoEm      DateTime?
+  canceladoEm      DateTime?
 
   presente Presente @relation(fields: [presenteId], references: [id], onDelete: Restrict)
-
-  convite Convite? @relation(fields: [conviteId], references: [id], onDelete: SetNull)
+  convite  Convite? @relation(fields: [conviteId], references: [id], onDelete: SetNull)
 
   @@index([presenteId])
   @@index([conviteId])

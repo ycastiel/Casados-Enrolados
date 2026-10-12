@@ -3,99 +3,119 @@ import { prisma } from "@casados/database";
 import { ErroAplicacao } from "../helpers/erros/ErrosIndex.js";
 
 export async function buscarCasamento() {
-  const casamento = await prisma.casamento.findFirst({
-    where: {
-      ativo: true,
-    },
+  const agora = new Date();
 
-    select: {
-      id: true,
-      slug: true,
+  const casamento =
+    await prisma.casamento.findFirst({
+      where: {
+        ativo: true,
+      },
 
-      nomePessoa1: true,
-      nomePessoa2: true,
+      select: {
+        id: true,
+        slug: true,
 
-      titulo: true,
-      descricao: true,
+        nomePessoa1: true,
+        nomePessoa2: true,
 
-      dataCasamento: true,
-      fusoHorario: true,
+        titulo: true,
+        descricao: true,
 
-      eventos: {
-        where: {
-          visivel: true,
+        dataCasamento: true,
+        fusoHorario: true,
+
+        eventos: {
+          where: {
+            visivel: true,
+          },
+
+          orderBy: [
+            {
+              ordem: "asc",
+            },
+            {
+              inicioEm: "asc",
+            },
+          ],
+
+          select: {
+            id: true,
+
+            nome: true,
+            descricao: true,
+
+            tipo: true,
+
+            inicioEm: true,
+            fimEm: true,
+
+            local: true,
+            endereco: true,
+            urlMapa: true,
+
+            exigeConfirmacao: true,
+          },
         },
 
-        orderBy: [
-          {
+        presentes: {
+          where: {
+            ativo: true,
+          },
+
+          orderBy: {
             ordem: "asc",
           },
-          {
-            inicioEm: "asc",
-          },
-        ],
 
-        select: {
-          id: true,
+          select: {
+            id: true,
 
-          nome: true,
-          descricao: true,
+            nome: true,
+            descricao: true,
 
-          tipo: true,
+            tipo: true,
 
-          inicioEm: true,
-          fimEm: true,
+            valorUnitario: true,
 
-          local: true,
-          endereco: true,
-          urlMapa: true,
+            imagemUrl: true,
+            urlExterna: true,
 
-          exigeConfirmacao: true,
-        },
-      },
+            quantidadeTotal: true,
 
-      presentes: {
-        where: {
-          ativo: true,
-        },
+            reservas: {
+              where: {
+                OR: [
+                  {
+                    status:
+                      "CONCLUIDA",
+                  },
 
-        orderBy: {
-          ordem: "asc",
-        },
+                  {
+                    status:
+                      "RESERVADA",
 
-        select: {
-          id: true,
-
-          nome: true,
-          descricao: true,
-
-          tipo: true,
-
-          valorUnitario: true,
-
-          imagemUrl: true,
-          urlExterna: true,
-
-          quantidadeTotal: true,
-
-          reservas: {
-            where: {
-              status: {
-                in: [
-                  "RESERVADA",
-                  "CONCLUIDA",
+                    OR: [
+                      {
+                        expiraEm:
+                          null,
+                      },
+                      {
+                        expiraEm: {
+                          gt: agora,
+                        },
+                      },
+                    ],
+                  },
                 ],
               },
-            },
 
-            select: {
-              quantidade: true,
+              select: {
+                quantidade: true,
+              },
             },
           },
         },
       },
-    },
-  });
+    });
 
   if (!casamento) {
     throw ErroAplicacao.naoEncontrado(
@@ -105,52 +125,64 @@ export async function buscarCasamento() {
   }
 
   const presentes =
-    casamento.presentes.map((presente) => {
-      const quantidadeReservada =
-        presente.reservas.reduce(
-          (total, reserva) =>
-            total + reserva.quantidade,
-          0,
-        );
+    casamento.presentes.map(
+      (presente) => {
+        const quantidadeReservada =
+          presente.reservas.reduce(
+            (total, reserva) =>
+              total +
+              reserva.quantidade,
+            0,
+          );
 
-      return {
-        id: presente.id,
+        return {
+          id: presente.id,
 
-        nome: presente.nome,
-        descricao: presente.descricao,
+          nome: presente.nome,
+          descricao:
+            presente.descricao,
 
-        tipo: presente.tipo,
+          tipo: presente.tipo,
 
-        valorUnitario:
-          presente.valorUnitario?.toString() ??
-          null,
+          valorUnitario:
+            presente.valorUnitario
+              ?.toString() ?? null,
 
-        imagemUrl: presente.imagemUrl,
-        urlExterna: presente.urlExterna,
+          imagemUrl:
+            presente.imagemUrl,
 
-        quantidadeTotal:
-          presente.quantidadeTotal,
+          urlExterna:
+            presente.urlExterna,
 
-        quantidadeReservada,
+          quantidadeTotal:
+            presente.quantidadeTotal,
 
-        quantidadeDisponivel: Math.max(
-          presente.quantidadeTotal -
-            quantidadeReservada,
-          0,
-        ),
-      };
-    });
+          quantidadeReservada,
+
+          quantidadeDisponivel:
+            Math.max(
+              presente.quantidadeTotal -
+                quantidadeReservada,
+              0,
+            ),
+        };
+      },
+    );
 
   return {
     casamento: {
       id: casamento.id,
       slug: casamento.slug,
 
-      nomePessoa1: casamento.nomePessoa1,
-      nomePessoa2: casamento.nomePessoa2,
+      nomePessoa1:
+        casamento.nomePessoa1,
+
+      nomePessoa2:
+        casamento.nomePessoa2,
 
       titulo: casamento.titulo,
-      descricao: casamento.descricao,
+      descricao:
+        casamento.descricao,
 
       dataCasamento:
         casamento.dataCasamento,

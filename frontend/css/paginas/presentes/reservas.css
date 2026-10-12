@@ -1,0 +1,309 @@
+.pagina-reserva {
+  overflow: hidden;
+}
+
+.reserva-hero,
+.reserva-status-hero {
+  position: relative;
+  display: grid;
+  min-height: 25rem;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(4rem, 9vw, 7rem) 1rem;
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      rgb(183 154 200 / 10%),
+      transparent 20rem
+    ),
+    radial-gradient(
+      circle at 83% 25%,
+      rgb(232 217 168 / 18%),
+      transparent 20rem
+    ),
+    var(--cor-creme);
+  isolation: isolate;
+}
+
+.reserva-hero-conteudo,
+.reserva-status-conteudo {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 46rem);
+  text-align: center;
+}
+
+.reserva-hero h1,
+.reserva-status-hero h1 {
+  margin-bottom: 0;
+  font-size: clamp(3.3rem, 8vw, 6rem);
+  font-weight: 500;
+}
+
+.reserva-hero p,
+.reserva-status-hero p {
+  max-width: 39rem;
+  margin-inline: auto;
+  color: var(--cor-texto-suave);
+}
+
+.reserva-hero-floral,
+.reserva-status-floral {
+  position: absolute;
+  z-index: 1;
+  right: -5rem;
+  bottom: -6rem;
+  width: clamp(15rem, 30vw, 25rem);
+  transform: rotate(157deg);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.reserva-area,
+.reserva-status-area {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(0, 1.15fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.reserva-resumo h2,
+.reserva-pagamento-futuro h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.reserva-resumo > p,
+.reserva-pagamento-futuro > p {
+  color: var(--cor-texto-suave);
+}
+
+.reserva-resumo dl,
+.reserva-detalhes {
+  display: grid;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-8);
+}
+
+.reserva-resumo dl > div,
+.reserva-detalhes > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  padding-block: 0.75rem;
+  border-bottom: 1px solid rgb(138 106 82 / 12%);
+}
+
+.reserva-resumo dt,
+.reserva-detalhes dt {
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
+}
+
+.reserva-resumo dd,
+.reserva-detalhes dd {
+  margin: 0;
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.reserva-formulario,
+.reserva-status-cartao {
+  padding: clamp(2rem, 5vw, 3.4rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background:
+    linear-gradient(
+      145deg,
+      rgb(255 255 255 / 96%),
+      rgb(247 242 234 / 84%)
+    );
+  box-shadow: var(--sombra-media);
+}
+
+.reserva-formulario {
+  display: grid;
+  gap: var(--espaco-4);
+}
+
+.reserva-formulario label {
+  display: grid;
+  gap: var(--espaco-2);
+  color: var(--cor-verde-900);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.reserva-formulario input {
+  min-height: 3.1rem;
+  padding: 0.78rem 0.95rem;
+  border: 1px solid rgb(96 119 93 / 24%);
+  border-radius: var(--raio-pequeno);
+  outline: none;
+  background: var(--cor-marfin);
+}
+
+.reserva-formulario input:focus {
+  border-color: var(--cor-verde-500);
+  box-shadow: 0 0 0 4px rgb(143 168 138 / 10%);
+}
+
+.reserva-formulario .botao {
+  margin-top: var(--espaco-3);
+}
+
+.reserva-voltar {
+  justify-self: center;
+  color: var(--cor-texto-suave);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.reserva-erro {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-700);
+  font-size: 0.82rem;
+}
+
+.reserva-status-area {
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(17rem, 0.8fr);
+}
+
+.reserva-status-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaco-6);
+}
+
+.reserva-status-topo h2 {
+  margin-bottom: 0;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.reserva-status-selo {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  padding-inline: 0.75rem;
+  border-radius: var(--raio-pilula);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.reserva-status-selo--reservada {
+  background: var(--cor-amarelo-100);
+  color: var(--cor-marrom);
+}
+
+.reserva-status-selo--concluida {
+  background: var(--cor-verde-100);
+  color: var(--cor-verde-900);
+}
+
+.reserva-status-selo--cancelada,
+.reserva-status-selo--expirada {
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-700);
+}
+
+.reserva-contagem {
+  margin-top: var(--espaco-8);
+  padding: clamp(1.5rem, 4vw, 2.2rem);
+  border-radius: var(--raio-medio);
+  background: var(--cor-verde-50);
+  text-align: center;
+}
+
+.reserva-contagem > span {
+  color: var(--cor-vinho-500);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.reserva-contagem strong {
+  display: block;
+  margin-block: 0.35rem;
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  line-height: 1;
+}
+
+.reserva-contagem p {
+  max-width: 28rem;
+  margin: 0 auto;
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
+
+.reserva-status-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-8);
+}
+
+.reserva-status-acoes .botao:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.reserva-pagamento-futuro {
+  padding: clamp(2rem, 5vw, 3rem);
+  border: 1px dashed rgb(142 59 70 / 22%);
+  border-radius: var(--raio-grande);
+  background: rgb(255 253 248 / 60%);
+}
+
+.pagamento-futuro-opcoes {
+  display: flex;
+  gap: var(--espaco-2);
+  margin-top: var(--espaco-6);
+}
+
+.pagamento-futuro-opcoes span {
+  display: inline-flex;
+  min-height: 2.2rem;
+  align-items: center;
+  padding-inline: 0.85rem;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-creme);
+  color: var(--cor-texto-suave);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .reserva-area,
+  .reserva-status-area {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .reserva-status-topo {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .reserva-status-acoes {
+    flex-direction: column;
+  }
+
+  .reserva-status-acoes .botao {
+    width: 100%;
+  }
+}

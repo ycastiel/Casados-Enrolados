@@ -1,6 +1,6 @@
 import { defineConfig, env } from "prisma/config";
 
-import "../backend/config/Caminhos.js";
+import "../backend/configs/Caminhos.js";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
