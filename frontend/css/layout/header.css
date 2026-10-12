@@ -1,0 +1,79 @@
+.cabecalho-principal {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  width: min(calc(100% - 2rem), var(--largura-conteudo));
+  min-height: 6rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-6);
+  margin-inline: auto;
+  padding-block: var(--espaco-4);
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.marca-simbolo {
+  color: var(--cor-vinho-500);
+  font-size: 1.35em;
+}
+
+.navegacao-principal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.8rem, 2vw, 1.6rem);
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.navegacao-principal a {
+  transition: color var(--transicao-rapida);
+}
+
+.navegacao-destaque {
+  padding: 0.65rem 1rem;
+  border: 1px solid rgb(142 59 70 / 20%);
+  border-radius: var(--raio-pilula);
+  color: var(--cor-vinho-500);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navegacao-principal a:hover {
+    color: var(--cor-vinho-500);
+  }
+}
+
+@media (max-width: 760px) {
+  .cabecalho-principal {
+    min-height: auto;
+    flex-direction: column;
+    padding-top: var(--espaco-6);
+  }
+
+  .navegacao-principal {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: var(--espaco-2);
+    scrollbar-width: none;
+  }
+
+  .navegacao-principal::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navegacao-principal a {
+    flex: 0 0 auto;
+  }
+}
