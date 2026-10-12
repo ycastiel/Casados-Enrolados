@@ -11,6 +11,9 @@ import { Home } from "../home/Home";
 import { Presentes } from "../presentes/Presentes";
 import { Confirmacao } from "../eventos/Confirmacao";
 
+import { ReservarPresente } from "../presentes/ReservarPresente";
+import { ReservaPresente } from "../presentes/Reserva";
+
 import { LayoutAdmin } from "../LayoutAdmin";
 import { Admin } from "../home/HomeAdmin";
 import { Convidados } from "../noivos/Convidados";
@@ -29,6 +32,14 @@ const router = createBrowserRouter([
         element: <Presentes />,
       },
       {
+        path: "/presentes/:id/reservar",
+        element: <ReservarPresente />,
+      },
+      {
+        path: "/presentes/reserva/:token",
+        element: <ReservaPresente />,
+      },
+      {
         path: "/confirmacao",
         element: <Confirmacao />,
       },
@@ -36,7 +47,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/admin",
+    path: "/homeAdmin",
     element: <LayoutAdmin />,
 
     children: [
@@ -53,5 +64,9 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider
+      router={router}
+    />
+  );
 }
