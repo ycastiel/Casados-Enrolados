@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
 
-  
   "devDependencies": {
     "@types/pg": "^8.23.1",
     "prisma": "^7.10.0",
