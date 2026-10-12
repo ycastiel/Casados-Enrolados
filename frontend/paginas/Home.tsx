@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   MolduraFloral,
   OrnamentoFloral,
@@ -38,13 +40,19 @@ export function Home() {
           </p>
 
           <div className="hero-acoes">
-            <a className="botao botao--primario" href="#confirmacao">
+            <Link
+              className="botao botao--primario"
+              to="/confirmacao"
+            >
               Confirmar presença
-            </a>
+            </Link>
 
-            <a className="botao botao--secundario" href="#presentes">
+            <Link
+              className="botao botao--secundario"
+              to="/presentes"
+            >
               Ver lista de presentes
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -128,9 +136,12 @@ export function Home() {
           </p>
         </div>
 
-        <a className="botao botao--claro" href="#presentes">
+        <Link
+          className="botao botao--claro"
+          to="/presentes"
+        >
           Conhecer a lista
-        </a>
+        </Link>
       </section>
 
       <section id="confirmacao" className="secao secao--confirmacao">
@@ -144,9 +155,12 @@ export function Home() {
             Sua resposta ajuda a gente a preparar cada detalhe com todo o cuidado.
           </p>
 
-          <button className="botao botao--primario" type="button">
+          <Link
+            className="botao botao--primario"
+            to="/confirmacao"
+          >
             Quero confirmar
-          </button>
+          </Link>
         </div>
       </section>
     </>

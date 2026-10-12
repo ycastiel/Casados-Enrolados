@@ -1,23 +1,65 @@
+import {
+  Link,
+  NavLink,
+} from "react-router-dom";
+
 import "../../css/layout/header.css";
 
 export function Header() {
   return (
-    <header className="cabecalho-principal">
-      <a className="marca" href="/" aria-label="Casados & Enrolados — início">
-        <span className="marca-simbolo" aria-hidden="true">
-          ❦
-        </span>
-        <span>Casados & Enrolados</span>
-      </a>
+    <header className="cabecalho">
+      <div className="cabecalho-conteudo">
+        <Link
+          className="cabecalho-marca"
+          to="/"
+          aria-label="Casados & Enrolados - página inicial"
+        >
+          <span
+            className="cabecalho-marca-simbolo"
+            aria-hidden="true"
+          >
+            ❦
+          </span>
 
-      <nav className="navegacao-principal" aria-label="Navegação principal">
-        <a href="#historia">Nossa história</a>
-        <a href="#evento">O grande dia</a>
-        <a href="#presentes">Presentes</a>
-        <a className="navegacao-destaque" href="#confirmacao">
-          Confirmar presença
-        </a>
-      </nav>
+          <span>Casados & Enrolados</span>
+        </Link>
+
+        <nav
+          className="cabecalho-navegacao"
+          aria-label="Navegação principal"
+        >
+          <a href="/#historia">
+            Nossa história
+          </a>
+
+          <a href="/#evento">
+            O grande dia
+          </a>
+
+          <NavLink
+            to="/presentes"
+            className={({ isActive }) =>
+              isActive ? "cabecalho-link--ativo" : undefined
+            }
+          >
+            Presentes
+          </NavLink>
+
+          <NavLink
+            to="/confirmacao"
+            className={({ isActive }) =>
+              [
+                "cabecalho-confirmacao",
+                isActive ? "cabecalho-link--ativo" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")
+            }
+          >
+            Confirmar presença
+          </NavLink>
+        </nav>
+      </div>
     </header>
   );
 }
