@@ -1,0 +1,95 @@
+.ramo-floral {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.moldura-floral {
+  position: relative;
+  isolation: isolate;
+}
+
+.moldura-floral__conteudo {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.moldura-floral__ramo {
+  position: absolute;
+  z-index: 3;
+  width: clamp(8rem, 22vw, 13rem);
+  pointer-events: none;
+  filter: drop-shadow(0 8px 14px rgb(62 58 55 / 5%));
+}
+
+.moldura-floral__ramo--superior {
+  top: -3.6rem;
+  left: -3.8rem;
+  transform: rotate(-10deg);
+  transform-origin: center;
+}
+
+.moldura-floral__ramo--inferior {
+  right: -3.8rem;
+  bottom: -3.6rem;
+  transform: rotate(170deg);
+  transform-origin: center;
+}
+
+.moldura-floral--cartao .moldura-floral__ramo {
+  width: clamp(7.2rem, 19vw, 10.5rem);
+  opacity: 0.92;
+}
+
+.moldura-floral--destaque .moldura-floral__ramo {
+  width: clamp(9rem, 24vw, 14rem);
+}
+
+.ornamento-floral {
+  width: min(13rem, 52vw);
+  margin: var(--espaco-4) auto var(--espaco-6);
+  opacity: 0.94;
+}
+
+.ornamento-floral--compacto {
+  width: min(9.5rem, 42vw);
+  margin-block: var(--espaco-2) var(--espaco-5, 1.25rem);
+}
+
+.ornamento-floral img {
+  width: 100%;
+}
+
+@media (max-width: 680px) {
+  .moldura-floral__ramo {
+    width: 7.2rem;
+  }
+
+  .moldura-floral__ramo--superior {
+    top: -2.6rem;
+    left: -2.8rem;
+  }
+
+  .moldura-floral__ramo--inferior {
+    right: -2.8rem;
+    bottom: -2.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .moldura-floral__ramo {
+    transition:
+      transform var(--transicao-lenta),
+      filter var(--transicao-padrao);
+  }
+
+  .moldura-floral:hover .moldura-floral__ramo--superior {
+    transform: rotate(-7deg) translate3d(0.15rem, -0.1rem, 0);
+  }
+
+  .moldura-floral:hover .moldura-floral__ramo--inferior {
+    transform: rotate(167deg) translate3d(-0.15rem, 0.1rem, 0);
+  }
+}
