@@ -1,7 +1,9 @@
 import express from "express";
 import helmet from "helmet";
 
-import { tratarErro } from "../middleware/Erro.js";
+import { tratarErro } from "../middleware/helpers/Erro.js";
+import { rotaNaoEncontrada } from "../service/helpers/erros/ErrosRotas.js";
+
 import { router } from "../route/indexRoutes.js";
 
 export const app = express();
@@ -19,6 +21,11 @@ app.get("/api/saude", (_req, res) => {
 app.use("/api", router);
 
 /*
- * Middleware de erro deve ficar depois das rotas.
+ * Tudo que não encontrou rota chega aqui.
+ */
+app.use(rotaNaoEncontrada);
+
+/*
+ * Deve obrigatoriamente ser o último middleware.
  */
 app.use(tratarErro);
