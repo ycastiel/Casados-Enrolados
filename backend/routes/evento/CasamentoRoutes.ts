@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { obterCasamento } from "../../controller/evento/CasamentoController.js";
+import { obterCasamento } from "../../controllers/evento/CasamentoController.js";
 
 export const casamentoRouter = Router();
 

@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 
-import { buscarCasamento } from "../../service/evento/Casamento.js";
+import { buscarCasamento } from "../../services/eventos/Casamento.js";
 
 export const obterCasamento: RequestHandler = async (
   _req,

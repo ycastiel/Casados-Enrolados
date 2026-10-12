@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 
-import { ErroAplicacao } from '../erros/ErrosIndex.js';
+import { ErroAplicacao } from './ErrosIndex.js';
 
 export const rotaNaoEncontrada: RequestHandler = (
   req,

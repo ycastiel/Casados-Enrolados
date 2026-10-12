@@ -1,3 +1,7 @@
+/* ARQUIVO: frontend/css/paginas/presentes.css
+   FUNÇÃO: Estilos da página frontend/paginas/presentes/Presentes.tsx.
+   ALTERAÇÃO: Ajusta estados indisponíveis e deixa o ramo floral sair melhor da borda do card. */
+
 .pagina-presentes {
   overflow: hidden;
 }
@@ -80,14 +84,13 @@
 .presentes-grade {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.4rem);
+  gap: clamp(2rem, 4vw, 3rem);
 }
 
 .presente-cartao {
   position: relative;
   min-width: 0;
   min-height: 26rem;
-  overflow: hidden;
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-grande);
   background:
@@ -99,11 +102,11 @@
 .presente-cartao::after {
   position: absolute;
   z-index: -1;
-  width: 11rem;
+  right: 0;
+  bottom: 0;
+  width: 8rem;
   aspect-ratio: 1;
-  right: -4.2rem;
-  bottom: -4.2rem;
-  border-radius: 50%;
+  border-radius: 100% 0 var(--raio-grande) 0;
   background: var(--cor-amarelo-100);
   content: "";
   opacity: 0.72;
@@ -111,12 +114,12 @@
 
 .presente-cartao-floral {
   position: absolute;
-  z-index: 1;
-  top: -3.8rem;
-  right: -4.2rem;
-  width: 10.5rem;
-  transform: rotate(86deg);
-  opacity: 0.8;
+  z-index: 3;
+  top: -2.5rem;
+  right: -2rem;
+  width: 9.5rem;
+  transform: rotate(87deg);
+  opacity: 0.86;
   pointer-events: none;
 }
 
@@ -126,7 +129,9 @@
   display: flex;
   height: 100%;
   flex-direction: column;
+  overflow: hidden;
   padding: clamp(2rem, 4vw, 2.7rem);
+  border-radius: inherit;
 }
 
 .presente-categoria {
@@ -157,15 +162,54 @@
   margin-top: auto;
 }
 
+.presente-valor {
+  display: grid;
+  gap: 0.1rem;
+}
+
 .presente-cartao-rodape strong {
   color: var(--cor-verde-900);
   font-family: var(--fonte-titulo);
   font-size: 1.35rem;
 }
 
+.presente-valor span {
+  color: var(--cor-vinho-500);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .presente-cartao-rodape .botao {
   min-height: 2.7rem;
   padding-inline: 1rem;
+}
+
+.presente-cartao-rodape .botao:disabled {
+  cursor: not-allowed;
+  background: var(--cor-bege);
+  color: var(--cor-texto-suave);
+  box-shadow: none;
+  opacity: 0.75;
+  transform: none;
+}
+
+.presentes-vazio {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: clamp(3rem, 7vw, 5rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background: var(--cor-creme);
+  text-align: center;
+}
+
+.presentes-vazio h3 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.presentes-vazio p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
 }
 
 .presentes-recado {
