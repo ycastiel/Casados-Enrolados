@@ -1,6 +1,6 @@
 /* =========================================================
    DESIGN SYSTEM + BASE GLOBAL
-   Neste projeto os tokens ficam aqui de propósito.
+   Tokens e estilos globais ficam juntos neste projeto.
    ========================================================= */
 
 :root {
@@ -50,6 +50,7 @@
   --espaco-2: 0.5rem;
   --espaco-3: 0.75rem;
   --espaco-4: 1rem;
+  --espaco-5: 1.25rem;
   --espaco-6: 1.5rem;
   --espaco-8: 2rem;
   --espaco-12: 3rem;
@@ -91,14 +92,22 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--cor-fundo);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgb(138 106 82 / 0.9%) 0,
+      rgb(138 106 82 / 0.9%) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    var(--cor-fundo);
   color: var(--cor-texto);
   font-family: var(--fonte-corpo);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
 
-body::selection {
+::selection {
   background: var(--cor-amarelo-300);
   color: var(--cor-verde-900);
 }
@@ -217,7 +226,7 @@ h2 {
 
 .botao--secundario {
   border-color: rgb(96 119 93 / 35%);
-  background: rgb(255 253 248 / 78%);
+  background: rgb(255 253 248 / 82%);
   color: var(--cor-verde-900);
 }
 

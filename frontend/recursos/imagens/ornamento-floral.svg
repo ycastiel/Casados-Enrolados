@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 76" role="img" aria-labelledby="title desc">
+  <title id="title">Ornamento floral</title>
+  <desc id="desc">Pequeno ornamento botânico para separar títulos e conteúdos.</desc>
+
+  <g fill="none" stroke="#8A6A52" stroke-linecap="round">
+    <path d="M8 40C55 40 79 33 108 38" stroke-width="1.6"/>
+    <path d="M152 38C181 33 205 40 252 40" stroke-width="1.6"/>
+    <path d="M79 35C67 25 61 17 59 9" stroke-width="1.3"/>
+    <path d="M181 35C193 25 199 17 201 9" stroke-width="1.3"/>
+  </g>
+
+  <g fill="#8FA88A">
+    <ellipse cx="54" cy="27" rx="6" ry="13" transform="rotate(-48 54 27)"/>
+    <ellipse cx="73" cy="35" rx="6" ry="13" transform="rotate(61 73 35)"/>
+    <ellipse cx="206" cy="27" rx="6" ry="13" transform="rotate(48 206 27)"/>
+    <ellipse cx="187" cy="35" rx="6" ry="13" transform="rotate(-61 187 35)"/>
+  </g>
+
+  <g transform="translate(130 38)">
+    <g fill="#8E3B46">
+      <ellipse rx="8" ry="14" transform="rotate(0) translate(0 -10)"/>
+      <ellipse rx="8" ry="14" transform="rotate(72) translate(0 -10)"/>
+      <ellipse rx="8" ry="14" transform="rotate(144) translate(0 -10)"/>
+      <ellipse rx="8" ry="14" transform="rotate(216) translate(0 -10)"/>
+      <ellipse rx="8" ry="14" transform="rotate(288) translate(0 -10)"/>
+    </g>
+    <circle r="4.6" fill="#E8D9A8"/>
+  </g>
+
+  <circle cx="92" cy="37" r="3.4" fill="#B79AC8"/>
+  <circle cx="168" cy="37" r="3.4" fill="#7C92A6"/>
+</svg>
