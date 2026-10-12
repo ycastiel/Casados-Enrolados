@@ -1,5 +1,7 @@
 import { prisma } from "@casados/database";
 
+import { ErroAplicacao } from "../helpers/erros/ErrosIndex.js";
+
 export async function buscarCasamento() {
   const casamento = await prisma.casamento.findFirst({
     where: {
@@ -135,7 +137,10 @@ export async function buscarCasamento() {
   });
 
   if (!casamento) {
-    return null;
+    throw ErroAplicacao.naoEncontrado(
+      "Nenhum casamento ativo foi encontrado.",
+      "CASAMENTO_NAO_ENCONTRADO",
+    );
   }
 
   const presentes = casamento.presentes.map((presente) => {
@@ -152,7 +157,8 @@ export async function buscarCasamento() {
 
       tipo: presente.tipo,
 
-      valorUnitario: presente.valorUnitario?.toString() ?? null,
+      valorUnitario:
+        presente.valorUnitario?.toString() ?? null,
 
       imagemUrl: presente.imagemUrl,
       urlExterna: presente.urlExterna,
@@ -183,9 +189,7 @@ export async function buscarCasamento() {
     },
 
     eventos: casamento.eventos,
-
     convites: casamento.convites,
-
     presentes,
   };
 }
