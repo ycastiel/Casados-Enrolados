@@ -1,13 +1,6 @@
-import { config } from "dotenv";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 import { defineConfig, env } from "prisma/config";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-config({
-  path: resolve(__dirname, "../.env"),
-});
+import "../backend/config/Caminhos.js";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",

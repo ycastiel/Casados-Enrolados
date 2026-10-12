@@ -1,9 +1,9 @@
-import "dotenv/config";
-import { app } from "./app.js";
+import { ambiente } from "../config/Ambiente.js";
 
-const PORT = Number(process.env.PORT) || 3000;
+const { app } = await import("./app.js");
 
-app.listen(PORT, () => {
-  console.log(`💍 Casados & Enrolados`);
-  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+app.listen(ambiente.PORT, () => {
+  console.log("💍 Casados & Enrolados");
+  console.log(`🚀 Servidor rodando em http://localhost:${ambiente.PORT}`);
+  console.log(`🌱 Ambiente: ${ambiente.NODE_ENV}`);
 });
