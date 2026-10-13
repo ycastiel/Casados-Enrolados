@@ -1,5 +1,6 @@
 import {
   createContext,
+  type CSSProperties,
   type MouseEvent,
   type ReactNode,
   useCallback,
@@ -20,12 +21,15 @@ import {
   useNavigate,
 } from "react-router-dom";
 
+import ramoFloral from "../../../recursos/imagens/ramo-floral.svg";
+
 import "../../../css/componentes/animacoes/transicaoPagina.css";
 
 type FaseTransicao =
   | "pronta"
   | "saindo"
-  | "interludio"
+  | "formando"
+  | "trocando"
   | "entrando";
 
 type ContextoTransicao = {
@@ -41,9 +45,12 @@ type TransicaoPaginaProps = {
 const Contexto =
   createContext<ContextoTransicao | null>(null);
 
-const DURACAO_SAIDA = 260;
-const DURACAO_INTERLUDIO = 180;
-const DURACAO_ENTRADA = 360;
+// Estes três tempos são os principais pontos de ajuste da animação.
+const DURACAO_SAIDA = 430;
+const DURACAO_FORMACAO_COROA = 1120;
+const DURACAO_ENTRADA = 560;
+
+const QUANTIDADE_RAMOS = 8;
 
 function prefereMovimentoReduzido() {
   return (
@@ -79,8 +86,32 @@ function rolarAposNavegacao(
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: "instant",
+    behavior: "auto",
   });
+}
+
+function destinoEhSecaoDaPaginaAtual(
+  destino: To,
+  pathnameAtual: string,
+) {
+  if (
+    typeof destino !== "string" ||
+    !destino.includes("#")
+  ) {
+    return false;
+  }
+
+  const [pathnameDestino] =
+    destino.split("#");
+
+  const pathnameNormalizado =
+    pathnameDestino ||
+    pathnameAtual;
+
+  return (
+    pathnameNormalizado ===
+    pathnameAtual
+  );
 }
 
 export function TransicaoPagina({
@@ -107,6 +138,20 @@ export function TransicaoPagina({
           return;
         }
 
+        // Âncoras na mesma página usam apenas scroll suave.
+        if (
+          destinoEhSecaoDaPaginaAtual(
+            destino,
+            location.pathname,
+          )
+        ) {
+          navigate(destino);
+          rolarAposNavegacao(
+            destino,
+          );
+          return;
+        }
+
         if (
           prefereMovimentoReduzido()
         ) {
@@ -128,10 +173,12 @@ export function TransicaoPagina({
       [
         fase,
         location.key,
+        location.pathname,
         navigate,
       ],
     );
 
+  // 1) A página atual se afasta e perde foco.
   useEffect(() => {
     if (fase !== "saindo") {
       return;
@@ -139,16 +186,18 @@ export function TransicaoPagina({
 
     const timer =
       window.setTimeout(() => {
-        setFase("interludio");
+        setFase("formando");
       }, DURACAO_SAIDA);
 
     return () =>
       window.clearTimeout(timer);
   }, [fase]);
 
+  // 2) A coroa se completa.
+  // Só depois disso trocamos a rota.
   useEffect(() => {
     if (
-      fase !== "interludio" ||
+      fase !== "formando" ||
       destinoRef.current === null
     ) {
       return;
@@ -156,10 +205,12 @@ export function TransicaoPagina({
 
     const timer =
       window.setTimeout(() => {
+        setFase("trocando");
+
         navigate(
           destinoRef.current!,
         );
-      }, DURACAO_INTERLUDIO);
+      }, DURACAO_FORMACAO_COROA);
 
     return () =>
       window.clearTimeout(timer);
@@ -168,9 +219,10 @@ export function TransicaoPagina({
     navigate,
   ]);
 
+  // 3) O React Router confirmou a nova página.
   useEffect(() => {
     if (
-      fase !== "interludio" ||
+      fase !== "trocando" ||
       location.key ===
         chaveOrigemRef.current
     ) {
@@ -198,6 +250,7 @@ export function TransicaoPagina({
     location.key,
   ]);
 
+  // 4) A página nova aproxima até a escala normal.
   useEffect(() => {
     if (fase !== "entrando") {
       return;
@@ -262,21 +315,51 @@ export function TransicaoPagina({
             fase === "pronta"
           }
         >
-          <div className="transicao-pagina__marca">
-            <span
-              className="transicao-pagina__simbolo"
-              aria-hidden="true"
-            >
-              ❦
-            </span>
+          <div className="transicao-pagina__coroa">
+            <div className="transicao-pagina__coroa-ramos">
+              {Array.from(
+                {
+                  length:
+                    QUANTIDADE_RAMOS,
+                },
+                (_, indice) => (
+                  <span
+                    className="transicao-pagina__ramo"
+                    key={indice}
+                    style={
+                      {
+                        "--indice-ramo":
+                          indice,
+                      } as CSSProperties
+                    }
+                    aria-hidden="true"
+                  >
+                    <img
+                      src={ramoFloral}
+                      alt=""
+                      draggable="false"
+                    />
+                  </span>
+                ),
+              )}
+            </div>
 
-            <strong>
-              Casados &amp; Enrolados
-            </strong>
+            <div className="transicao-pagina__medalhao">
+              <span
+                className="transicao-pagina__simbolo"
+                aria-hidden="true"
+              >
+                ❦
+              </span>
 
-            <span className="transicao-pagina__legenda">
-              virando a página
-            </span>
+              <strong>
+                Casados &amp; Enrolados
+              </strong>
+
+              <span className="transicao-pagina__legenda">
+                virando a página
+              </span>
+            </div>
           </div>
         </div>
       </div>

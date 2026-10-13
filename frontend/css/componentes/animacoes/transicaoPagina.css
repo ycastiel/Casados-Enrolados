@@ -1,3 +1,9 @@
+@property --progresso-coroa {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .pagina-em-transicao {
   overflow: hidden;
 }
@@ -24,140 +30,371 @@
   inset: 0;
   display: grid;
   place-items: center;
+  overflow: hidden;
   background:
     radial-gradient(
-      circle at 50% 44%,
-      rgb(232 217 168 / 25%),
-      transparent 22rem
+      circle at 50% 46%,
+      rgb(232 217 168 / 24%),
+      transparent 25rem
     ),
     radial-gradient(
       circle at 22% 18%,
-      rgb(183 154 200 / 9%),
-      transparent 18rem
+      rgb(183 154 200 / 10%),
+      transparent 21rem
+    ),
+    radial-gradient(
+      circle at 80% 78%,
+      rgb(143 168 138 / 9%),
+      transparent 22rem
     ),
     var(--cor-creme);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition:
-    opacity 180ms ease;
-}
-
-.transicao-pagina__interludio::before,
-.transicao-pagina__interludio::after {
-  position: absolute;
-  width: clamp(12rem, 25vw, 23rem);
-  height: 1px;
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgb(142 59 70 / 20%),
-      transparent
-    );
-  content: "";
 }
 
 .transicao-pagina__interludio::before {
-  top: 25%;
-  left: 7%;
-  transform: rotate(-7deg);
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgb(138 106 82 / 1.1%) 0,
+      rgb(138 106 82 / 1.1%) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  content: "";
+  opacity: 0.48;
+  pointer-events: none;
 }
 
-.transicao-pagina__interludio::after {
-  right: 7%;
-  bottom: 25%;
-  transform: rotate(7deg);
+.transicao-pagina--saindo
+  .transicao-pagina__interludio,
+.transicao-pagina--formando
+  .transicao-pagina__interludio,
+.transicao-pagina--trocando
+  .transicao-pagina__interludio,
+.transicao-pagina--entrando
+  .transicao-pagina__interludio {
+  visibility: visible;
+  pointer-events: all;
 }
 
-.transicao-pagina__marca {
+/* =========================================================
+   COROA FLORAL
+   ========================================================= */
+
+.transicao-pagina__coroa {
+  position: relative;
+  z-index: 2;
   display: grid;
+  width: clamp(18rem, 36vw, 26rem);
+  aspect-ratio: 1;
   place-items: center;
-  text-align: center;
   transform:
-    translateY(0.7rem)
-    scale(0.96);
+    translateY(0.8rem)
+    scale(0.92);
   opacity: 0;
-  transition:
-    transform 240ms ease,
-    opacity 200ms ease;
+  will-change:
+    transform,
+    opacity;
+}
+
+.transicao-pagina__coroa::before,
+.transicao-pagina__coroa::after {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.transicao-pagina__coroa::before {
+  width: 53%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(142 59 70 / 10%);
+}
+
+.transicao-pagina__coroa::after {
+  width: 65%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(212 189 114 / 12%);
+}
+
+.transicao-pagina__coroa-ramos {
+  --progresso-coroa: 0deg;
+
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0;
+
+  -webkit-mask-image:
+    conic-gradient(
+      from -90deg,
+      #000 0deg,
+      #000 var(--progresso-coroa),
+      transparent var(--progresso-coroa),
+      transparent 360deg
+    );
+
+  mask-image:
+    conic-gradient(
+      from -90deg,
+      #000 0deg,
+      #000 var(--progresso-coroa),
+      transparent var(--progresso-coroa),
+      transparent 360deg
+    );
+
+  will-change:
+    opacity,
+    -webkit-mask-image,
+    mask-image;
+}
+
+.transicao-pagina__ramo {
+  --angulo:
+    calc(
+      var(--indice-ramo)
+      * 45deg
+    );
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 54%;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angulo))
+    translateY(-49%);
+  transform-origin:
+    50%
+    50%;
+}
+
+.transicao-pagina__ramo img {
+  width: 100%;
+  height: auto;
+  transform:
+    rotate(25deg)
+    scale(1.12);
+  filter:
+    saturate(1.04)
+    drop-shadow(
+      0 8px 14px
+      rgb(62 58 55 / 8%)
+    );
+  user-select: none;
+}
+
+.transicao-pagina__ramo:nth-child(even)
+  img {
+  transform:
+    rotate(20deg)
+    scaleX(-1)
+    scale(1.02);
+}
+
+.transicao-pagina__ramo:nth-child(3n)
+  img {
+  transform:
+    rotate(28deg)
+    scale(0.98);
+}
+
+/* =========================================================
+   MEDALHÃO CENTRAL
+   ========================================================= */
+
+.transicao-pagina__medalhao {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  width: 50%;
+  aspect-ratio: 1;
+  place-items: center;
+  align-content: center;
+  padding: 1.2rem;
+  border: 1px solid rgb(142 59 70 / 12%);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgb(255 255 255 / 96%),
+      rgb(255 253 248 / 90%) 58%,
+      rgb(247 242 234 / 93%)
+    );
+  box-shadow:
+    0 18px 55px rgb(62 58 55 / 8%),
+    0 1px 0 rgb(255 255 255 / 80%) inset;
+  text-align: center;
+}
+
+.transicao-pagina__medalhao::before {
+  position: absolute;
+  inset: 0.55rem;
+  border: 1px solid rgb(212 189 114 / 18%);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
 }
 
 .transicao-pagina__simbolo {
   display: grid;
-  width: 3.6rem;
+  width: 2.55rem;
   aspect-ratio: 1;
   place-items: center;
-  margin-bottom: var(--espaco-3);
-  border: 1px solid rgb(142 59 70 / 15%);
-  border-radius: 50%;
-  background: rgb(255 253 248 / 88%);
+  margin-bottom: 0.3rem;
   color: var(--cor-vinho-500);
   font-family: Georgia, serif;
-  font-size: 1.55rem;
-  box-shadow:
-    0 14px 38px rgb(62 58 55 / 7%);
+  font-size: 1.45rem;
+  line-height: 1;
 }
 
-.transicao-pagina__marca strong {
+.transicao-pagina__medalhao strong {
+  max-width: 10rem;
   color: var(--cor-verde-900);
   font-family: var(--fonte-titulo);
-  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-size: clamp(1.15rem, 2.8vw, 1.65rem);
   font-weight: 600;
+  line-height: 1.05;
 }
 
 .transicao-pagina__legenda {
-  margin-top: 0.2rem;
+  margin-top: 0.5rem;
   color: var(--cor-texto-suave);
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+
+/* =========================================================
+   FASE 1 — PÁGINA ATUAL SE AFASTA
+   ========================================================= */
 
 .transicao-pagina--saindo
   .transicao-pagina__conteudo {
   transform:
-    scale(0.965)
-    translateY(0.25rem);
-  filter: blur(2.5px);
-  opacity: 0.22;
+    scale(0.955)
+    translateY(0.35rem);
+  filter: blur(3px);
+  opacity: 0.18;
   transition:
-    transform 260ms cubic-bezier(.22, .8, .28, 1),
-    opacity 220ms ease,
-    filter 220ms ease;
+    transform 430ms
+      cubic-bezier(.22, .8, .28, 1),
+    opacity 370ms ease,
+    filter 390ms ease;
 }
 
 .transicao-pagina--saindo
-  .transicao-pagina__interludio,
-.transicao-pagina--interludio
-  .transicao-pagina__interludio,
-.transicao-pagina--entrando
+  .transicao-pagina__interludio {
+  opacity: 1;
+  transition:
+    opacity 360ms ease;
+}
+
+.transicao-pagina--saindo
+  .transicao-pagina__coroa {
+  transform:
+    translateY(0)
+    scale(0.96);
+  opacity: 1;
+  transition:
+    transform 400ms
+      cubic-bezier(.22, .8, .28, 1),
+    opacity 330ms ease;
+}
+
+.transicao-pagina--saindo
+  .transicao-pagina__coroa-ramos {
+  --progresso-coroa: 8deg;
+  opacity: 0.38;
+}
+
+/* =========================================================
+   FASE 2 — COROA SE FORMA
+   ========================================================= */
+
+.transicao-pagina--formando
+  .transicao-pagina__conteudo {
+  transform: scale(0.945);
+  filter: blur(6px);
+  opacity: 0;
+}
+
+.transicao-pagina--formando
   .transicao-pagina__interludio {
   opacity: 1;
 }
 
-.transicao-pagina--saindo
-  .transicao-pagina__marca,
-.transicao-pagina--interludio
-  .transicao-pagina__marca {
+.transicao-pagina--formando
+  .transicao-pagina__coroa {
   transform:
     translateY(0)
     scale(1);
   opacity: 1;
 }
 
-.transicao-pagina--interludio
+.transicao-pagina--formando
+  .transicao-pagina__coroa-ramos {
+  opacity: 1;
+  animation:
+    formar-coroa
+    1120ms
+    cubic-bezier(.25, .72, .24, 1)
+    forwards;
+}
+
+.transicao-pagina--formando
+  .transicao-pagina__medalhao {
+  animation:
+    respirar-medalhao
+    1120ms
+    ease-in-out
+    both;
+}
+
+/* =========================================================
+   FASE 3 — TROCA DA ROTA
+   ========================================================= */
+
+.transicao-pagina--trocando
   .transicao-pagina__conteudo {
-  transform: scale(0.955);
-  filter: blur(5px);
+  transform: scale(0.945);
+  filter: blur(6px);
   opacity: 0;
 }
+
+.transicao-pagina--trocando
+  .transicao-pagina__interludio {
+  opacity: 1;
+}
+
+.transicao-pagina--trocando
+  .transicao-pagina__coroa {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.transicao-pagina--trocando
+  .transicao-pagina__coroa-ramos {
+  --progresso-coroa: 360deg;
+  opacity: 1;
+}
+
+/* =========================================================
+   FASE 4 — NOVA PÁGINA ENTRA
+   ========================================================= */
 
 .transicao-pagina--entrando
   .transicao-pagina__conteudo {
   animation:
     entrar-pagina
-    360ms
+    560ms
     cubic-bezier(.18, .8, .25, 1)
     both;
 }
@@ -166,26 +403,69 @@
   .transicao-pagina__interludio {
   animation:
     sair-interludio
-    360ms
+    560ms
     ease
     both;
 }
 
 .transicao-pagina--entrando
-  .transicao-pagina__marca {
+  .transicao-pagina__coroa {
   animation:
-    recolher-marca
-    260ms
+    recolher-coroa
+    470ms
     ease
     both;
+}
+
+.transicao-pagina--entrando
+  .transicao-pagina__coroa-ramos {
+  --progresso-coroa: 360deg;
+  opacity: 1;
+}
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes formar-coroa {
+  0% {
+    --progresso-coroa: 8deg;
+    opacity: 0.38;
+    transform: rotate(-4deg);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  72% {
+    --progresso-coroa: 310deg;
+  }
+
+  100% {
+    --progresso-coroa: 360deg;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes respirar-medalhao {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  56% {
+    transform: scale(1.018);
+  }
 }
 
 @keyframes entrar-pagina {
   from {
     transform:
-      scale(1.035)
-      translateY(-0.15rem);
-    filter: blur(4px);
+      scale(1.045)
+      translateY(-0.2rem);
+    filter: blur(5px);
     opacity: 0;
   }
 
@@ -203,8 +483,8 @@
     opacity: 1;
   }
 
-  60% {
-    opacity: 0.8;
+  58% {
+    opacity: 0.86;
   }
 
   to {
@@ -213,26 +493,60 @@
   }
 }
 
-@keyframes recolher-marca {
+@keyframes recolher-coroa {
   from {
     transform:
       scale(1)
-      translateY(0);
+      rotate(0deg);
     opacity: 1;
   }
 
   to {
     transform:
-      scale(1.035)
-      translateY(-0.2rem);
+      scale(1.08)
+      rotate(2deg);
     opacity: 0;
   }
 }
 
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .transicao-pagina__coroa {
+    width: min(19rem, 88vw);
+  }
+
+  .transicao-pagina__medalhao {
+    width: 52%;
+    padding: 1rem;
+  }
+
+  .transicao-pagina__ramo {
+    width: 56%;
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--angulo))
+      translateY(-50%);
+  }
+
+  .transicao-pagina__medalhao strong {
+    font-size: 1.12rem;
+  }
+
+  .transicao-pagina__legenda {
+    font-size: 0.5rem;
+  }
+}
+
+/* Acessibilidade: a transição é pulada para quem reduz movimento. */
 @media (prefers-reduced-motion: reduce) {
   .transicao-pagina__conteudo,
   .transicao-pagina__interludio,
-  .transicao-pagina__marca {
+  .transicao-pagina__coroa,
+  .transicao-pagina__coroa-ramos,
+  .transicao-pagina__medalhao {
     animation: none !important;
     transition: none !important;
   }

@@ -5,7 +5,6 @@ import { App } from "./App";
 
 import "../../css/paginas/global.css";
 import "../../css/componentes/animacoes/animacoes.css";
-import "../../css/componentes/animacoes/transicaoPagina.css";
 
 const root = document.getElementById("root");
 

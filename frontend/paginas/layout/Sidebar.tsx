@@ -1,7 +1,7 @@
 import {
-  Link,
-  NavLink,
-} from "react-router-dom";
+  LinkTransicao,
+  NavLinkTransicao,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import "../../css/layout/sidebar.css";
 
@@ -9,7 +9,7 @@ export function Sidebar() {
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar-conteudo">
-        <Link
+        <LinkTransicao
           className="admin-sidebar-marca"
           to="/admin"
         >
@@ -21,9 +21,9 @@ export function Sidebar() {
           </span>
 
           <span>
-            Casados & Enrolados
+            Casados &amp; Enrolados
           </span>
-        </Link>
+        </LinkTransicao>
 
         <div className="admin-sidebar-texto">
           <span>Organização</span>
@@ -34,7 +34,7 @@ export function Sidebar() {
           className="admin-sidebar-navegacao"
           aria-label="Navegação administrativa"
         >
-          <NavLink
+          <NavLinkTransicao
             to="/admin"
             end
             className={({ isActive }) =>
@@ -48,11 +48,13 @@ export function Sidebar() {
                 .join(" ")
             }
           >
-            <span aria-hidden="true">⌂</span>
+            <span aria-hidden="true">
+              ⌂
+            </span>
             Início
-          </NavLink>
+          </NavLinkTransicao>
 
-          <NavLink
+          <NavLinkTransicao
             to="/admin/convidados"
             className={({ isActive }) =>
               [
@@ -65,19 +67,23 @@ export function Sidebar() {
                 .join(" ")
             }
           >
-            <span aria-hidden="true">❀</span>
+            <span aria-hidden="true">
+              ❀
+            </span>
             Convidados
-          </NavLink>
+          </NavLinkTransicao>
         </nav>
 
         <div className="admin-sidebar-rodape">
-          <Link
+          <LinkTransicao
             className="admin-sidebar-site"
             to="/"
           >
             Ver site público
-            <span aria-hidden="true">↗</span>
-          </Link>
+            <span aria-hidden="true">
+              ↗
+            </span>
+          </LinkTransicao>
         </div>
       </div>
     </aside>

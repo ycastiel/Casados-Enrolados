@@ -1,7 +1,7 @@
 import {
-  Link,
-  NavLink,
-} from "react-router-dom";
+  LinkTransicao,
+  NavLinkTransicao,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import "../../css/layout/header.css";
 
@@ -9,7 +9,7 @@ export function Header() {
   return (
     <header className="cabecalho">
       <div className="cabecalho-conteudo">
-        <Link
+        <LinkTransicao
           className="cabecalho-marca"
           to="/"
           aria-label="Casados & Enrolados - página inicial"
@@ -21,43 +21,49 @@ export function Header() {
             ❦
           </span>
 
-          <span>Casados & Enrolados</span>
-        </Link>
+          <span>
+            Casados &amp; Enrolados
+          </span>
+        </LinkTransicao>
 
         <nav
           className="cabecalho-navegacao"
           aria-label="Navegação principal"
         >
-          <a href="/#historia">
+          <LinkTransicao to="/#historia">
             Nossa história
-          </a>
+          </LinkTransicao>
 
-          <a href="/#evento">
+          <LinkTransicao to="/#evento">
             O grande dia
-          </a>
+          </LinkTransicao>
 
-          <NavLink
+          <NavLinkTransicao
             to="/presentes"
             className={({ isActive }) =>
-              isActive ? "cabecalho-link--ativo" : undefined
+              isActive
+                ? "cabecalho-link--ativo"
+                : undefined
             }
           >
             Presentes
-          </NavLink>
+          </NavLinkTransicao>
 
-          <NavLink
+          <NavLinkTransicao
             to="/confirmacao"
             className={({ isActive }) =>
               [
                 "cabecalho-confirmacao",
-                isActive ? "cabecalho-link--ativo" : "",
+                isActive
+                  ? "cabecalho-link--ativo"
+                  : "",
               ]
                 .filter(Boolean)
                 .join(" ")
             }
           >
             Confirmar presença
-          </NavLink>
+          </NavLinkTransicao>
         </nav>
       </div>
     </header>
