@@ -32,8 +32,8 @@ async function main() {
     create: {
       id: IDS.casamento,
 
-      nomePessoa1: "Noiva Exemplo",
-      nomePessoa2: "Pessoa Parceira",
+      nomePessoa1: "Noemi",
+      nomePessoa2: "Maurício",
 
       titulo: "Casados & Enrolados",
       descricao: "Dados de desenvolvimento do Casados & Enrolados.",

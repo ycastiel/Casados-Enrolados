@@ -8,13 +8,21 @@ const PETALAS = 7;
 export function Layout() {
   return (
     <div className="layout-publico">
-      <div className="petalas" aria-hidden="true">
-        {Array.from({ length: PETALAS }, (_, indice) => (
-          <span
-            key={indice}
-            className={`petala petala--${indice + 1}`}
-          />
-        ))}
+      <div
+        className="petalas"
+        aria-hidden="true"
+      >
+        {Array.from(
+          {
+            length: PETALAS,
+          },
+          (_, indice) => (
+            <span
+              key={indice}
+              className={`petala petala--${indice + 1}`}
+            />
+          ),
+        )}
       </div>
 
       <Header />

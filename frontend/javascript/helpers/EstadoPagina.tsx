@@ -1,4 +1,4 @@
-import { OrnamentoFloral } from "../componentes/Floral";
+import { OrnamentoFloral } from "../componentes/molduras/Floral";
 
 import "../../css/helpers/estados.css";
 

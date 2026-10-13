@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import {
+  LinkTransicao,
+} from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
   MolduraFloral,
   OrnamentoFloral,
   RamoFloral,
-} from "../../javascript/componentes/Floral";
+} from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
+
 import {
   type EventoCasamento,
   useCasamento,
@@ -61,7 +64,9 @@ export function Home() {
   } = useCasamento();
 
   if (carregando) {
-    return <EstadoPagina tipo="carregando" />;
+    return (
+      <EstadoPagina tipo="carregando" />
+    );
   }
 
   if (erro || !dados) {
@@ -98,7 +103,9 @@ export function Home() {
             className="hero-titulo"
           >
             {casamento.nomePessoa1}
-            <span className="hero-e"> & </span>
+            <span className="hero-e">
+              {" "}&amp;{" "}
+            </span>
             {casamento.nomePessoa2}
           </h1>
 
@@ -116,19 +123,19 @@ export function Home() {
           </p>
 
           <div className="hero-acoes">
-            <Link
+            <LinkTransicao
               className="botao botao--primario"
               to="/confirmacao"
             >
               Confirmar presença
-            </Link>
+            </LinkTransicao>
 
-            <Link
+            <LinkTransicao
               className="botao botao--secundario"
               to="/presentes"
             >
               Ver lista de presentes
-            </Link>
+            </LinkTransicao>
           </div>
         </div>
       </section>
@@ -249,12 +256,12 @@ export function Home() {
           </p>
         </div>
 
-        <Link
+        <LinkTransicao
           className="botao botao--claro"
           to="/presentes"
         >
           Conhecer a lista
-        </Link>
+        </LinkTransicao>
       </section>
 
       <section
@@ -275,12 +282,12 @@ export function Home() {
             detalhe com todo o cuidado.
           </p>
 
-          <Link
+          <LinkTransicao
             className="botao botao--primario"
             to="/confirmacao"
           >
             Quero confirmar
-          </Link>
+          </LinkTransicao>
         </div>
       </section>
     </>

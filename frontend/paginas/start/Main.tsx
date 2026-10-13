@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
 import "../../css/paginas/global.css";
-import "../../css/animacoes/animacoes.css";
+import "../../css/componentes/animacoes/animacoes.css";
 
 const root = document.getElementById("root");
 
