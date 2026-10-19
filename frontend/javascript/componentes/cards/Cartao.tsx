@@ -15,6 +15,7 @@ type CartaoProps = {
   className?: string;
   variante?: VarianteCartao;
   interativo?: boolean;
+  marca?: boolean;
 };
 
 export function Cartao({
@@ -22,6 +23,7 @@ export function Cartao({
   className = "",
   variante = "papel",
   interativo = false,
+  marca = true,
 }: CartaoProps) {
   return (
     <article
@@ -36,10 +38,12 @@ export function Cartao({
         .filter(Boolean)
         .join(" ")}
     >
-      <span
-        className="cartao-ui__marca"
-        aria-hidden="true"
-      />
+      {marca && (
+        <span
+          className="cartao-ui__marca"
+          aria-hidden="true"
+        />
+      )}
 
       <div className="cartao-ui__conteudo">
         {children}

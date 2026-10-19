@@ -3,6 +3,10 @@ import {
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
+  Cartao,
+} from "../../javascript/componentes/cards/Cartao";
+
+import {
   OrnamentoFloral,
   RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
@@ -53,7 +57,11 @@ export function Admin() {
         </div>
 
         <div className="admin-acoes">
-          <article className="admin-acao admin-acao--principal">
+          <Cartao
+            className="admin-acao"
+            variante="botanico"
+            interativo
+          >
             <span className="admin-acao-numero">
               01
             </span>
@@ -73,9 +81,12 @@ export function Admin() {
             >
               Organizar convidados
             </LinkTransicao>
-          </article>
+          </Cartao>
 
-          <article className="admin-acao">
+          <Cartao
+            className="admin-acao"
+            variante="papel"
+          >
             <span className="admin-acao-numero">
               02
             </span>
@@ -92,9 +103,12 @@ export function Admin() {
             <span className="admin-em-breve">
               Próxima etapa
             </span>
-          </article>
+          </Cartao>
 
-          <article className="admin-acao">
+          <Cartao
+            className="admin-acao"
+            variante="sutil"
+          >
             <span className="admin-acao-numero">
               03
             </span>
@@ -111,7 +125,7 @@ export function Admin() {
             <span className="admin-em-breve">
               Em breve
             </span>
-          </article>
+          </Cartao>
         </div>
       </section>
 

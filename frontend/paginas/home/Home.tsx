@@ -3,6 +3,10 @@ import {
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
+  Cartao,
+} from "../../javascript/componentes/cards/Cartao";
+
+import {
   MolduraFloral,
   OrnamentoFloral,
   RamoFloral,
@@ -53,6 +57,14 @@ function iconeEvento(
     default:
       return "·";
   }
+}
+
+function varianteEvento(
+  evento: EventoCasamento,
+): "papel" | "botanico" {
+  return evento.tipo === "RECEPCAO"
+    ? "botanico"
+    : "papel";
 }
 
 export function Home() {
@@ -164,13 +176,17 @@ export function Home() {
           className="historia-moldura"
           variante="destaque"
         >
-          <div className="historia-cartao">
+          <Cartao
+            className="historia-cartao"
+            variante="sutil"
+            marca={false}
+          >
             <p>
               Este espaço ainda é editorial. Depois podemos
               transformar a história do casal em texto,
               fotografia ou uma pequena linha do tempo.
             </p>
-          </div>
+          </Cartao>
         </MolduraFloral>
       </section>
 
@@ -199,7 +215,15 @@ export function Home() {
               className="evento-moldura"
               key={evento.id}
             >
-              <article className="evento-cartao">
+              <Cartao
+                className="evento-cartao"
+                variante={
+                  varianteEvento(
+                    evento,
+                  )
+                }
+                marca={false}
+              >
                 <span
                   className="evento-icone"
                   aria-hidden="true"
@@ -229,7 +253,7 @@ export function Home() {
                     evento.endereco ??
                     "Local a confirmar."}
                 </p>
-              </article>
+              </Cartao>
             </MolduraFloral>
           ))}
         </div>

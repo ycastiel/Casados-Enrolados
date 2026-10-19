@@ -3,6 +3,10 @@ import {
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
+  Cartao,
+} from "../../javascript/componentes/cards/Cartao";
+
+import {
   OrnamentoFloral,
   RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
@@ -164,12 +168,22 @@ export function Presentes() {
                   presente.quantidadeDisponivel >
                   0;
 
+                const variante =
+                  presente.tipo === "COTA"
+                    ? "botanico"
+                    : "papel";
+
                 return (
-                  <article
+                  <Cartao
                     className="presente-cartao"
                     key={
                       presente.id
                     }
+                    variante={variante}
+                    interativo={
+                      disponivel
+                    }
+                    marca={false}
                   >
                     <RamoFloral className="presente-cartao-floral" />
 
@@ -224,7 +238,7 @@ export function Presentes() {
                         )}
                       </div>
                     </div>
-                  </article>
+                  </Cartao>
                 );
               },
             )}
