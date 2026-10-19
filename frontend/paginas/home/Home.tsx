@@ -3,8 +3,8 @@ import {
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
 import {
-  Cartao,
-} from "../../javascript/componentes/cards/Cartao";
+  ContagemRegressiva,
+} from "../../javascript/componentes/animacoes/ContagemRegressiva";
 
 import {
   MolduraFloral,
@@ -57,14 +57,6 @@ function iconeEvento(
     default:
       return "·";
   }
-}
-
-function varianteEvento(
-  evento: EventoCasamento,
-): "papel" | "botanico" {
-  return evento.tipo === "RECEPCAO"
-    ? "botanico"
-    : "papel";
 }
 
 export function Home() {
@@ -152,6 +144,11 @@ export function Home() {
         </div>
       </section>
 
+      <ContagemRegressiva
+        casamento={casamento}
+        eventos={eventos}
+      />
+
       <section
         id="historia"
         className="secao secao--historia"
@@ -176,17 +173,13 @@ export function Home() {
           className="historia-moldura"
           variante="destaque"
         >
-          <Cartao
-            className="historia-cartao"
-            variante="sutil"
-            marca={false}
-          >
+          <div className="historia-cartao">
             <p>
               Este espaço ainda é editorial. Depois podemos
               transformar a história do casal em texto,
               fotografia ou uma pequena linha do tempo.
             </p>
-          </Cartao>
+          </div>
         </MolduraFloral>
       </section>
 
@@ -215,15 +208,7 @@ export function Home() {
               className="evento-moldura"
               key={evento.id}
             >
-              <Cartao
-                className="evento-cartao"
-                variante={
-                  varianteEvento(
-                    evento,
-                  )
-                }
-                marca={false}
-              >
+              <article className="evento-cartao">
                 <span
                   className="evento-icone"
                   aria-hidden="true"
@@ -253,7 +238,7 @@ export function Home() {
                     evento.endereco ??
                     "Local a confirmar."}
                 </p>
-              </Cartao>
+              </article>
             </MolduraFloral>
           ))}
         </div>
