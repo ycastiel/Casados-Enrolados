@@ -40,7 +40,7 @@ async function main() {
 
       slug: "casamento-dev",
 
-      dataCasamento: new Date("2030-09-01"),
+      dataCasamento: new Date("2027-05-16"),
       fusoHorario: "America/Sao_Paulo",
 
       ativo: true,
@@ -67,8 +67,8 @@ async function main() {
 
       tipo: "CERIMONIA",
 
-      inicioEm: new Date("2030-09-01T16:00:00-03:00"),
-      fimEm: new Date("2030-09-01T17:00:00-03:00"),
+      inicioEm: new Date("2027-05-16T16:00:00-03:00"),
+      fimEm: new Date("2027-05-16T17:00:00-03:00"),
 
       local: "Local de exemplo",
       endereco: "Endereço de exemplo",
@@ -96,7 +96,7 @@ async function main() {
 
       tipo: "RECEPCAO",
 
-      inicioEm: new Date("2030-09-01T18:00:00-03:00"),
+      inicioEm: new Date("2027-05-16T18:00:00-03:00"),
 
       local: "Salão de exemplo",
       endereco: "Outro endereço de exemplo",

@@ -5,9 +5,17 @@
   user-select: none;
 }
 
+/* =========================================================
+     MOLDURA FLORAL
+     ========================================================= */
+
 .moldura-floral {
   position: relative;
   isolation: isolate;
+
+  --moldura-ramo-tamanho: clamp(8rem, 22vw, 13rem);
+  --moldura-ramo-recuo-x: -4.9rem;
+  --moldura-ramo-recuo-y: -4.6rem;
 }
 
 .moldura-floral__conteudo {
@@ -18,34 +26,58 @@
 
 .moldura-floral__ramo {
   position: absolute;
-  z-index: 3;
-  width: clamp(8rem, 22vw, 13rem);
+  z-index: 1;
+  width: var(--moldura-ramo-tamanho);
   pointer-events: none;
   filter: drop-shadow(0 8px 14px rgb(62 58 55 / 5%));
+  user-select: none;
 }
 
 .moldura-floral__ramo--superior {
-  top: -3.6rem;
-  left: -3.8rem;
+  top: var(--moldura-ramo-recuo-y);
+  left: var(--moldura-ramo-recuo-x);
   transform: rotate(-10deg);
   transform-origin: center;
 }
 
 .moldura-floral__ramo--inferior {
-  right: -3.8rem;
-  bottom: -3.6rem;
+  right: var(--moldura-ramo-recuo-x);
+  bottom: var(--moldura-ramo-recuo-y);
   transform: rotate(170deg);
   transform-origin: center;
 }
 
+/* =========================================================
+     VARIANTE: CARTÃO
+     ========================================================= */
+
+.moldura-floral--cartao {
+  --moldura-ramo-tamanho: clamp(7.2rem, 19vw, 10.5rem);
+  --moldura-ramo-recuo-x: -4.25rem;
+  --moldura-ramo-recuo-y: -4rem;
+}
+
 .moldura-floral--cartao .moldura-floral__ramo {
-  width: clamp(7.2rem, 19vw, 10.5rem);
-  opacity: 0.92;
+  opacity: 0.9;
+}
+
+/* =========================================================
+     VARIANTE: DESTAQUE
+     ========================================================= */
+
+.moldura-floral--destaque {
+  --moldura-ramo-tamanho: clamp(9rem, 24vw, 14rem);
+  --moldura-ramo-recuo-x: -6.4rem;
+  --moldura-ramo-recuo-y: -5.8rem;
 }
 
 .moldura-floral--destaque .moldura-floral__ramo {
-  width: clamp(9rem, 24vw, 14rem);
+  opacity: 0.94;
 }
+
+/* =========================================================
+     ORNAMENTO CENTRAL
+     ========================================================= */
 
 .ornamento-floral {
   width: min(13rem, 52vw);
@@ -59,24 +91,38 @@
 }
 
 .ornamento-floral img {
+  display: block;
   width: 100%;
+  height: auto;
 }
+
+/* =========================================================
+     RESPONSIVIDADE
+     ========================================================= */
 
 @media (max-width: 680px) {
-  .moldura-floral__ramo {
-    width: 7.2rem;
+  .moldura-floral {
+    --moldura-ramo-tamanho: 7.2rem;
+    --moldura-ramo-recuo-x: -3.25rem;
+    --moldura-ramo-recuo-y: -3.15rem;
   }
 
-  .moldura-floral__ramo--superior {
-    top: -2.6rem;
-    left: -2.8rem;
+  .moldura-floral--cartao {
+    --moldura-ramo-tamanho: 6.8rem;
+    --moldura-ramo-recuo-x: -3.2rem;
+    --moldura-ramo-recuo-y: -3.05rem;
   }
 
-  .moldura-floral__ramo--inferior {
-    right: -2.8rem;
-    bottom: -2.6rem;
+  .moldura-floral--destaque {
+    --moldura-ramo-tamanho: 8.5rem;
+    --moldura-ramo-recuo-x: -4.2rem;
+    --moldura-ramo-recuo-y: -4rem;
   }
 }
+
+/* =========================================================
+     MICROINTERAÇÃO
+     ========================================================= */
 
 @media (prefers-reduced-motion: no-preference) {
   .moldura-floral__ramo {
