@@ -1,0 +1,432 @@
+.admin-convidados {
+  width: min(100%, 76rem);
+  margin-inline: auto;
+}
+
+.convidados-cabecalho {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--espaco-8);
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.convidados-cabecalho > div:first-child {
+  max-width: 47rem;
+}
+
+.convidados-cabecalho h1 {
+  margin-bottom: var(--espaco-4);
+  font-size: clamp(3rem, 7vw, 5.4rem);
+  font-weight: 500;
+}
+
+.convidados-cabecalho p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+.convidados-resumo {
+  display: flex;
+  gap: var(--espaco-3);
+}
+
+.convidados-resumo > div {
+  min-width: 8rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-medio);
+  background: rgb(255 255 255 / 72%);
+}
+
+.convidados-resumo strong,
+.convidados-resumo span {
+  display: block;
+}
+
+.convidados-resumo strong {
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.convidados-resumo span {
+  margin-top: 0.35rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.76rem;
+}
+
+.convidados-erro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-6);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgb(142 59 70 / 20%);
+  border-radius: var(--raio-medio);
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-700);
+}
+
+.convidados-erro button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1.4rem;
+}
+
+.novo-convite {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.8fr)
+    minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background:
+    radial-gradient(
+      circle at 92% 14%,
+      rgb(232 217 168 / 20%),
+      transparent 13rem
+    ),
+    var(--cor-verde-50);
+}
+
+.novo-convite h2 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+.novo-convite p {
+  color: var(--cor-texto-suave);
+}
+
+.novo-convite-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaco-4);
+}
+
+.novo-convite-formulario label {
+  display: grid;
+  gap: var(--espaco-2);
+  color: var(--cor-verde-900);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.novo-convite-formulario label:first-child {
+  grid-column: 1 / -1;
+}
+
+.novo-convite-formulario .botao {
+  align-self: end;
+}
+
+.novo-convite-formulario input,
+.edicao-inline input,
+.convidado-edicao input,
+.novo-convidado-inline input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.72rem 0.85rem;
+  border: 1px solid rgb(96 119 93 / 22%);
+  border-radius: var(--raio-pequeno);
+  outline: none;
+  background: var(--cor-marfin);
+  color: var(--cor-texto);
+}
+
+.novo-convite-formulario input:focus,
+.edicao-inline input:focus,
+.convidado-edicao input:focus,
+.novo-convidado-inline input:focus {
+  border-color: var(--cor-verde-500);
+  box-shadow: 0 0 0 4px rgb(143 168 138 / 10%);
+}
+
+.convites-lista {
+  padding-block: clamp(4rem, 8vw, 6rem);
+}
+
+.convites-lista-cabecalho {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--espaco-6);
+  margin-bottom: var(--espaco-8);
+}
+
+.convites-lista-cabecalho h2 {
+  margin-bottom: 0;
+}
+
+.convites-contagem {
+  color: var(--cor-texto-suave);
+  font-size: 0.84rem;
+}
+
+.convites-grade {
+  display: grid;
+  gap: var(--espaco-6);
+}
+
+.convite-admin-card {
+  padding: clamp(1.5rem, 4vw, 2.3rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background: rgb(255 255 255 / 78%);
+  box-shadow: var(--sombra-suave);
+}
+
+.convite-admin-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaco-6);
+}
+
+.convite-admin-cabecalho > div:first-child > span {
+  color: var(--cor-vinho-500);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.convite-admin-cabecalho h3 {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+}
+
+.convite-admin-acoes,
+.convidado-acoes,
+.edicao-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.convite-admin-acoes button,
+.convidado-acoes button,
+.edicao-inline button,
+.adicionar-pessoa,
+.novo-convidado-inline button:not(.botao) {
+  border: 0;
+  background: transparent;
+  color: var(--cor-verde-700);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.acao-perigosa {
+  color: var(--cor-vinho-500) !important;
+}
+
+.convite-token {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-block: var(--espaco-6);
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-creme);
+  overflow: hidden;
+}
+
+.convite-token span {
+  flex: 0 0 auto;
+  color: var(--cor-texto-suave);
+  font-size: 0.72rem;
+}
+
+.convite-token code {
+  overflow: hidden;
+  color: var(--cor-verde-900);
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.convidados-do-convite {
+  display: grid;
+  border-top: 1px solid rgb(138 106 82 / 10%);
+}
+
+.convidado-linha {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    auto;
+  gap: var(--espaco-4);
+  align-items: center;
+  padding-block: 1rem;
+  border-bottom: 1px solid rgb(138 106 82 / 10%);
+}
+
+.convidado-identidade strong,
+.convidado-identidade span {
+  display: block;
+}
+
+.convidado-identidade strong {
+  color: var(--cor-verde-900);
+}
+
+.convidado-identidade span {
+  margin-top: 0.15rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.78rem;
+}
+
+.status-convidado {
+  display: inline-flex;
+  min-height: 1.9rem;
+  align-items: center;
+  padding-inline: 0.7rem;
+  border-radius: var(--raio-pilula);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.status-convidado--confirmado {
+  background: var(--cor-verde-100);
+  color: var(--cor-verde-900);
+}
+
+.status-convidado--pendente {
+  background: var(--cor-amarelo-100);
+  color: var(--cor-marrom);
+}
+
+.status-convidado--recusado {
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-700);
+}
+
+.status-convidado--parcial {
+  background: rgb(183 154 200 / 16%);
+  color: #755c84;
+}
+
+.status-convidado--neutro {
+  background: var(--cor-bege);
+  color: var(--cor-texto-suave);
+}
+
+.edicao-inline {
+  align-items: center;
+}
+
+.edicao-inline input {
+  min-width: 14rem;
+}
+
+.convidado-edicao {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr)
+    auto;
+  gap: var(--espaco-3);
+  align-items: center;
+}
+
+.novo-convidado-inline {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr)
+    auto;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-5);
+  padding: var(--espaco-4);
+  border-radius: var(--raio-medio);
+  background: var(--cor-verde-50);
+}
+
+.adicionar-pessoa {
+  margin-top: var(--espaco-4);
+  color: var(--cor-vinho-500);
+}
+
+.convites-estado {
+  padding: clamp(3rem, 7vw, 5rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background: var(--cor-creme);
+  text-align: center;
+}
+
+.convites-estado h3 {
+  font-size: 2rem;
+}
+
+.convites-estado p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .convite-admin-acoes button:hover,
+  .convidado-acoes button:hover,
+  .edicao-inline button:hover,
+  .adicionar-pessoa:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 820px) {
+  .convidados-cabecalho,
+  .convite-admin-cabecalho {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .convidados-resumo {
+    width: 100%;
+  }
+
+  .convidados-resumo > div {
+    flex: 1;
+  }
+
+  .novo-convite {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .novo-convite-formulario,
+  .convidado-edicao,
+  .novo-convidado-inline {
+    grid-template-columns: 1fr;
+  }
+
+  .convidado-linha {
+    grid-template-columns: 1fr auto;
+  }
+
+  .convidado-acoes {
+    grid-column: 1 / -1;
+  }
+
+  .convite-token {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .convidados-resumo {
+    flex-direction: column;
+  }
+
+  .convidado-linha {
+    grid-template-columns: 1fr;
+  }
+}

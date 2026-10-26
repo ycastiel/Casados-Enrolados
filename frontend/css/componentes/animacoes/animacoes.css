@@ -1,0 +1,89 @@
+.petalas {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  height: 48rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.petala {
+  position: absolute;
+  top: -3rem;
+  width: 0.72rem;
+  height: 1.18rem;
+  border-radius: 78% 22% 72% 28%;
+  opacity: 0;
+  filter: blur(0.1px);
+  animation: cair-petala 17s linear infinite;
+}
+
+.petala--1,
+.petala--4 {
+  background: linear-gradient(145deg, var(--cor-vinho-300), var(--cor-vinho-100));
+}
+
+.petala--2,
+.petala--7 {
+  background: linear-gradient(145deg, var(--cor-amarelo-300), var(--cor-amarelo-100));
+}
+
+.petala--3,
+.petala--6 {
+  background: linear-gradient(145deg, var(--cor-lilas), #efe6f3);
+}
+
+.petala--5 {
+  background: linear-gradient(145deg, var(--cor-azul), #e5ebef);
+}
+
+.petala--1 { left: 6%;  animation-delay: 0s;    animation-duration: 19s; }
+.petala--2 { left: 20%; animation-delay: 6s;    animation-duration: 16s; }
+.petala--3 { left: 36%; animation-delay: 10s;   animation-duration: 21s; }
+.petala--4 { left: 54%; animation-delay: 2.5s;  animation-duration: 18s; }
+.petala--5 { left: 70%; animation-delay: 8s;    animation-duration: 22s; }
+.petala--6 { left: 83%; animation-delay: 12s;   animation-duration: 17s; }
+.petala--7 { left: 94%; animation-delay: 4.5s;  animation-duration: 20s; }
+
+@keyframes cair-petala {
+  0% {
+    transform: translate3d(0, -2rem, 0) rotate(0deg) scale(0.88);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.38;
+  }
+
+  32% {
+    transform: translate3d(1.8rem, 14rem, 0) rotate(92deg) scale(1);
+  }
+
+  58% {
+    transform: translate3d(-1.2rem, 29rem, 0) rotate(190deg) scale(0.94);
+  }
+
+  82% {
+    opacity: 0.26;
+  }
+
+  100% {
+    transform: translate3d(1.5rem, 51rem, 0) rotate(340deg) scale(0.86);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .petalas {
+    display: none;
+  }
+}

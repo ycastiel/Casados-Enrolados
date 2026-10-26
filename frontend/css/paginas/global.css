@@ -1,0 +1,258 @@
+/* =========================================================
+   DESIGN SYSTEM + BASE GLOBAL
+   Tokens e estilos globais ficam juntos neste projeto.
+   ========================================================= */
+
+:root {
+  /* Paleta principal */
+  --cor-verde-50: #f3f6f1;
+  --cor-verde-100: #e5ece1;
+  --cor-verde-300: #bdcdb7;
+  --cor-verde-500: #8fa88a;
+  --cor-verde-700: #60775d;
+  --cor-verde-900: #344332;
+
+  --cor-vinho-100: #f4e7e8;
+  --cor-vinho-300: #cb8991;
+  --cor-vinho-500: #8e3b46;
+  --cor-vinho-700: #672a33;
+
+  --cor-amarelo-100: #fbf5df;
+  --cor-amarelo-300: #e8d9a8;
+  --cor-amarelo-500: #d4bd72;
+
+  /* Complementares */
+  --cor-azul: #7c92a6;
+  --cor-lilas: #b79ac8;
+  --cor-marrom: #8a6a52;
+
+  /* Neutras */
+  --cor-marfin: #fffdf8;
+  --cor-creme: #f7f2ea;
+  --cor-bege: #ede4d7;
+  --cor-texto: #3e3a37;
+  --cor-texto-suave: #756e68;
+  --cor-borda: rgb(138 106 82 / 18%);
+
+  /* Semânticas */
+  --cor-fundo: var(--cor-marfin);
+  --cor-superficie: #ffffff;
+  --cor-primaria: var(--cor-verde-700);
+  --cor-secundaria: var(--cor-vinho-500);
+  --cor-destaque: var(--cor-amarelo-300);
+
+  /* Tipografia */
+  --fonte-titulo: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --fonte-corpo: "Nunito Sans", Arial, Helvetica, sans-serif;
+
+  /* Espaçamento */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.25rem;
+  --espaco-6: 1.5rem;
+  --espaco-8: 2rem;
+  --espaco-12: 3rem;
+  --espaco-16: 4rem;
+  --espaco-20: 5rem;
+  --espaco-24: 6rem;
+
+  /* Forma */
+  --raio-pequeno: 0.65rem;
+  --raio-medio: 1rem;
+  --raio-grande: 1.75rem;
+  --raio-pilula: 999px;
+
+  /* Elevação */
+  --sombra-suave: 0 14px 45px rgb(62 58 55 / 8%);
+  --sombra-media: 0 18px 55px rgb(62 58 55 / 12%);
+
+  /* Movimento */
+  --transicao-rapida: 160ms ease;
+  --transicao-padrao: 280ms ease;
+  --transicao-lenta: 650ms ease;
+
+  /* Layout */
+  --largura-conteudo: 1180px;
+  --largura-texto: 720px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgb(138 106 82 / 0.9%) 0,
+      rgb(138 106 82 / 0.9%) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--cor-amarelo-300);
+  color: var(--cor-verde-900);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+h2 {
+  margin-bottom: var(--espaco-4);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+}
+
+.layout-publico {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.conteudo-principal {
+  position: relative;
+  z-index: 1;
+}
+
+.secao {
+  width: min(calc(100% - 2rem), var(--largura-conteudo));
+  margin-inline: auto;
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.secao-cabecalho {
+  max-width: var(--largura-texto);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.secao-cabecalho > p,
+.secao--convite p,
+.confirmacao-conteudo > p {
+  color: var(--cor-texto-suave);
+  font-size: 1.05rem;
+}
+
+.secao-etiqueta {
+  display: inline-block;
+  margin-bottom: var(--espaco-3);
+  color: var(--cor-vinho-500);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.botao {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.82rem 1.45rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio-pilula);
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    transform var(--transicao-rapida),
+    background-color var(--transicao-padrao),
+    color var(--transicao-padrao),
+    border-color var(--transicao-padrao),
+    box-shadow var(--transicao-padrao);
+}
+
+.botao--primario {
+  background: var(--cor-vinho-500);
+  color: var(--cor-marfin);
+  box-shadow: 0 10px 25px rgb(142 59 70 / 18%);
+}
+
+.botao--secundario {
+  border-color: rgb(96 119 93 / 35%);
+  background: rgb(255 253 248 / 82%);
+  color: var(--cor-verde-900);
+}
+
+.botao--claro {
+  background: var(--cor-marfin);
+  color: var(--cor-vinho-700);
+}
+
+.botao:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgb(212 189 114 / 55%);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao:hover {
+    transform: translateY(-2px);
+  }
+
+  .botao--primario:hover {
+    background: var(--cor-vinho-700);
+    box-shadow: 0 14px 30px rgb(142 59 70 / 24%);
+  }
+
+  .botao--secundario:hover {
+    border-color: var(--cor-verde-500);
+    background: var(--cor-verde-50);
+  }
+}

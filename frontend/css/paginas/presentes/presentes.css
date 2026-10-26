@@ -1,0 +1,244 @@
+.pagina-presentes {
+  overflow: hidden;
+}
+
+.presentes-hero {
+  position: relative;
+  display: grid;
+  min-height: 31rem;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(4rem, 9vw, 7rem) 1rem;
+  background:
+    radial-gradient(circle at 18% 24%, rgb(183 154 200 / 10%), transparent 22rem),
+    radial-gradient(circle at 82% 26%, rgb(232 217 168 / 20%), transparent 23rem),
+    var(--cor-creme);
+  isolation: isolate;
+}
+
+.presentes-hero-conteudo {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 47rem);
+  text-align: center;
+}
+
+.presentes-hero h1 {
+  margin-bottom: 0;
+  font-size: clamp(3.8rem, 9vw, 6.8rem);
+  font-weight: 500;
+}
+
+.presentes-hero p {
+  max-width: 40rem;
+  margin-inline: auto;
+  color: var(--cor-texto-suave);
+  font-size: 1.08rem;
+}
+
+.presentes-hero-floral {
+  position: absolute;
+  z-index: 1;
+  width: clamp(13rem, 26vw, 25rem);
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.presentes-hero-floral--esquerda {
+  bottom: -5rem;
+  left: -5.5rem;
+  transform: rotate(-9deg);
+}
+
+.presentes-hero-floral--direita {
+  top: -5rem;
+  right: -5.5rem;
+  transform: rotate(170deg);
+}
+
+.presentes-lista {
+  padding-top: clamp(4rem, 8vw, 6rem);
+}
+
+.presentes-introducao {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.presentes-introducao h2 {
+  margin-bottom: 0;
+}
+
+.presentes-introducao > p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+.presentes-grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.presente-cartao {
+  min-width: 0;
+  min-height: 26rem;
+}
+
+.presente-cartao-floral {
+  position: absolute;
+  z-index: 4;
+  top: -2.7rem;
+  right: -2.25rem;
+  width: 10rem;
+  transform: rotate(87deg);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.presente-cartao-conteudo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: clamp(2rem, 4vw, 2.7rem);
+}
+
+.presente-categoria {
+  margin-bottom: var(--espaco-8);
+  color: var(--cor-vinho-500);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.presente-cartao h3 {
+  max-width: 14rem;
+  margin-bottom: var(--espaco-4);
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
+}
+
+.presente-cartao p {
+  margin-bottom: var(--espaco-8);
+  color: var(--cor-texto-suave);
+}
+
+.presente-cartao-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-top: auto;
+}
+
+.presente-valor {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.presente-cartao-rodape strong {
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+}
+
+.presente-valor span {
+  color: var(--cor-vinho-500);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.presente-cartao-rodape .botao {
+  min-height: 2.7rem;
+  padding-inline: 1rem;
+}
+
+.presente-cartao-rodape .botao:disabled {
+  cursor: not-allowed;
+  background: var(--cor-bege);
+  color: var(--cor-texto-suave);
+  box-shadow: none;
+  opacity: 0.75;
+  transform: none;
+}
+
+.presentes-vazio {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: clamp(3rem, 7vw, 5rem);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background: var(--cor-creme);
+  text-align: center;
+}
+
+.presentes-vazio h3 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.presentes-vazio p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+.presentes-recado {
+  width: min(calc(100% - 2rem), var(--largura-conteudo));
+  margin: 0 auto clamp(5rem, 10vw, 8rem);
+  padding: clamp(3rem, 7vw, 5rem);
+  border-radius: var(--raio-grande);
+  background:
+    radial-gradient(circle at 92% 12%, rgb(232 217 168 / 22%), transparent 16rem),
+    var(--cor-verde-50);
+  text-align: center;
+}
+
+.presentes-recado > div {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.presentes-recado h2 {
+  font-size: clamp(2.5rem, 6vw, 4.1rem);
+}
+
+.presentes-recado p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+@media (max-width: 980px) {
+  .presentes-grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .presentes-introducao {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .presentes-grade {
+    grid-template-columns: 1fr;
+  }
+
+  .presente-cartao {
+    min-height: 22rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .presente-cartao-rodape {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .presente-cartao-rodape .botao {
+    width: 100%;
+  }
+}

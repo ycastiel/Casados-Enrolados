@@ -1,0 +1,343 @@
+.hero {
+  position: relative;
+  min-height: 41rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(5rem, 9vw, 8rem) 1rem;
+  isolation: isolate;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 20%, rgb(183 154 200 / 10%), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgb(232 217 168 / 18%), transparent 28%),
+    radial-gradient(circle at 53% 82%, rgb(143 168 138 / 8%), transparent 27%),
+    linear-gradient(180deg, rgb(255 253 248 / 92%), rgb(247 242 234 / 94%));
+  content: "";
+}
+
+.hero::after {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgb(138 106 82 / 1.5%) 0,
+      rgb(138 106 82 / 1.5%) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  content: "";
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.hero-conteudo {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 760px);
+  text-align: center;
+}
+
+.hero-sobretitulo {
+  margin-bottom: var(--espaco-4);
+  color: var(--cor-vinho-500);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero-titulo {
+  margin-bottom: var(--espaco-2);
+  font-size: clamp(4rem, 12vw, 8.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.hero-e {
+  color: var(--cor-vinho-500);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-data {
+  margin-bottom: var(--espaco-6);
+  color: var(--cor-verde-700);
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: 0.12em;
+}
+
+.hero-mensagem {
+  max-width: 38rem;
+  margin-inline: auto;
+  margin-bottom: var(--espaco-8);
+  color: var(--cor-texto-suave);
+  font-size: 1.07rem;
+}
+
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco-3);
+}
+
+.hero-floral {
+  position: absolute;
+  z-index: 1;
+  width: clamp(14rem, 30vw, 31rem);
+  pointer-events: none;
+  filter: drop-shadow(0 12px 28px rgb(62 58 55 / 5%));
+}
+
+.hero-floral--esquerda {
+  bottom: -4.5rem;
+  left: -5.5rem;
+  transform: rotate(-7deg);
+}
+
+.hero-floral--direita {
+  top: -4rem;
+  right: -5rem;
+  transform: rotate(171deg);
+}
+
+.secao--historia {
+  display: grid;
+  gap: var(--espaco-12);
+}
+
+.historia-moldura {
+  width: min(100%, 52rem);
+  margin-inline: auto;
+}
+
+.historia-cartao {
+  min-height: 14rem;
+}
+
+.historia-cartao .cartao-ui__conteudo {
+  display: grid;
+  min-height: 14rem;
+  place-items: center;
+  padding: clamp(2.8rem, 6vw, 4.5rem);
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+.historia-cartao p {
+  max-width: 39rem;
+  margin: 0;
+}
+
+.secao--evento {
+  width: 100%;
+  max-width: none;
+  overflow: hidden;
+  padding-inline: max(1rem, calc((100% - var(--largura-conteudo)) / 2));
+  background:
+    radial-gradient(circle at 12% 14%, rgb(232 217 168 / 18%), transparent 18rem),
+    radial-gradient(circle at 88% 76%, rgb(183 154 200 / 10%), transparent 20rem),
+    var(--cor-verde-50);
+}
+
+.eventos-grade {
+  display: grid;
+  max-width: 930px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2.2rem, 5vw, 4rem);
+  margin: var(--espaco-12) auto 0;
+}
+
+.evento-moldura {
+  min-width: 0;
+}
+
+.evento-cartao {
+  height: 100%;
+  min-height: 20rem;
+}
+
+.evento-cartao .cartao-ui__conteudo {
+  height: 100%;
+  min-height: 20rem;
+  padding:
+    clamp(2.5rem, 5vw, 3.6rem)
+    clamp(1.8rem, 4vw, 2.8rem);
+  text-align: center;
+}
+
+.evento-icone {
+  display: inline-grid;
+  width: 3rem;
+  aspect-ratio: 1;
+  place-items: center;
+  margin-bottom: var(--espaco-4);
+  border: 1px solid rgb(212 189 114 / 28%);
+  border-radius: 50%;
+  background: var(--cor-amarelo-100);
+  color: var(--cor-vinho-500);
+}
+
+.evento-tipo {
+  margin-bottom: var(--espaco-2);
+  color: var(--cor-vinho-500);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.evento-cartao h3 {
+  margin-bottom: var(--espaco-3);
+  font-size: 2rem;
+}
+
+.evento-cartao p:last-child {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+.secao--convite {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-12);
+  overflow: hidden;
+  margin-block: clamp(4rem, 8vw, 7rem);
+  padding: clamp(2.8rem, 6vw, 4.5rem);
+  border: 1px solid rgb(255 253 248 / 12%);
+  border-radius: var(--raio-grande);
+  background:
+    radial-gradient(circle at 88% 18%, rgb(232 217 168 / 13%), transparent 16rem),
+    linear-gradient(125deg, var(--cor-vinho-700), var(--cor-vinho-500));
+  box-shadow: var(--sombra-media);
+  color: var(--cor-marfin);
+  isolation: isolate;
+}
+
+.secao--convite h2,
+.secao--convite .secao-etiqueta,
+.secao--convite p {
+  color: var(--cor-marfin);
+}
+
+.convite-conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 42rem;
+}
+
+.secao--convite > .botao {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+}
+
+.convite-floral {
+  position: absolute;
+  z-index: 1;
+  right: -7rem;
+  bottom: -7rem;
+  width: clamp(18rem, 34vw, 27rem);
+  transform: rotate(156deg);
+  opacity: 0.19;
+  filter: saturate(0.7) brightness(1.4);
+  pointer-events: none;
+}
+
+.secao--confirmacao {
+  display: grid;
+  place-items: center;
+  padding-top: clamp(3rem, 7vw, 6rem);
+  padding-bottom: clamp(6rem, 11vw, 9rem);
+}
+
+.confirmacao-conteudo {
+  max-width: 43rem;
+  text-align: center;
+}
+
+.confirmacao-conteudo .botao {
+  margin-top: var(--espaco-4);
+}
+
+@media (max-width: 900px) {
+  .hero-floral {
+    opacity: 0.72;
+  }
+
+  .eventos-grade {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 38rem;
+    padding-top: 4rem;
+  }
+
+  .hero-titulo {
+    font-size: clamp(3.4rem, 18vw, 5.5rem);
+  }
+
+  .hero-floral {
+    width: 14rem;
+    opacity: 0.55;
+  }
+
+  .hero-floral--esquerda {
+    bottom: -3.4rem;
+    left: -5.2rem;
+  }
+
+  .hero-floral--direita {
+    top: -3rem;
+    right: -5rem;
+  }
+
+  .eventos-grade {
+    grid-template-columns: 1fr;
+  }
+
+  .secao--convite {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .convite-floral {
+    right: -8rem;
+    bottom: -6rem;
+    width: 20rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-acoes {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-acoes .botao {
+    width: min(100%, 19rem);
+    margin-inline: auto;
+  }
+
+  .historia-cartao .cartao-ui__conteudo {
+    padding: 3rem 1.5rem;
+  }
+
+  .evento-cartao .cartao-ui__conteudo {
+    padding: 3rem 1.5rem;
+  }
+}
