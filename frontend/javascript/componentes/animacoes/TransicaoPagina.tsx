@@ -21,7 +21,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-import ramoFloral from "../../../recursos/imagens/ramo-floral.svg";
+import ramoFloral from "../../../recursos/publico/svg/ramo-floral.svg";
 
 import "../../../css/componentes/animacoes/transicaoPagina.css";
 

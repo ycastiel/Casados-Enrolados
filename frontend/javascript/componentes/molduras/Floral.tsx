@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-import ramoFloral from "../../../recursos/imagens/ramo-floral.svg";
-import ornamentoFloral from "../../../recursos/imagens/ornamento-floral.svg";
+import ramoFloral from "../../../recursos/publico/svg/ramo-floral.svg";
+import ornamentoFloral from "../../../recursos/publico/svg/ornamento-floral.svg";
 
 import "../../../css/componentes/molduras/floral.css";
 
