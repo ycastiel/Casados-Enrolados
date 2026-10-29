@@ -11,6 +11,17 @@ import {
 } from "../../javascript/componentes/cards/SuporteCartao";
 
 import {
+  FaixaImagemEditorial,
+} from "../../javascript/componentes/imagens/FaixaImagemEditorial";
+
+import {
+  BlocoImagemEditorial,
+} from "../../javascript/componentes/imagens/BlocoImagemEditorial";
+
+import aliancasBiblia from "../../recursos/publico/imagens/home/aliancas-biblia.webp";
+import aliancasFloral from "../../recursos/publico/imagens/home/aliancas-floral.webp";
+
+import {
   OrnamentoFloral,
   RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
@@ -23,6 +34,7 @@ import {
 } from "../../javascript/paginas/eventos/Casamento";
 
 import "../../css/paginas/home/home.css";
+import "../../css/paginas/home/homeImagens.css";
 
 type VersoEditorialProps = {
   texto: string;
@@ -243,13 +255,11 @@ export function Home() {
         />
       </div>
 
-      <div className="home-verso home-verso--primeiro">
-        <VersoEditorial
-          texto="O amor permanece, confia, espera e persevera."
-          referencia="1 Coríntios 13:7"
-          variante="claro"
-        />
-      </div>
+      <FaixaImagemEditorial
+        variante="amor"
+        texto="O amor permanece, confia, espera e persevera."
+        referencia="1 Coríntios 13:7"
+      />
 
       <section
         id="historia"
@@ -355,69 +365,56 @@ export function Home() {
             aria-hidden="true"
           />
 
-          <div className="eventos-grade">
+          <div className="eventos-grade eventos-grade--fotografica">
             {eventos.map(
-              (
-                evento,
-                indice,
-              ) => (
-                <SuporteCartao
-                  className={[
-                    "evento-suporte",
-                    indice % 2 === 1
-                      ? "evento-suporte--deslocado"
-                      : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
+              (evento) => (
+                <article
+                  className="evento-cartao evento-cartao--fotografico"
                   key={evento.id}
-                  varianteMoldura="cartao"
                 >
-                  <article className="evento-cartao">
-                    <span
-                      className="evento-icone"
-                      aria-hidden="true"
-                    >
-                      {iconeEvento(evento)}
-                    </span>
+                  <span
+                    className="evento-icone"
+                    aria-hidden="true"
+                  >
+                    {iconeEvento(evento)}
+                  </span>
 
-                    <p className="evento-tipo">
-                      {nomeTipoEvento(evento)}
-                    </p>
+                  <p className="evento-tipo">
+                    {nomeTipoEvento(evento)}
+                  </p>
 
-                    <h3>
-                      {evento.nome}
-                    </h3>
+                  <h3>
+                    {evento.nome}
+                  </h3>
 
-                    <p className="evento-data">
-                      {formatarDataEvento(
+                  <p className="evento-data">
+                    {formatarDataEvento(
+                      evento.inicioEm,
+                      casamento.fusoHorario,
+                    )}
+                  </p>
+
+                  <div className="evento-divisor">
+                    <span />
+                    <span>❦</span>
+                    <span />
+                  </div>
+
+                  <p className="evento-detalhes">
+                    <strong>
+                      {formatarHorario(
                         evento.inicioEm,
                         casamento.fusoHorario,
                       )}
-                    </p>
+                    </strong>
 
-                    <div className="evento-divisor">
-                      <span />
-                      <span>❦</span>
-                      <span />
-                    </div>
-
-                    <p className="evento-detalhes">
-                      <strong>
-                        {formatarHorario(
-                          evento.inicioEm,
-                          casamento.fusoHorario,
-                        )}
-                      </strong>
-
-                      <span>
-                        {evento.local ??
-                          evento.endereco ??
-                          "Local a confirmar."}
-                      </span>
-                    </p>
-                  </article>
-                </SuporteCartao>
+                    <span>
+                      {evento.local ??
+                        evento.endereco ??
+                        "Local a confirmar."}
+                    </span>
+                  </p>
+                </article>
               ),
             )}
           </div>
@@ -454,13 +451,15 @@ export function Home() {
         </LinkTransicao>
       </section>
 
-      <div className="home-verso home-verso--final">
-        <VersoEditorial
-          texto="Há amores que nem muitas águas conseguem apagar."
-          referencia="Cântico dos Cânticos 8:7"
-          variante="vinho"
-        />
-      </div>
+      <BlocoImagemEditorial
+        imagemPrincipal={aliancasBiblia}
+        imagemApoio={aliancasFloral}
+        altPrincipal="Alianças douradas sobre uma Bíblia aberta."
+        altApoio="Alianças douradas sobre tecido claro com detalhes florais."
+        etiqueta="Fé, amor e aliança"
+        texto="Há amores que nem muitas águas conseguem apagar."
+        referencia="Cântico dos Cânticos 8:7"
+      />
 
       <section
         id="confirmacao"

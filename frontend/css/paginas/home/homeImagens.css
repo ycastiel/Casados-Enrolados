@@ -1,0 +1,244 @@
+.home {
+  /*
+   * SLOT 1 — faixa bíblica depois do contador.
+   *
+   * Sugestão:
+   * --imagem-home-amor:
+   *   url("../../../recursos/imagens/home/faixa-amor.webp");
+   */
+  --imagem-home-amor:
+    url("../../../recursos/publico/imagens/home/aliancas-biblia.webp");
+
+  /*
+   * SLOT 2 — foto que ocupa todo o fundo de "O grande dia".
+   *
+   * Sugestão:
+   * --imagem-home-grande-dia:
+   *   url("../../../recursos/imagens/home/grande-dia.webp");
+   */
+  --imagem-home-grande-dia: 
+    url("../../../recursos/publico/imagens/home/faixa-amor.webp");
+
+  /*
+   * Reservado para uma futura faixa/foto de jardim.
+   * --imagem-home-jardim:
+   *   url("../../../recursos/imagens/home/jardim.webp");
+   */
+  --imagem-home-jardim: 
+    url("../../../recursos/publico/imagens/home/aliancas-floral.webp");
+}
+
+/* =========================================================
+   O GRANDE DIA COMO SEÇÃO FOTOGRÁFICA
+   ========================================================= */
+
+.secao--evento {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  max-width: none;
+
+  margin-inline: 0;
+
+  padding:
+    clamp(6rem, 11vw, 9rem)
+    max(
+      1rem,
+      calc(
+        (100% - var(--largura-conteudo))
+        / 2
+      )
+    )
+    clamp(7rem, 12vw, 10rem);
+
+  overflow: hidden;
+
+  border: 0;
+  border-radius: 0;
+
+  background-color:
+    var(--cor-verde-50);
+
+  background-image:
+    linear-gradient(
+      180deg,
+      rgb(247 242 234 / 82%),
+      rgb(240 238 225 / 74%)
+    ),
+    var(--imagem-home-grande-dia);
+
+  background-position:
+    center,
+    center;
+
+  background-size:
+    cover,
+    cover;
+
+  box-shadow: none;
+}
+
+.secao--evento::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgb(255 253 248 / 28%),
+      transparent 30%,
+      transparent 70%,
+      rgb(255 253 248 / 28%)
+    );
+
+  content: "";
+}
+
+/*
+ * O cabeçalho ganha uma pequena área translúcida.
+ * Se você colocar uma foto com bastante detalhe, o texto continua legível.
+ */
+.secao--evento
+  .secao-cabecalho {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 48rem);
+
+  margin-inline: auto;
+
+  padding:
+    clamp(1.5rem, 4vw, 2.5rem);
+
+  border:
+    1px solid
+    rgb(255 253 248 / 42%);
+
+  border-radius:
+    var(--raio-grande);
+
+  background:
+    rgb(255 253 248 / 62%);
+
+  box-shadow:
+    0 18px 45px
+    rgb(52 67 50 / 7%);
+
+  backdrop-filter:
+    blur(10px);
+}
+
+/* A data gigante continua existindo, mas bem mais discreta. */
+.evento-fundo-texto {
+  z-index: 0;
+  color:
+    rgb(52 67 50 / 4%);
+}
+
+/* =========================================================
+   CARDS DE EVENTO — IGUAIS, LARGOS E SEM RAMOS EXTERNOS
+   ========================================================= */
+
+.eventos-palco {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 64rem);
+
+  margin:
+    clamp(3rem, 7vw, 5.5rem)
+    auto
+    0;
+}
+
+.eventos-grade--fotografica {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(20rem, 25rem)
+    );
+
+  justify-content: center;
+  align-items: stretch;
+
+  gap:
+    clamp(2rem, 5vw, 4rem);
+}
+
+.eventos-grade--fotografica
+  .evento-cartao--fotografico {
+  width: 100%;
+  height: 100%;
+  min-height: 25rem;
+
+  padding:
+    clamp(2.5rem, 5vw, 3.6rem)
+    clamp(2rem, 5vw, 3rem);
+
+  border:
+    1px solid
+    rgb(255 253 248 / 58%);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgb(255 253 248 / 93%),
+      rgb(247 242 234 / 84%)
+    );
+
+  box-shadow:
+    0 26px 65px
+    rgb(52 67 50 / 13%);
+
+  backdrop-filter:
+    blur(9px);
+
+  transform: none;
+}
+
+/*
+ * O hover mexe só no papel.
+ * Não existe mais ramo separado tentando acompanhar o card.
+ */
+@media (hover: hover) and (pointer: fine) {
+  .eventos-grade--fotografica
+    .evento-cartao--fotografico {
+    transition:
+      transform var(--transicao-padrao),
+      box-shadow var(--transicao-padrao);
+  }
+
+  .eventos-grade--fotografica
+    .evento-cartao--fotografico:hover {
+    transform:
+      translateY(-0.35rem);
+
+    box-shadow:
+      0 32px 72px
+      rgb(52 67 50 / 16%);
+  }
+}
+
+@media (max-width: 760px) {
+  .secao--evento {
+    width: 100%;
+
+    padding-inline: 1rem;
+  }
+
+  .eventos-grade--fotografica {
+    grid-template-columns:
+      minmax(0, 30rem);
+
+    gap: 1.5rem;
+  }
+
+  .eventos-grade--fotografica
+    .evento-cartao--fotografico {
+    min-height: 22rem;
+  }
+}
