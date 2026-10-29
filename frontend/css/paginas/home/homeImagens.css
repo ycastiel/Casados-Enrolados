@@ -1,23 +1,13 @@
 .home {
-  /*
-   * SLOT 1 — faixa bíblica depois do contador.
-   *
-   * Sugestão:
-   * --imagem-home-amor:
-   *   url("../../../recursos/imagens/home/faixa-amor.webp");
-   */
   --imagem-home-amor:
     url("../../../recursos/publico/imagens/home/aliancas-biblia.webp");
-
-  /*
-   * SLOT 2 — foto que ocupa todo o fundo de "O grande dia".
-   *
-   * Sugestão:
-   * --imagem-home-grande-dia:
-   *   url("../../../recursos/imagens/home/grande-dia.webp");
-   */
+    
   --imagem-home-grande-dia: 
     url("../../../recursos/publico/imagens/home/faixa-amor.webp");
+
+  
+  --imagem-home-oceano:
+    url("../../../recursos/publico/imagens/home/oceano-canticos.webp");
 
   /*
    * Reservado para uma futura faixa/foto de jardim.
@@ -50,7 +40,7 @@
         / 2
       )
     )
-    clamp(7rem, 12vw, 10rem);
+    clamp(8rem, 14vw, 11rem);
 
   overflow: hidden;
 
@@ -63,8 +53,8 @@
   background-image:
     linear-gradient(
       180deg,
-      rgb(247 242 234 / 82%),
-      rgb(240 238 225 / 74%)
+      rgb(247 242 234 / 76%),
+      rgb(240 238 225 / 68%)
     ),
     var(--imagem-home-grande-dia);
 
@@ -85,32 +75,39 @@
   inset: 0;
 
   background:
-    linear-gradient(
-      90deg,
-      rgb(255 253 248 / 28%),
-      transparent 30%,
-      transparent 70%,
-      rgb(255 253 248 / 28%)
+    radial-gradient(
+      circle at 12% 20%,
+      rgb(183 154 200 / 9%),
+      transparent 18rem
+    ),
+    radial-gradient(
+      circle at 86% 72%,
+      rgb(232 217 168 / 13%),
+      transparent 20rem
     );
 
   content: "";
 }
 
-/*
- * O cabeçalho ganha uma pequena área translúcida.
- * Se você colocar uma foto com bastante detalhe, o texto continua legível.
- */
 .secao--evento
   .secao-cabecalho {
   position: relative;
   z-index: 2;
 
-  width: min(100%, 48rem);
+  width:
+    min(
+      100%,
+      48rem
+    );
 
   margin-inline: auto;
 
   padding:
-    clamp(1.5rem, 4vw, 2.5rem);
+    clamp(
+      1.5rem,
+      4vw,
+      2.5rem
+    );
 
   border:
     1px solid
@@ -120,32 +117,36 @@
     var(--raio-grande);
 
   background:
-    rgb(255 253 248 / 62%);
+    rgb(255 253 248 / 70%);
 
   box-shadow:
     0 18px 45px
-    rgb(52 67 50 / 7%);
+    rgb(52 67 50 / 6%);
 
   backdrop-filter:
     blur(10px);
 }
 
-/* A data gigante continua existindo, mas bem mais discreta. */
 .evento-fundo-texto {
   z-index: 0;
+
   color:
-    rgb(52 67 50 / 4%);
+    rgb(52 67 50 / 3.5%);
 }
 
 /* =========================================================
-   CARDS DE EVENTO — IGUAIS, LARGOS E SEM RAMOS EXTERNOS
+   CARDS DE EVENTO
    ========================================================= */
 
 .eventos-palco {
   position: relative;
   z-index: 2;
 
-  width: min(100%, 64rem);
+  width:
+    min(
+      100%,
+      64rem
+    );
 
   margin:
     clamp(3rem, 7vw, 5.5rem)
@@ -166,7 +167,11 @@
   align-items: stretch;
 
   gap:
-    clamp(2rem, 5vw, 4rem);
+    clamp(
+      2rem,
+      5vw,
+      4rem
+    );
 }
 
 .eventos-grade--fotografica
@@ -181,29 +186,25 @@
 
   border:
     1px solid
-    rgb(255 253 248 / 58%);
+    rgb(255 253 248 / 62%);
 
   background:
     linear-gradient(
       145deg,
-      rgb(255 253 248 / 93%),
-      rgb(247 242 234 / 84%)
+      rgb(255 253 248 / 95%),
+      rgb(247 242 234 / 90%)
     );
 
   box-shadow:
     0 26px 65px
-    rgb(52 67 50 / 13%);
+    rgb(52 67 50 / 9%);
 
   backdrop-filter:
-    blur(9px);
+    blur(8px);
 
   transform: none;
 }
 
-/*
- * O hover mexe só no papel.
- * Não existe mais ramo separado tentando acompanhar o card.
- */
 @media (hover: hover) and (pointer: fine) {
   .eventos-grade--fotografica
     .evento-cartao--fotografico {
@@ -219,7 +220,7 @@
 
     box-shadow:
       0 32px 72px
-      rgb(52 67 50 / 16%);
+      rgb(52 67 50 / 13%);
   }
 }
 

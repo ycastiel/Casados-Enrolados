@@ -7,6 +7,7 @@
       var(--cor-creme));
 }
 
+
 .hero {
   position: relative;
   z-index: 1;
@@ -368,13 +369,14 @@
 
 .historia-moldura {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   width:
     min(100%,
       52rem);
 
   margin-inline: auto;
+  margin-bottom: 0.5rem;
 
   transform:
     rotate(-0.18deg);
@@ -913,9 +915,9 @@
   overflow: hidden;
 
   margin-top:
-    clamp(-2.4rem,
-      -3vw,
-      -1.4rem);
+    clamp(2.5rem,
+      5vw,
+      4rem);
 
   margin-bottom:
     clamp(5rem,
@@ -1550,11 +1552,11 @@
   z-index: 4;
 
   width:
-    min(22rem,
+    min(20rem,
       calc(100% - 2rem));
 
   margin:
-    -1.15rem 1.25rem 0 auto;
+    1.25rem 2rem 0 auto;
 }
 
 .historia-verso .verso-editorial--compacto {
@@ -1567,7 +1569,7 @@
   margin: 0;
 
   transform:
-    rotate(1.3deg);
+    rotate(1deg);
 }
 
 /* ---------------------------------------------------------
@@ -1687,7 +1689,7 @@
         calc(100% - 1rem));
 
     margin:
-      -0.5rem 0.5rem 0 auto;
+      0.85rem 0.5rem 0 auto;
   }
 
   .eventos-grade {
@@ -1741,5 +1743,65 @@
 
   .evento-suporte .suporte-cartao__moldura {
     min-height: 25rem;
+  }
+}
+
+
+/* =========================================================
+   REFINO — ECLESIASTES
+   ========================================================= */
+
+.secao--historia .historia-verso {
+  position: relative;
+  z-index: 5;
+
+  width:
+    min(22rem,
+      calc(100% - 2rem));
+
+  margin:
+    1.75rem 2.5rem 0 auto;
+}
+
+.secao--historia .historia-verso .verso-editorial--compacto {
+  position: relative;
+
+  right: auto;
+  bottom: auto;
+
+  width: 100%;
+  margin: 0;
+
+  transform:
+    rotate(0.8deg);
+}
+
+/* =========================================================
+   REFINO — PRESENTES
+   ========================================================= */
+
+.secao--convite {
+  z-index: 2;
+
+  width:
+    min(calc(100% - 2rem),
+      72rem);
+
+  margin:
+    clamp(4.5rem, 8vw, 7rem) auto clamp(5rem, 10vw, 8rem);
+}
+
+@media (max-width: 760px) {
+  .secao--historia .historia-verso {
+    width:
+      min(23rem,
+        calc(100% - 1rem));
+
+    margin:
+      1.25rem 0.5rem 0 auto;
+  }
+
+  .secao--convite {
+    margin-top: 3rem;
   }
 }

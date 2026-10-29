@@ -20,6 +20,7 @@ import {
 
 import aliancasBiblia from "../../recursos/publico/imagens/home/aliancas-biblia.webp";
 import aliancasFloral from "../../recursos/publico/imagens/home/aliancas-floral.webp";
+import oceanoCanticos from "../../recursos/publico/imagens/home/oceano-canticos.webp";
 
 import {
   OrnamentoFloral,
@@ -35,6 +36,7 @@ import {
 
 import "../../css/paginas/home/home.css";
 import "../../css/paginas/home/homeImagens.css";
+import { BlocoCanticos } from "../../javascript/componentes/imagens/BlocoCanticos";
 
 type VersoEditorialProps = {
   texto: string;
@@ -318,14 +320,15 @@ export function Home() {
             </div>
           </SuporteCartao>
 
-          <div className="historia-verso">
-            <VersoEditorial
-              texto="É melhor caminhar a dois; quando um tropeça, o outro ajuda a se levantar."
-              referencia="Eclesiastes 4:9–10"
-              variante="verde"
-              compacto
-            />
-          </div>
+        </div>
+
+        <div className="historia-verso">
+          <VersoEditorial
+            texto="É melhor caminhar a dois; quando um tropeça, o outro ajuda a se levantar."
+            referencia="Eclesiastes 4:9–10"
+            variante="verde"
+            compacto
+          />
         </div>
       </section>
 
@@ -451,11 +454,11 @@ export function Home() {
         </LinkTransicao>
       </section>
 
-      <BlocoImagemEditorial
-        imagemPrincipal={aliancasBiblia}
-        imagemApoio={aliancasFloral}
-        altPrincipal="Alianças douradas sobre uma Bíblia aberta."
-        altApoio="Alianças douradas sobre tecido claro com detalhes florais."
+      <BlocoCanticos
+        imagemMar={oceanoCanticos}
+        imagemDetalhe={aliancasFloral}
+        altMar="Mar azul sob nuvens iluminadas, em um cenário calmo."
+        altDetalhe="Alianças douradas sobre um espaço com ."
         etiqueta="Fé, amor e aliança"
         texto="Há amores que nem muitas águas conseguem apagar."
         referencia="Cântico dos Cânticos 8:7"
@@ -492,3 +495,4 @@ export function Home() {
     </div>
   );
 }
+

@@ -50,6 +50,7 @@
   background-size: cover;
 
   transform: scale(1.02);
+  filter: saturate(1.02) contrast(1.03) brightness(0.98);
 }
 
 .faixa-imagem-editorial__imagem::before {
@@ -59,10 +60,10 @@
   background:
     linear-gradient(
       105deg,
-      rgb(40 71 86 / 48%) 0%,
-      rgb(68 103 116 / 25%) 34%,
-      rgb(226 217 199 / 24%) 63%,
-      rgb(250 243 229 / 70%) 100%
+      rgb(34 63 76 / 28%) 0%,
+      rgb(68 103 116 / 14%) 32%,
+      rgb(234 225 208 / 10%) 66%,
+      rgb(250 243 229 / 22%) 100%
     );
 
   content: "";
@@ -74,14 +75,9 @@
 
   background:
     radial-gradient(
-      circle at 74% 40%,
-      rgb(255 247 230 / 30%),
-      transparent 21rem
-    ),
-    linear-gradient(
-      90deg,
-      rgb(31 51 58 / 10%),
-      transparent 58%
+      circle at 78% 38%,
+      rgb(255 247 230 / 14%),
+      transparent 18rem
     );
 
   content: "";
