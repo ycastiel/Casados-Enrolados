@@ -7,7 +7,7 @@ import {
 import {
   OrnamentoFloral,
   RamoFloral,
-} from "../molduras/Floral";
+} from "../../componentes/molduras/Floral";
 
 import type {
   DadosCasamento,
