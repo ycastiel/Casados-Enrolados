@@ -72,6 +72,25 @@ export function Sidebar() {
             </span>
             Convidados
           </NavLinkTransicao>
+
+          <NavLinkTransicao
+            to="/admin/presentes"
+            className={({ isActive }) =>
+              [
+                "admin-sidebar-link",
+                isActive
+                  ? "admin-sidebar-link--ativo"
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")
+            }
+          >
+            <span aria-hidden="true">
+              ♡
+            </span>
+            Presentes
+          </NavLinkTransicao>
         </nav>
 
         <div className="admin-sidebar-rodape">

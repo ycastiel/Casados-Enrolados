@@ -12,6 +12,7 @@ import { Presentes } from "../presentes/Presentes";
 import { Confirmacao } from "../eventos/Confirmacao";
 import { ReservarPresente } from "../presentes/ReservarPresente";
 import { ReservaPresente } from "../presentes/Reserva";
+import { PresentesAdmin } from "../presentes/PresentesAdmin";
 
 import { LayoutAdmin } from "../LayoutAdmin";
 import { Admin } from "../home/HomeAdmin";
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
           {
             path: "convidados",
             element: <Convidados />,
+          },
+          {
+            path: "presentes",
+            element: <PresentesAdmin />,
           },
         ],
       },
