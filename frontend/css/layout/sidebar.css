@@ -136,7 +136,7 @@
   }
 
   .admin-sidebar-navegacao {
-    grid-template-columns: repeat(2, minmax(0, max-content));
+    grid-template-columns: repeat(3, minmax(0, max-content));
     margin-top: var(--espaco-4);
   }
 
@@ -148,7 +148,7 @@
 
 @media (max-width: 520px) {
   .admin-sidebar-navegacao {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .admin-sidebar-link {

@@ -1,0 +1,337 @@
+.bloco-canticos {
+  position: relative;
+  isolation: isolate;
+
+  display: grid;
+  grid-template-columns:
+    minmax(17rem, 0.82fr)
+    minmax(22rem, 1.18fr);
+
+  width: min(calc(100% - 2rem), 72rem);
+  min-height: clamp(32rem, 56vw, 42rem);
+
+  margin: clamp(6rem, 11vw, 10rem) auto;
+
+  overflow: visible;
+
+  border: 1px solid rgb(96 119 93 / 12%);
+  border-radius: clamp(2rem, 5vw, 4rem);
+
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgb(232 217 168 / 19%),
+      transparent 16rem
+    ),
+    linear-gradient(
+      110deg,
+      rgb(228 235 233 / 85%),
+      var(--cor-creme) 53%,
+      var(--cor-marfin)
+    );
+
+  box-shadow:
+    0 34px 85px rgb(52 67 50 / 10%);
+}
+
+.bloco-canticos__visual {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+  overflow: hidden;
+
+  border-radius:
+    clamp(2rem, 5vw, 4rem)
+    0
+    0
+    clamp(2rem, 5vw, 4rem);
+}
+
+.bloco-canticos__mar {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  filter:
+    saturate(0.98)
+    contrast(1.03)
+    brightness(1.01);
+}
+
+.bloco-canticos__luz {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 44%,
+      rgb(221 229 227 / 18%) 66%,
+      rgb(247 242 234 / 86%) 100%
+    );
+
+  pointer-events: none;
+}
+
+.bloco-canticos__conteudo {
+  position: relative;
+  z-index: 3;
+
+  display: grid;
+  align-content: center;
+  justify-items: start;
+
+  min-width: 0;
+  padding:
+    clamp(3rem, 7vw, 6rem)
+    clamp(2rem, 7vw, 5.5rem);
+
+  text-align: left;
+}
+
+.bloco-canticos__conteudo::before {
+  position: absolute;
+  z-index: -1;
+
+  top: 9%;
+  right: 8%;
+
+  width: 12rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgb(183 154 200 / 9%),
+      transparent 70%
+    );
+
+  content: "";
+}
+
+.bloco-canticos__simbolo {
+  display: grid;
+  width: 2.8rem;
+  aspect-ratio: 1;
+  place-items: center;
+
+  margin:
+    var(--espaco-3)
+    0
+    var(--espaco-5, 1.25rem);
+
+  border: 1px solid rgb(142 59 70 / 13%);
+  border-radius: 50%;
+  background: var(--cor-amarelo-100);
+  color: var(--cor-vinho-500);
+
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+}
+
+.bloco-canticos blockquote {
+  max-width: 36rem;
+  margin: 0;
+
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.35rem, 5.4vw, 4.4rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.bloco-canticos cite {
+  margin-top: var(--espaco-5, 1.25rem);
+
+  color: var(--cor-texto-suave);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bloco-canticos__detalhe {
+  position: absolute;
+  z-index: 6;
+
+  right: clamp(1rem, 2.6vw, 2rem);
+
+  /*
+   * Valor negativo = a foto atravessa a borda inferior.
+   * Antes ela parava porque o bloco pai tinha overflow:hidden.
+   */
+  bottom: -1.25rem;
+
+  width: clamp(10.5rem, 18vw, 14rem);
+  margin: 0;
+  padding: 0.5rem;
+
+  border: 1px solid rgb(255 253 248 / 85%);
+  border-radius: 1.35rem;
+  background: rgb(255 253 248 / 86%);
+
+  box-shadow:
+    0 20px 45px rgb(62 58 55 / 16%);
+
+  backdrop-filter: blur(6px);
+  transform: rotate(1.4deg);
+}
+
+.bloco-canticos__detalhe img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+
+  border-radius: 0.95rem;
+}
+
+@media (max-width: 800px) {
+  .bloco-canticos {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .bloco-canticos__visual {
+    height: clamp(22rem, 80vw, 32rem);
+  }
+
+  .bloco-canticos__luz {
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 58%,
+        rgb(247 242 234 / 92%) 100%
+      );
+  }
+
+  .bloco-canticos__conteudo {
+    justify-items: center;
+    padding: 3.5rem 1.5rem 9rem;
+    text-align: center;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .bloco-canticos {
+    width: calc(100% - 1rem);
+    border-radius: 2rem;
+  }
+
+  .bloco-canticos blockquote {
+    font-size: 2.25rem;
+  }
+
+  .bloco-canticos__detalhe {
+    width: 9.5rem;
+  }
+}
+
+
+/* =========================================================
+   ORNAMENTOS FLORAIS — CÂNTICOS
+   Dois ramos grandes usando o componente RamoFloral existente.
+   ========================================================= */
+
+.bloco-canticos__floral {
+  position: absolute;
+  z-index: 4;
+
+  width:
+    clamp(
+      10rem,
+      18vw,
+      15rem
+    );
+
+  pointer-events: none;
+
+  opacity: 0.72;
+
+  filter:
+    drop-shadow(
+      0 12px 24px
+      rgb(62 58 55 / 10%)
+    );
+}
+
+.bloco-canticos__floral--superior {
+  top: -3.7rem;
+  left: -3.2rem;
+
+  transform:
+    rotate(-12deg);
+}
+
+.bloco-canticos__floral--inferior {
+  right: -3.6rem;
+  bottom: -4.1rem;
+
+  transform:
+    rotate(166deg);
+
+  /*
+   * Fica atrás da fotografia pequena,
+   * então a moldura dela continua legível.
+   */
+  z-index: 4;
+}
+
+@media (max-width: 800px) {
+  .bloco-canticos__visual {
+    border-radius:
+      2rem
+      2rem
+      0
+      0;
+  }
+
+  .bloco-canticos__detalhe {
+    right: 50%;
+    bottom: -2.1rem;
+
+    transform:
+      translateX(50%)
+      rotate(1deg);
+  }
+
+  .bloco-canticos__floral {
+    width:
+      clamp(
+        8rem,
+        27vw,
+        11rem
+      );
+
+    opacity: 0.62;
+  }
+
+  .bloco-canticos__floral--superior {
+    top: -2.7rem;
+    left: -2.8rem;
+  }
+
+  .bloco-canticos__floral--inferior {
+    right: -2.6rem;
+    bottom: -3.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bloco-canticos__detalhe {
+    bottom: -1.7rem;
+  }
+
+  .bloco-canticos__floral {
+    opacity: 0.48;
+  }
+}

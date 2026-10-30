@@ -52,7 +52,7 @@ export function Admin() {
 
           <p>
             Cada espaço vai cuidar de uma parte do casamento.
-            Começaremos pelos convidados.
+            Começaremos pelos convidados e pela lista de presentes.
           </p>
         </div>
 
@@ -86,6 +86,7 @@ export function Admin() {
           <Cartao
             className="admin-acao"
             variante="papel"
+            interativo
           >
             <span className="admin-acao-numero">
               02
@@ -95,14 +96,17 @@ export function Admin() {
               <h3>Presentes</h3>
 
               <p>
-                A lista pública já conversa com o banco.
-                Depois traremos a edição dos itens para cá.
+                Cadastre itens, organize a ordem da lista,
+                acompanhe disponibilidade e reservas ativas.
               </p>
             </div>
 
-            <span className="admin-em-breve">
-              Próxima etapa
-            </span>
+            <LinkTransicao
+              className="botao botao--primario"
+              to="/admin/presentes"
+            >
+              Organizar presentes
+            </LinkTransicao>
           </Cartao>
 
           <Cartao

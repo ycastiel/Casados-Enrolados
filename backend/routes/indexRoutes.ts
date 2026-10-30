@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { casamentoRouter } from "./evento/CasamentoRoutes.js";
 import { conviteAdminRouter } from "./relacoes/ConviteRoutes.js";
+import { presenteAdminRouter } from "./presentes/PresenteRoutes.js";
 
 import {
   presenteReservaRouter,
@@ -28,4 +29,9 @@ router.use(
 router.use(
   "/admin/convites",
   conviteAdminRouter,
+);
+
+router.use(
+  "/admin/presentes",
+  presenteAdminRouter,
 );
