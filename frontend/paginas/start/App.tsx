@@ -13,6 +13,7 @@ import { Confirmacao } from "../eventos/Confirmacao";
 import { ReservarPresente } from "../presentes/ReservarPresente";
 import { ReservaPresente } from "../presentes/Reserva";
 import { PresentesAdmin } from "../presentes/PresentesAdmin";
+import { PagamentosAdmin } from "../pagamentos/PagamentosAdmin";
 
 import { LayoutAdmin } from "../LayoutAdmin";
 import { Admin } from "../home/HomeAdmin";
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
           {
             path: "presentes",
             element: <PresentesAdmin />,
+          },
+          {
+            path: "pagamentos",
+            element: <PagamentosAdmin />,
           },
         ],
       },
