@@ -21,11 +21,13 @@ import {
 import aliancasBiblia from "../../recursos/publico/imagens/home/aliancas-biblia.webp";
 import aliancasFloral from "../../recursos/publico/imagens/home/aliancas-floral.webp";
 import oceanoCanticos from "../../recursos/publico/imagens/home/oceano-canticos.webp";
+import faixaAmor from "../../recursos/publico/imagens/home/faixa-amor.webp";
 
 import {
   OrnamentoFloral,
   RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
+import { MolduraFaixaEvento } from "../../javascript/componentes/molduras/MolduraFaixaEvento";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
@@ -192,6 +194,15 @@ export function Home() {
     eventos,
   } = dados;
 
+  const eventosDestaque =
+    eventos
+      .filter(
+        (evento) =>
+          evento.tipo === "CERIMONIA" ||
+          evento.tipo === "RECEPCAO",
+      )
+      .slice(0, 2);
+
   return (
     <div className="home">
       <section
@@ -322,104 +333,114 @@ export function Home() {
 
         </div>
 
-        <div className="historia-verso">
-          <VersoEditorial
-            texto="É melhor caminhar a dois; quando um tropeça, o outro ajuda a se levantar."
-            referencia="Eclesiastes 4:9–10"
-            variante="verde"
-            compacto
-          />
-        </div>
       </section>
 
       <section
         id="evento"
         className="secao secao--evento"
+        aria-labelledby="titulo-grande-dia"
       >
-        <div
-          className="evento-fundo-texto"
-          aria-hidden="true"
-        >
-          {formatarDataCasamento(
-            casamento.dataCasamento,
-          )}
-        </div>
+        <MolduraFaixaEvento />
 
-        <div className="secao-cabecalho">
-          <span className="secao-etiqueta">
-            Reserve a data
-          </span>
+        <div className="evento-painel evento-painel--vinho-verde">
+          <figure className="evento-painel__imagem">
+            <img
+              src={faixaAmor}
+              alt="Duas mãos se aproximando diante de uma paisagem iluminada."
+            />
+          </figure>
 
-          <h2>
-            O grande dia
-          </h2>
+          <div className="evento-painel__conteudo">
+            <div className="eventos-grade eventos-grade--painel">
+              <article className="evento-cartao evento-cartao--painel evento-cartao--introducao">
+                <span className="secao-etiqueta">
+                  Reserve a data
+                </span>
 
-          <OrnamentoFloral />
+                <h2 id="titulo-grande-dia">
+                  O grande dia
+                </h2>
 
-          <p>
-            Dois momentos do mesmo dia, cercados pelas pessoas
-            que fazem parte da história de vocês.
-          </p>
-        </div>
+                <OrnamentoFloral compacto />
 
-        <div className="eventos-palco">
-          <div
-            className="eventos-palco__linha"
-            aria-hidden="true"
-          />
+                <p className="evento-cartao__resumo">
+                  Dois momentos do mesmo dia, cercados pelas
+                  pessoas que fazem parte da história de vocês.
+                </p>
+              </article>
 
-          <div className="eventos-grade eventos-grade--fotografica">
-            {eventos.map(
-              (evento) => (
-                <article
-                  className="evento-cartao evento-cartao--fotografico"
-                  key={evento.id}
-                >
-                  <span
-                    className="evento-icone"
-                    aria-hidden="true"
+              {eventosDestaque.map(
+                (evento) => (
+                  <article
+                    className="evento-cartao evento-cartao--painel"
+                    key={evento.id}
                   >
-                    {iconeEvento(evento)}
-                  </span>
+                    <span
+                      className="evento-icone"
+                      aria-hidden="true"
+                    >
+                      {iconeEvento(evento)}
+                    </span>
 
-                  <p className="evento-tipo">
-                    {nomeTipoEvento(evento)}
-                  </p>
+                    <p className="evento-tipo">
+                      {nomeTipoEvento(evento)}
+                    </p>
 
-                  <h3>
-                    {evento.nome}
-                  </h3>
+                    <h3>
+                      {evento.nome}
+                    </h3>
 
-                  <p className="evento-data">
-                    {formatarDataEvento(
-                      evento.inicioEm,
-                      casamento.fusoHorario,
-                    )}
-                  </p>
-
-                  <div className="evento-divisor">
-                    <span />
-                    <span>❦</span>
-                    <span />
-                  </div>
-
-                  <p className="evento-detalhes">
-                    <strong>
-                      {formatarHorario(
+                    <p className="evento-data">
+                      {formatarDataEvento(
                         evento.inicioEm,
                         casamento.fusoHorario,
                       )}
-                    </strong>
+                    </p>
 
-                    <span>
-                      {evento.local ??
-                        evento.endereco ??
-                        "Local a confirmar."}
-                    </span>
-                  </p>
-                </article>
-              ),
-            )}
+                    <div className="evento-divisor">
+                      <span />
+                      <span>❦</span>
+                      <span />
+                    </div>
+
+                    <p className="evento-detalhes">
+                      <strong>
+                        {formatarHorario(
+                          evento.inicioEm,
+                          casamento.fusoHorario,
+                        )}
+                      </strong>
+
+                      <span>
+                        {evento.local ??
+                          evento.endereco ??
+                          "Local a confirmar."}
+                      </span>
+                    </p>
+                  </article>
+                ),
+              )}
+            </div>
+
+            <div className="evento-painel__verso">
+              <span
+                className="evento-painel__verso-simbolo"
+                aria-hidden="true"
+              >
+                ❦
+              </span>
+
+              <div className="evento-painel__verso-texto">
+                <blockquote>
+                  É melhor caminhar a dois; quando um tropeça,
+                  o outro ajuda a se levantar.
+                </blockquote>
+
+                <cite>
+                  Inspirado em Eclesiastes 4:9–10
+                </cite>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -462,6 +483,16 @@ export function Home() {
         etiqueta="Fé, amor e aliança"
         texto="Há amores que nem muitas águas conseguem apagar."
         referencia="Cântico dos Cânticos 8:7"
+      />
+
+      <BlocoImagemEditorial
+        imagemPrincipal={aliancasBiblia}
+        imagemApoio={aliancasFloral}
+        altPrincipal="Alianças douradas sobre uma Bíblia aberta."
+        altApoio="Alianças douradas em uma composição floral delicada."
+        etiqueta="Promessa e cuidado"
+        texto="Acima de tudo, o amor é o vínculo que une com perfeição."
+        referencia="Colossenses 3:14"
       />
 
       <section

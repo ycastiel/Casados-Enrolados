@@ -1,4 +1,5 @@
 import "../../../css/componentes/imagens/blocoCanticos.css";
+import { RamoFloral } from "../molduras/Floral";
 
 type BlocoCanticosProps = {
   imagemMar: string;
@@ -24,6 +25,13 @@ export function BlocoCanticos({
       className="bloco-canticos"
       aria-labelledby="titulo-bloco-canticos"
     >
+      <RamoFloral
+        className="bloco-canticos__floral bloco-canticos__floral--superior"
+      />
+
+      <RamoFloral
+        className="bloco-canticos__floral bloco-canticos__floral--inferior"
+      />
       <div className="bloco-canticos__visual">
         <img
           className="bloco-canticos__mar"
