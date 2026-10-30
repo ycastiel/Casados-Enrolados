@@ -1805,3 +1805,20 @@
     margin-top: 3rem;
   }
 }
+
+/* =========================================================
+   PATCH — seção fotográfica full-bleed
+   O layout final está em homeImagens.css.
+   Estas regras anulam apenas overrides antigos mais genéricos.
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .home .secao.secao--evento {
+    width: 100vw;
+    max-width: none;
+
+    border-radius: 0;
+
+    padding-inline: 0.5rem;
+  }
+}

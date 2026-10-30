@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Footer } from "./layout/Footer";
 import { Header } from "./layout/Header";
 
-const PETALAS = 7;
+const PETALAS = 11;
 
 export function Layout() {
   return (
