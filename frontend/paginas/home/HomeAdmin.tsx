@@ -110,11 +110,37 @@ export function Admin() {
           </Cartao>
 
           <Cartao
+            className="admin-acao admin-acao--pagamentos"
+            variante="sutil"
+            interativo
+          >
+            <span className="admin-acao-numero">
+              03
+            </span>
+
+            <div>
+              <h3>Pagamentos</h3>
+
+              <p>
+                Acompanhe tentativas, valores e confirmações
+                vinculadas às reservas de presentes.
+              </p>
+            </div>
+
+            <LinkTransicao
+              className="botao botao--primario"
+              to="/admin/pagamentos"
+            >
+              Organizar pagamentos
+            </LinkTransicao>
+          </Cartao>
+
+          <Cartao
             className="admin-acao"
             variante="sutil"
           >
             <span className="admin-acao-numero">
-              03
+              04
             </span>
 
             <div>

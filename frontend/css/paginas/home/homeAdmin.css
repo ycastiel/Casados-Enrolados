@@ -191,3 +191,101 @@
     align-items: start;
   }
 }
+
+/*
+ * =========================================================
+ * REFINO VISUAL — ADMIN COM A IDENTIDADE DO CASAMENTO
+ * =========================================================
+ */
+
+.admin-layout {
+  background: radial-gradient(circle at 82% 8%, rgb(183 154 200 / 10%), transparent 22rem),
+    radial-gradient(circle at 28% 92%, rgb(232 217 168 / 13%), transparent 24rem),
+    linear-gradient(180deg, var(--cor-marfin), #fbf7f0);
+}
+
+.admin-boas-vindas {
+  border-color: rgb(255 253 248 / 15%);
+  background: radial-gradient(circle at 86% 10%, rgb(232 217 168 / 17%), transparent 15rem),
+    linear-gradient(135deg, var(--cor-vinho-700), #745047 48%, var(--cor-verde-700));
+  box-shadow: 0 28px 70px rgb(68 45 42 / 16%);
+}
+
+.admin-boas-vindas .secao-etiqueta {
+  color: var(--cor-amarelo-300);
+}
+
+.admin-boas-vindas h1 {
+  color: var(--cor-marfin);
+}
+
+.admin-boas-vindas p {
+  color: rgb(255 253 248 / 78%);
+}
+
+.admin-boas-vindas-floral {
+  opacity: .32;
+  filter: brightness(1.22) saturate(.85);
+}
+
+.admin-secao-cabecalho {
+  margin-bottom: clamp(2rem,5vw,3.5rem);
+}
+
+.admin-acoes {
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 1rem;
+}
+
+.admin-acao {
+  min-height: 18rem;
+  border-radius: 1.55rem;
+}
+
+.admin-acao:nth-child(1) {
+  background: linear-gradient(145deg,rgb(229 236 225 / 80%),rgb(255 253 248 / 92%));
+}
+
+.admin-acao:nth-child(2) {
+  background: linear-gradient(145deg,rgb(244 231 232 / 76%),rgb(255 253 248 / 94%));
+}
+
+.admin-acao:nth-child(3) {
+  background: linear-gradient(145deg,rgb(232 217 168 / 24%),rgb(243 246 241 / 90%));
+}
+
+.admin-acao:nth-child(4) {
+  background: linear-gradient(145deg,rgb(183 154 200 / 12%),rgb(255 253 248 / 94%));
+}
+
+.admin-acao-numero {
+  display: inline-flex;
+  width: 2.25rem;
+  aspect-ratio: 1;
+  place-items: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgb(142 59 70 / 14%);
+  border-radius: 50%;
+  background: rgb(255 253 248 / 60%);
+}
+
+.admin-recado {
+  position: relative;
+  padding: 2rem;
+  border-radius: var(--raio-grande);
+  background: linear-gradient(145deg,rgb(255 253 248 / 72%),rgb(247 242 234 / 58%));
+}
+
+@media (max-width:1180px) {
+  .admin-acoes {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:700px) {
+  .admin-acoes {
+    grid-template-columns: 1fr;
+  }
+}

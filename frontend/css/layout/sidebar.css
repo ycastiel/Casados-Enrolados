@@ -155,3 +155,72 @@
     justify-content: center;
   }
 }
+
+/*
+ * =========================================================
+ * REFINO VISUAL — ADMIN MAIS ACOLHEDOR
+ * =========================================================
+ */
+
+.admin-sidebar-conteudo {
+  border-color: rgb(255 253 248 / 12%);
+  background: radial-gradient(circle at 16% 8%, rgb(232 217 168 / 18%), transparent 11rem),
+    linear-gradient(165deg, #773944 0%, #685047 46%, #435b45 100%);
+  box-shadow: 0 22px 55px rgb(63 42 40 / 16%);
+}
+
+.admin-sidebar-marca {
+  color: var(--cor-marfin);
+}
+
+.admin-sidebar-simbolo {
+  color: var(--cor-amarelo-300);
+}
+
+.admin-sidebar-texto {
+  border-color: rgb(255 253 248 / 14%);
+}
+
+.admin-sidebar-texto span {
+  color: var(--cor-amarelo-300);
+}
+
+.admin-sidebar-texto p {
+  color: rgb(255 253 248 / 68%);
+}
+
+.admin-sidebar-link {
+  color: rgb(255 253 248 / 72%);
+}
+
+.admin-sidebar-link > span {
+  color: var(--cor-amarelo-300);
+}
+
+.admin-sidebar-link--ativo {
+  background: rgb(255 253 248 / 92%);
+  color: var(--cor-verde-900);
+  box-shadow: 0 12px 28px rgb(40 30 27 / 18%);
+}
+
+.admin-sidebar-rodape {
+  border-color: rgb(255 253 248 / 14%);
+}
+
+.admin-sidebar-site {
+  color: rgb(255 253 248 / 70%);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .admin-sidebar-link:hover {
+    background: rgb(255 253 248 / 12%);
+    color: var(--cor-marfin);
+  }
+  .admin-sidebar-link--ativo:hover {
+    background: rgb(255 253 248 / 96%);
+    color: var(--cor-verde-900);
+  }
+  .admin-sidebar-site:hover {
+    color: var(--cor-amarelo-300);
+  }
+}

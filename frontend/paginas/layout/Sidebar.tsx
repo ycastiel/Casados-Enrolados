@@ -91,6 +91,25 @@ export function Sidebar() {
             </span>
             Presentes
           </NavLinkTransicao>
+          <NavLinkTransicao
+            to="/admin/pagamentos"
+            className={({ isActive }) =>
+              [
+                "admin-sidebar-link",
+                isActive
+                  ? "admin-sidebar-link--ativo"
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")
+            }
+          >
+            <span aria-hidden="true">
+              ◇
+            </span>
+            Pagamentos
+          </NavLinkTransicao>
+
         </nav>
 
         <div className="admin-sidebar-rodape">
