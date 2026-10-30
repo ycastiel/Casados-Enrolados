@@ -768,3 +768,109 @@ textarea:disabled {
     max-width: 10rem;
   }
 }
+
+/*
+ * =========================================================
+ * REFINO VISUAL — PRESENTES ADMIN
+ * Mantém toda a estrutura funcional e o upload de imagem.
+ * =========================================================
+ */
+
+.presentes-admin-cabecalho {
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: clamp(1.7rem,4vw,2.8rem);
+  border: 1px solid rgb(255 253 248 / 14%);
+  border-radius: var(--raio-grande);
+  background: radial-gradient(circle at 88% 12%,rgb(232 217 168 / 18%),transparent 14rem),linear-gradient(135deg,var(--cor-vinho-700),#735047 48%,var(--cor-verde-700));
+  box-shadow: 0 24px 58px rgb(70 45 42 / 14%);
+}
+
+.presentes-admin-cabecalho .secao-etiqueta {
+  color: var(--cor-amarelo-300);
+}
+
+.presentes-admin-cabecalho h1 {
+  color: var(--cor-marfin);
+  font-size: clamp(3rem,6vw,4.8rem);
+}
+
+.presentes-admin-cabecalho p {
+  color: rgb(255 253 248 / 76%);
+}
+
+.presentes-admin-cabecalho .botao {
+  background: var(--cor-marfin);
+  color: var(--cor-vinho-700);
+  box-shadow: 0 12px 26px rgb(42 31 29 / 16%);
+}
+
+.presentes-admin-resumo {
+  gap: .8rem;
+  margin-bottom: 1rem;
+}
+
+.presentes-admin-resumo article {
+  box-shadow: 0 10px 28px rgb(62 58 55 / 6%);
+}
+
+.presentes-admin-resumo article:nth-child(1) {
+  background: linear-gradient(145deg,rgb(244 231 232 / 80%),rgb(255 253 248 / 94%));
+}
+
+.presentes-admin-resumo article:nth-child(2) {
+  background: linear-gradient(145deg,rgb(229 236 225 / 90%),rgb(255 253 248 / 94%));
+}
+
+.presentes-admin-resumo article:nth-child(3) {
+  background: linear-gradient(145deg,rgb(251 245 223 / 90%),rgb(255 253 248 / 94%));
+}
+
+.presentes-admin-resumo article:nth-child(4) {
+  background: linear-gradient(145deg,rgb(183 154 200 / 12%),rgb(255 253 248 / 94%));
+}
+
+.presentes-admin-painel {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.presentes-admin-filtros {
+  margin-bottom: .8rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg,rgb(255 253 248 / 88%),rgb(247 242 234 / 68%));
+}
+
+.presentes-admin-lista {
+  gap: .7rem;
+}
+
+.presente-admin-item {
+  border: 1px solid rgb(138 106 82 / 13%);
+  border-radius: 1.35rem;
+  background: linear-gradient(145deg,rgb(255 255 255 / 84%),rgb(247 242 234 / 56%));
+  box-shadow: 0 12px 30px rgb(62 58 55 / 6%);
+}
+
+.presente-admin-item:last-child {
+  border-bottom: 1px solid rgb(138 106 82 / 13%);
+}
+
+.presente-admin-item--inativo {
+  background: linear-gradient(145deg,rgb(237 228 215 / 55%),rgb(255 253 248 / 72%));
+}
+
+.presentes-admin-formulario {
+  border-left: 1px solid rgb(255 253 248 / 15%);
+  background: radial-gradient(circle at 90% 8%,rgb(232 217 168 / 14%),transparent 15rem),linear-gradient(170deg,#fffdf8,#f5efe6);
+}
+
+.presentes-admin-upload {
+  border-color: rgb(142 59 70 / 20%);
+  background: linear-gradient(145deg,rgb(244 231 232 / 42%),rgb(243 246 241 / 72%));
+}
