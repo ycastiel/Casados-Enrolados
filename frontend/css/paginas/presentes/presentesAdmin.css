@@ -1,0 +1,618 @@
+.presentes-admin {
+  width: min(100%, 78rem);
+  margin-inline: auto;
+}
+
+.presentes-admin-cabecalho {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--espaco-8);
+  margin-bottom: var(--espaco-8);
+}
+
+.presentes-admin-cabecalho > div {
+  max-width: 46rem;
+}
+
+.presentes-admin-cabecalho h1 {
+  margin-bottom: var(--espaco-3);
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+}
+
+.presentes-admin-cabecalho p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+.presentes-admin-resumo {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-8);
+}
+
+.presentes-admin-resumo article {
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem 1.45rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background:
+    linear-gradient(
+      145deg,
+      rgb(255 255 255 / 96%),
+      rgb(247 242 234 / 78%)
+    );
+  box-shadow: var(--sombra-suave);
+}
+
+.presentes-admin-resumo article::after {
+  position: absolute;
+  right: -1.4rem;
+  bottom: -1.8rem;
+  width: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(183 154 200 / 9%);
+  content: "";
+}
+
+.presentes-admin-resumo span,
+.presentes-admin-resumo small {
+  display: block;
+  color: var(--cor-texto-suave);
+}
+
+.presentes-admin-resumo span {
+  margin-bottom: 0.2rem;
+  color: var(--cor-vinho-500);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.presentes-admin-resumo strong {
+  display: block;
+  color: var(--cor-verde-900);
+  font-family: var(--fonte-titulo);
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.presentes-admin-resumo small {
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+}
+
+.presentes-admin-aviso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-5);
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--raio-medio);
+  font-size: 0.9rem;
+}
+
+.presentes-admin-aviso--erro {
+  border: 1px solid rgb(142 59 70 / 20%);
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-700);
+}
+
+.presentes-admin-aviso button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.presentes-admin-painel {
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-grande);
+  background: rgb(255 255 255 / 68%);
+  box-shadow: var(--sombra-suave);
+}
+
+.presentes-admin-filtros {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) 13rem;
+  gap: var(--espaco-4);
+  padding: 1.15rem;
+  border-bottom: 1px solid var(--cor-borda);
+  background: rgb(247 242 234 / 68%);
+}
+
+.presentes-admin-filtros label,
+.presentes-admin-campo {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.presentes-admin-filtros label > span,
+.presentes-admin-campo > span {
+  color: var(--cor-texto-suave);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.presentes-admin-filtros input,
+.presentes-admin-filtros select,
+.presentes-admin-campo input,
+.presentes-admin-campo select,
+.presentes-admin-campo textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgb(96 119 93 / 20%);
+  border-radius: var(--raio-medio);
+  background: var(--cor-marfin);
+  color: var(--cor-texto);
+  outline: 0;
+  transition:
+    border-color var(--transicao-rapida),
+    box-shadow var(--transicao-rapida);
+}
+
+.presentes-admin-filtros input,
+.presentes-admin-filtros select,
+.presentes-admin-campo input,
+.presentes-admin-campo select {
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+}
+
+.presentes-admin-campo textarea {
+  resize: vertical;
+  padding: 0.8rem 0.9rem;
+}
+
+.presentes-admin-filtros input:focus,
+.presentes-admin-filtros select:focus,
+.presentes-admin-campo input:focus,
+.presentes-admin-campo select:focus,
+.presentes-admin-campo textarea:focus {
+  border-color: var(--cor-verde-500);
+  box-shadow: 0 0 0 3px rgb(143 168 138 / 12%);
+}
+
+.presentes-admin-lista {
+  display: grid;
+}
+
+.presente-admin-item {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr) auto;
+  gap: var(--espaco-5);
+  align-items: center;
+  padding: 1.35rem;
+  border-bottom: 1px solid rgb(138 106 82 / 12%);
+  transition:
+    background-color var(--transicao-padrao),
+    opacity var(--transicao-padrao);
+}
+
+.presente-admin-item:last-child {
+  border-bottom: 0;
+}
+
+.presente-admin-item--inativo {
+  opacity: 0.66;
+  background: rgb(237 228 215 / 34%);
+}
+
+.presente-admin-imagem {
+  display: grid;
+  width: 6rem;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: 1.35rem;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgb(232 217 168 / 24%),
+      transparent 60%
+    ),
+    var(--cor-creme);
+}
+
+.presente-admin-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.presente-admin-imagem span {
+  color: var(--cor-vinho-500);
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+}
+
+.presente-admin-info {
+  min-width: 0;
+}
+
+.presente-admin-info-topo {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+}
+
+.presente-admin-info h2 {
+  margin: 0.15rem 0 0.35rem;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+}
+
+.presente-admin-info > p {
+  max-width: 52rem;
+  margin-bottom: var(--espaco-4);
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.presente-admin-tipo {
+  color: var(--cor-vinho-500);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.presente-admin-status {
+  display: inline-flex;
+  min-height: 1.9rem;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--raio-pilula);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.presente-admin-status--disponivel {
+  background: var(--cor-verde-100);
+  color: var(--cor-verde-900);
+}
+
+.presente-admin-status--reservado {
+  background: var(--cor-amarelo-100);
+  color: var(--cor-marrom);
+}
+
+.presente-admin-status--esgotado {
+  background: var(--cor-vinho-100);
+  color: var(--cor-vinho-700);
+}
+
+.presente-admin-status--inativo {
+  background: var(--cor-bege);
+  color: var(--cor-texto-suave);
+}
+
+.presente-admin-metricas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.5rem;
+}
+
+.presente-admin-metricas > span {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.presente-admin-metricas small {
+  color: var(--cor-texto-suave);
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.presente-admin-metricas strong {
+  color: var(--cor-verde-900);
+  font-size: 0.9rem;
+}
+
+.presente-admin-reservas {
+  margin-top: var(--espaco-4);
+  padding: 0.7rem 0.85rem;
+  border-left: 3px solid var(--cor-amarelo-300);
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0;
+  background: rgb(251 245 223 / 58%);
+}
+
+.presente-admin-reservas strong,
+.presente-admin-reservas p {
+  margin: 0;
+  font-size: 0.76rem;
+}
+
+.presente-admin-reservas strong {
+  color: var(--cor-marrom);
+}
+
+.presente-admin-reservas p {
+  margin-top: 0.15rem;
+  color: var(--cor-texto-suave);
+}
+
+.presente-admin-acoes {
+  display: grid;
+  gap: var(--espaco-2);
+  justify-items: stretch;
+}
+
+.presente-admin-acoes button {
+  min-width: 6.5rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgb(96 119 93 / 22%);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-marfin);
+  color: var(--cor-verde-900);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.presente-admin-acoes .presente-admin-acao-perigo {
+  border-color: rgb(142 59 70 / 18%);
+  color: var(--cor-vinho-500);
+}
+
+.presente-admin-acoes .presente-admin-acao-reativar {
+  border-color: rgb(96 119 93 / 28%);
+  background: var(--cor-verde-50);
+  color: var(--cor-verde-700);
+}
+
+.presentes-admin-estado {
+  display: grid;
+  min-height: 20rem;
+  place-items: center;
+  align-content: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-8);
+  text-align: center;
+}
+
+.presentes-admin-estado h2,
+.presentes-admin-estado p {
+  margin: 0;
+}
+
+.presentes-admin-estado h2 {
+  font-size: 2.2rem;
+}
+
+.presentes-admin-estado p {
+  color: var(--cor-texto-suave);
+}
+
+/* =========================================================
+   FORMULÁRIO LATERAL
+   ========================================================= */
+
+.presentes-admin-modal {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.presentes-admin-modal-fundo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  background: rgb(40 38 35 / 42%);
+  backdrop-filter: blur(3px);
+}
+
+.presentes-admin-formulario {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 34rem);
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  border-left: 1px solid var(--cor-borda);
+  background:
+    radial-gradient(
+      circle at 90% 8%,
+      rgb(183 154 200 / 12%),
+      transparent 16rem
+    ),
+    var(--cor-marfin);
+  box-shadow: -20px 0 60px rgb(62 58 55 / 15%);
+}
+
+.presentes-admin-formulario > header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-6);
+}
+
+.presentes-admin-formulario h2 {
+  margin-bottom: 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+}
+
+.presentes-admin-fechar {
+  display: grid;
+  width: 2.6rem;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 70%);
+  color: var(--cor-texto-suave);
+  font-size: 1.5rem;
+}
+
+.presentes-admin-formulario form {
+  display: grid;
+  gap: var(--espaco-5);
+}
+
+.presentes-admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaco-4);
+}
+
+.presentes-admin-checkbox {
+  display: flex;
+  gap: var(--espaco-3);
+  align-items: start;
+  padding: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-medio);
+  background: rgb(243 246 241 / 72%);
+}
+
+.presentes-admin-checkbox input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  accent-color: var(--cor-verde-700);
+}
+
+.presentes-admin-checkbox span {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.presentes-admin-checkbox strong {
+  color: var(--cor-verde-900);
+  font-size: 0.9rem;
+}
+
+.presentes-admin-checkbox small {
+  color: var(--cor-texto-suave);
+  font-size: 0.76rem;
+}
+
+.presentes-admin-form-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--espaco-3);
+  padding-top: var(--espaco-3);
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .presente-admin-item:hover {
+    background: rgb(255 253 248 / 82%);
+  }
+
+  .presente-admin-acoes button:hover {
+    border-color: var(--cor-verde-500);
+    background: var(--cor-verde-50);
+  }
+
+  .presente-admin-acoes .presente-admin-acao-perigo:hover {
+    border-color: var(--cor-vinho-300);
+    background: var(--cor-vinho-100);
+  }
+}
+
+@media (max-width: 1050px) {
+  .presentes-admin-resumo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .presente-admin-item {
+    grid-template-columns: 5rem minmax(0, 1fr);
+  }
+
+  .presente-admin-imagem {
+    width: 5rem;
+  }
+
+  .presente-admin-acoes {
+    grid-column: 2;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: start;
+  }
+}
+
+@media (max-width: 700px) {
+  .presentes-admin-cabecalho {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .presentes-admin-cabecalho .botao {
+    align-self: flex-start;
+  }
+
+  .presentes-admin-filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .presente-admin-item {
+    grid-template-columns: 1fr;
+  }
+
+  .presente-admin-imagem {
+    width: 5.5rem;
+  }
+
+  .presente-admin-info-topo {
+    align-items: flex-start;
+  }
+
+  .presente-admin-acoes {
+    grid-column: auto;
+  }
+
+  .presentes-admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .presentes-admin-resumo {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaco-3);
+  }
+
+  .presentes-admin-resumo article {
+    padding: 1rem;
+  }
+
+  .presente-admin-info-topo {
+    flex-direction: column;
+  }
+
+  .presente-admin-acoes {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .presentes-admin-form-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .presentes-admin-form-acoes .botao {
+    width: 100%;
+  }
+}
