@@ -285,17 +285,43 @@
   }
 }
 
-
 /* =========================================================
    PAGAMENTO PIX — MERCADO PAGO
+   Layout refinado: card mais largo, menos alto e QR em destaque.
    ========================================================= */
+
+/*
+ * O card da reserva continua sendo o bloco principal da esquerda.
+ * O pagamento ganha um pouco mais de largura para não virar uma
+ * coluna estreita e excessivamente alta.
+ */
+.reserva-status-area {
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(30rem, 0.9fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
 
 .reserva-pagamento-pix {
   position: relative;
+
+  width: 100%;
+  max-width: 43rem;
+
+  justify-self: end;
+
   overflow: hidden;
-  padding: clamp(2rem, 5vw, 3rem);
-  border: 1px solid rgb(255 253 248 / 16%);
-  border-radius: var(--raio-grande);
+
+  padding:
+    clamp(1.6rem, 3vw, 2.25rem);
+
+  border:
+    1px solid
+    rgb(255 253 248 / 16%);
+
+  border-radius:
+    clamp(1.6rem, 3vw, 2rem);
+
   background:
     radial-gradient(
       circle at 88% 14%,
@@ -305,22 +331,35 @@
     linear-gradient(
       145deg,
       var(--cor-vinho-700),
-      #6e514a 48%,
+      #76534e 48%,
       var(--cor-verde-700)
     );
-  box-shadow: 0 28px 70px rgb(54 39 37 / 14%);
-  color: var(--cor-marfin);
+
+  box-shadow:
+    0 28px 70px
+    rgb(54 39 37 / 14%);
+
+  color:
+    var(--cor-marfin);
 }
 
 .reserva-pagamento-pix::after {
   position: absolute;
-  right: -3.5rem;
-  bottom: -4rem;
-  width: 11rem;
+
+  right: -4rem;
+  bottom: -4.5rem;
+
+  width: 12rem;
   aspect-ratio: 1;
-  border: 1px solid rgb(255 253 248 / 9%);
+
+  border:
+    1px solid
+    rgb(255 253 248 / 9%);
+
   border-radius: 50%;
+
   content: "";
+
   pointer-events: none;
 }
 
@@ -332,26 +371,58 @@
   color: inherit;
 }
 
-.reserva-pagamento-pix h2 {
-  margin-bottom: var(--espaco-4);
+/* ---------- Cabeçalho ---------- */
+
+.pix-cabecalho {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1.25rem;
+
+  margin-bottom:
+    clamp(1.25rem, 2.5vw, 1.8rem);
 }
+
+.pix-cabecalho h2 {
+  margin: 0.25rem 0 0;
+
+  font-size:
+    clamp(3rem, 6vw, 4.6rem);
+
+  line-height: 0.9;
+}
+
+/* ---------- Formulário inicial ---------- */
 
 .pix-formulario {
   position: relative;
   z-index: 1;
+
   display: grid;
+
+  max-width: 31rem;
+
   gap: 1rem;
 }
 
 .pix-formulario > p:first-child {
-  margin-top: 0;
-  color: rgb(255 253 248 / 78%);
+  margin: 0;
+
+  color:
+    rgb(255 253 248 / 78%);
+
   line-height: 1.65;
 }
 
 .pix-formulario label {
   display: grid;
+
   gap: 0.45rem;
+
   font-size: 0.76rem;
   font-weight: 800;
 }
@@ -359,167 +430,428 @@
 .pix-formulario input,
 .pix-copia-cola textarea {
   width: 100%;
-  border: 1px solid rgb(255 253 248 / 22%);
-  border-radius: var(--raio-pequeno);
+
+  border:
+    1px solid
+    rgb(255 253 248 / 22%);
+
+  border-radius:
+    var(--raio-pequeno);
+
   outline: none;
-  background: rgb(255 253 248 / 94%);
-  color: var(--cor-verde-900);
+
+  background:
+    rgb(255 253 248 / 95%);
+
+  color:
+    var(--cor-verde-900);
+
   font: inherit;
 }
 
 .pix-formulario input {
   min-height: 3.05rem;
-  padding: 0.78rem 0.9rem;
+
+  padding:
+    0.78rem
+    0.9rem;
 }
 
 .pix-formulario input:focus,
 .pix-copia-cola textarea:focus {
-  border-color: var(--cor-amarelo-300);
-  box-shadow: 0 0 0 4px rgb(232 217 168 / 11%);
+  border-color:
+    var(--cor-amarelo-300);
+
+  box-shadow:
+    0 0 0 4px
+    rgb(232 217 168 / 11%);
 }
 
 .pix-formulario__privacidade {
-  margin: -0.2rem 0 0;
-  color: rgb(255 253 248 / 62%) !important;
+  margin:
+    -0.2rem
+    0
+    0;
+
+  color:
+    rgb(255 253 248 / 62%) !important;
+
   font-size: 0.68rem;
+
   line-height: 1.5;
 }
 
-.pix-formulario .botao,
-.pix-gerado .botao {
+.pix-formulario .botao {
   justify-self: start;
+
   margin-top: 0.25rem;
+}
+
+/* ---------- Estado: aguardando Pix ---------- */
+
+.pix-gerado__status {
+  display: inline-flex;
+
+  min-height: 2rem;
+
+  align-items: center;
+
+  padding-inline:
+    0.85rem;
+
+  border:
+    1px solid
+    rgb(255 253 248 / 18%);
+
+  border-radius:
+    var(--raio-pilula);
+
+  background:
+    rgb(255 253 248 / 9%);
+
+  color:
+    var(--cor-amarelo-300);
+
+  font-size: 0.65rem;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .pix-gerado {
   position: relative;
   z-index: 1;
+
   display: grid;
-  grid-template-columns: minmax(9rem, 12rem) minmax(0, 1fr);
-  gap: clamp(1.3rem, 3vw, 2rem);
+
+  gap:
+    clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.pix-gerado__conteudo {
+  display: grid;
+
+  gap: 1rem;
+
+  min-width: 0;
+}
+
+.pix-gerado__instrucao {
+  max-width: 37rem;
+
+  margin: 0;
+
+  color:
+    rgb(255 253 248 / 82%) !important;
+
+  font-size:
+    clamp(0.96rem, 1.4vw, 1.06rem);
+
+  line-height: 1.65;
+}
+
+/* ---------- Copia e Cola ---------- */
+
+.pix-copia-cola {
+  display: grid;
+
+  gap: 0.55rem;
+}
+
+.pix-copia-cola__topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+
+.pix-copia-cola__topo > span {
+  font-size: 0.72rem;
+  font-weight: 850;
+
+  letter-spacing: 0.03em;
+}
+
+.pix-copia-cola__topo small {
+  color:
+    rgb(255 253 248 / 52%);
+
+  font-size: 0.63rem;
+}
+
+.pix-copia-cola textarea {
+  min-height: 4.6rem;
+
+  resize: none;
+
+  padding:
+    0.8rem
+    0.9rem;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+
+  font-size: 0.72rem;
+
+  line-height: 1.45;
+}
+
+.pix-copiar {
+  justify-self: start;
+
+  margin-top: 0.15rem !important;
+}
+
+/* ---------- Links + nota ---------- */
+
+.pix-gerado__acoes-secundarias {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap:
+    0.8rem
+    1.2rem;
+
+  padding-top: 0.15rem;
+}
+
+.pix-link-mercado-pago {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  color:
+    var(--cor-amarelo-300);
+
+  font-size: 0.75rem;
+  font-weight: 800;
+
+  line-height: 1.4;
+
+  text-decoration: none;
+}
+
+.pix-link-mercado-pago:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.pix-gerado__nota {
+  max-width: 20rem;
+
+  margin: 0;
+
+  color:
+    rgb(255 253 248 / 58%) !important;
+
+  font-size: 0.72rem;
+
+  line-height: 1.5;
+}
+
+/* ---------- QR Code: fechamento visual do card ---------- */
+
+.pix-gerado__qr-area {
+  display: grid;
+
+  justify-items: center;
+
+  gap: 0.75rem;
+
+  padding-top:
+    clamp(0.25rem, 1vw, 0.75rem);
+
+  text-align: center;
+}
+
+.pix-gerado__qr-etiqueta {
+  color:
+    rgb(255 253 248 / 72%);
+
+  font-size: 0.68rem;
+  font-weight: 850;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
 }
 
 .pix-gerado__qr {
-  padding: 0.7rem;
-  border-radius: 1.25rem;
-  background: var(--cor-marfin);
-  box-shadow: 0 14px 35px rgb(31 34 28 / 18%);
+  width:
+    min(
+      100%,
+      17.5rem
+    );
+
+  padding:
+    clamp(0.75rem, 2vw, 1rem);
+
+  border-radius: 1.65rem;
+
+  background:
+    var(--cor-marfin);
+
+  box-shadow:
+    0 18px 42px
+    rgb(31 34 28 / 22%);
 }
 
 .pix-gerado__qr img {
   display: block;
+
   width: 100%;
   aspect-ratio: 1;
+
+  border-radius: 0.45rem;
 }
 
-.pix-gerado__conteudo {
-  min-width: 0;
-}
+.pix-gerado__qr-area > small {
+  max-width: 22rem;
 
-.pix-gerado__status {
-  display: inline-flex;
-  min-height: 1.9rem;
-  align-items: center;
-  margin-bottom: 0.65rem;
-  padding-inline: 0.75rem;
-  border: 1px solid rgb(255 253 248 / 16%);
-  border-radius: var(--raio-pilula);
-  background: rgb(255 253 248 / 8%);
-  color: var(--cor-amarelo-300);
-  font-size: 0.67rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
+  color:
+    rgb(255 253 248 / 55%);
 
-.pix-gerado__conteudo > p {
-  margin: 0 0 1rem;
-  color: rgb(255 253 248 / 78%);
-  line-height: 1.6;
-}
-
-.pix-copia-cola {
-  display: grid;
-  gap: 0.45rem;
-}
-
-.pix-copia-cola > span {
   font-size: 0.7rem;
-  font-weight: 800;
+
+  line-height: 1.45;
 }
 
-.pix-copia-cola textarea {
-  min-height: 5.25rem;
-  resize: vertical;
-  padding: 0.75rem;
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.68rem;
-  line-height: 1.4;
-}
-
-.pix-copiar {
-  margin-top: 0.75rem !important;
-}
-
-.pix-link-mercado-pago {
-  display: inline-block;
-  margin-top: 0.9rem;
-  color: var(--cor-amarelo-300);
-  font-size: 0.75rem;
-  font-weight: 800;
-}
-
-.pix-gerado__conteudo small {
-  display: block;
-  margin-top: 0.9rem;
-  color: rgb(255 253 248 / 58%);
-  line-height: 1.5;
-}
+/* ---------- Estado: aprovado ---------- */
 
 .pix-sucesso {
   position: relative;
   z-index: 1;
+
+  display: grid;
+
+  justify-items: center;
+
+  max-width: 29rem;
+
+  margin-inline: auto;
+
   text-align: center;
 }
 
 .pix-sucesso > span {
   display: grid;
-  width: 3.6rem;
+
+  width: 4rem;
   aspect-ratio: 1;
+
   place-items: center;
-  margin: 0 auto 0.8rem;
-  border: 1px solid rgb(255 253 248 / 18%);
+
+  margin-bottom: 0.85rem;
+
+  border:
+    1px solid
+    rgb(255 253 248 / 18%);
+
   border-radius: 50%;
-  color: var(--cor-amarelo-300);
-  font-size: 1.6rem;
+
+  color:
+    var(--cor-amarelo-300);
+
+  font-size: 1.8rem;
 }
 
 .pix-sucesso h3 {
-  margin-bottom: 0.4rem;
-  color: var(--cor-marfin);
-  font-family: var(--fonte-titulo);
-  font-size: 2rem;
+  margin-bottom: 0.45rem;
+
+  color:
+    var(--cor-marfin);
+
+  font-family:
+    var(--fonte-titulo);
+
+  font-size:
+    clamp(2rem, 4vw, 2.6rem);
 }
 
 .pix-sucesso p {
-  color: rgb(255 253 248 / 74%);
+  margin: 0;
+
+  color:
+    rgb(255 253 248 / 74%);
+
+  line-height: 1.6;
 }
 
-@media (max-width: 560px) {
-  .pix-gerado {
+/* ---------- Responsividade ---------- */
+
+@media (max-width: 1050px) {
+  .reserva-status-area {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(26rem, 0.9fr);
+
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .reserva-status-area {
     grid-template-columns: 1fr;
   }
 
-  .pix-gerado__qr {
-    width: min(100%, 13rem);
-    margin-inline: auto;
-  }
+  .reserva-pagamento-pix {
+    max-width: 44rem;
 
-  .pix-formulario .botao,
-  .pix-gerado .botao {
-    width: 100%;
-    justify-content: center;
+    justify-self: center;
   }
 }
 
+@media (max-width: 560px) {
+  .reserva-pagamento-pix {
+    padding: 1.4rem;
+
+    border-radius: 1.5rem;
+  }
+
+  .pix-cabecalho {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .pix-cabecalho h2 {
+    font-size: 3.25rem;
+  }
+
+  .pix-gerado__status {
+    align-self: flex-start;
+  }
+
+  .pix-copia-cola__topo,
+  .pix-gerado__acoes-secundarias {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .pix-copiar,
+  .pix-formulario .botao {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .pix-gerado__qr {
+    width:
+      min(
+        100%,
+        16.5rem
+      );
+  }
+}
