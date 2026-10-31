@@ -116,9 +116,9 @@ export function PagamentosAdmin() {
           <h1>Pagamentos</h1>
           <OrnamentoFloral compacto />
           <p>
-            Esta é a primeira camada do fluxo financeiro. Por enquanto,
-            ela registra tentativas e permite confirmar manualmente no
-            ambiente de desenvolvimento; o gateway entra depois.
+            Acompanhe os pagamentos dos presentes. Pix do Mercado Pago
+            é conciliado automaticamente; a confirmação manual continua
+            disponível apenas como apoio no desenvolvimento.
           </p>
         </div>
       </header>
@@ -189,7 +189,7 @@ export function PagamentosAdmin() {
                 <div className="pagamento-admin-detalhes">
                   <span><small>Valor</small><strong>{moeda.format(Number(pagamento.valor))}</strong></span>
                   <span><small>Quantidade</small><strong>{pagamento.reserva.quantidade}</strong></span>
-                  <span><small>Provedor</small><strong>{pagamento.provedor}</strong></span>
+                  <span><small>Provedor</small><strong>{pagamento.provedor === "MERCADO_PAGO" ? "Mercado Pago" : pagamento.provedor}</strong></span>
                   <span><small>Criado</small><strong>{dataHora.format(new Date(pagamento.criadoEm))}</strong></span>
                 </div>
               </div>
