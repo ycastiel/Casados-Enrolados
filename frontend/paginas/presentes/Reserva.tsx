@@ -34,7 +34,7 @@ import {
 
 import {
   inicializarMercadoPago,
-} from "../../javascript/helpers/provedores/MercadoPago";
+} from "../../javascript/helpers/provedores//MercadoPago";
 
 import "../../css/paginas/presentes/reservas.css";
 
@@ -192,7 +192,12 @@ export function ReservaPresente() {
   }, [carregar]);
 
   useEffect(() => {
-
+    /*
+     * Inicializa MercadoPago.js V2 com a Public Key de teste/produção.
+     * O Pix atual é criado pelo backend via Orders API, mas deixamos
+     * o frontend preparado conforme o fluxo oficial do Checkout Transparente
+     * e para os próximos meios de pagamento (ex.: cartão).
+     */
     void inicializarMercadoPago().catch((erroCapturado) => {
       console.warn(
         "MercadoPago.js não pôde ser inicializado:",
@@ -231,7 +236,10 @@ export function ReservaPresente() {
           await carregar();
         }
       } catch (erroCapturado) {
-
+        /*
+         * A reserva continua utilizável mesmo que a consulta
+         * do provedor falhe temporariamente.
+         */
         console.error(
           "Falha ao consultar pagamento:",
           erroCapturado,
@@ -366,6 +374,10 @@ export function ReservaPresente() {
       ? valorUnitario *
         reserva.quantidade
       : null;
+
+  const pagamentoEmAberto =
+    pagamento?.status === "PENDENTE" ||
+    pagamento?.status === "PROCESSANDO";
 
   async function gerarPix() {
     if (!token) {
@@ -615,50 +627,57 @@ export function ReservaPresente() {
           id="pagamento-pix"
           className="reserva-pagamento-pix"
         >
-          <span className="secao-etiqueta">
-            Pagamento seguro
-          </span>
+          <header className="pix-cabecalho">
+            <div>
+              <span className="secao-etiqueta">
+                Pagamento seguro
+              </span>
 
-          <h2>
-            Pix
-          </h2>
+              <h2>
+                Pix
+              </h2>
+            </div>
+
+            {pagamentoEmAberto ? (
+              <span className="pix-gerado__status">
+                Aguardando pagamento
+              </span>
+            ) : null}
+          </header>
 
           {pagamento &&
-          (pagamento.status === "PENDENTE" ||
-            pagamento.status === "PROCESSANDO") &&
+          pagamentoEmAberto &&
           (pagamento.codigoPixCopiaCola ||
             pagamento.urlCheckout) ? (
             <div className="pix-gerado">
-              {pagamento.qrCodePix ? (
-                <div className="pix-gerado__qr">
-                  <img
-                    src={`data:image/png;base64,${pagamento.qrCodePix}`}
-                    alt="QR Code Pix para pagamento do presente"
-                  />
-                </div>
-              ) : null}
-
               <div className="pix-gerado__conteudo">
-                <span className="pix-gerado__status">
-                  Aguardando pagamento
-                </span>
-
-                <p>
-                  Escaneie o QR Code pelo aplicativo do seu banco
-                  ou use o código Pix Copia e Cola.
+                <p className="pix-gerado__instrucao">
+                  Seu Pix está pronto. Use o código abaixo ou,
+                  se preferir, escaneie o QR Code no aplicativo
+                  do seu banco.
                 </p>
 
                 {pagamento.codigoPixCopiaCola ? (
-                  <>
-                    <label className="pix-copia-cola">
-                      <span>Pix Copia e Cola</span>
-                      <textarea
-                        readOnly
-                        rows={3}
-                        value={pagamento.codigoPixCopiaCola}
-                        onFocus={(evento) => evento.currentTarget.select()}
-                      />
-                    </label>
+                  <div className="pix-copia-cola">
+                    <div className="pix-copia-cola__topo">
+                      <span>
+                        Pix Copia e Cola
+                      </span>
+
+                      <small>
+                        toque no código para selecionar
+                      </small>
+                    </div>
+
+                    <textarea
+                      readOnly
+                      rows={3}
+                      value={pagamento.codigoPixCopiaCola}
+                      onFocus={(evento) =>
+                        evento.currentTarget.select()
+                      }
+                      aria-label="Código Pix Copia e Cola"
+                    />
 
                     <button
                       className="botao botao--claro pix-copiar"
@@ -669,33 +688,59 @@ export function ReservaPresente() {
                         ? "Código copiado ✓"
                         : "Copiar código Pix"}
                     </button>
-                  </>
+                  </div>
                 ) : null}
 
-                {pagamento.urlCheckout ? (
-                  <a
-                    className="pix-link-mercado-pago"
-                    href={pagamento.urlCheckout}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Abrir instruções no Mercado Pago ↗
-                  </a>
-                ) : null}
+                <div className="pix-gerado__acoes-secundarias">
+                  {pagamento.urlCheckout ? (
+                    <a
+                      className="pix-link-mercado-pago"
+                      href={pagamento.urlCheckout}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Abrir instruções no Mercado Pago
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : null}
 
-                <small>
-                  Assim que o pagamento for reconhecido, esta página
-                  será atualizada automaticamente.
-                </small>
+                  <p className="pix-gerado__nota">
+                    Assim que o pagamento for reconhecido,
+                    esta página será atualizada automaticamente.
+                  </p>
+                </div>
               </div>
+
+              {pagamento.qrCodePix ? (
+                <div className="pix-gerado__qr-area">
+                  <span className="pix-gerado__qr-etiqueta">
+                    Escaneie para pagar
+                  </span>
+
+                  <div className="pix-gerado__qr">
+                    <img
+                      src={`data:image/png;base64,${pagamento.qrCodePix}`}
+                      alt="QR Code Pix para pagamento do presente"
+                    />
+                  </div>
+
+                  <small>
+                    Abra a câmera do seu banco e aponte para o código.
+                  </small>
+                </div>
+              ) : null}
             </div>
           ) : pagamento?.status === "APROVADO" ? (
             <div className="pix-sucesso">
               <span aria-hidden="true">♡</span>
-              <h3>Pagamento confirmado</h3>
+
+              <h3>
+                Pagamento confirmado
+              </h3>
+
               <p>
-                Obrigado! A reserva foi concluída e o presente ficou
-                confirmado para o casal.
+                Obrigado! A reserva foi concluída e o presente
+                ficou confirmado para o casal.
               </p>
             </div>
           ) : (
@@ -713,6 +758,7 @@ export function ReservaPresente() {
 
               <label>
                 <span>E-mail</span>
+
                 <input
                   type="email"
                   autoComplete="email"
@@ -726,8 +772,9 @@ export function ReservaPresente() {
               </label>
 
               <p className="pix-formulario__privacidade">
-                O pagamento é criado pelo nosso servidor usando a Orders API.
-                Seu Access Token nunca é enviado para o navegador.
+                O pagamento é criado pelo nosso servidor usando a
+                Orders API. Seu Access Token nunca é enviado para
+                o navegador.
               </p>
 
               <button
