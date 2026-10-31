@@ -62,13 +62,16 @@ async function requisicao<T>(
   caminho: string,
   opcoes?: RequestInit,
 ): Promise<T> {
+  const corpoEhFormData =
+    opcoes?.body instanceof FormData;
+
   const resposta = await fetch(caminho, {
     ...opcoes,
 
     headers: {
       Accept: "application/json",
 
-      ...(opcoes?.body
+      ...(opcoes?.body && !corpoEhFormData
         ? {
             "Content-Type":
               "application/json",
@@ -156,6 +159,53 @@ export async function desativarPresenteAdmin(
     `/api/admin/presentes/${id}`,
     {
       method: "DELETE",
+    },
+  );
+}
+
+
+export type ImagemPresenteEnviada = {
+  url: string;
+  nomeOriginal: string;
+  mimeType: string;
+  tamanho: number;
+};
+
+export async function enviarImagemPresenteAdmin(
+  arquivo: File,
+) {
+  const dados = new FormData();
+
+  dados.append(
+    "imagem",
+    arquivo,
+  );
+
+  const resposta = await requisicao<{
+    dados: {
+      imagem: ImagemPresenteEnviada;
+    };
+  }>(
+    "/api/admin/presentes/imagens",
+    {
+      method: "POST",
+      body: dados,
+    },
+  );
+
+  return resposta.dados.imagem;
+}
+
+export async function removerImagemPresenteAdmin(
+  url: string,
+) {
+  await requisicao<void>(
+    "/api/admin/presentes/imagens",
+    {
+      method: "DELETE",
+      body: JSON.stringify({
+        url,
+      }),
     },
   );
 }

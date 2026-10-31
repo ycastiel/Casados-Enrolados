@@ -1,18 +1,22 @@
 import { Router } from "express";
 
 import {
+  apagarImagemPresenteAdmin,
   cadastrarPresenteAdmin,
   editarPresenteAdmin,
+  enviarImagemPresenteAdmin,
   excluirPresenteAdmin,
   obterPresentesAdmin,
 } from "../../controllers/presentes/PresenteController.js";
 
+import { processarUploadImagemPresente } from "../../middlewares/presentes/UploadImagemPresente.js";
 import { validarRequisicao } from "../../validators/helpers/RequisicaoValidator.js";
 
 import {
   atualizarPresenteSchema,
   criarPresenteSchema,
   presenteIdSchema,
+  removerImagemPresenteSchema,
 } from "../../validators/presentes/PresenteValidator.js";
 
 export const presenteAdminRouter =
@@ -21,6 +25,21 @@ export const presenteAdminRouter =
 presenteAdminRouter.get(
   "/",
   obterPresentesAdmin,
+);
+
+presenteAdminRouter.post(
+  "/imagens",
+  processarUploadImagemPresente,
+  enviarImagemPresenteAdmin,
+);
+
+presenteAdminRouter.delete(
+  "/imagens",
+  validarRequisicao(
+    removerImagemPresenteSchema,
+    "body",
+  ),
+  apagarImagemPresenteAdmin,
 );
 
 presenteAdminRouter.post(

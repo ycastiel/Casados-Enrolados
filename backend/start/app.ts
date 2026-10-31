@@ -1,6 +1,8 @@
 import express from "express";
 import helmet from "helmet";
 
+import { CAMINHO_UPLOADS } from "../configs/Caminhos.js";
+
 import { tratarErro } from "../middlewares/helpers/Erro.js";
 import { rotaNaoEncontrada } from "../services/helpers/erros/ErrosRotas.js";
 
@@ -11,6 +13,15 @@ export const app = express();
 app.use(helmet());
 
 app.use(express.json());
+
+app.use(
+  "/api/uploads",
+  express.static(CAMINHO_UPLOADS, {
+    fallthrough: false,
+    index: false,
+    maxAge: "7d",
+  }),
+);
 
 app.get("/api/saude", (_req, res) => {
   res.status(200).json({

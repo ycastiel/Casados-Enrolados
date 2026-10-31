@@ -41,6 +41,30 @@ enum StatusReservaPresente {
   EXPIRADA
 }
 
+
+enum StatusPagamento {
+  PENDENTE
+  PROCESSANDO
+  APROVADO
+  RECUSADO
+  CANCELADO
+  ESTORNADO
+  EXPIRADO
+}
+
+enum ProvedorPagamento {
+  MANUAL
+  MERCADO_PAGO
+  PAGARME
+}
+
+enum MetodoPagamento {
+  PIX
+  CARTAO
+  BOLETO
+  OUTRO
+}
+
 // ======================================================
 // CASAMENTO
 // ======================================================
@@ -269,7 +293,46 @@ model ReservaPresente {
   presente Presente @relation(fields: [presenteId], references: [id], onDelete: Restrict)
   convite  Convite? @relation(fields: [conviteId], references: [id], onDelete: SetNull)
 
+  pagamentos Pagamento[]
+
   @@index([presenteId])
   @@index([conviteId])
   @@index([status])
+}
+
+
+// ======================================================
+// PAGAMENTOS
+// ======================================================
+
+model Pagamento {
+  id        String @id @default(uuid())
+  reservaId String
+
+  status   StatusPagamento   @default(PENDENTE)
+  provedor ProvedorPagamento @default(MANUAL)
+  metodo   MetodoPagamento?
+
+  valor Decimal @db.Decimal(10, 2)
+  moeda String  @default("BRL")
+
+  idempotenciaChave String @unique @default(uuid())
+  referenciaExterna String? @unique
+
+  urlCheckout      String?
+  codigoPixCopiaCola String?
+  qrCodePix        String?
+
+  expiraEm    DateTime?
+  aprovadoEm  DateTime?
+  canceladoEm DateTime?
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  reserva ReservaPresente @relation(fields: [reservaId], references: [id], onDelete: Restrict)
+
+  @@index([reservaId])
+  @@index([status])
+  @@index([provedor])
 }

@@ -37,16 +37,34 @@ function encontrarRaizProjeto(inicio: string): string {
   }
 }
 
-export const RAIZ_PROJETO = encontrarRaizProjeto(diretorioAtual);
-export const RAIZ_BACKEND = path.join(RAIZ_PROJETO, "backend");
-export const RAIZ_DATABASE = path.join(RAIZ_PROJETO, "database");
-export const RAIZ_FRONTEND = path.join(RAIZ_PROJETO, "frontend");
-export const CAMINHO_ENV = path.join(RAIZ_PROJETO, ".env");
+export const RAIZ_PROJETO =
+  encontrarRaizProjeto(diretorioAtual);
+
+export const RAIZ_BACKEND =
+  path.join(RAIZ_PROJETO, "backend");
+
+export const RAIZ_DATABASE =
+  path.join(RAIZ_PROJETO, "database");
+
+export const RAIZ_FRONTEND =
+  path.join(RAIZ_PROJETO, "frontend");
+
+export const CAMINHO_UPLOADS =
+  path.join(RAIZ_BACKEND, "uploads");
+
+export const CAMINHO_UPLOADS_PRESENTES =
+  path.join(
+    CAMINHO_UPLOADS,
+    "presentes",
+  );
+
+export const CAMINHO_ENV =
+  path.join(RAIZ_PROJETO, ".env");
 
 if (!fs.existsSync(CAMINHO_ENV)) {
-  throw new Error(`Arquivo .env não encontrado em: ${CAMINHO_ENV}`);
+  throw new Error(
+    `Arquivo .env não encontrado em: ${CAMINHO_ENV}`,
+  );
 }
 
-// Node 24 carrega o .env nativamente. Assim, o caminho e o carregamento
-// ficam centralizados neste único arquivo.
 loadEnvFile(CAMINHO_ENV);

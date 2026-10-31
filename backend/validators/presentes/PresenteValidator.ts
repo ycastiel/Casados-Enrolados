@@ -125,6 +125,13 @@ export const atualizarPresenteSchema = z
     },
   );
 
+export const removerImagemPresenteSchema = z.object({
+  url: z
+    .string()
+    .trim()
+    .min(1, "Informe a URL da imagem."),
+});
+
 export type CriarPresenteDados =
   z.infer<typeof criarPresenteSchema>;
 
@@ -133,3 +140,6 @@ export type AtualizarPresenteDados =
 
 export type PresenteIdParams =
   z.infer<typeof presenteIdSchema>;
+
+export type RemoverImagemPresenteDados =
+  z.infer<typeof removerImagemPresenteSchema>;

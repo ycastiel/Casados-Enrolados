@@ -26,6 +26,16 @@ import {
   type ReservaPresente as ReservaPresenteTipo,
 } from "../../javascript/paginas/presentes/ReservaPresente";
 
+import {
+  buscarPagamentoAtual,
+  criarPagamentoPix,
+  type PagamentoPix,
+} from "../../javascript/helpers/provedores/PagamentoPix";
+
+import {
+  inicializarMercadoPago,
+} from "../../javascript/helpers/provedores//MercadoPago";
+
 import "../../css/paginas/presentes/reservas.css";
 
 const moeda =
@@ -114,6 +124,26 @@ export function ReservaPresente() {
     setProcessando,
   ] = useState(false);
 
+  const [
+    pagamento,
+    setPagamento,
+  ] = useState<PagamentoPix | null>(null);
+
+  const [
+    gerandoPix,
+    setGerandoPix,
+  ] = useState(false);
+
+  const [
+    emailPagamento,
+    setEmailPagamento,
+  ] = useState("");
+
+  const [
+    codigoCopiado,
+    setCodigoCopiado,
+  ] = useState(false);
+
   const [erro, setErro] =
     useState<string | null>(null);
 
@@ -160,6 +190,88 @@ export function ReservaPresente() {
   useEffect(() => {
     void carregar();
   }, [carregar]);
+
+  useEffect(() => {
+    /*
+     * Inicializa MercadoPago.js V2 com a Public Key de teste/produção.
+     * O Pix atual é criado pelo backend via Orders API, mas deixamos
+     * o frontend preparado conforme o fluxo oficial do Checkout Transparente
+     * e para os próximos meios de pagamento (ex.: cartão).
+     */
+    void inicializarMercadoPago().catch((erroCapturado) => {
+      console.warn(
+        "MercadoPago.js não pôde ser inicializado:",
+        erroCapturado,
+      );
+    });
+  }, []);
+
+  useEffect(() => {
+    if (
+      reserva?.emailResponsavel &&
+      !emailPagamento
+    ) {
+      setEmailPagamento(
+        reserva.emailResponsavel,
+      );
+    }
+  }, [
+    reserva?.emailResponsavel,
+    emailPagamento,
+  ]);
+
+  const carregarPagamento =
+    useCallback(async () => {
+      if (!token) {
+        return;
+      }
+
+      try {
+        const atual =
+          await buscarPagamentoAtual(token);
+
+        setPagamento(atual);
+
+        if (atual?.status === "APROVADO") {
+          await carregar();
+        }
+      } catch (erroCapturado) {
+        /*
+         * A reserva continua utilizável mesmo que a consulta
+         * do provedor falhe temporariamente.
+         */
+        console.error(
+          "Falha ao consultar pagamento:",
+          erroCapturado,
+        );
+      }
+    }, [token, carregar]);
+
+  useEffect(() => {
+    if (reserva?.status === "RESERVADA") {
+      void carregarPagamento();
+    }
+  }, [
+    reserva?.status,
+    carregarPagamento,
+  ]);
+
+  useEffect(() => {
+    if (
+      !pagamento ||
+      (pagamento.status !== "PENDENTE" &&
+        pagamento.status !== "PROCESSANDO")
+    ) {
+      return;
+    }
+
+    const intervalo = window.setInterval(() => {
+      void carregarPagamento();
+    }, 5000);
+
+    return () =>
+      window.clearInterval(intervalo);
+  }, [pagamento, carregarPagamento]);
 
   useEffect(() => {
     if (
@@ -262,6 +374,61 @@ export function ReservaPresente() {
       ? valorUnitario *
         reserva.quantidade
       : null;
+
+  const pagamentoEmAberto =
+    pagamento?.status === "PENDENTE" ||
+    pagamento?.status === "PROCESSANDO";
+
+  async function gerarPix() {
+    if (!token) {
+      return;
+    }
+
+    try {
+      setGerandoPix(true);
+      setErro(null);
+
+      const resultado =
+        await criarPagamentoPix(
+          token,
+          {
+            email: emailPagamento,
+          },
+        );
+
+      setPagamento(resultado);
+      setCodigoCopiado(false);
+    } catch (erroCapturado) {
+      setErro(
+        erroCapturado instanceof Error
+          ? erroCapturado.message
+          : "Não foi possível gerar o Pix.",
+      );
+    } finally {
+      setGerandoPix(false);
+    }
+  }
+
+  async function copiarCodigoPix() {
+    if (!pagamento?.codigoPixCopiaCola) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(
+        pagamento.codigoPixCopiaCola,
+      );
+      setCodigoCopiado(true);
+
+      window.setTimeout(() => {
+        setCodigoCopiado(false);
+      }, 2200);
+    } catch {
+      setErro(
+        "Não foi possível copiar automaticamente. Selecione o código abaixo e copie manualmente.",
+      );
+    }
+  }
 
   async function cancelar() {
     if (!token) {
@@ -419,29 +586,28 @@ export function ReservaPresente() {
             {reserva.status ===
               "RESERVADA" && (
               <>
-                <button
+                <a
                   className="botao botao--primario"
-                  type="button"
-                  disabled
-                  title="Entrará na próxima etapa"
+                  href="#pagamento-pix"
                 >
                   Ir para pagamento
-                </button>
+                </a>
 
-                <button
-                  className="botao botao--secundario"
-                  type="button"
-                  disabled={
-                    processando
-                  }
-                  onClick={() =>
-                    void cancelar()
-                  }
-                >
-                  {processando
-                    ? "Cancelando..."
-                    : "Cancelar reserva"}
-                </button>
+                {!pagamento ||
+                pagamento.status === "RECUSADO" ||
+                pagamento.status === "CANCELADO" ||
+                pagamento.status === "EXPIRADO" ? (
+                  <button
+                    className="botao botao--secundario"
+                    type="button"
+                    disabled={processando}
+                    onClick={() => void cancelar()}
+                  >
+                    {processando
+                      ? "Cancelando..."
+                      : "Cancelar reserva"}
+                  </button>
+                ) : null}
               </>
             )}
 
@@ -457,28 +623,171 @@ export function ReservaPresente() {
           </div>
         </article>
 
-        <aside className="reserva-pagamento-futuro">
-          <span className="secao-etiqueta">
-            Próxima etapa
-          </span>
+        <aside
+          id="pagamento-pix"
+          className="reserva-pagamento-pix"
+        >
+          <header className="pix-cabecalho">
+            <div>
+              <span className="secao-etiqueta">
+                Pagamento seguro
+              </span>
 
-          <h2>
-            Pagamento
-          </h2>
+              <h2>
+                Pix
+              </h2>
+            </div>
 
-          <p>
-            Aqui entraremos com
-            Pix/cartão através de um
-            provedor de pagamentos.
-            O token desta página será
-            a ponte entre a reserva e
-            a transação financeira.
-          </p>
+            {pagamentoEmAberto ? (
+              <span className="pix-gerado__status">
+                Aguardando pagamento
+              </span>
+            ) : null}
+          </header>
 
-          <div className="pagamento-futuro-opcoes">
-            <span>Pix</span>
-            <span>Cartão</span>
-          </div>
+          {pagamento &&
+          pagamentoEmAberto &&
+          (pagamento.codigoPixCopiaCola ||
+            pagamento.urlCheckout) ? (
+            <div className="pix-gerado">
+              <div className="pix-gerado__conteudo">
+                <p className="pix-gerado__instrucao">
+                  Seu Pix está pronto. Use o código abaixo ou,
+                  se preferir, escaneie o QR Code no aplicativo
+                  do seu banco.
+                </p>
+
+                {pagamento.codigoPixCopiaCola ? (
+                  <div className="pix-copia-cola">
+                    <div className="pix-copia-cola__topo">
+                      <span>
+                        Pix Copia e Cola
+                      </span>
+
+                      <small>
+                        toque no código para selecionar
+                      </small>
+                    </div>
+
+                    <textarea
+                      readOnly
+                      rows={3}
+                      value={pagamento.codigoPixCopiaCola}
+                      onFocus={(evento) =>
+                        evento.currentTarget.select()
+                      }
+                      aria-label="Código Pix Copia e Cola"
+                    />
+
+                    <button
+                      className="botao botao--claro pix-copiar"
+                      type="button"
+                      onClick={() => void copiarCodigoPix()}
+                    >
+                      {codigoCopiado
+                        ? "Código copiado ✓"
+                        : "Copiar código Pix"}
+                    </button>
+                  </div>
+                ) : null}
+
+                <div className="pix-gerado__acoes-secundarias">
+                  {pagamento.urlCheckout ? (
+                    <a
+                      className="pix-link-mercado-pago"
+                      href={pagamento.urlCheckout}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Abrir instruções no Mercado Pago
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : null}
+
+                  <p className="pix-gerado__nota">
+                    Assim que o pagamento for reconhecido,
+                    esta página será atualizada automaticamente.
+                  </p>
+                </div>
+              </div>
+
+              {pagamento.qrCodePix ? (
+                <div className="pix-gerado__qr-area">
+                  <span className="pix-gerado__qr-etiqueta">
+                    Escaneie para pagar
+                  </span>
+
+                  <div className="pix-gerado__qr">
+                    <img
+                      src={`data:image/png;base64,${pagamento.qrCodePix}`}
+                      alt="QR Code Pix para pagamento do presente"
+                    />
+                  </div>
+
+                  <small>
+                    Abra a câmera do seu banco e aponte para o código.
+                  </small>
+                </div>
+              ) : null}
+            </div>
+          ) : pagamento?.status === "APROVADO" ? (
+            <div className="pix-sucesso">
+              <span aria-hidden="true">♡</span>
+
+              <h3>
+                Pagamento confirmado
+              </h3>
+
+              <p>
+                Obrigado! A reserva foi concluída e o presente
+                ficou confirmado para o casal.
+              </p>
+            </div>
+          ) : (
+            <form
+              className="pix-formulario"
+              onSubmit={(evento) => {
+                evento.preventDefault();
+                void gerarPix();
+              }}
+            >
+              <p>
+                O Pix será gerado pelo Mercado Pago. Você continua
+                nesta página e pode pagar por QR Code ou Copia e Cola.
+              </p>
+
+              <label>
+                <span>E-mail</span>
+
+                <input
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={emailPagamento}
+                  onChange={(evento) =>
+                    setEmailPagamento(evento.target.value)
+                  }
+                  placeholder="voce@email.com"
+                />
+              </label>
+
+              <p className="pix-formulario__privacidade">
+                O pagamento é criado pelo nosso servidor usando a
+                Orders API. Seu Access Token nunca é enviado para
+                o navegador.
+              </p>
+
+              <button
+                className="botao botao--claro"
+                type="submit"
+                disabled={gerandoPix}
+              >
+                {gerandoPix
+                  ? "Gerando Pix..."
+                  : "Gerar Pix"}
+              </button>
+            </form>
+          )}
         </aside>
       </section>
     </div>

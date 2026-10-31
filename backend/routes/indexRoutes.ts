@@ -1,7 +1,8 @@
 import { Router } from "express";
 
-import { casamentoRouter } from "./evento/CasamentoRoutes.js";
+import { casamentoRouter } from "./eventos/CasamentoRoutes.js";
 import { conviteAdminRouter } from "./relacoes/ConviteRoutes.js";
+import { pagamentoAdminRouter, pagamentoReservaRouter, pagamentoWebhookRouter } from "./pagamentos/PagamentoRoutes.js";
 import { presenteAdminRouter } from "./presentes/PresenteRoutes.js";
 
 import {
@@ -34,4 +35,20 @@ router.use(
 router.use(
   "/admin/presentes",
   presenteAdminRouter,
+);
+
+router.use(
+  "/reservas",
+  pagamentoReservaRouter,
+);
+
+router.use(
+  "/admin/pagamentos",
+  pagamentoAdminRouter,
+);
+
+
+router.use(
+  "/webhooks/mercado-pago",
+  pagamentoWebhookRouter,
 );

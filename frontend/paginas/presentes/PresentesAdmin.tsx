@@ -9,7 +9,9 @@ import {
   atualizarPresenteAdmin,
   criarPresenteAdmin,
   desativarPresenteAdmin,
+  enviarImagemPresenteAdmin,
   listarPresentesAdmin,
+  removerImagemPresenteAdmin,
   type PresenteAdmin,
   type TipoPresenteAdmin,
 } from "../../javascript/paginas/presentes/PresentesAdmin";
@@ -178,6 +180,12 @@ export function PresentesAdmin() {
       formularioVazio,
     );
 
+  const [arquivoImagem, setArquivoImagem] =
+    useState<File | null>(null);
+
+  const [previewImagem, setPreviewImagem] =
+    useState<string | null>(null);
+
   async function carregarPresentes() {
     try {
       setCarregando(true);
@@ -203,6 +211,19 @@ export function PresentesAdmin() {
   useEffect(() => {
     void carregarPresentes();
   }, []);
+
+
+  useEffect(() => {
+    return () => {
+      if (
+        previewImagem?.startsWith("blob:")
+      ) {
+        URL.revokeObjectURL(
+          previewImagem,
+        );
+      }
+    };
+  }, [previewImagem]);
 
   const resumo = useMemo(
     () => ({
@@ -282,8 +303,65 @@ export function PresentesAdmin() {
       presentes,
     ]);
 
+  function limparImagemSelecionada() {
+    setArquivoImagem(null);
+    setPreviewImagem(null);
+  }
+
+  function selecionarImagem(
+    arquivo: File | null,
+  ) {
+    if (!arquivo) {
+      limparImagemSelecionada();
+      return;
+    }
+
+    const tiposPermitidos = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+    ];
+
+    if (
+      !tiposPermitidos.includes(
+        arquivo.type,
+      )
+    ) {
+      setErro(
+        "Escolha uma imagem JPEG, PNG ou WebP.",
+      );
+      return;
+    }
+
+    if (
+      arquivo.size >
+      5 * 1024 * 1024
+    ) {
+      setErro(
+        "A imagem pode ter no máximo 5 MB.",
+      );
+      return;
+    }
+
+    setErro(null);
+    setArquivoImagem(arquivo);
+    setPreviewImagem(
+      URL.createObjectURL(arquivo),
+    );
+  }
+
+  function removerImagemFormulario() {
+    limparImagemSelecionada();
+
+    setFormulario((atual) => ({
+      ...atual,
+      imagemUrl: "",
+    }));
+  }
+
   function abrirNovoPresente() {
     setPresenteEditando(null);
+    limparImagemSelecionada();
     setFormulario(formularioVazio);
     setErro(null);
     setFormularioAberto(true);
@@ -295,6 +373,8 @@ export function PresentesAdmin() {
     setPresenteEditando(
       presente.id,
     );
+
+    limparImagemSelecionada();
 
     setFormulario(
       formularioDoPresente(
@@ -313,6 +393,7 @@ export function PresentesAdmin() {
 
     setFormularioAberto(false);
     setPresenteEditando(null);
+    limparImagemSelecionada();
     setFormulario(formularioVazio);
     setErro(null);
   }
@@ -371,9 +452,39 @@ export function PresentesAdmin() {
       return;
     }
 
+    let imagemEnviadaNestaTentativa:
+      string | null = null;
+
     try {
       setSalvando(true);
       setErro(null);
+
+      const presenteAnterior =
+        presenteEditando
+          ? presentes.find(
+              (presente) =>
+                presente.id === presenteEditando,
+            ) ?? null
+          : null;
+
+      const imagemAnterior =
+        presenteAnterior?.imagemUrl ?? null;
+
+      let imagemUrlFinal =
+        formulario.imagemUrl || null;
+
+      if (arquivoImagem) {
+        const imagemEnviada =
+          await enviarImagemPresenteAdmin(
+            arquivoImagem,
+          );
+
+        imagemEnviadaNestaTentativa =
+          imagemEnviada.url;
+
+        imagemUrlFinal =
+          imagemEnviada.url;
+      }
 
       const dados = {
         nome: formulario.nome,
@@ -382,7 +493,7 @@ export function PresentesAdmin() {
         tipo: formulario.tipo,
         valorUnitario,
         imagemUrl:
-          formulario.imagemUrl || null,
+          imagemUrlFinal,
         urlExterna:
           formulario.urlExterna || null,
         quantidadeTotal,
@@ -416,10 +527,46 @@ export function PresentesAdmin() {
         ),
       );
 
+      /*
+       * Se uma imagem local antiga foi substituída/removida,
+       * limpamos o arquivo depois que o presente já foi salvo.
+       */
+      if (
+        imagemAnterior &&
+        imagemAnterior !== imagemUrlFinal &&
+        imagemAnterior.startsWith(
+          "/api/uploads/presentes/",
+        )
+      ) {
+        try {
+          await removerImagemPresenteAdmin(
+            imagemAnterior,
+          );
+        } catch {
+          // A alteração principal já foi concluída; não bloqueamos
+          // o admin por uma falha de limpeza do arquivo antigo.
+        }
+      }
+
       setFormularioAberto(false);
       setPresenteEditando(null);
+      limparImagemSelecionada();
       setFormulario(formularioVazio);
     } catch (erroCapturado) {
+      /*
+       * Se o upload funcionou mas o POST/PATCH do presente falhou,
+       * evitamos deixar um arquivo órfão no servidor.
+       */
+      if (imagemEnviadaNestaTentativa) {
+        try {
+          await removerImagemPresenteAdmin(
+            imagemEnviadaNestaTentativa,
+          );
+        } catch {
+          // A mensagem original do salvamento é mais importante.
+        }
+      }
+
       setErro(
         erroCapturado instanceof Error
           ? erroCapturado.message
@@ -944,21 +1091,81 @@ export function PresentesAdmin() {
                 </label>
               </div>
 
-              <label className="presentes-admin-campo presentes-admin-campo--largo">
-                <span>URL da imagem</span>
-                <input
-                  type="text"
-                  placeholder="https://... ou /imagens/..."
-                  value={formulario.imagemUrl}
-                  onChange={(evento) =>
-                    setFormulario((atual) => ({
-                      ...atual,
-                      imagemUrl:
-                        evento.target.value,
-                    }))
-                  }
-                />
-              </label>
+              <div className="presentes-admin-campo presentes-admin-campo--largo">
+                <span>Imagem do presente</span>
+
+                <div className="presentes-admin-upload">
+                  <div className="presentes-admin-upload-preview">
+                    {(previewImagem || formulario.imagemUrl) ? (
+                      <img
+                        src={previewImagem || formulario.imagemUrl}
+                        alt="Prévia da imagem do presente"
+                      />
+                    ) : (
+                      <span aria-hidden="true">❦</span>
+                    )}
+                  </div>
+
+                  <div className="presentes-admin-upload-conteudo">
+                    <label className="presentes-admin-upload-botao">
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={(evento) =>
+                          selecionarImagem(
+                            evento.target.files?.[0] ?? null,
+                          )
+                        }
+                      />
+
+                      <span>
+                        {arquivoImagem
+                          ? "Trocar arquivo"
+                          : "Escolher imagem"}
+                      </span>
+                    </label>
+
+                    <small>
+                      JPEG, PNG ou WebP · máximo de 5 MB.
+                    </small>
+
+                    {arquivoImagem && (
+                      <small className="presentes-admin-upload-arquivo">
+                        {arquivoImagem.name}
+                      </small>
+                    )}
+
+                    {(previewImagem || formulario.imagemUrl) && (
+                      <button
+                        className="presentes-admin-upload-remover"
+                        type="button"
+                        onClick={removerImagemFormulario}
+                        disabled={salvando}
+                      >
+                        Remover imagem
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <label className="presentes-admin-url-alternativa">
+                  <span>Ou use uma URL</span>
+                  <input
+                    type="text"
+                    placeholder="https://..."
+                    value={formulario.imagemUrl}
+                    onChange={(evento) => {
+                      limparImagemSelecionada();
+
+                      setFormulario((atual) => ({
+                        ...atual,
+                        imagemUrl:
+                          evento.target.value,
+                      }));
+                    }}
+                  />
+                </label>
+              </div>
 
               <label className="presentes-admin-campo presentes-admin-campo--largo">
                 <span>Link externo</span>
