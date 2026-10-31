@@ -22,6 +22,18 @@ const schemaAmbiente = z.object({
   JWT_SECRET: z
     .string()
     .min(32, "JWT_SECRET deve possuir pelo menos 32 caracteres."),
+
+  MERCADO_PAGO_ACCESS_TOKEN: z
+    .string()
+    .trim()
+    .min(1)
+    .optional(),
+
+  MERCADO_PAGO_WEBHOOK_SECRET: z
+    .string()
+    .trim()
+    .min(1)
+    .optional(),
 });
 
 const resultadoAmbiente = schemaAmbiente.safeParse(process.env);
