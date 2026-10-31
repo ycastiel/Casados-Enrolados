@@ -6,7 +6,7 @@ import {
   criarPagamentoPixReserva,
   listarPagamentosAdmin,
   prepararPagamentoReserva,
-  processarPagamentoMercadoPago,
+  processarOrderMercadoPago,
 } from "../../services/pagamentos/Pagamentos.js";
 
 import {
@@ -107,9 +107,9 @@ export const webhookMercadoPago: RequestHandler =
         : typeof req.body?.type === "string"
           ? req.body.type
           : undefined;
-
-    if (dataId && (!tipo || tipo === "payment")) {
-      await processarPagamentoMercadoPago(dataId);
+          
+    if (dataId && (!tipo || tipo === "order")) {
+      await processarOrderMercadoPago(dataId);
     }
 
     res.sendStatus(200);

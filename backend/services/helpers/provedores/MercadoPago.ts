@@ -8,31 +8,41 @@ import { ErroAplicacao } from "../../helpers/erros/ErrosIndex.js";
 
 const BASE_URL = "https://api.mercadopago.com";
 
-type StatusMercadoPago =
-  | "pending"
-  | "in_process"
-  | "approved"
-  | "rejected"
-  | "cancelled"
+export type StatusOrderMercadoPago =
+  | "created"
+  | "processing"
+  | "action_required"
+  | "processed"
+  | "canceled"
+  | "failed"
   | "refunded"
   | "charged_back"
   | string;
 
-export type PagamentoMercadoPago = {
-  id: number;
-  status: StatusMercadoPago;
-  status_detail?: string | null;
+export type OrderMercadoPago = {
+  id: string;
+  type?: string | null;
+  processing_mode?: string | null;
   external_reference?: string | null;
-  transaction_amount?: number | null;
-  date_of_expiration?: string | null;
-  date_approved?: string | null;
-  point_of_interaction?: {
-    type?: string | null;
-    transaction_data?: {
-      qr_code?: string | null;
-      qr_code_base64?: string | null;
-      ticket_url?: string | null;
-    } | null;
+  total_amount?: string | null;
+  status: StatusOrderMercadoPago;
+  status_detail?: string | null;
+  created_date?: string | null;
+  last_updated_date?: string | null;
+  transactions?: {
+    payments?: Array<{
+      id?: string | null;
+      amount?: string | null;
+      status?: string | null;
+      status_detail?: string | null;
+      payment_method?: {
+        id?: string | null;
+        type?: string | null;
+        ticket_url?: string | null;
+        qr_code?: string | null;
+        qr_code_base64?: string | null;
+      } | null;
+    }> | null;
   } | null;
 };
 
@@ -42,8 +52,6 @@ type CriarPixDados = {
   referenciaExterna: string;
   idempotenciaChave: string;
   email: string;
-  cpf: string;
-  expiraEm: Date;
 };
 
 function accessToken() {
@@ -113,49 +121,60 @@ async function requisicaoMercadoPago<T>(
 export async function criarPixMercadoPago(
   dados: CriarPixDados,
 ) {
-  return requisicaoMercadoPago<PagamentoMercadoPago>(
-    "/v1/payments",
+  const valor = dados.valor.toFixed(2);
+
+  return requisicaoMercadoPago<OrderMercadoPago>(
+    "/v1/orders",
     {
       method: "POST",
       headers: {
         "X-Idempotency-Key": dados.idempotenciaChave,
       },
       body: JSON.stringify({
-        transaction_amount: dados.valor,
-        description: dados.descricao.slice(0, 150),
-        payment_method_id: "pix",
+        type: "online",
+        processing_mode: "automatic",
+        total_amount: valor,
         external_reference: dados.referenciaExterna,
-        date_of_expiration: dados.expiraEm.toISOString(),
+        description: dados.descricao.slice(0, 150),
         payer: {
           email: dados.email,
-          identification: {
-            type: "CPF",
-            number: dados.cpf,
-          },
+          ...(ambiente.NODE_ENV !== "production" &&
+            ambiente.MERCADO_PAGO_PIX_TESTE_APROVAR_AUTOMATICAMENTE
+            ? { first_name: "APRO" }
+            : {}),
+        },
+        transactions: {
+          payments: [
+            {
+              amount: valor,
+              payment_method: {
+                id: "pix",
+                type: "bank_transfer",
+              },
+              expiration_time: "PT31M",
+            },
+          ],
         },
       }),
     },
   );
 }
 
-export async function buscarPagamentoMercadoPago(
-  pagamentoId: string,
+export async function buscarOrderMercadoPago(
+  orderId: string,
 ) {
-  return requisicaoMercadoPago<PagamentoMercadoPago>(
-    `/v1/payments/${encodeURIComponent(pagamentoId)}`,
+  return requisicaoMercadoPago<OrderMercadoPago>(
+    `/v1/orders/${encodeURIComponent(orderId)}`,
   );
 }
 
-export async function cancelarPagamentoMercadoPago(
-  pagamentoId: string,
+export async function cancelarOrderMercadoPago(
+  orderId: string,
 ) {
-  return requisicaoMercadoPago<PagamentoMercadoPago>(
-    `/v1/payments/${encodeURIComponent(pagamentoId)}`,
+  return requisicaoMercadoPago<OrderMercadoPago>(
+    `/v1/orders/${encodeURIComponent(orderId)}/cancel`,
     {
-      method: "PUT",
-      body: JSON.stringify({
-        status: "cancelled",
-      }),
+      method: "POST",
     },
   );
 }
@@ -181,10 +200,6 @@ export function validarAssinaturaWebhookMercadoPago({
       );
     }
 
-    /*
-     * Em desenvolvimento local o webhook normalmente nem é alcançável.
-     * A consulta periódica de status continua funcionando sem esta chave.
-     */
     return true;
   }
 

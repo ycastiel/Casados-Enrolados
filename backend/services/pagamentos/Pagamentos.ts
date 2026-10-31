@@ -8,9 +8,9 @@ import type {
 } from "../../validators/pagamentos/PagamentoValidator.js";
 
 import {
-  buscarPagamentoMercadoPago,
+  buscarOrderMercadoPago,
   criarPixMercadoPago,
-  type PagamentoMercadoPago,
+  type OrderMercadoPago,
 } from "../helpers/provedores/MercadoPago.js";
 
 const STATUS_ABERTOS = [
@@ -213,29 +213,53 @@ export async function prepararPagamentoReserva(
   return serializarPagamento(pagamento);
 }
 
-function mapearStatusMercadoPago(
+function mapearStatusOrderMercadoPago(
   status: string,
+  statusDetail?: string | null,
 ) {
   switch (status) {
-    case "approved":
-      return "APROVADO" as const;
-    case "in_process":
+    case "processed":
+      return statusDetail === "partially_refunded"
+        ? "ESTORNADO" as const
+        : "APROVADO" as const;
+
+    case "processing":
       return "PROCESSANDO" as const;
-    case "rejected":
-      return "RECUSADO" as const;
-    case "cancelled":
-      return "CANCELADO" as const;
+
+    case "action_required":
+    case "created":
+      return "PENDENTE" as const;
+
+    case "canceled":
+      return statusDetail === "expired"
+        ? "EXPIRADO" as const
+        : "CANCELADO" as const;
+
+    case "failed":
+      return statusDetail === "expired"
+        ? "EXPIRADO" as const
+        : "RECUSADO" as const;
+
     case "refunded":
     case "charged_back":
       return "ESTORNADO" as const;
-    case "pending":
+
     default:
       return "PENDENTE" as const;
   }
 }
 
+function obterTransacaoPix(
+  order: OrderMercadoPago,
+) {
+  return order.transactions?.payments?.find(
+    (pagamento) =>
+      pagamento.payment_method?.id === "pix",
+  ) ?? order.transactions?.payments?.[0] ?? null;
+}
+
 async function aplicarEstadoMercadoPago(
-  remoto: PagamentoMercadoPago,
+  remoto: OrderMercadoPago,
 ) {
   const idInterno =
     remoto.external_reference ?? undefined;
@@ -244,7 +268,7 @@ async function aplicarEstadoMercadoPago(
     ? await buscarPagamentoPorIdInterno(idInterno)
     : await prisma.pagamento.findUnique({
         where: {
-          referenciaExterna: String(remoto.id),
+          referenciaExterna: remoto.id,
         },
         select: selecaoPagamento,
       });
@@ -253,35 +277,37 @@ async function aplicarEstadoMercadoPago(
     return null;
   }
 
-  const valorRemoto = remoto.transaction_amount;
+  if (remoto.total_amount) {
+    const valorRemoto = Number(remoto.total_amount);
 
-  if (
-    typeof valorRemoto === "number" &&
-    Math.abs(
-      valorRemoto - Number(pagamento.valor.toString()),
-    ) > 0.009
-  ) {
-    throw new ErroAplicacao(
-      "O valor informado pelo provedor não corresponde ao pagamento local.",
-      409,
-      "PAGAMENTO_VALOR_DIVERGENTE",
-    );
+    if (
+      Number.isFinite(valorRemoto) &&
+      Math.abs(
+        valorRemoto - Number(pagamento.valor.toString()),
+      ) > 0.009
+    ) {
+      throw new ErroAplicacao(
+        "O valor informado pelo provedor não corresponde ao pagamento local.",
+        409,
+        "PAGAMENTO_VALOR_DIVERGENTE",
+      );
+    }
   }
 
-  const status = mapearStatusMercadoPago(
+  const status = mapearStatusOrderMercadoPago(
     remoto.status,
+    remoto.status_detail,
   );
 
+  const transacao = obterTransacaoPix(remoto);
   const agora = new Date();
-  const aprovadoEm = remoto.date_approved
-    ? new Date(remoto.date_approved)
-    : status === "APROVADO"
-      ? agora
-      : null;
 
-  const expiraEm = remoto.date_of_expiration
-    ? new Date(remoto.date_of_expiration)
-    : pagamento.expiraEm;
+  const aprovadoEm =
+    status === "APROVADO"
+      ? remoto.last_updated_date
+        ? new Date(remoto.last_updated_date)
+        : agora
+      : null;
 
   await prisma.$transaction(async (tx) => {
     await tx.pagamento.update({
@@ -290,11 +316,19 @@ async function aplicarEstadoMercadoPago(
         status,
         provedor: "MERCADO_PAGO",
         metodo: "PIX",
-        referenciaExterna: String(remoto.id),
-        expiraEm,
+        referenciaExterna: remoto.id,
+        urlCheckout:
+          transacao?.payment_method?.ticket_url ??
+          pagamento.urlCheckout,
+        codigoPixCopiaCola:
+          transacao?.payment_method?.qr_code ??
+          pagamento.codigoPixCopiaCola,
+        qrCodePix:
+          transacao?.payment_method?.qr_code_base64 ??
+          pagamento.qrCodePix,
         aprovadoEm,
         canceladoEm:
-          status === "CANCELADO"
+          status === "CANCELADO" || status === "EXPIRADO"
             ? agora
             : pagamento.canceladoEm,
       },
@@ -400,7 +434,6 @@ export async function criarPagamentoPixReserva(
   if (
     existente?.provedor === "MERCADO_PAGO" &&
     existente.status !== "APROVADO" &&
-    existente.qrCodePix &&
     existente.codigoPixCopiaCola &&
     (!existente.expiraEm || existente.expiraEm > new Date())
   ) {
@@ -463,30 +496,21 @@ export async function criarPagamentoPixReserva(
     referenciaExterna: interno.id,
     idempotenciaChave: interno.idempotenciaChave,
     email: dados.email,
-    cpf: dados.documento,
-    expiraEm: expiraPixEm,
   });
 
-  const transactionData =
-    remoto.point_of_interaction?.transaction_data;
+  const transacao = obterTransacaoPix(remoto);
+  const metodo = transacao?.payment_method;
 
-  if (
-    !transactionData?.qr_code ||
-    !transactionData.qr_code_base64
-  ) {
+  if (!metodo?.qr_code && !metodo?.ticket_url) {
     throw new ErroAplicacao(
-      "O pagamento foi criado, mas o Mercado Pago não retornou os dados do Pix.",
+      "A Order foi criada, mas o Mercado Pago não retornou os dados necessários do Pix.",
       502,
       "MERCADO_PAGO_PIX_INCOMPLETO",
     );
   }
 
-  const expiraEm = remoto.date_of_expiration
-    ? new Date(remoto.date_of_expiration)
-    : expiraPixEm;
-
   const reservaExpiraEm = somarMinutos(
-    expiraEm,
+    expiraPixEm,
     MARGEM_RESERVA_APOS_PIX_MINUTOS,
   );
 
@@ -494,14 +518,17 @@ export async function criarPagamentoPixReserva(
     prisma.pagamento.update({
       where: { id: interno.id },
       data: {
-        status: mapearStatusMercadoPago(remoto.status),
+        status: mapearStatusOrderMercadoPago(
+          remoto.status,
+          remoto.status_detail,
+        ),
         provedor: "MERCADO_PAGO",
         metodo: "PIX",
-        referenciaExterna: String(remoto.id),
-        codigoPixCopiaCola: transactionData.qr_code,
-        qrCodePix: transactionData.qr_code_base64,
-        urlCheckout: transactionData.ticket_url ?? null,
-        expiraEm,
+        referenciaExterna: remoto.id,
+        codigoPixCopiaCola: metodo.qr_code ?? null,
+        qrCodePix: metodo.qr_code_base64 ?? null,
+        urlCheckout: metodo.ticket_url ?? null,
+        expiraEm: expiraPixEm,
       },
     }),
     prisma.reservaPresente.update({
@@ -528,9 +555,6 @@ export async function criarPagamentoPixReserva(
 export async function buscarPagamentoAtualReserva(
   tokenReserva: string,
 ) {
-  await expirarReservasVencidas();
-  await expirarPagamentosVencidos();
-
   const pagamento =
     await prisma.pagamento.findFirst({
       where: {
@@ -541,6 +565,7 @@ export async function buscarPagamentoAtualReserva(
     });
 
   if (!pagamento) {
+    await expirarReservasVencidas();
     return null;
   }
 
@@ -551,7 +576,7 @@ export async function buscarPagamentoAtualReserva(
       pagamento.status === "PROCESSANDO" ||
       pagamento.status === "EXPIRADO")
   ) {
-    const remoto = await buscarPagamentoMercadoPago(
+    const remoto = await buscarOrderMercadoPago(
       pagamento.referenciaExterna,
     );
 
@@ -559,19 +584,27 @@ export async function buscarPagamentoAtualReserva(
       await aplicarEstadoMercadoPago(remoto);
 
     if (sincronizado) {
+      await expirarReservasVencidas();
+      await expirarPagamentosVencidos();
       return serializarPagamento(sincronizado);
     }
   }
 
-  return serializarPagamento(pagamento);
+  await expirarReservasVencidas();
+  await expirarPagamentosVencidos();
+
+  const atualizado =
+    await buscarPagamentoPorIdInterno(pagamento.id);
+
+  return atualizado
+    ? serializarPagamento(atualizado)
+    : null;
 }
 
-export async function processarPagamentoMercadoPago(
-  pagamentoMercadoPagoId: string,
+export async function processarOrderMercadoPago(
+  orderId: string,
 ) {
-  const remoto = await buscarPagamentoMercadoPago(
-    pagamentoMercadoPagoId,
-  );
+  const remoto = await buscarOrderMercadoPago(orderId);
 
   const atualizado =
     await aplicarEstadoMercadoPago(remoto);
