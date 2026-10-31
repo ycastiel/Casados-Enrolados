@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { casamentoRouter } from "./eventos/CasamentoRoutes.js";
 import { conviteAdminRouter } from "./relacoes/ConviteRoutes.js";
-import { pagamentoAdminRouter, pagamentoReservaRouter } from "./pagamentos/PagamentoRoutes.js";
+import { pagamentoAdminRouter, pagamentoReservaRouter, pagamentoWebhookRouter } from "./pagamentos/PagamentoRoutes.js";
 import { presenteAdminRouter } from "./presentes/PresenteRoutes.js";
 
 import {
@@ -45,4 +45,10 @@ router.use(
 router.use(
   "/admin/pagamentos",
   pagamentoAdminRouter,
+);
+
+
+router.use(
+  "/webhooks/mercado-pago",
+  pagamentoWebhookRouter,
 );
