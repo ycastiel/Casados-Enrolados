@@ -1,0 +1,245 @@
+:root {
+  --motion-floral-delay: 500ms;
+  --motion-floral-duration: 1400ms;
+  --motion-floral-easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --motion-estrela-min: 1800ms;
+  --motion-estrela-max: 5600ms;
+}
+
+/* Flor desabrochando */
+
+.flor-desabrochando {
+  position: relative;
+  width: var(--flor-tamanho, 180px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  user-select: none;
+  isolation: isolate;
+}
+
+.flor-desabrochando__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(0 10px 18px rgba(65, 39, 35, 0.08))
+    drop-shadow(0 3px 8px rgba(65, 39, 35, 0.06));
+}
+
+.flor-desabrochando__petala,
+.flor-desabrochando__folha,
+.flor-desabrochando__miolo {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+}
+
+.flor-desabrochando__petala {
+  opacity: 0;
+  transform: scale(0.12) rotate(-8deg);
+  transition:
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing),
+    opacity 480ms ease;
+}
+
+.flor-desabrochando__petala--externa {
+  fill: var(--flor-principal);
+  transition-delay: calc(var(--petala-indice, 0) * 42ms);
+}
+
+.flor-desabrochando__petala--interna {
+  fill: var(--flor-secundaria);
+  transform: scale(0.08) rotate(8deg);
+  transition-delay: calc(120ms + (var(--petala-indice, 0) * 46ms));
+}
+
+.flor-desabrochando__folha {
+  fill: var(--flor-folha);
+  opacity: 0;
+  transform: scale(0.22);
+  transition:
+    transform 1050ms var(--motion-floral-easing),
+    opacity 520ms ease;
+}
+
+.flor-desabrochando__folha--esquerda {
+  transform-origin: 98px 136px;
+}
+
+.flor-desabrochando__folha--direita {
+  transform-origin: 102px 136px;
+}
+
+.flor-desabrochando__miolo {
+  opacity: 0;
+  transform: scale(0.2);
+  transition:
+    transform 760ms var(--motion-floral-easing) 410ms,
+    opacity 360ms ease 350ms;
+}
+
+.flor-desabrochando__miolo-base {
+  fill: color-mix(in srgb, var(--flor-miolo) 78%, white 22%);
+}
+
+.flor-desabrochando__miolo-ponto {
+  fill: var(--flor-miolo);
+}
+
+.flor-desabrochando__miolo-centro {
+  fill: color-mix(in srgb, var(--flor-miolo) 72%, var(--cor-marrom-profundo) 28%);
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__petala {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__folha {
+  opacity: 0.82;
+  transform: scale(1);
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__miolo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.flor-desabrochando:not(.is-aberta) .flor-desabrochando__petala {
+  transition-duration: 760ms, 360ms;
+  transition-delay: 0ms;
+}
+
+.flor-desabrochando:not(.is-aberta) .flor-desabrochando__folha,
+.flor-desabrochando:not(.is-aberta) .flor-desabrochando__miolo {
+  transition-delay: 0ms;
+}
+
+.flor-desabrochando--card {
+  position: absolute;
+  right: -38px;
+  bottom: -46px;
+  z-index: 0;
+  opacity: 0.92;
+}
+
+.flor-desabrochando--fundo {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.22;
+  filter: saturate(0.86);
+}
+
+.flor-desabrochando--solta {
+  position: relative;
+}
+
+/* Campo estrelado */
+
+.campo-estrelado {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.campo-estrelado__estrela {
+  position: absolute;
+  left: var(--estrela-left);
+  top: var(--estrela-top);
+  width: var(--estrela-size);
+  height: var(--estrela-size);
+  border-radius: 999px;
+  background: currentColor;
+  color: rgba(246, 225, 173, 0.92);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.45);
+  box-shadow:
+    0 0 5px currentColor,
+    0 0 10px color-mix(in srgb, currentColor 58%, transparent);
+  animation:
+    estrela-respiro var(--estrela-duration)
+    ease-in-out var(--estrela-delay) infinite;
+}
+
+.campo-estrelado--sutil .campo-estrelado__estrela {
+  color: rgba(242, 218, 163, 0.78);
+}
+
+.campo-estrelado--media .campo-estrelado__estrela {
+  color: rgba(247, 222, 161, 0.94);
+}
+
+.campo-estrelado__estrela--cruz {
+  background: transparent;
+  box-shadow: none;
+}
+
+.campo-estrelado__estrela--cruz::before,
+.campo-estrelado__estrela--cruz::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 7px currentColor;
+}
+
+.campo-estrelado__estrela--cruz::before {
+  width: calc(var(--estrela-size) * 3.6);
+  height: 1px;
+}
+
+.campo-estrelado__estrela--cruz::after {
+  width: 1px;
+  height: calc(var(--estrela-size) * 3.6);
+}
+
+@keyframes estrela-respiro {
+  0%,
+  14%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.42) rotate(0deg);
+  }
+
+  38% {
+    opacity: calc(var(--estrela-opacity) * 0.55);
+  }
+
+  48% {
+    opacity: var(--estrela-opacity);
+    transform: translate(-50%, -50%) scale(1.18) rotate(5deg);
+  }
+
+  58% {
+    opacity: calc(var(--estrela-opacity) * 0.72);
+  }
+
+  74% {
+    opacity: 0.08;
+    transform: translate(-50%, -50%) scale(0.68) rotate(-3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flor-desabrochando__petala,
+  .flor-desabrochando__folha,
+  .flor-desabrochando__miolo {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: scale(1) rotate(0deg) !important;
+  }
+
+  .campo-estrelado__estrela {
+    animation: none !important;
+    opacity: 0.34;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
