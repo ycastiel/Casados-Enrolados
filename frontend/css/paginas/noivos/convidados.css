@@ -309,7 +309,7 @@
 
 .status-convidado--parcial {
   background: rgb(183 154 200 / 16%);
-  color: #755c84;
+  color: var(--cor-info);
 }
 
 .status-convidado--neutro {
@@ -429,4 +429,68 @@
   .convidado-linha {
     grid-template-columns: 1fr;
   }
+}
+/* =========================================================
+   DESIGN SYSTEM V1 — CONVIDADOS
+   ========================================================= */
+
+.convidados-cabecalho {
+  isolation: isolate;
+}
+
+.convidados-cabecalho-flor {
+  right: -3rem !important;
+  bottom: -4rem !important;
+  opacity: 0.24 !important;
+}
+
+.convidados-cabecalho > *:not(.convidados-cabecalho-flor) {
+  position: relative;
+  z-index: 2;
+}
+
+.convidados-resumo > div,
+.novo-convite,
+.convite-admin-card {
+  border-color: rgb(138 106 82 / 13%);
+  box-shadow: var(--sombra-xs);
+}
+
+.novo-convite {
+  overflow: hidden;
+}
+
+/* Status continua útil aqui, mas é tratado como texto, não como badge decorativo. */
+.status-convidado {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status-convidado--confirmado { color: var(--cor-sucesso); }
+.status-convidado--recusado { color: var(--cor-erro); }
+.status-convidado--parcial { color: var(--cor-alerta); }
+.status-convidado--pendente,
+.status-convidado--neutro { color: var(--cor-texto-suave); }
+
+.convidados-erro {
+  border: 1px solid rgb(119 57 68 / 18%);
+  border-radius: var(--raio-sm);
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+.convidados-cabecalho.ds-admin-header {
+  border: var(--linha-suave);
+  border-radius: var(--raio-lg);
+  background:
+    radial-gradient(circle at 92% 10%, rgb(183 154 200 / 12%), transparent 17rem),
+    radial-gradient(circle at 8% 90%, rgb(232 217 168 / 13%), transparent 18rem),
+    var(--cor-marfin);
+  box-shadow: var(--sombra-xs);
 }
