@@ -331,7 +331,7 @@
     linear-gradient(
       145deg,
       var(--cor-vinho-700),
-      #76534e 48%,
+      var(--cor-alerta) 48%,
       var(--cor-verde-700)
     );
 
@@ -854,4 +854,95 @@
         16.5rem
       );
   }
+}
+
+/* =========================================================
+   DESIGN SYSTEM V1 — RESERVA / PIX
+   ========================================================= */
+
+.reserva-hero,
+.reserva-status-hero { isolation: isolate; }
+
+.reserva-hero-flor-viva,
+.reserva-status-flor-viva {
+  right: -3.5rem !important;
+  bottom: -4.5rem !important;
+  z-index: 1 !important;
+  opacity: 0.32 !important;
+}
+
+.reserva-hero-conteudo,
+.reserva-hero-floral,
+.reserva-status-conteudo,
+.reserva-status-floral { position: relative; z-index: 2; }
+
+.reserva-resumo,
+.reserva-formulario,
+.reserva-status-cartao,
+.reserva-pagamento-pix {
+  position: relative;
+  overflow: hidden;
+}
+
+.reserva-presente-imagem,
+.reserva-status-imagem {
+  margin-bottom: clamp(1.5rem, 4vw, 2.3rem);
+  box-shadow: var(--sombra-xs);
+}
+
+.reserva-resumo-flor-viva {
+  right: -3rem !important;
+  bottom: -3.5rem !important;
+  opacity: 0.25 !important;
+}
+
+/* Status é informação textual; não precisa virar uma pílula decorativa. */
+.reserva-status-selo {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reserva-status-selo--concluida { color: var(--cor-sucesso); }
+.reserva-status-selo--reservada { color: var(--cor-info); }
+.reserva-status-selo--cancelada,
+.reserva-status-selo--expirada { color: var(--cor-alerta); }
+
+.pix-gerado__status {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgb(255 253 248 / 76%);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pix-sucesso {
+  border: 0;
+  background: transparent;
+}
+
+.reserva-pagamento-pix .ds-form input,
+.reserva-pagamento-pix input {
+  border-color: rgb(255 253 248 / 20%);
+  background: rgb(255 253 248 / 94%);
+  color: var(--cor-texto);
+}
+
+.reserva-resumo {
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+.reserva-resumo > .reserva-presente-imagem {
+  width: auto;
+  margin: -1rem -1rem 2rem;
+  border-radius: var(--raio-lg) var(--raio-lg) var(--raio-sm) var(--raio-sm);
 }

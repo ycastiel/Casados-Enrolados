@@ -13,6 +13,9 @@ import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
+
 import {
   OrnamentoFloral,
   RamoFloral,
@@ -469,8 +472,14 @@ export function ReservaPresente() {
   }
 
   return (
-    <div className="pagina-reserva">
+    <div className="pagina-reserva ds-page">
       <section className="reserva-status-hero">
+        <FlorDesabrochando
+          className="reserva-status-flor-viva"
+          variante="fundo"
+          tamanho={190}
+        />
+
         <RamoFloral className="reserva-status-floral" />
 
         <div className="reserva-status-conteudo">
@@ -493,7 +502,7 @@ export function ReservaPresente() {
       </section>
 
       <section className="secao reserva-status-area">
-        <article className="reserva-status-cartao">
+        <article className="reserva-status-cartao ds-surface ds-surface--papel">
           <div className="reserva-status-topo">
             <div>
               <span className="secao-etiqueta">
@@ -508,14 +517,14 @@ export function ReservaPresente() {
               </h2>
             </div>
 
-            <span
-              className={`reserva-status-selo reserva-status-selo--${reserva.status.toLowerCase()}`}
-            >
-              {
-                reserva.status
-              }
-            </span>
           </div>
+
+          <EspacoImagem
+            className="reserva-status-imagem"
+            src={reserva.presente.imagemUrl}
+            alt={reserva.presente.imagemUrl ? `Imagem de ${reserva.presente.nome}` : ""}
+            proporcao="paisagem"
+          />
 
           <dl className="reserva-detalhes">
             <div>
@@ -625,7 +634,7 @@ export function ReservaPresente() {
 
         <aside
           id="pagamento-pix"
-          className="reserva-pagamento-pix"
+          className="reserva-pagamento-pix ds-surface ds-surface--vinho"
         >
           <header className="pix-cabecalho">
             <div>
@@ -745,7 +754,7 @@ export function ReservaPresente() {
             </div>
           ) : (
             <form
-              className="pix-formulario"
+              className="pix-formulario ds-form"
               onSubmit={(evento) => {
                 evento.preventDefault();
                 void gerarPix();

@@ -784,7 +784,7 @@ textarea:disabled {
   padding: clamp(1.7rem,4vw,2.8rem);
   border: 1px solid rgb(255 253 248 / 14%);
   border-radius: var(--raio-grande);
-  background: radial-gradient(circle at 88% 12%,rgb(232 217 168 / 18%),transparent 14rem),linear-gradient(135deg,var(--cor-vinho-700),#735047 48%,var(--cor-verde-700));
+  background: radial-gradient(circle at 88% 12%,rgb(232 217 168 / 18%),transparent 14rem),linear-gradient(135deg,var(--cor-vinho-700),var(--cor-terra-700) 48%,var(--cor-verde-700));
   box-shadow: 0 24px 58px rgb(70 45 42 / 14%);
 }
 
@@ -873,4 +873,83 @@ textarea:disabled {
 .presentes-admin-upload {
   border-color: rgb(142 59 70 / 20%);
   background: linear-gradient(145deg,rgb(244 231 232 / 42%),rgb(243 246 241 / 72%));
+}
+
+/* =========================================================
+   DESIGN SYSTEM V1 — ADMIN PRESENTES
+   ========================================================= */
+
+.presentes-admin-cabecalho {
+  isolation: isolate;
+}
+
+.presentes-admin-cabecalho-flor {
+  right: -3rem !important;
+  bottom: -4rem !important;
+  opacity: 0.22 !important;
+}
+
+.presentes-admin-cabecalho > *:not(.presentes-admin-cabecalho-flor) {
+  position: relative;
+  z-index: 2;
+}
+
+.presentes-admin-resumo {
+  gap: var(--gap-card);
+}
+
+.presentes-admin-resumo > article {
+  border-color: rgb(138 106 82 / 13%);
+  background: var(--vidro-forte);
+}
+
+.presentes-admin-painel {
+  overflow: hidden;
+}
+
+.presentes-admin-filtros input,
+.presentes-admin-filtros select,
+.presentes-admin-formulario input,
+.presentes-admin-formulario textarea,
+.presentes-admin-formulario select {
+  border-color: rgb(138 106 82 / 20%);
+  background: var(--vidro-forte);
+}
+
+/* Disponibilidade já é mostrada nas métricas; o status vira texto discreto. */
+.presente-admin-status {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.presente-admin-status--disponivel { color: var(--cor-sucesso); }
+.presente-admin-status--reservado { color: var(--cor-info); }
+.presente-admin-status--esgotado { color: var(--cor-alerta); }
+.presente-admin-status--inativo { color: var(--cor-texto-suave); }
+
+.presente-admin-item {
+  overflow: hidden;
+}
+
+.presentes-admin-aviso--erro {
+  border-color: rgb(119 57 68 / 18%);
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+.presentes-admin-cabecalho.ds-admin-header {
+  border: var(--linha-suave);
+  border-radius: var(--raio-lg);
+  background:
+    radial-gradient(circle at 92% 10%, rgb(183 154 200 / 12%), transparent 17rem),
+    radial-gradient(circle at 8% 90%, rgb(232 217 168 / 13%), transparent 18rem),
+    var(--cor-marfin);
+  box-shadow: var(--sombra-xs);
 }
