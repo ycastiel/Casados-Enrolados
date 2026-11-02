@@ -56,3 +56,16 @@
     }
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.estado-pagina {
+  background:
+    radial-gradient(circle at 20% 20%, rgb(183 154 200 / 8%), transparent 20rem),
+    radial-gradient(circle at 80% 24%, rgb(232 217 168 / 14%), transparent 22rem),
+    var(--cor-papel);
+}
+
+.estado-pagina-simbolo {
+  border: var(--linha-suave);
+  box-shadow: var(--sombra-xs);
+}

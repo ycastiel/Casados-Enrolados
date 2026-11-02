@@ -124,3 +124,28 @@
     font-size: 0.82rem;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.cabecalho {
+  border-bottom: var(--linha-suave);
+  background: rgb(255 253 248 / 88%);
+  box-shadow: 0 8px 28px rgb(62 58 55 / 4%);
+  backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.cabecalho-marca-simbolo {
+  color: var(--cor-vinho-500);
+}
+
+.cabecalho-navegacao a {
+  transition:
+    color var(--motion-rapido) ease,
+    background-color var(--motion-rapido) ease,
+    transform var(--motion-rapido) var(--ease-suave);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cabecalho-navegacao a:hover {
+    transform: translateY(-1px);
+  }
+}
