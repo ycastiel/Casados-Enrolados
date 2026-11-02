@@ -228,3 +228,10 @@
     width: 8rem;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.bloco-imagem-editorial__imagem-principal,
+.bloco-imagem-editorial__imagem-apoio {
+  border-color: rgb(138 106 82 / 13%);
+  box-shadow: var(--sombra-sm);
+}

@@ -1,7 +1,3 @@
-// ARQUIVO: frontend/javascript/componentes/imagens/FaixaImagemEditorial.tsx
-// FUNÇÃO: Faixa fotográfica reutilizável para criar pausas visuais entre seções.
-// IMAGENS: são definidas via CSS por variante, então o componente funciona mesmo antes de a foto existir.
-
 import "../../../css/componentes/imagens/faixaImagemEditorial.css";
 
 type VarianteFaixaImagem =

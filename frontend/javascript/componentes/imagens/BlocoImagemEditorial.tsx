@@ -1,7 +1,3 @@
-// ARQUIVO: frontend/javascript/componentes/imagens/BlocoImagemEditorial.tsx
-// FUNÇÃO: Combina fotografia principal, fotografia de apoio e texto editorial.
-// USO: cria profundidade visual sem transformar toda seção em background.
-
 import "../../../css/componentes/imagens/blocoImagemEditorial.css";
 
 type BlocoImagemEditorialProps = {

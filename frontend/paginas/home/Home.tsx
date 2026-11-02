@@ -2,6 +2,9 @@ import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
+import { CampoEstrelado } from "../../javascript/componentes/animacoes/CampoEstrelado";
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
 import {
   ContagemRegressiva,
 } from "../../javascript/paginas/home/ContagemRegressiva";
@@ -17,6 +20,8 @@ import {
 import {
   BlocoImagemEditorial,
 } from "../../javascript/componentes/imagens/BlocoImagemEditorial";
+
+import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
 
 import aliancasBiblia from "../../recursos/publico/imagens/home/aliancas-biblia.webp";
 import aliancasFloral from "../../recursos/publico/imagens/home/aliancas-floral.webp";
@@ -204,11 +209,24 @@ export function Home() {
       .slice(0, 2);
 
   return (
-    <div className="home">
+    <div className="home ds-page">
       <section
         className="hero"
         aria-labelledby="titulo-casal"
       >
+        <CampoEstrelado
+          className="home-hero-estrelas"
+          quantidade={16}
+          intensidade="sutil"
+          semente={5162027}
+        />
+
+        <FlorDesabrochando
+          className="home-hero-flor"
+          variante="fundo"
+          tamanho={230}
+        />
+
         <RamoFloral className="hero-floral hero-floral--esquerda" />
         <RamoFloral className="hero-floral hero-floral--direita" />
 
@@ -307,6 +325,13 @@ export function Home() {
             aria-hidden="true"
           />
 
+          <EspacoImagem
+            className="historia-imagem-placeholder"
+            proporcao="retrato"
+          >
+            Foto do casal ou um registro marcante da história
+          </EspacoImagem>
+
           <SuporteCartao
             className="historia-suporte"
             varianteMoldura="destaque"
@@ -328,6 +353,13 @@ export function Home() {
               >
                 ❦
               </span>
+
+              <FlorDesabrochando
+                className="historia-cartao__flor"
+                variante="card"
+                tamanho={132}
+                delayMs={350}
+              />
             </div>
           </SuporteCartao>
 
@@ -449,6 +481,11 @@ export function Home() {
         id="presentes"
         className="secao secao--convite"
       >
+        <FlorDesabrochando
+          className="convite-flor-desabrochando"
+          variante="fundo"
+          tamanho={200}
+        />
         <RamoFloral className="convite-floral" />
 
         <div className="convite-conteudo">

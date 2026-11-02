@@ -225,3 +225,9 @@
     text-align: center;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.faixa-imagem-editorial {
+  border: var(--linha-suave);
+  box-shadow: var(--sombra-flutuante);
+}
