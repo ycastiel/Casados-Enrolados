@@ -1822,3 +1822,80 @@
     padding-inline: 0.5rem;
   }
 }
+
+/* =========================================================
+   DESIGN SYSTEM V1 — HOME
+   Preserva integralmente a composição de #evento / Grande Dia.
+   ========================================================= */
+
+.home-hero-estrelas {
+  z-index: 0;
+  opacity: 0.48;
+}
+
+.home-hero-flor {
+  right: clamp(-4.5rem, -2vw, -1rem) !important;
+  bottom: clamp(-5rem, -2vw, -2rem) !important;
+  opacity: 0.38 !important;
+}
+
+.secao--historia .secao-cabecalho {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.historia-cenario {
+  grid-template-columns: minmax(15rem, 0.82fr) minmax(19rem, 1.18fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+
+.historia-imagem-placeholder {
+  width: min(100%, 24rem);
+  justify-self: center;
+  transform: rotate(-1.4deg);
+}
+
+.historia-cartao {
+  position: relative;
+  overflow: hidden;
+}
+
+.historia-cartao__flor {
+  right: -3rem !important;
+  bottom: -3.6rem !important;
+  opacity: 0.48 !important;
+}
+
+.secao--convite {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.convite-conteudo,
+.secao--convite > .botao,
+.convite-floral {
+  position: relative;
+  z-index: 2;
+}
+
+.convite-flor-desabrochando {
+  right: -3rem !important;
+  bottom: -4rem !important;
+  z-index: 1 !important;
+  opacity: 0.22 !important;
+}
+
+@media (max-width: 760px) {
+  .historia-cenario {
+    grid-template-columns: 1fr;
+  }
+
+  .historia-imagem-placeholder {
+    width: min(86vw, 22rem);
+  }
+}
+
+/* Ajuste estrutural do protótipo editorial da história. */
+.historia-cenario {
+  display: grid;
+}

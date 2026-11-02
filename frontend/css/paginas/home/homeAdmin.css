@@ -207,7 +207,7 @@
 .admin-boas-vindas {
   border-color: rgb(255 253 248 / 15%);
   background: radial-gradient(circle at 86% 10%, rgb(232 217 168 / 17%), transparent 15rem),
-    linear-gradient(135deg, var(--cor-vinho-700), #745047 48%, var(--cor-verde-700));
+    linear-gradient(135deg, var(--cor-vinho-700), var(--cor-terra-700) 48%, var(--cor-verde-700));
   box-shadow: 0 28px 70px rgb(68 45 42 / 16%);
 }
 
@@ -288,4 +288,53 @@
   .admin-acoes {
     grid-template-columns: 1fr;
   }
+}
+
+/* =========================================================
+   DESIGN SYSTEM V1 — ADMIN INÍCIO
+   ========================================================= */
+
+.admin-boas-vindas {
+  isolation: isolate;
+}
+
+.admin-boas-vindas-estrelas {
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.admin-boas-vindas-flor-viva {
+  right: -3rem !important;
+  bottom: -4rem !important;
+  z-index: 1 !important;
+  opacity: 0.3 !important;
+}
+
+.admin-boas-vindas-conteudo,
+.admin-boas-vindas-floral {
+  position: relative;
+  z-index: 2;
+}
+
+.admin-acoes {
+  gap: var(--gap-card);
+}
+
+.admin-acao {
+  overflow: hidden;
+}
+
+.admin-acao-numero {
+  color: var(--cor-vinho-500);
+  font-family: var(--fonte-titulo);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.admin-em-breve {
+  color: var(--cor-texto-suave);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
