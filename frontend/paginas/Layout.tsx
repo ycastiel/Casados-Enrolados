@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import { CampoEstrelado } from "../javascript/componentes/animacoes/CampoEstrelado";
+import { JardimDesabrochando } from "../javascript/componentes/animacoes/JardimDesabrochando";
 
 import { Footer } from "./layout/Footer";
 import { Header } from "./layout/Header";
@@ -12,10 +13,13 @@ export function Layout() {
     <div className="layout-publico">
       <CampoEstrelado
         className="layout-estrelas"
-        quantidade={18}
-        intensidade="sutil"
+        quantidade={34}
+        intensidade="media"
+        distribuicao="bordas"
         semente={16052027}
       />
+
+      <JardimDesabrochando />
       <div
         className="petalas"
         aria-hidden="true"

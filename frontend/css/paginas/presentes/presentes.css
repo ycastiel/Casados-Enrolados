@@ -257,8 +257,8 @@
 }
 
 .presentes-hero-flor {
-  right: -3.5rem !important;
-  bottom: -4.5rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
   z-index: 1 !important;
   opacity: 0.34 !important;
 }
@@ -301,8 +301,8 @@
 }
 
 .presente-cartao-flor-viva {
-  right: -2.8rem !important;
-  bottom: -3.2rem !important;
+  right: 0.7rem !important;
+  bottom: 0.55rem !important;
   z-index: 1 !important;
   opacity: 0.3 !important;
 }

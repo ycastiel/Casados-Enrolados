@@ -439,9 +439,9 @@
 }
 
 .convidados-cabecalho-flor {
-  right: -3rem !important;
-  bottom: -4rem !important;
-  opacity: 0.24 !important;
+  right: 1rem !important;
+  bottom: 0.8rem !important;
+  opacity: 0.4 !important;
 }
 
 .convidados-cabecalho > *:not(.convidados-cabecalho-flor) {

@@ -737,16 +737,16 @@ button:disabled,
 
 .layout-estrelas {
   position: fixed;
-  z-index: 0;
-  opacity: 0.42;
-  mask-image: linear-gradient(to bottom, black 0%, black 78%, transparent 100%);
+  z-index: 2;
+  opacity: 0.82;
+  mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
 }
 
 .admin-layout-estrelas {
   position: fixed;
   z-index: 0;
   left: min(19rem, 24vw);
-  opacity: 0.2;
+  opacity: 0.34;
 }
 
 @media (max-width: 900px) {

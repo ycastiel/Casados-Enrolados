@@ -1834,9 +1834,9 @@
 }
 
 .home-hero-flor {
-  right: clamp(-4.5rem, -2vw, -1rem) !important;
-  bottom: clamp(-5rem, -2vw, -2rem) !important;
-  opacity: 0.38 !important;
+  right: clamp(1rem, 3vw, 3rem) !important;
+  bottom: clamp(1.25rem, 3vw, 2.75rem) !important;
+  opacity: 0.58 !important;
 }
 
 .secao--historia .secao-cabecalho {
@@ -1861,9 +1861,9 @@
 }
 
 .historia-cartao__flor {
-  right: -3rem !important;
-  bottom: -3.6rem !important;
-  opacity: 0.48 !important;
+  right: 0.8rem !important;
+  bottom: 0.65rem !important;
+  opacity: 0.62 !important;
 }
 
 .secao--convite {
@@ -1879,10 +1879,10 @@
 }
 
 .convite-flor-desabrochando {
-  right: -3rem !important;
-  bottom: -4rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
   z-index: 1 !important;
-  opacity: 0.22 !important;
+  opacity: 0.42 !important;
 }
 
 @media (max-width: 760px) {

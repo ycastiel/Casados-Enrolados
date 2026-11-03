@@ -207,8 +207,8 @@
 .confirmacao-hero { isolation: isolate; }
 .confirmacao-hero-estrelas { z-index: 0; opacity: 0.38; }
 .confirmacao-hero-flor-viva {
-  right: -3.2rem !important;
-  bottom: -4rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
   z-index: 1 !important;
   opacity: 0.34 !important;
 }
@@ -216,9 +216,9 @@
 .confirmacao-hero-floral { position: relative; z-index: 2; }
 .confirmacao-cartao { position: relative; overflow: hidden; }
 .confirmacao-cartao-flor-viva {
-  right: -3rem !important;
-  bottom: -3.6rem !important;
-  opacity: 0.28 !important;
+  right: 0.8rem !important;
+  bottom: 0.65rem !important;
+  opacity: 0.5 !important;
 }
 .confirmacao-imagem-placeholder {
   margin: 1.6rem 0 2rem;
