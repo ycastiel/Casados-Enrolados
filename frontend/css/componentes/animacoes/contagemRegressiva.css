@@ -310,3 +310,10 @@
     opacity: 0.56;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.contagem-regressiva {
+  border-color: rgb(138 106 82 / 13%);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-sm);
+}

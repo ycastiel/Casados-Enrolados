@@ -11,7 +11,7 @@
   border: 1px solid rgb(255 253 248 / 16%);
   border-radius: var(--raio-grande);
   background: radial-gradient(circle at 85% 15%, rgb(232 217 168 / 18%), transparent 16rem),
-    linear-gradient(135deg, var(--cor-vinho-700), #745048 48%, var(--cor-verde-700));
+    linear-gradient(135deg, var(--cor-vinho-700), var(--cor-terra-700) 48%, var(--cor-verde-700));
   box-shadow: 0 28px 65px rgb(69 42 39 / 16%);
   color: var(--cor-marfin);
 }
@@ -298,4 +298,63 @@
   .pagamento-admin-topo {
     flex-direction: column;
   }
+}
+
+/* =========================================================
+   DESIGN SYSTEM V1 — ADMIN PAGAMENTOS
+   ========================================================= */
+
+.pagamentos-admin-cabecalho {
+  isolation: isolate;
+}
+
+.pagamentos-admin-cabecalho-flor {
+  right: 1rem !important;
+  bottom: 0.8rem !important;
+  opacity: 0.38 !important;
+}
+
+.pagamentos-admin-cabecalho > *:not(.pagamentos-admin-cabecalho-flor) {
+  position: relative;
+  z-index: 2;
+}
+
+.pagamentos-admin-resumo {
+  gap: var(--gap-card);
+}
+
+.pagamentos-admin-resumo > article {
+  border-color: rgb(138 106 82 / 13%);
+  background: var(--vidro-forte);
+}
+
+.pagamento-admin-card {
+  overflow: hidden;
+}
+
+/* O texto do estado é suficiente; não precisamos de uma pílula por pagamento. */
+.pagamento-admin-status {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pagamento-admin-status--aprovado { color: var(--cor-sucesso); }
+.pagamento-admin-status--pendente,
+.pagamento-admin-status--processando { color: var(--cor-info); }
+.pagamento-admin-status--recusado,
+.pagamento-admin-status--cancelado,
+.pagamento-admin-status--expirado { color: var(--cor-alerta); }
+.pagamento-admin-status--estornado { color: var(--cor-texto-suave); }
+
+.pagamentos-admin-aviso {
+  border-color: rgb(119 57 68 / 18%);
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
 }

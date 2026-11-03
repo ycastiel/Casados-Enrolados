@@ -3,8 +3,9 @@ import { createRoot } from "react-dom/client";
 
 import { App } from "./App";
 
-import "../../css/paginas/global.css";
+import "../../css/global.css";
 import "../../css/componentes/animacoes/animacoes.css";
+import "../../css/componentes/animacoes/motion.css";
 
 const root = document.getElementById("root");
 

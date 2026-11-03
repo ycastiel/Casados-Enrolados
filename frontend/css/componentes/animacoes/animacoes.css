@@ -47,7 +47,7 @@
     linear-gradient(
       145deg,
       var(--cor-lilas),
-      #efe6f3
+      var(--cor-lilas-100)
     );
 }
 
@@ -57,7 +57,7 @@
     linear-gradient(
       145deg,
       var(--cor-azul),
-      #e5ebef
+      var(--cor-azul-100)
     );
 }
 

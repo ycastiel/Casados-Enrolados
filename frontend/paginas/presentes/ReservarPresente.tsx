@@ -8,6 +8,9 @@ import {
   useParams,
 } from "react-router-dom";
 
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
+
 import {
   LinkTransicao,
   useTransicaoPagina,
@@ -175,8 +178,14 @@ export function ReservarPresente() {
   }
 
   return (
-    <div className="pagina-reserva">
+    <div className="pagina-reserva ds-page">
       <section className="reserva-hero">
+        <FlorDesabrochando
+          className="reserva-hero-flor-viva"
+          variante="fundo"
+          tamanho={190}
+        />
+
         <RamoFloral className="reserva-hero-floral" />
 
         <div className="reserva-hero-conteudo">
@@ -198,7 +207,14 @@ export function ReservarPresente() {
       </section>
 
       <section className="secao reserva-area">
-        <div className="reserva-resumo">
+        <div className="reserva-resumo ds-surface ds-surface--botanica">
+          <EspacoImagem
+            className="reserva-presente-imagem"
+            src={presente.imagemUrl}
+            alt={presente.imagemUrl ? `Imagem de ${presente.nome}` : ""}
+            proporcao="paisagem"
+          />
+
           <span className="secao-etiqueta">
             Seu presente
           </span>
@@ -253,10 +269,17 @@ export function ReservarPresente() {
               </div>
             )}
           </dl>
+
+          <FlorDesabrochando
+            className="reserva-resumo-flor-viva"
+            variante="card"
+            tamanho={125}
+            delayMs={360}
+          />
         </div>
 
         <form
-          className="reserva-formulario"
+          className="reserva-formulario ds-form ds-surface ds-surface--papel"
           onSubmit={reservar}
         >
           <span className="secao-etiqueta">

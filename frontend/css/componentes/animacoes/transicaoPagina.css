@@ -555,3 +555,8 @@
     display: none;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.transicao-pagina {
+  --transicao-pagina-duracao: var(--motion-lento);
+}

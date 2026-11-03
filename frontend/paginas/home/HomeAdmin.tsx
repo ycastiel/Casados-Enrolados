@@ -2,6 +2,9 @@ import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
+import { CampoEstrelado } from "../../javascript/componentes/animacoes/CampoEstrelado";
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
 import {
   Cartao,
 } from "../../javascript/componentes/cards/Cartao";
@@ -13,8 +16,21 @@ import {
 
 export function Admin() {
   return (
-    <div className="admin-inicio">
-      <section className="admin-boas-vindas">
+    <div className="admin-inicio ds-admin-page">
+      <section className="admin-boas-vindas ds-admin-header">
+        <CampoEstrelado
+          className="admin-boas-vindas-estrelas"
+          quantidade={10}
+          intensidade="sutil"
+          semente={404}
+        />
+
+        <FlorDesabrochando
+          className="admin-boas-vindas-flor-viva"
+          variante="fundo"
+          tamanho={165}
+        />
+
         <RamoFloral className="admin-boas-vindas-floral" />
 
         <div className="admin-boas-vindas-conteudo">
@@ -58,7 +74,7 @@ export function Admin() {
 
         <div className="admin-acoes">
           <Cartao
-            className="admin-acao"
+            className="admin-acao ds-surface ds-surface--botanica"
             variante="botanico"
             interativo
           >
@@ -84,7 +100,7 @@ export function Admin() {
           </Cartao>
 
           <Cartao
-            className="admin-acao"
+            className="admin-acao ds-surface ds-surface--papel"
             variante="papel"
             interativo
           >
@@ -110,7 +126,7 @@ export function Admin() {
           </Cartao>
 
           <Cartao
-            className="admin-acao admin-acao--pagamentos"
+            className="admin-acao admin-acao--pagamentos ds-surface"
             variante="sutil"
             interativo
           >
@@ -136,7 +152,7 @@ export function Admin() {
           </Cartao>
 
           <Cartao
-            className="admin-acao"
+            className="admin-acao ds-surface"
             variante="sutil"
           >
             <span className="admin-acao-numero">
@@ -159,7 +175,7 @@ export function Admin() {
         </div>
       </section>
 
-      <section className="admin-recado">
+      <section className="admin-recado ds-surface ds-surface--papel">
         <OrnamentoFloral compacto />
 
         <h2>

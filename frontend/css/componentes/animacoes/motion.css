@@ -1,0 +1,370 @@
+/* =========================================================
+   Casados & Enrolados — Motion System v2
+   ========================================================= */
+
+:root {
+  --motion-floral-delay: 500ms;
+  --motion-floral-duration: 1400ms;
+  --motion-floral-easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --motion-estrela-min: 1900ms;
+  --motion-estrela-max: 6100ms;
+}
+
+/* =========================================================
+   FLOR DESABROCHANDO
+   Inspirada na flor vinho da moldura de "O grande dia".
+   ========================================================= */
+
+.flor-desabrochando {
+  position: relative;
+  width: var(--flor-tamanho, 180px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  user-select: none;
+  isolation: isolate;
+}
+
+.flor-desabrochando__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(0 14px 18px rgb(92 44 47 / 10%))
+    drop-shadow(0 3px 7px rgb(62 58 55 / 7%));
+}
+
+.flor-desabrochando__petala,
+.flor-desabrochando__folha,
+.flor-desabrochando__baga,
+.flor-desabrochando__haste,
+.flor-desabrochando__miolo {
+  transform-box: view-box;
+  transform-origin: 120px 120px;
+}
+
+.flor-desabrochando__petala {
+  opacity: 0;
+  transform: scale(0.12) rotate(-7deg);
+  transition:
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing),
+    opacity 420ms ease;
+}
+
+.flor-desabrochando__petala--principal {
+  fill: var(--flor-principal);
+  transition-delay: calc(var(--petala-indice, 0) * 68ms);
+}
+
+.flor-desabrochando__petala--secundaria {
+  fill: var(--flor-secundaria);
+  opacity: 0;
+  transform: scale(0.08) rotate(8deg);
+  transition-delay: calc(90ms + (var(--petala-indice, 0) * 58ms));
+}
+
+.flor-desabrochando__ramos {
+  opacity: 0;
+  transform: scale(0.62);
+  transform-origin: 120px 133px;
+  transition:
+    opacity 500ms ease,
+    transform 1050ms var(--motion-floral-easing);
+}
+
+.flor-desabrochando__folha {
+  fill: var(--flor-folha);
+}
+
+.flor-desabrochando__folha--a,
+.flor-desabrochando__folha--c {
+  opacity: 0.92;
+}
+
+.flor-desabrochando__folha--b,
+.flor-desabrochando__folha--d {
+  opacity: 0.82;
+}
+
+.flor-desabrochando__haste {
+  fill: none;
+  stroke: color-mix(in srgb, var(--flor-folha) 82%, #453a31 18%);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.flor-desabrochando__baga {
+  fill: var(--flor-baga);
+  stroke: rgb(255 253 248 / 45%);
+  stroke-width: 1;
+}
+
+.flor-desabrochando__miolo {
+  opacity: 0;
+  transform: scale(0.18);
+  transition:
+    transform 780ms var(--motion-floral-easing) 360ms,
+    opacity 340ms ease 300ms;
+}
+
+.flor-desabrochando__miolo-base {
+  fill: var(--flor-miolo);
+}
+
+.flor-desabrochando__estame-linha {
+  stroke: color-mix(in srgb, var(--flor-estame) 88%, white 12%);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.flor-desabrochando__estame-ponto {
+  fill: var(--flor-estame);
+  filter: drop-shadow(0 0 2px rgb(228 193 110 / 42%));
+}
+
+.flor-desabrochando__miolo-centro {
+  fill: color-mix(in srgb, var(--flor-estame) 76%, var(--flor-miolo) 24%);
+}
+
+.flor-desabrochando__miolo-luz {
+  fill: rgb(255 243 201 / 92%);
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__petala {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__petala--secundaria {
+  opacity: 0.58;
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__ramos {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.flor-desabrochando.is-aberta .flor-desabrochando__miolo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.flor-desabrochando:not(.is-aberta) .flor-desabrochando__petala {
+  transition-duration: 720ms, 300ms;
+  transition-delay: 0ms;
+}
+
+.flor-desabrochando:not(.is-aberta) .flor-desabrochando__ramos,
+.flor-desabrochando:not(.is-aberta) .flor-desabrochando__miolo {
+  transition-delay: 0ms;
+}
+
+/* A flor de card agora fica inteira dentro do card. */
+.flor-desabrochando--card {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.55rem;
+  z-index: 0;
+  opacity: 0.64;
+}
+
+.flor-desabrochando--fundo {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.34;
+  filter: saturate(0.94);
+}
+
+.flor-desabrochando--solta {
+  position: relative;
+}
+
+.flor-desabrochando--marca {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.74;
+  filter: saturate(0.96);
+}
+
+/* =========================================================
+   JARDIM FLORAL AMBIENTAL
+   Flores fixas nas bordas do viewport, fora dos recortes das seções.
+   ========================================================= */
+
+.jardim-floral {
+  position: fixed;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.jardim-floral__flor {
+  position: absolute !important;
+}
+
+.jardim-floral__flor--1 {
+  top: 12vh;
+  left: 1.2rem;
+  transform: rotate(-9deg);
+}
+
+.jardim-floral__flor--2 {
+  top: 36vh;
+  right: 1.35rem;
+  transform: rotate(8deg);
+}
+
+.jardim-floral__flor--3 {
+  bottom: 18vh;
+  left: clamp(1rem, 4vw, 3.5rem);
+  transform: rotate(12deg);
+}
+
+.jardim-floral__flor--4 {
+  right: clamp(1rem, 5vw, 4rem);
+  bottom: 4.5vh;
+  transform: rotate(-5deg);
+}
+
+.jardim-floral__flor--5 {
+  top: 7vh;
+  right: clamp(8rem, 16vw, 15rem);
+  opacity: 0.56;
+  transform: rotate(14deg);
+}
+
+/* =========================================================
+   CAMPO ESTRELADO
+   ========================================================= */
+
+.campo-estrelado {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.campo-estrelado__estrela {
+  position: absolute;
+  left: var(--estrela-left);
+  top: var(--estrela-top);
+  width: var(--estrela-size);
+  height: var(--estrela-size);
+  border-radius: 999px;
+  background: var(--estrela-color);
+  color: var(--estrela-color);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.42);
+  box-shadow:
+    0 0 5px currentColor,
+    0 0 12px color-mix(in srgb, currentColor 68%, transparent),
+    0 0 20px color-mix(in srgb, currentColor 24%, transparent);
+  animation:
+    estrela-respiro var(--estrela-duration)
+    ease-in-out var(--estrela-delay) infinite;
+}
+
+.campo-estrelado--sutil .campo-estrelado__estrela {
+  filter: saturate(0.9);
+}
+
+.campo-estrelado--media .campo-estrelado__estrela {
+  filter: saturate(1.05);
+}
+
+.campo-estrelado__estrela--cruz {
+  background: transparent;
+  box-shadow: none;
+}
+
+.campo-estrelado__estrela--cruz::before,
+.campo-estrelado__estrela--cruz::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 7px currentColor,
+    0 0 15px color-mix(in srgb, currentColor 42%, transparent);
+}
+
+.campo-estrelado__estrela--cruz::before {
+  width: calc(var(--estrela-size) * 4.4);
+  height: max(1px, calc(var(--estrela-size) * 0.12));
+}
+
+.campo-estrelado__estrela--cruz::after {
+  width: max(1px, calc(var(--estrela-size) * 0.12));
+  height: calc(var(--estrela-size) * 4.4);
+}
+
+@keyframes estrela-respiro {
+  0%,
+  12%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.38) rotate(0deg);
+  }
+
+  35% {
+    opacity: calc(var(--estrela-opacity) * 0.52);
+  }
+
+  48% {
+    opacity: var(--estrela-opacity);
+    transform: translate(-50%, -50%) scale(1.22) rotate(5deg);
+  }
+
+  61% {
+    opacity: calc(var(--estrela-opacity) * 0.72);
+  }
+
+  78% {
+    opacity: 0.08;
+    transform: translate(-50%, -50%) scale(0.64) rotate(-3deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .jardim-floral__flor--3,
+  .jardim-floral__flor--5 {
+    display: none;
+  }
+
+  .jardim-floral__flor--1,
+  .jardim-floral__flor--2,
+  .jardim-floral__flor--4 {
+    opacity: 0.58;
+    transform: scale(0.78);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flor-desabrochando__petala,
+  .flor-desabrochando__ramos,
+  .flor-desabrochando__miolo {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: scale(1) rotate(0deg) !important;
+  }
+
+  .jardim-floral__flor {
+    opacity: 0.34;
+  }
+
+  .campo-estrelado__estrela {
+    animation: none !important;
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}

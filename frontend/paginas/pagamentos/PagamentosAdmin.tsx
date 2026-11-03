@@ -11,6 +11,8 @@ import {
   type StatusPagamentoAdmin,
 } from "../../javascript/paginas/pagamentos/PagamentosAdmin";
 
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
 import {
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
@@ -107,8 +109,14 @@ export function PagamentosAdmin() {
   }
 
   return (
-    <div className="pagamentos-admin">
-      <header className="pagamentos-admin-cabecalho">
+    <div className="pagamentos-admin ds-admin-page">
+      <header className="pagamentos-admin-cabecalho ds-admin-header">
+        <FlorDesabrochando
+          className="pagamentos-admin-cabecalho-flor"
+          variante="fundo"
+          tamanho={150}
+        />
+
         <div>
           <span className="secao-etiqueta">
             Presentes e contribuições
@@ -124,22 +132,22 @@ export function PagamentosAdmin() {
       </header>
 
       <section className="pagamentos-admin-resumo" aria-label="Resumo dos pagamentos">
-        <article>
+        <article className="ds-metrica">
           <span>Registros</span>
           <strong>{resumo.total}</strong>
           <small>tentativas criadas</small>
         </article>
-        <article>
+        <article className="ds-metrica">
           <span>Aguardando</span>
           <strong>{resumo.pendentes}</strong>
           <small>pendentes ou processando</small>
         </article>
-        <article>
+        <article className="ds-metrica">
           <span>Confirmados</span>
           <strong>{resumo.aprovados}</strong>
           <small>reservas concluídas</small>
         </article>
-        <article>
+        <article className="ds-metrica">
           <span>Recebido</span>
           <strong>{moeda.format(resumo.valorAprovado)}</strong>
           <small>somente aprovados</small>
@@ -164,7 +172,7 @@ export function PagamentosAdmin() {
           </div>
         ) : (
           pagamentos.map((pagamento) => (
-            <article className="pagamento-admin-card" key={pagamento.id}>
+            <article className="pagamento-admin-card ds-surface ds-surface--papel" key={pagamento.id}>
               <div className="pagamento-admin-imagem">
                 {pagamento.reserva.presente.imagemUrl ? (
                   <img src={pagamento.reserva.presente.imagemUrl} alt="" />
@@ -181,7 +189,7 @@ export function PagamentosAdmin() {
                     </span>
                     <h2>{pagamento.reserva.nomeResponsavel}</h2>
                   </div>
-                  <span className={`pagamento-admin-status pagamento-admin-status--${pagamento.status.toLowerCase()}`}>
+                  <span className={`pagamento-admin-status ds-status-texto pagamento-admin-status--${pagamento.status.toLowerCase()}`}>
                     {rotuloStatus(pagamento.status)}
                   </span>
                 </div>

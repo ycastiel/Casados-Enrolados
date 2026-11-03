@@ -16,6 +16,8 @@ import {
   type TipoPresenteAdmin,
 } from "../../javascript/paginas/presentes/PresentesAdmin";
 
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
 import {
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
@@ -643,8 +645,14 @@ export function PresentesAdmin() {
   }
 
   return (
-    <div className="presentes-admin">
-      <header className="presentes-admin-cabecalho">
+    <div className="presentes-admin ds-admin-page">
+      <header className="presentes-admin-cabecalho ds-admin-header">
+        <FlorDesabrochando
+          className="presentes-admin-cabecalho-flor"
+          variante="fundo"
+          tamanho={150}
+        />
+
         <div>
           <span className="secao-etiqueta">
             Lista do casal
@@ -674,25 +682,25 @@ export function PresentesAdmin() {
         className="presentes-admin-resumo"
         aria-label="Resumo da lista de presentes"
       >
-        <article>
+        <article className="ds-metrica">
           <span>Total</span>
           <strong>{resumo.total}</strong>
           <small>itens cadastrados</small>
         </article>
 
-        <article>
+        <article className="ds-metrica">
           <span>Disponíveis</span>
           <strong>{resumo.disponiveis}</strong>
           <small>com unidades livres</small>
         </article>
 
-        <article>
+        <article className="ds-metrica">
           <span>Reservados</span>
           <strong>{resumo.reservados}</strong>
           <small>com reserva ativa</small>
         </article>
 
-        <article>
+        <article className="ds-metrica">
           <span>Inativos</span>
           <strong>{resumo.inativos}</strong>
           <small>fora do site público</small>
@@ -719,7 +727,7 @@ export function PresentesAdmin() {
         </div>
       )}
 
-      <section className="presentes-admin-painel">
+      <section className="presentes-admin-painel ds-surface ds-surface--papel">
         <div className="presentes-admin-filtros">
           <label>
             <span>Buscar</span>
@@ -789,7 +797,7 @@ export function PresentesAdmin() {
                 return (
                   <article
                     className={[
-                      "presente-admin-item",
+                      "presente-admin-item ds-surface ds-surface--papel",
                       !presente.ativo
                         ? "presente-admin-item--inativo"
                         : "",
@@ -825,9 +833,11 @@ export function PresentesAdmin() {
                           </h2>
                         </div>
 
-                        <span className={status.classe}>
-                          {status.texto}
-                        </span>
+                        {!presente.ativo ? (
+                          <span className={status.classe}>
+                            {status.texto}
+                          </span>
+                        ) : null}
                       </div>
 
                       <p>
@@ -942,7 +952,7 @@ export function PresentesAdmin() {
           />
 
           <aside
-            className="presentes-admin-formulario"
+            className="presentes-admin-formulario ds-form"
             role="dialog"
             aria-modal="true"
             aria-labelledby="titulo-formulario-presente"
