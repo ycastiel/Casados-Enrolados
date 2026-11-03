@@ -865,8 +865,8 @@
 
 .reserva-hero-flor-viva,
 .reserva-status-flor-viva {
-  right: -3.5rem !important;
-  bottom: -4.5rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
   z-index: 1 !important;
   opacity: 0.32 !important;
 }
@@ -891,9 +891,9 @@
 }
 
 .reserva-resumo-flor-viva {
-  right: -3rem !important;
-  bottom: -3.5rem !important;
-  opacity: 0.25 !important;
+  right: 0.8rem !important;
+  bottom: 0.7rem !important;
+  opacity: 0.48 !important;
 }
 
 /* Status é informação textual; não precisa virar uma pílula decorativa. */

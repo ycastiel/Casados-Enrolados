@@ -304,8 +304,8 @@
 }
 
 .admin-boas-vindas-flor-viva {
-  right: -3rem !important;
-  bottom: -4rem !important;
+  right: 1rem !important;
+  bottom: 0.8rem !important;
   z-index: 1 !important;
   opacity: 0.3 !important;
 }

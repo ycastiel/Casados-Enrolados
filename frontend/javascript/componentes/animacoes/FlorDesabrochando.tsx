@@ -8,13 +8,15 @@ import {
 
 import "../../../css/componentes/animacoes/motion.css";
 
-type VarianteFlor = "solta" | "card" | "fundo";
+type VarianteFlor = "solta" | "card" | "fundo" | "marca";
 
 type PaletaFlor = {
   principal: string;
   secundaria: string;
   miolo: string;
+  estame: string;
   folha: string;
+  baga: string;
 };
 
 type FlorDesabrochandoProps = {
@@ -25,34 +27,67 @@ type FlorDesabrochandoProps = {
   threshold?: number;
   variante?: VarianteFlor;
   paletas?: PaletaFlor[];
+  cicloContinuo?: boolean;
+  intervaloMs?: number;
+  deslocamentoMs?: number;
 };
 
 const PALETAS_PADRAO: PaletaFlor[] = [
-  { principal: "#7f2f3f", secundaria: "#c98d96", miolo: "#e4c16f", folha: "#78886b" },
-  { principal: "#a86f78", secundaria: "#e4b9b5", miolo: "#d8ad5f", folha: "#6f8065" },
-  { principal: "#c79a45", secundaria: "#ecd8a0", miolo: "#8f5b43", folha: "#7f8d68" },
-  { principal: "#8b7898", secundaria: "#c9b7cf", miolo: "#d7b968", folha: "#6d8168" },
-  { principal: "#6f8694", secundaria: "#b8c7ce", miolo: "#d6b35e", folha: "#73806a" },
+  {
+    principal: "#7b2635",
+    secundaria: "#a74c58",
+    miolo: "#6c1f2e",
+    estame: "#ddb45d",
+    folha: "#647253",
+    baga: "#a83e48",
+  },
+  {
+    principal: "#9a4e5b",
+    secundaria: "#c67f87",
+    miolo: "#71313c",
+    estame: "#e1bd6d",
+    folha: "#71805f",
+    baga: "#b3535d",
+  },
+  {
+    principal: "#71506f",
+    secundaria: "#a5859f",
+    miolo: "#52384f",
+    estame: "#d9b966",
+    folha: "#65745a",
+    baga: "#87495f",
+  },
+  {
+    principal: "#a86957",
+    secundaria: "#c8947f",
+    miolo: "#704436",
+    estame: "#e0bd72",
+    folha: "#72805e",
+    baga: "#a74b4c",
+  },
 ];
 
-const PETALAS_EXTERNAS = Array.from({ length: 10 }, (_, indice) => indice);
-const PETALAS_INTERNAS = Array.from({ length: 7 }, (_, indice) => indice);
+const PETALAS = Array.from({ length: 5 }, (_, indice) => indice);
+const ESTAMES = Array.from({ length: 18 }, (_, indice) => indice);
 
 export function FlorDesabrochando({
   className = "",
   tamanho = 180,
   delayMs = 500,
   duracaoMs = 1400,
-  threshold = 0.42,
+  threshold = 0.38,
   variante = "solta",
   paletas = PALETAS_PADRAO,
+  cicloContinuo = false,
+  intervaloMs = 7200,
+  deslocamentoMs = 0,
 }: FlorDesabrochandoProps) {
   const raizRef = useRef<HTMLDivElement | null>(null);
-  const timerAberturaRef = useRef<number | null>(null);
-  const timerConclusaoRef = useRef<number | null>(null);
+  const timersRef = useRef<number[]>([]);
+  const intervaloRef = useRef<number | null>(null);
   const cicloCompletoRef = useRef(false);
 
-  const [visivel, setVisivel] = useState(false);
+  const [visivel, setVisivel] = useState(cicloContinuo);
   const [aberta, setAberta] = useState(false);
   const [indicePaleta, setIndicePaleta] = useState(0);
 
@@ -62,18 +97,65 @@ export function FlorDesabrochando({
   );
 
   function limparTimers() {
-    if (timerAberturaRef.current !== null) {
-      window.clearTimeout(timerAberturaRef.current);
-      timerAberturaRef.current = null;
-    }
+    timersRef.current.forEach((timer) => window.clearTimeout(timer));
+    timersRef.current = [];
 
-    if (timerConclusaoRef.current !== null) {
-      window.clearTimeout(timerConclusaoRef.current);
-      timerConclusaoRef.current = null;
+    if (intervaloRef.current !== null) {
+      window.clearInterval(intervaloRef.current);
+      intervaloRef.current = null;
     }
   }
 
   useEffect(() => {
+    if (!cicloContinuo) return;
+
+    let desmontado = false;
+
+    const executarCiclo = () => {
+      if (desmontado) return;
+
+      setVisivel(true);
+      setAberta(false);
+
+      const abrir = window.setTimeout(() => {
+        if (desmontado) return;
+        setAberta(true);
+
+        const fechar = window.setTimeout(() => {
+          if (desmontado) return;
+          setAberta(false);
+          setIndicePaleta((indice) => (indice + 1) % paletas.length);
+        }, duracaoMs + 2100);
+
+        timersRef.current.push(fechar);
+      }, delayMs);
+
+      timersRef.current.push(abrir);
+    };
+
+    const iniciar = window.setTimeout(() => {
+      executarCiclo();
+      intervaloRef.current = window.setInterval(executarCiclo, intervaloMs);
+    }, deslocamentoMs);
+
+    timersRef.current.push(iniciar);
+
+    return () => {
+      desmontado = true;
+      limparTimers();
+    };
+  }, [
+    cicloContinuo,
+    delayMs,
+    deslocamentoMs,
+    duracaoMs,
+    intervaloMs,
+    paletas.length,
+  ]);
+
+  useEffect(() => {
+    if (cicloContinuo) return;
+
     const elemento = raizRef.current;
     if (!elemento) return;
 
@@ -94,13 +176,17 @@ export function FlorDesabrochando({
           return;
         }
 
-        timerAberturaRef.current = window.setTimeout(() => {
+        const abrir = window.setTimeout(() => {
           setAberta(true);
 
-          timerConclusaoRef.current = window.setTimeout(() => {
+          const concluir = window.setTimeout(() => {
             cicloCompletoRef.current = true;
           }, duracaoMs);
+
+          timersRef.current.push(concluir);
         }, delayMs);
+
+        timersRef.current.push(abrir);
       },
       { threshold },
     );
@@ -111,7 +197,13 @@ export function FlorDesabrochando({
       limparTimers();
       observer.disconnect();
     };
-  }, [delayMs, duracaoMs, paletas.length, threshold]);
+  }, [
+    cicloContinuo,
+    delayMs,
+    duracaoMs,
+    paletas.length,
+    threshold,
+  ]);
 
   const estilo = {
     "--flor-tamanho": `${tamanho}px`,
@@ -119,7 +211,9 @@ export function FlorDesabrochando({
     "--flor-principal": paletaAtual.principal,
     "--flor-secundaria": paletaAtual.secundaria,
     "--flor-miolo": paletaAtual.miolo,
+    "--flor-estame": paletaAtual.estame,
     "--flor-folha": paletaAtual.folha,
+    "--flor-baga": paletaAtual.baga,
   } as CSSProperties;
 
   return (
@@ -130,68 +224,150 @@ export function FlorDesabrochando({
         `flor-desabrochando--${variante}`,
         visivel ? "is-visivel" : "",
         aberta ? "is-aberta" : "",
+        cicloContinuo ? "is-ciclo-continuo" : "",
         className,
-      ].filter(Boolean).join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={estilo}
       aria-hidden="true"
     >
-      <svg className="flor-desabrochando__svg" viewBox="0 0 200 200" role="presentation">
-        <g className="flor-desabrochando__folhas">
+      <svg
+        className="flor-desabrochando__svg"
+        viewBox="0 0 240 240"
+        role="presentation"
+      >
+        <g className="flor-desabrochando__ramos">
           <path
-            className="flor-desabrochando__folha flor-desabrochando__folha--esquerda"
-            d="M91 126 C64 145, 49 163, 38 187 C64 183, 84 168, 99 139 Z"
+            className="flor-desabrochando__haste"
+            d="M53 162 C78 143, 91 133, 105 119"
           />
           <path
-            className="flor-desabrochando__folha flor-desabrochando__folha--direita"
-            d="M109 126 C136 145, 151 163, 162 187 C136 183, 116 168, 101 139 Z"
+            className="flor-desabrochando__haste"
+            d="M187 162 C162 143, 149 133, 135 119"
           />
+
+          <path
+            className="flor-desabrochando__folha flor-desabrochando__folha--a"
+            d="M83 145 C58 127, 42 132, 27 153 C48 165, 68 164, 89 151 Z"
+          />
+          <path
+            className="flor-desabrochando__folha flor-desabrochando__folha--b"
+            d="M157 145 C182 127, 198 132, 213 153 C192 165, 172 164, 151 151 Z"
+          />
+          <path
+            className="flor-desabrochando__folha flor-desabrochando__folha--c"
+            d="M88 127 C65 103, 50 101, 33 113 C47 134, 66 141, 91 136 Z"
+          />
+          <path
+            className="flor-desabrochando__folha flor-desabrochando__folha--d"
+            d="M152 127 C175 103, 190 101, 207 113 C193 134, 174 141, 149 136 Z"
+          />
+
+          {[0, 1, 2].map((indice) => (
+            <circle
+              key={`baga-e-${indice}`}
+              className="flor-desabrochando__baga"
+              cx={50 + indice * 12}
+              cy={153 - indice * 11}
+              r={5 - indice * 0.45}
+            />
+          ))}
+          {[0, 1, 2].map((indice) => (
+            <circle
+              key={`baga-d-${indice}`}
+              className="flor-desabrochando__baga"
+              cx={190 - indice * 12}
+              cy={153 - indice * 11}
+              r={5 - indice * 0.45}
+            />
+          ))}
         </g>
 
-        <g className="flor-desabrochando__petalas flor-desabrochando__petalas--externas">
-          {PETALAS_EXTERNAS.map((indice) => (
-            <g key={`externa-${indice}`} transform={`rotate(${indice * 36} 100 100)`}>
-              <path
-                className="flor-desabrochando__petala flor-desabrochando__petala--externa"
+        <g className="flor-desabrochando__petalas flor-desabrochando__petalas--secundarias">
+          {PETALAS.map((indice) => (
+            <g
+              key={`secundaria-${indice}`}
+              transform={`rotate(${indice * 72 + 36} 120 120)`}
+            >
+              <ellipse
+                className="flor-desabrochando__petala flor-desabrochando__petala--secundaria"
                 style={{ "--petala-indice": indice } as CSSProperties}
-                d="M100 101 C80 86, 76 45, 100 18 C124 45, 120 86, 100 101 Z"
+                cx="120"
+                cy="82"
+                rx="30"
+                ry="46"
               />
             </g>
           ))}
         </g>
 
-        <g className="flor-desabrochando__petalas flor-desabrochando__petalas--internas">
-          {PETALAS_INTERNAS.map((indice) => (
+        <g className="flor-desabrochando__petalas flor-desabrochando__petalas--principais">
+          {PETALAS.map((indice) => (
             <g
-              key={`interna-${indice}`}
-              transform={`rotate(${indice * (360 / PETALAS_INTERNAS.length) + 12} 100 100)`}
+              key={`principal-${indice}`}
+              transform={`rotate(${indice * 72} 120 120)`}
             >
-              <path
-                className="flor-desabrochando__petala flor-desabrochando__petala--interna"
+              <ellipse
+                className="flor-desabrochando__petala flor-desabrochando__petala--principal"
                 style={{ "--petala-indice": indice } as CSSProperties}
-                d="M100 103 C87 90, 87 61, 100 42 C113 61, 113 90, 100 103 Z"
+                cx="120"
+                cy="79"
+                rx="38"
+                ry="54"
               />
             </g>
           ))}
         </g>
 
         <g className="flor-desabrochando__miolo">
-          <circle cx="100" cy="100" r="24" className="flor-desabrochando__miolo-base" />
-          {Array.from({ length: 12 }, (_, indice) => {
-            const angulo = (indice / 12) * Math.PI * 2;
-            const cx = 100 + Math.cos(angulo) * 14;
-            const cy = 100 + Math.sin(angulo) * 14;
+          <circle
+            cx="120"
+            cy="120"
+            r="29"
+            className="flor-desabrochando__miolo-base"
+          />
+
+          {ESTAMES.map((indice) => {
+            const angulo = (indice / ESTAMES.length) * Math.PI * 2;
+            const inicio = 14;
+            const fim = 31 + (indice % 3) * 2.5;
+            const x1 = 120 + Math.cos(angulo) * inicio;
+            const y1 = 120 + Math.sin(angulo) * inicio;
+            const x2 = 120 + Math.cos(angulo) * fim;
+            const y2 = 120 + Math.sin(angulo) * fim;
 
             return (
-              <circle
-                key={`miolo-${indice}`}
-                cx={cx}
-                cy={cy}
-                r="3.4"
-                className="flor-desabrochando__miolo-ponto"
-              />
+              <g key={`estame-${indice}`}>
+                <line
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  className="flor-desabrochando__estame-linha"
+                />
+                <circle
+                  cx={x2}
+                  cy={y2}
+                  r={2.2 + (indice % 2) * 0.45}
+                  className="flor-desabrochando__estame-ponto"
+                />
+              </g>
             );
           })}
-          <circle cx="100" cy="100" r="6" className="flor-desabrochando__miolo-centro" />
+
+          <circle
+            cx="120"
+            cy="120"
+            r="9"
+            className="flor-desabrochando__miolo-centro"
+          />
+          <circle
+            cx="120"
+            cy="120"
+            r="3.2"
+            className="flor-desabrochando__miolo-luz"
+          />
         </g>
       </svg>
     </div>
