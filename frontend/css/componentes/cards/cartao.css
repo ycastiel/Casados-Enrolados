@@ -31,8 +31,8 @@
   background:
     repeating-linear-gradient(
       90deg,
-      rgb(138 106 82 / 1.1%) 0,
-      rgb(138 106 82 / 1.1%) 1px,
+      rgb(141 111 47 / 1.1%) 0,
+      rgb(141 111 47 / 1.1%) 1px,
       transparent 1px,
       transparent 7px
     );
@@ -80,7 +80,7 @@
   background:
     radial-gradient(
       circle at 92% 13%,
-      rgb(232 217 168 / 14%),
+      rgb(226 202 131 / 14%),
       transparent 9.5rem
     ),
     linear-gradient(
@@ -94,12 +94,12 @@
   background:
     radial-gradient(
       circle at 100% 100%,
-      rgb(143 168 138 / 17%),
+      rgb(130 147 116 / 17%),
       transparent 13rem
     ),
     radial-gradient(
       circle at 12% 10%,
-      rgb(232 217 168 / 9%),
+      rgb(226 202 131 / 9%),
       transparent 9rem
     ),
     var(--cor-verde-50);
@@ -107,12 +107,12 @@
 
 .cartao-ui--vinho {
   border-color:
-    rgb(255 253 248 / 10%);
+    rgb(255 253 247 / 10%);
 
   background:
     radial-gradient(
       circle at 90% 15%,
-      rgb(232 217 168 / 13%),
+      rgb(226 202 131 / 13%),
       transparent 11rem
     ),
     linear-gradient(
@@ -140,10 +140,10 @@
 
 .cartao-ui--sutil {
   border-color:
-    rgb(138 106 82 / 12%);
+    rgb(141 111 47 / 12%);
 
   background:
-    rgb(255 253 248 / 58%);
+    rgb(255 253 247 / 58%);
 
   box-shadow:
     0 1px 0 rgb(255 255 255 / 72%) inset;
@@ -167,11 +167,11 @@
       rotate(-0.12deg);
 
     border-color:
-      rgb(96 119 93 / 25%);
+      rgb(83 99 74 / 25%);
 
     box-shadow:
       0 1px 0 rgb(255 255 255 / 76%) inset,
-      0 21px 54px rgb(62 58 55 / 10%);
+      0 21px 54px rgb(41 41 37 / 10%);
   }
 
   .cartao-ui--interativo:hover
@@ -198,7 +198,7 @@
 
 /* DESIGN SYSTEM V1 */
 .cartao {
-  border-color: rgb(138 106 82 / 13%);
+  border-color: rgb(141 111 47 / 13%);
   border-radius: var(--raio-lg);
   box-shadow: var(--sombra-xs);
 }
@@ -213,7 +213,7 @@
 @media (hover: hover) and (pointer: fine) {
   .cartao--interativo:hover {
     transform: translateY(-4px);
-    border-color: rgb(138 106 82 / 22%);
+    border-color: rgb(141 111 47 / 22%);
     box-shadow: var(--sombra-md);
   }
 }
