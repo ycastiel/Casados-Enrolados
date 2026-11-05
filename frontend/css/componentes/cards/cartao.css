@@ -195,3 +195,25 @@
     transform: none;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.cartao {
+  border-color: rgb(138 106 82 / 13%);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-xs);
+}
+
+.cartao--interativo {
+  transition:
+    transform var(--motion-padrao) var(--ease-suave),
+    box-shadow var(--motion-padrao) ease,
+    border-color var(--motion-padrao) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cartao--interativo:hover {
+    transform: translateY(-4px);
+    border-color: rgb(138 106 82 / 22%);
+    box-shadow: var(--sombra-md);
+  }
+}

@@ -11,8 +11,9 @@ export function LayoutAdmin() {
     <div className="admin-layout">
       <CampoEstrelado
         className="admin-layout-estrelas"
-        quantidade={12}
+        quantidade={22}
         intensidade="sutil"
+        distribuicao="bordas"
         semente={20270516}
       />
       <Sidebar />

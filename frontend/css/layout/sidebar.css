@@ -165,7 +165,7 @@
 .admin-sidebar-conteudo {
   border-color: rgb(255 253 248 / 12%);
   background: radial-gradient(circle at 16% 8%, rgb(232 217 168 / 18%), transparent 11rem),
-    linear-gradient(165deg, #773944 0%, #685047 46%, #435b45 100%);
+    linear-gradient(165deg, var(--cor-admin-vinho) 0%, var(--cor-admin-terra) 46%, var(--cor-admin-verde) 100%);
   box-shadow: 0 22px 55px rgb(63 42 40 / 16%);
 }
 
@@ -222,5 +222,30 @@
   }
   .admin-sidebar-site:hover {
     color: var(--cor-amarelo-300);
+  }
+}
+
+/* DESIGN SYSTEM V1 */
+.admin-sidebar {
+  border-right: var(--linha-suave);
+  box-shadow: 14px 0 44px rgb(62 58 55 / 5%);
+}
+
+.admin-sidebar-link {
+  border: 1px solid transparent;
+  transition:
+    background-color var(--motion-rapido) ease,
+    border-color var(--motion-rapido) ease,
+    color var(--motion-rapido) ease,
+    transform var(--motion-rapido) var(--ease-suave);
+}
+
+.admin-sidebar-link--ativo {
+  border-color: rgb(232 217 168 / 22%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .admin-sidebar-link:hover {
+    transform: translateX(2px);
   }
 }

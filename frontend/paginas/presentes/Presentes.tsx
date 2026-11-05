@@ -18,6 +18,8 @@ import {
   useCasamento,
 } from "../../javascript/paginas/eventos/Casamento";
 
+import presentesHero from "../../recursos/publico/imagens/presentes/presentes.webp";
+
 import "../../css/paginas/presentes/presentes.css";
 
 const formatadorMoeda =
@@ -95,6 +97,18 @@ export function Presentes() {
   return (
     <div className="pagina-presentes">
       <section className="presentes-hero">
+        <img
+          className="presentes-hero-imagem"
+          src={presentesHero}
+          alt=""
+          aria-hidden="true"
+        />
+
+        <div
+          className="presentes-hero-overlay"
+          aria-hidden="true"
+        />
+
         <RamoFloral className="presentes-hero-floral presentes-hero-floral--esquerda" />
         <RamoFloral className="presentes-hero-floral presentes-hero-floral--direita" />
 

@@ -27,3 +27,14 @@
   font-size: 1.35rem;
   font-weight: 600;
 }
+
+/* DESIGN SYSTEM V1 */
+.rodape-principal {
+  position: relative;
+  overflow: hidden;
+  border-top: var(--linha-suave);
+  background:
+    radial-gradient(circle at 20% 10%, rgb(183 154 200 / 8%), transparent 18rem),
+    radial-gradient(circle at 85% 70%, rgb(232 217 168 / 12%), transparent 20rem),
+    var(--cor-papel);
+}

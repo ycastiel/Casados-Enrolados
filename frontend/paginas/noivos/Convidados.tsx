@@ -18,6 +18,7 @@ import {
   type NovoConvidado,
 } from "../../javascript/paginas/noivos/Convites";
 
+import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
 import { OrnamentoFloral } from "../../javascript/componentes/molduras/Floral";
 
 import "../../css/paginas/noivos/convidados.css";
@@ -476,8 +477,14 @@ export function Convidados() {
   }
 
   return (
-    <div className="admin-convidados">
-      <header className="convidados-cabecalho">
+    <div className="admin-convidados ds-admin-page">
+      <header className="convidados-cabecalho ds-admin-header">
+        <FlorDesabrochando
+          className="convidados-cabecalho-flor"
+          variante="fundo"
+          tamanho={150}
+        />
+
         <div>
           <span className="secao-etiqueta">
             Lista de convidados
@@ -527,7 +534,7 @@ export function Convidados() {
         </div>
       )}
 
-      <section className="novo-convite">
+      <section className="novo-convite ds-surface ds-surface--botanica">
         <div className="novo-convite-texto">
           <span className="secao-etiqueta">
             Novo convite
@@ -546,7 +553,7 @@ export function Convidados() {
         </div>
 
         <form
-          className="novo-convite-formulario"
+          className="novo-convite-formulario ds-form"
           onSubmit={criarGrupo}
         >
           <label>
@@ -664,7 +671,7 @@ export function Convidados() {
           <div className="convites-grade">
             {convites.map((convite) => (
               <article
-                className="convite-admin-card"
+                className="convite-admin-card ds-surface ds-surface--papel"
                 key={convite.id}
               >
                 <header className="convite-admin-cabecalho">

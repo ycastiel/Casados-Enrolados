@@ -4,8 +4,8 @@
   place-items: center;
   padding: clamp(4rem, 10vw, 8rem) 1rem;
   background:
-    radial-gradient(circle at 20% 20%, rgb(183 154 200 / 9%), transparent 20rem),
-    radial-gradient(circle at 80% 24%, rgb(232 217 168 / 16%), transparent 22rem),
+    radial-gradient(circle at 20% 20%, rgb(83 99 74 / 9%), transparent 20rem),
+    radial-gradient(circle at 80% 24%, rgb(226 202 131 / 16%), transparent 22rem),
     var(--cor-creme);
 }
 
@@ -20,7 +20,7 @@
   aspect-ratio: 1;
   place-items: center;
   margin: 0 auto var(--espaco-4);
-  border: 1px solid rgb(142 59 70 / 15%);
+  border: 1px solid rgb(48 49 45 / 15%);
   border-radius: 50%;
   background: var(--cor-marfin);
   color: var(--cor-vinho-500);
@@ -55,4 +55,17 @@
       transform: translateY(-0.2rem) scale(1.04);
     }
   }
+}
+
+/* DESIGN SYSTEM V1 */
+.estado-pagina {
+  background:
+    radial-gradient(circle at 20% 20%, rgb(83 99 74 / 8%), transparent 20rem),
+    radial-gradient(circle at 80% 24%, rgb(226 202 131 / 14%), transparent 22rem),
+    var(--cor-papel);
+}
+
+.estado-pagina-simbolo {
+  border: var(--linha-suave);
+  box-shadow: var(--sombra-xs);
 }
