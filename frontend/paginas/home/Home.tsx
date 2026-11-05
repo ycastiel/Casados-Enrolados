@@ -2,9 +2,6 @@ import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
-import { CampoEstrelado } from "../../javascript/componentes/animacoes/CampoEstrelado";
-import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
-
 import {
   ContagemRegressiva,
 } from "../../javascript/paginas/home/ContagemRegressiva";
@@ -21,12 +18,11 @@ import {
   BlocoImagemEditorial,
 } from "../../javascript/componentes/imagens/BlocoImagemEditorial";
 
-import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
-
-import aliancasBiblia from "../../recursos/publico/imagens/home/aliancas-biblia.webp";
-import aliancasFloral from "../../recursos/publico/imagens/home/aliancas-floral.webp";
-import oceanoCanticos from "../../recursos/publico/imagens/home/oceano-canticos.webp";
 import faixaAmor from "../../recursos/publico/imagens/home/faixa-amor.webp";
+import homeHero from "../../recursos/publico/imagens/home/home-hero.webp";
+import homeHeroFinal from "../../recursos/publico/imagens/home/home-hero-final.webp";
+import noivosCarro from "../../recursos/publico/imagens/home/noivos-carro.webp";
+import vinculo from "../../recursos/publico/imagens/home/vinculo.webp";
 
 import {
   OrnamentoFloral,
@@ -43,50 +39,6 @@ import {
 
 import "../../css/paginas/home/home.css";
 import "../../css/paginas/home/homeImagens.css";
-import { BlocoCanticos } from "../../javascript/componentes/imagens/BlocoCanticos";
-
-type VersoEditorialProps = {
-  texto: string;
-  referencia: string;
-  variante?: "claro" | "verde" | "vinho";
-  compacto?: boolean;
-};
-
-function VersoEditorial({
-  texto,
-  referencia,
-  variante = "claro",
-  compacto = false,
-}: VersoEditorialProps) {
-  return (
-    <aside
-      className={[
-        "verso-editorial",
-        `verso-editorial--${variante}`,
-        compacto
-          ? "verso-editorial--compacto"
-          : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <span
-        className="verso-editorial__simbolo"
-        aria-hidden="true"
-      >
-        ❦
-      </span>
-
-      <blockquote>
-        {texto}
-      </blockquote>
-
-      <cite>
-        Inspirado em {referencia}
-      </cite>
-    </aside>
-  );
-}
 
 function formatarDataCasamento(
   data: string,
@@ -209,22 +161,20 @@ export function Home() {
       .slice(0, 2);
 
   return (
-    <div className="home ds-page">
+    <div className="home">
       <section
         className="hero"
         aria-labelledby="titulo-casal"
       >
-        <CampoEstrelado
-          className="home-hero-estrelas"
-          quantidade={16}
-          intensidade="sutil"
-          semente={5162027}
+        <img
+          className="hero-imagem"
+          src={homeHero}
+          alt="Campo de lavandas sob um céu azul aberto."
         />
 
-        <FlorDesabrochando
-          className="home-hero-flor"
-          variante="fundo"
-          tamanho={230}
+        <div
+          className="hero-overlay"
+          aria-hidden="true"
         />
 
         <RamoFloral className="hero-floral hero-floral--esquerda" />
@@ -239,13 +189,17 @@ export function Home() {
             id="titulo-casal"
             className="hero-titulo"
           >
-            {casamento.nomePessoa1}
+            <span className="hero-nome hero-nome--lilas">
+              {casamento.nomePessoa1}
+            </span>
 
             <span className="hero-e">
               {" "}&amp;{" "}
             </span>
 
-            {casamento.nomePessoa2}
+            <span className="hero-nome hero-nome--verde">
+              {casamento.nomePessoa2}
+            </span>
           </h1>
 
           <OrnamentoFloral compacto />
@@ -325,13 +279,6 @@ export function Home() {
             aria-hidden="true"
           />
 
-          <EspacoImagem
-            className="historia-imagem-placeholder"
-            proporcao="retrato"
-          >
-            Foto do casal ou um registro marcante da história
-          </EspacoImagem>
-
           <SuporteCartao
             className="historia-suporte"
             varianteMoldura="destaque"
@@ -353,13 +300,6 @@ export function Home() {
               >
                 ❦
               </span>
-
-              <FlorDesabrochando
-                className="historia-cartao__flor"
-                variante="card"
-                tamanho={132}
-                delayMs={350}
-              />
             </div>
           </SuporteCartao>
 
@@ -481,11 +421,6 @@ export function Home() {
         id="presentes"
         className="secao secao--convite"
       >
-        <FlorDesabrochando
-          className="convite-flor-desabrochando"
-          variante="fundo"
-          tamanho={200}
-        />
         <RamoFloral className="convite-floral" />
 
         <div className="convite-conteudo">
@@ -512,24 +447,22 @@ export function Home() {
         </LinkTransicao>
       </section>
 
-      <BlocoCanticos
-        imagemMar={oceanoCanticos}
-        imagemDetalhe={aliancasFloral}
-        altMar="Mar azul sob nuvens iluminadas, em um cenário calmo."
-        altDetalhe="Alianças douradas sobre um espaço com ."
-        etiqueta="Fé, amor e aliança"
-        texto="Há amores que nem muitas águas conseguem apagar."
-        referencia="Cântico dos Cânticos 8:7"
+      <BlocoImagemEditorial
+        imagemPrincipal={noivosCarro}
+        altPrincipal="Mãos entrelaçadas dentro de um carro, em um gesto de parceria e cuidado."
+        etiqueta="Caminhar juntos"
+        texto="Seguir juntos também é escolher a mesma direção, um dia de cada vez."
+        posicaoImagem="center 58%"
       />
 
       <BlocoImagemEditorial
-        imagemPrincipal={aliancasBiblia}
-        imagemApoio={aliancasFloral}
-        altPrincipal="Alianças douradas sobre uma Bíblia aberta."
-        altApoio="Alianças douradas em uma composição floral delicada."
-        etiqueta="Promessa e cuidado"
+        imagemPrincipal={vinculo}
+        altPrincipal="Pingente com coração lilás e asa metálica sobre um fundo claro."
+        etiqueta="Vínculo e cuidado"
         texto="Acima de tudo, o amor é o vínculo que une com perfeição."
         referencia="Colossenses 3:14"
+        inverter
+        posicaoImagem="center 68%"
       />
 
       <section
@@ -553,11 +486,37 @@ export function Home() {
           </p>
 
           <LinkTransicao
-            className="botao botao--primario"
+            className="botao botao--confirmacao"
             to="/confirmacao"
           >
             Quero confirmar
           </LinkTransicao>
+        </div>
+      </section>
+
+      <section
+        className="home-encerramento"
+        aria-label="Mensagem final"
+      >
+        <img
+          className="home-encerramento__imagem"
+          src={homeHeroFinal}
+          alt="Campo de flores vermelhas sob um grande arco-íris."
+        />
+
+        <div
+          className="home-encerramento__overlay"
+          aria-hidden="true"
+        />
+
+        <div className="home-encerramento__conteudo">
+          <span className="secao-etiqueta">
+            Até o grande dia
+          </span>
+
+          <p>
+            Esperamos viver esse capítulo ao lado de quem faz parte da nossa história.
+          </p>
         </div>
       </section>
     </div>
