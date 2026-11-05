@@ -8,10 +8,10 @@
   overflow: hidden;
   margin-bottom: 1.4rem;
   padding: clamp(2rem, 5vw, 3.4rem);
-  border: 1px solid rgb(255 253 248 / 16%);
+  border: 1px solid rgb(255 253 247 / 16%);
   border-radius: var(--raio-grande);
-  background: radial-gradient(circle at 85% 15%, rgb(232 217 168 / 18%), transparent 16rem),
-    linear-gradient(135deg, var(--cor-vinho-700), #745048 48%, var(--cor-verde-700));
+  background: radial-gradient(circle at 85% 15%, rgb(226 202 131 / 18%), transparent 16rem),
+    linear-gradient(135deg, var(--cor-vinho-700), var(--cor-terra-700) 48%, var(--cor-verde-700));
   box-shadow: 0 28px 65px rgb(69 42 39 / 16%);
   color: var(--cor-marfin);
 }
@@ -31,7 +31,7 @@
 }
 
 .pagamentos-admin-cabecalho p {
-  color: rgb(255 253 248 / 78%);
+  color: rgb(255 253 247 / 78%);
   margin: .75rem 0 0;
 }
 
@@ -50,20 +50,20 @@
   padding: 1.15rem 1.25rem;
   border: 1px solid var(--cor-borda);
   border-radius: 1.35rem;
-  background: linear-gradient(145deg, rgb(255 253 248 / 96%), rgb(247 242 234 / 78%));
-  box-shadow: 0 12px 30px rgb(62 58 55 / 7%);
+  background: linear-gradient(145deg, rgb(255 253 247 / 96%), rgb(247 242 234 / 78%));
+  box-shadow: 0 12px 30px rgb(41 41 37 / 7%);
 }
 
 .pagamentos-admin-resumo article:nth-child(2) {
-  background: linear-gradient(145deg, rgb(244 231 232 / 82%), rgb(255 253 248 / 92%));
+  background: linear-gradient(145deg, rgb(244 231 232 / 82%), rgb(255 253 247 / 92%));
 }
 
 .pagamentos-admin-resumo article:nth-child(3) {
-  background: linear-gradient(145deg, rgb(229 236 225 / 90%), rgb(255 253 248 / 92%));
+  background: linear-gradient(145deg, rgb(229 236 225 / 90%), rgb(255 253 247 / 92%));
 }
 
 .pagamentos-admin-resumo article:nth-child(4) {
-  background: linear-gradient(145deg, rgb(251 245 223 / 88%), rgb(255 253 248 / 92%));
+  background: linear-gradient(145deg, rgb(251 245 223 / 88%), rgb(255 253 247 / 92%));
 }
 
 .pagamentos-admin-resumo span, .pagamentos-admin-resumo small {
@@ -99,7 +99,7 @@
   gap: 1rem;
   margin-bottom: 1rem;
   padding: .9rem 1rem;
-  border: 1px solid rgb(142 59 70 / 18%);
+  border: 1px solid rgb(48 49 45 / 18%);
   border-radius: 1rem;
   background: var(--cor-vinho-100);
   color: var(--cor-vinho-700);
@@ -124,10 +124,10 @@
   gap: 1.1rem;
   align-items: center;
   padding: 1rem;
-  border: 1px solid rgb(138 106 82 / 14%);
+  border: 1px solid rgb(141 111 47 / 14%);
   border-radius: 1.4rem;
   background: linear-gradient(145deg, rgb(255 255 255 / 82%), rgb(247 242 234 / 58%));
-  box-shadow: 0 14px 34px rgb(62 58 55 / 7%);
+  box-shadow: 0 14px 34px rgb(41 41 37 / 7%);
 }
 
 .pagamento-admin-imagem {
@@ -226,7 +226,7 @@
 .pagamento-admin-acoes button {
   min-height: 2.6rem;
   padding: .6rem .85rem;
-  border: 1px solid rgb(255 253 248 / 30%);
+  border: 1px solid rgb(255 253 247 / 30%);
   border-radius: 999px;
   background: linear-gradient(125deg,var(--cor-vinho-500),var(--cor-verde-700));
   color: var(--cor-marfin);
@@ -249,7 +249,7 @@
   padding: 2rem;
   border: 1px dashed var(--cor-borda);
   border-radius: 1.4rem;
-  background: rgb(255 253 248 / 62%);
+  background: rgb(255 253 247 / 62%);
   text-align: center;
 }
 
@@ -298,4 +298,63 @@
   .pagamento-admin-topo {
     flex-direction: column;
   }
+}
+
+/* =========================================================
+   DESIGN SYSTEM V1 — ADMIN PAGAMENTOS
+   ========================================================= */
+
+.pagamentos-admin-cabecalho {
+  isolation: isolate;
+}
+
+.pagamentos-admin-cabecalho-flor {
+  right: 1rem !important;
+  bottom: 0.8rem !important;
+  opacity: 0.38 !important;
+}
+
+.pagamentos-admin-cabecalho > *:not(.pagamentos-admin-cabecalho-flor) {
+  position: relative;
+  z-index: 2;
+}
+
+.pagamentos-admin-resumo {
+  gap: var(--gap-card);
+}
+
+.pagamentos-admin-resumo > article {
+  border-color: rgb(141 111 47 / 13%);
+  background: var(--vidro-forte);
+}
+
+.pagamento-admin-card {
+  overflow: hidden;
+}
+
+/* O texto do estado é suficiente; não precisamos de uma pílula por pagamento. */
+.pagamento-admin-status {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pagamento-admin-status--aprovado { color: var(--cor-sucesso); }
+.pagamento-admin-status--pendente,
+.pagamento-admin-status--processando { color: var(--cor-info); }
+.pagamento-admin-status--recusado,
+.pagamento-admin-status--cancelado,
+.pagamento-admin-status--expirado { color: var(--cor-alerta); }
+.pagamento-admin-status--estornado { color: var(--cor-texto-suave); }
+
+.pagamentos-admin-aviso {
+  border-color: rgb(119 57 68 / 18%);
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
 }

@@ -4,6 +4,8 @@ import {
   RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 
+import convidadosCerimonia from "../../recursos/publico/imagens/convidados/convidados-cerimonia.webp";
+
 import "../../css/paginas/eventos/confirmacao.css";
 
 export function Confirmacao() {
@@ -14,6 +16,18 @@ export function Confirmacao() {
   return (
     <div className="pagina-confirmacao">
       <section className="confirmacao-hero">
+        <img
+          className="confirmacao-hero-imagem"
+          src={convidadosCerimonia}
+          alt=""
+          aria-hidden="true"
+        />
+
+        <div
+          className="confirmacao-hero-overlay"
+          aria-hidden="true"
+        />
+
         <RamoFloral className="confirmacao-hero-floral confirmacao-hero-floral--esquerda" />
         <RamoFloral className="confirmacao-hero-floral confirmacao-hero-floral--direita" />
 

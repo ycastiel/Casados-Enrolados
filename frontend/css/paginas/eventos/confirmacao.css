@@ -10,8 +10,8 @@
   overflow: hidden;
   padding: clamp(4rem, 9vw, 7rem) 1rem;
   background:
-    radial-gradient(circle at 16% 30%, rgb(232 217 168 / 20%), transparent 21rem),
-    radial-gradient(circle at 84% 18%, rgb(183 154 200 / 10%), transparent 19rem),
+    radial-gradient(circle at 16% 30%, rgb(226 202 131 / 20%), transparent 21rem),
+    radial-gradient(circle at 84% 18%, rgb(83 99 74 / 10%), transparent 19rem),
     var(--cor-verde-50);
   isolation: isolate;
 }
@@ -113,10 +113,10 @@
   width: 100%;
   min-height: 3.2rem;
   padding: 0.8rem 1rem;
-  border: 1px solid rgb(96 119 93 / 26%);
+  border: 1px solid rgb(83 99 74 / 26%);
   border-radius: var(--raio-medio);
   outline: none;
-  background: rgb(255 253 248 / 86%);
+  background: rgb(255 253 247 / 86%);
   color: var(--cor-texto);
   transition:
     border-color var(--transicao-padrao),
@@ -131,7 +131,7 @@
 .confirmacao-busca input:focus {
   border-color: var(--cor-verde-500);
   background: white;
-  box-shadow: 0 0 0 4px rgb(143 168 138 / 12%);
+  box-shadow: 0 0 0 4px rgb(130 147 116 / 12%);
 }
 
 .confirmacao-ajuda {
@@ -162,7 +162,7 @@
   width: 2.8rem;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgb(142 59 70 / 18%);
+  border: 1px solid rgb(48 49 45 / 18%);
   border-radius: 50%;
   background: var(--cor-vinho-100);
   color: var(--cor-vinho-500);
@@ -200,5 +200,155 @@
 
   .confirmacao-busca .botao {
     width: 100%;
+  }
+}
+
+/* DESIGN SYSTEM V1 */
+.confirmacao-hero { isolation: isolate; }
+.confirmacao-hero-estrelas { z-index: 0; opacity: 0.38; }
+.confirmacao-hero-flor-viva {
+  right: 1rem !important;
+  bottom: 1rem !important;
+  z-index: 1 !important;
+  opacity: 0.34 !important;
+}
+.confirmacao-hero-conteudo,
+.confirmacao-hero-floral { position: relative; z-index: 2; }
+.confirmacao-cartao { position: relative; overflow: hidden; }
+.confirmacao-cartao-flor-viva {
+  right: 0.8rem !important;
+  bottom: 0.65rem !important;
+  opacity: 0.5 !important;
+}
+.confirmacao-imagem-placeholder {
+  margin: 1.6rem 0 2rem;
+  box-shadow: var(--sombra-xs);
+}
+.confirmacao-ajuda { color: var(--cor-texto-suave); }
+
+/* =========================================================
+   HERO FOTOGRÁFICO — CONFIRMAÇÃO DE PRESENÇA
+   ========================================================= */
+
+.confirmacao-hero {
+  min-height: clamp(34rem, 70vw, 49rem);
+  place-items: center start;
+  padding:
+    clamp(4.5rem, 9vw, 7rem)
+    clamp(1rem, 6vw, 5rem);
+  background: var(--cor-preto-700);
+}
+
+.confirmacao-hero-imagem,
+.confirmacao-hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.confirmacao-hero-imagem {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center 52%;
+  filter: saturate(0.9) contrast(0.98) brightness(0.9);
+}
+
+.confirmacao-hero-overlay {
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(23 24 21 / 88%) 0%,
+      rgb(36 37 33 / 72%) 34%,
+      rgb(92 73 31 / 34%) 67%,
+      rgb(83 99 74 / 16%) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(23 24 21 / 8%) 50%,
+      rgb(23 24 21 / 34%) 100%
+    );
+  pointer-events: none;
+}
+
+.confirmacao-hero-conteudo {
+  z-index: 3;
+  width: min(100%, 39rem);
+  margin-left: clamp(0rem, 3vw, 3rem);
+  text-align: left;
+  text-shadow: 0 2px 16px rgb(30 25 26 / 22%);
+}
+
+.confirmacao-hero-conteudo .secao-etiqueta {
+  color: var(--cor-dourado-300);
+}
+
+.confirmacao-hero h1 {
+  color: var(--cor-marfin);
+  font-size: clamp(3.6rem, 8vw, 6.6rem);
+  line-height: 0.94;
+}
+
+.confirmacao-hero p {
+  max-width: 35rem;
+  margin-inline: 0;
+  color: #f2ecdf;
+}
+
+.confirmacao-hero .ornamento-floral {
+  margin-left: 0;
+  filter: brightness(1.24) saturate(0.78);
+}
+
+.confirmacao-hero-floral {
+  z-index: 2;
+  opacity: 0.42;
+  filter: brightness(1.08) saturate(0.86);
+}
+
+.confirmacao-hero-floral--esquerda {
+  bottom: 1rem;
+  left: 0.5rem;
+}
+
+.confirmacao-hero-floral--direita {
+  top: 1rem;
+  right: 0.5rem;
+}
+
+@media (max-width: 760px) {
+  .confirmacao-hero {
+    min-height: 43rem;
+    place-items: end center;
+    padding: 5rem 1rem 3.5rem;
+  }
+
+  .confirmacao-hero-imagem {
+    object-position: 48% center;
+  }
+
+  .confirmacao-hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(73 44 48 / 8%) 18%,
+        rgb(77 43 52 / 35%) 52%,
+        rgb(74 37 48 / 79%) 100%
+      );
+  }
+
+  .confirmacao-hero-conteudo {
+    width: min(100%, 38rem);
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .confirmacao-hero p {
+    margin-inline: auto;
+  }
+
+  .confirmacao-hero .ornamento-floral {
+    margin-inline: auto;
   }
 }

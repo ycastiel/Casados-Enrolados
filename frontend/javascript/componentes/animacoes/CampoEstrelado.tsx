@@ -6,11 +6,13 @@ import {
 import "../../../css/componentes/animacoes/motion.css";
 
 type IntensidadeEstrelas = "sutil" | "media";
+type DistribuicaoEstrelas = "uniforme" | "bordas";
 
 type CampoEstreladoProps = {
   className?: string;
   quantidade?: number;
   intensidade?: IntensidadeEstrelas;
+  distribuicao?: DistribuicaoEstrelas;
   semente?: number;
 };
 
@@ -23,7 +25,15 @@ type Estrela = {
   atraso: number;
   opacidade: number;
   cruz: boolean;
+  cor: string;
 };
+
+const CORES_ESTRELAS = [
+  "rgba(224, 188, 105, 0.96)",
+  "rgba(255, 247, 218, 0.96)",
+  "rgba(194, 168, 205, 0.88)",
+  "rgba(188, 205, 193, 0.88)",
+];
 
 function criarGerador(semente: number) {
   let valor = semente >>> 0;
@@ -39,10 +49,23 @@ function criarGerador(semente: number) {
   };
 }
 
+function gerarPosicaoHorizontal(
+  aleatorio: () => number,
+  distribuicao: DistribuicaoEstrelas,
+) {
+  if (distribuicao === "uniforme") return aleatorio() * 100;
+
+  const ladoEsquerdo = aleatorio() > 0.5;
+  const margem = 4 + aleatorio() * 22;
+
+  return ladoEsquerdo ? margem : 100 - margem;
+}
+
 export function CampoEstrelado({
   className = "",
-  quantidade = 22,
+  quantidade = 28,
   intensidade = "sutil",
+  distribuicao = "uniforme",
   semente = 2027,
 }: CampoEstreladoProps) {
   const estrelas = useMemo<Estrela[]>(() => {
@@ -50,23 +73,27 @@ export function CampoEstrelado({
 
     return Array.from({ length: quantidade }, (_, indice) => ({
       id: indice,
-      esquerda: aleatorio() * 100,
-      topo: aleatorio() * 100,
-      tamanho: 2 + aleatorio() * (intensidade === "media" ? 5 : 3.5),
-      duracao: 1800 + aleatorio() * 3800,
-      atraso: aleatorio() * 4800,
-      opacidade: 0.32 + aleatorio() * (intensidade === "media" ? 0.56 : 0.42),
-      cruz: indice % 5 === 0 || aleatorio() > 0.82,
+      esquerda: gerarPosicaoHorizontal(aleatorio, distribuicao),
+      topo: 4 + aleatorio() * 92,
+      tamanho: 2.4 + aleatorio() * (intensidade === "media" ? 6.4 : 4.5),
+      duracao: 1900 + aleatorio() * 4200,
+      atraso: aleatorio() * 5200,
+      opacidade: 0.48 + aleatorio() * (intensidade === "media" ? 0.5 : 0.38),
+      cruz: indice % 4 === 0 || aleatorio() > 0.74,
+      cor: CORES_ESTRELAS[Math.floor(aleatorio() * CORES_ESTRELAS.length)],
     }));
-  }, [intensidade, quantidade, semente]);
+  }, [distribuicao, intensidade, quantidade, semente]);
 
   return (
     <div
       className={[
         "campo-estrelado",
         `campo-estrelado--${intensidade}`,
+        `campo-estrelado--${distribuicao}`,
         className,
-      ].filter(Boolean).join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
       aria-hidden="true"
     >
       {estrelas.map((estrela) => {
@@ -77,6 +104,7 @@ export function CampoEstrelado({
           "--estrela-duration": `${estrela.duracao}ms`,
           "--estrela-delay": `${estrela.atraso}ms`,
           "--estrela-opacity": estrela.opacidade,
+          "--estrela-color": estrela.cor,
         } as CSSProperties;
 
         return (
@@ -85,7 +113,9 @@ export function CampoEstrelado({
             className={[
               "campo-estrelado__estrela",
               estrela.cruz ? "campo-estrelado__estrela--cruz" : "",
-            ].filter(Boolean).join(" ")}
+            ]
+              .filter(Boolean)
+              .join(" ")}
             style={estilo}
           />
         );

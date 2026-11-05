@@ -66,3 +66,8 @@
     --suporte-cartao-respiro: 2rem;
   }
 }
+
+/* DESIGN SYSTEM V1 */
+.suporte-cartao {
+  border-radius: var(--raio-lg);
+}
