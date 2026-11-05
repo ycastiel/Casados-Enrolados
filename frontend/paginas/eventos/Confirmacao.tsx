@@ -1,12 +1,10 @@
-import { CampoEstrelado } from "../../javascript/componentes/animacoes/CampoEstrelado";
-import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
-import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
-
 import {
   MolduraFloral,
   OrnamentoFloral,
   RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
+
+import convidadosCerimonia from "../../recursos/publico/imagens/convidados/convidados-cerimonia.webp";
 
 import "../../css/paginas/eventos/confirmacao.css";
 
@@ -16,19 +14,18 @@ export function Confirmacao() {
   }
 
   return (
-    <div className="pagina-confirmacao ds-page">
+    <div className="pagina-confirmacao">
       <section className="confirmacao-hero">
-        <CampoEstrelado
-          className="confirmacao-hero-estrelas"
-          quantidade={12}
-          intensidade="sutil"
-          semente={931}
+        <img
+          className="confirmacao-hero-imagem"
+          src={convidadosCerimonia}
+          alt=""
+          aria-hidden="true"
         />
 
-        <FlorDesabrochando
-          className="confirmacao-hero-flor-viva"
-          variante="fundo"
-          tamanho={190}
+        <div
+          className="confirmacao-hero-overlay"
+          aria-hidden="true"
         />
 
         <RamoFloral className="confirmacao-hero-floral confirmacao-hero-floral--esquerda" />
@@ -52,7 +49,7 @@ export function Confirmacao() {
           className="confirmacao-moldura"
           variante="destaque"
         >
-          <div className="confirmacao-cartao ds-surface ds-surface--papel">
+          <div className="confirmacao-cartao">
             <div className="confirmacao-cartao-cabecalho">
               <span className="secao-etiqueta">Seu convite</span>
               <h2>Vamos encontrar você na lista?</h2>
@@ -63,7 +60,7 @@ export function Confirmacao() {
             </div>
 
             <form
-              className="confirmacao-formulario ds-form"
+              className="confirmacao-formulario"
               onSubmit={impedirEnvio}
             >
               <label htmlFor="codigo-convite">
@@ -92,25 +89,12 @@ export function Confirmacao() {
                 ligada ao convite real quando conectarmos esta página ao backend.
               </p>
             </form>
-            <FlorDesabrochando
-              className="confirmacao-cartao-flor-viva"
-              variante="card"
-              tamanho={120}
-              delayMs={360}
-            />
           </div>
         </MolduraFloral>
 
         <aside className="confirmacao-explicacao">
           <span className="secao-etiqueta">Como vai funcionar</span>
           <h2>Uma resposta simples, sem formulário infinito.</h2>
-
-          <EspacoImagem
-            className="confirmacao-imagem-placeholder"
-            proporcao="paisagem"
-          >
-            Uma fotografia do casal ou do convite pode entrar aqui
-          </EspacoImagem>
 
           <div className="confirmacao-passos">
             <div className="confirmacao-passo">

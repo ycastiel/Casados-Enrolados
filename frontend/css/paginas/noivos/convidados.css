@@ -64,7 +64,7 @@
   gap: var(--espaco-4);
   margin-bottom: var(--espaco-6);
   padding: 0.9rem 1rem;
-  border: 1px solid rgb(142 59 70 / 20%);
+  border: 1px solid rgb(48 49 45 / 20%);
   border-radius: var(--raio-medio);
   background: var(--cor-vinho-100);
   color: var(--cor-vinho-700);
@@ -89,7 +89,7 @@
   background:
     radial-gradient(
       circle at 92% 14%,
-      rgb(232 217 168 / 20%),
+      rgb(226 202 131 / 20%),
       transparent 13rem
     ),
     var(--cor-verde-50);
@@ -132,7 +132,7 @@
   width: 100%;
   min-height: 2.9rem;
   padding: 0.72rem 0.85rem;
-  border: 1px solid rgb(96 119 93 / 22%);
+  border: 1px solid rgb(83 99 74 / 22%);
   border-radius: var(--raio-pequeno);
   outline: none;
   background: var(--cor-marfin);
@@ -144,7 +144,7 @@
 .convidado-edicao input:focus,
 .novo-convidado-inline input:focus {
   border-color: var(--cor-verde-500);
-  box-shadow: 0 0 0 4px rgb(143 168 138 / 10%);
+  box-shadow: 0 0 0 4px rgb(130 147 116 / 10%);
 }
 
 .convites-lista {
@@ -252,7 +252,7 @@
 
 .convidados-do-convite {
   display: grid;
-  border-top: 1px solid rgb(138 106 82 / 10%);
+  border-top: 1px solid rgb(141 111 47 / 10%);
 }
 
 .convidado-linha {
@@ -264,7 +264,7 @@
   gap: var(--espaco-4);
   align-items: center;
   padding-block: 1rem;
-  border-bottom: 1px solid rgb(138 106 82 / 10%);
+  border-bottom: 1px solid rgb(141 111 47 / 10%);
 }
 
 .convidado-identidade strong,
@@ -308,7 +308,7 @@
 }
 
 .status-convidado--parcial {
-  background: rgb(183 154 200 / 16%);
+  background: rgb(83 99 74 / 16%);
   color: var(--cor-info);
 }
 
@@ -452,7 +452,7 @@
 .convidados-resumo > div,
 .novo-convite,
 .convite-admin-card {
-  border-color: rgb(138 106 82 / 13%);
+  border-color: rgb(141 111 47 / 13%);
   box-shadow: var(--sombra-xs);
 }
 
@@ -489,8 +489,8 @@
   border: var(--linha-suave);
   border-radius: var(--raio-lg);
   background:
-    radial-gradient(circle at 92% 10%, rgb(183 154 200 / 12%), transparent 17rem),
-    radial-gradient(circle at 8% 90%, rgb(232 217 168 / 13%), transparent 18rem),
+    radial-gradient(circle at 92% 10%, rgb(83 99 74 / 12%), transparent 17rem),
+    radial-gradient(circle at 8% 90%, rgb(226 202 131 / 13%), transparent 18rem),
     var(--cor-marfin);
   box-shadow: var(--sombra-xs);
 }
