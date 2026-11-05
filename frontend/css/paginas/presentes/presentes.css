@@ -10,8 +10,8 @@
   overflow: hidden;
   padding: clamp(4rem, 9vw, 7rem) 1rem;
   background:
-    radial-gradient(circle at 18% 24%, rgb(183 154 200 / 10%), transparent 22rem),
-    radial-gradient(circle at 82% 26%, rgb(232 217 168 / 20%), transparent 23rem),
+    radial-gradient(circle at 18% 24%, rgb(83 99 74 / 10%), transparent 22rem),
+    radial-gradient(circle at 82% 26%, rgb(226 202 131 / 20%), transparent 23rem),
     var(--cor-creme);
   isolation: isolate;
 }
@@ -192,7 +192,7 @@
   padding: clamp(3rem, 7vw, 5rem);
   border-radius: var(--raio-grande);
   background:
-    radial-gradient(circle at 92% 12%, rgb(232 217 168 / 22%), transparent 16rem),
+    radial-gradient(circle at 92% 12%, rgb(226 202 131 / 22%), transparent 16rem),
     var(--cor-verde-50);
   text-align: center;
 }
@@ -319,8 +319,8 @@
   border-top: var(--linha-suave);
   border-bottom: var(--linha-suave);
   background:
-    radial-gradient(circle at 86% 30%, rgb(232 217 168 / 14%), transparent 20rem),
-    radial-gradient(circle at 12% 80%, rgb(183 154 200 / 10%), transparent 18rem),
+    radial-gradient(circle at 86% 30%, rgb(226 202 131 / 16%), transparent 20rem),
+    radial-gradient(circle at 12% 80%, rgb(83 99 74 / 8%), transparent 18rem),
     var(--cor-papel);
 }
 
@@ -345,7 +345,7 @@
   padding:
     clamp(4.5rem, 9vw, 7rem)
     clamp(1rem, 6vw, 5rem);
-  background: #8a745f;
+  background: var(--cor-preto-700);
 }
 
 .presentes-hero-imagem,
@@ -368,14 +368,14 @@
   background:
     linear-gradient(
       90deg,
-      rgb(65 49 39 / 44%) 0%,
-      rgb(78 60 46 / 23%) 35%,
+      rgb(23 24 21 / 52%) 0%,
+      rgb(48 49 45 / 24%) 35%,
       transparent 69%
     ),
     linear-gradient(
       180deg,
-      rgb(65 52 43 / 4%) 54%,
-      rgb(64 47 40 / 22%) 100%
+      rgb(23 24 21 / 4%) 54%,
+      rgb(23 24 21 / 28%) 100%
     );
   pointer-events: none;
 }
@@ -385,27 +385,27 @@
   width: min(100%, 35rem);
   margin-left: clamp(0rem, 3vw, 3rem);
   padding: clamp(2rem, 5vw, 3.5rem);
-  border: 1px solid rgb(255 253 248 / 52%);
+  border: 1px solid rgb(255 253 247 / 52%);
   border-radius: var(--raio-grande);
-  background: rgb(255 250 241 / 82%);
-  box-shadow: 0 28px 70px rgb(58 41 32 / 18%);
+  background: rgb(255 253 247 / 86%);
+  box-shadow: 0 28px 70px rgb(23 24 21 / 20%);
   text-align: left;
   backdrop-filter: blur(12px);
 }
 
 .presentes-hero-conteudo .secao-etiqueta {
-  color: var(--cor-vinho-700);
+  color: var(--cor-dourado-700);
 }
 
 .presentes-hero h1 {
-  color: var(--cor-verde-900);
+  color: var(--cor-preto-900);
   font-size: clamp(3.5rem, 8vw, 6.3rem);
   line-height: 0.95;
 }
 
 .presentes-hero p {
   margin-inline: 0;
-  color: #5e554e;
+  color: var(--cor-texto-suave);
 }
 
 .presentes-hero .ornamento-floral {
@@ -443,9 +443,9 @@
     background:
       linear-gradient(
         180deg,
-        rgb(53 43 37 / 6%) 22%,
-        rgb(53 43 37 / 18%) 52%,
-        rgb(53 43 37 / 48%) 100%
+        rgb(23 24 21 / 6%) 22%,
+        rgb(23 24 21 / 20%) 52%,
+        rgb(23 24 21 / 54%) 100%
       );
   }
 
