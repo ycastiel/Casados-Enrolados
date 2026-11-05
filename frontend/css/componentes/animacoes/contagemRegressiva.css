@@ -21,8 +21,8 @@
     calc(var(--raio-grande) * 0.72)
     var(--raio-grande);
   background:
-    radial-gradient(circle at 12% 20%, rgb(183 154 200 / 10%), transparent 14rem),
-    radial-gradient(circle at 88% 80%, rgb(143 168 138 / 12%), transparent 15rem),
+    radial-gradient(circle at 12% 20%, rgb(83 99 74 / 10%), transparent 14rem),
+    radial-gradient(circle at 88% 80%, rgb(130 147 116 / 12%), transparent 15rem),
     linear-gradient(145deg, rgb(255 255 255 / 97%), rgb(247 242 234 / 92%));
   box-shadow:
     0 1px 0 rgb(255 255 255 / 78%) inset,
@@ -36,8 +36,8 @@
   background:
     repeating-linear-gradient(
       90deg,
-      rgb(138 106 82 / 1.1%) 0,
-      rgb(138 106 82 / 1.1%) 1px,
+      rgb(141 111 47 / 1.1%) 0,
+      rgb(141 111 47 / 1.1%) 1px,
       transparent 1px,
       transparent 7px
     );
@@ -153,7 +153,7 @@
   z-index: 3;
   width: clamp(9rem, 19vw, 14rem);
   pointer-events: none;
-  filter: drop-shadow(0 9px 16px rgb(62 58 55 / 6%));
+  filter: drop-shadow(0 9px 16px rgb(41 41 37 / 6%));
 }
 
 .contagem-regressiva__ramo--esquerda {
@@ -180,7 +180,7 @@
   color: var(--cor-vinho-500);
   font-family: Georgia, serif;
   font-size: 2rem;
-  box-shadow: 0 10px 30px rgb(62 58 55 / 7%);
+  box-shadow: 0 10px 30px rgb(41 41 37 / 7%);
 }
 
 .contagem-regressiva--compacta {
@@ -208,8 +208,8 @@
 
 .contagem-regressiva--hoje .contagem-regressiva__papel {
   background:
-    radial-gradient(circle at 50% 34%, rgb(232 217 168 / 24%), transparent 17rem),
-    radial-gradient(circle at 12% 86%, rgb(143 168 138 / 13%), transparent 13rem),
+    radial-gradient(circle at 50% 34%, rgb(226 202 131 / 24%), transparent 17rem),
+    radial-gradient(circle at 12% 86%, rgb(130 147 116 / 13%), transparent 13rem),
     linear-gradient(145deg, rgb(255 255 255 / 98%), rgb(251 245 223 / 90%));
 }
 
@@ -313,7 +313,7 @@
 
 /* DESIGN SYSTEM V1 */
 .contagem-regressiva {
-  border-color: rgb(138 106 82 / 13%);
+  border-color: rgb(141 111 47 / 13%);
   border-radius: var(--raio-lg);
   box-shadow: var(--sombra-sm);
 }
