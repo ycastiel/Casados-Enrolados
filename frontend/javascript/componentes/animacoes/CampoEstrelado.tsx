@@ -29,10 +29,10 @@ type Estrela = {
 };
 
 const CORES_ESTRELAS = [
-  "rgba(224, 188, 105, 0.96)",
-  "rgba(255, 247, 218, 0.96)",
-  "rgba(194, 168, 205, 0.88)",
-  "rgba(188, 205, 193, 0.88)",
+  "rgba(226, 202, 131, 0.98)",
+  "rgba(255, 249, 229, 0.96)",
+  "rgba(194, 161, 79, 0.92)",
+  "rgba(170, 184, 159, 0.82)",
 ];
 
 function criarGerador(semente: number) {
