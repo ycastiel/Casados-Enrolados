@@ -14,13 +14,13 @@
 
   overflow: visible;
 
-  border: 1px solid rgb(96 119 93 / 12%);
+  border: 1px solid rgb(83 99 74 / 12%);
   border-radius: clamp(2rem, 5vw, 4rem);
 
   background:
     radial-gradient(
       circle at 82% 18%,
-      rgb(232 217 168 / 19%),
+      rgb(226 202 131 / 19%),
       transparent 16rem
     ),
     linear-gradient(
@@ -108,7 +108,7 @@
   background:
     radial-gradient(
       circle,
-      rgb(183 154 200 / 9%),
+      rgb(83 99 74 / 9%),
       transparent 70%
     );
 
@@ -126,7 +126,7 @@
     0
     var(--espaco-5, 1.25rem);
 
-  border: 1px solid rgb(142 59 70 / 13%);
+  border: 1px solid rgb(48 49 45 / 13%);
   border-radius: 50%;
   background: var(--cor-amarelo-100);
   color: var(--cor-vinho-500);
@@ -173,12 +173,12 @@
   margin: 0;
   padding: 0.5rem;
 
-  border: 1px solid rgb(255 253 248 / 85%);
+  border: 1px solid rgb(255 253 247 / 85%);
   border-radius: 1.35rem;
-  background: rgb(255 253 248 / 86%);
+  background: rgb(255 253 247 / 86%);
 
   box-shadow:
-    0 20px 45px rgb(62 58 55 / 16%);
+    0 20px 45px rgb(41 41 37 / 16%);
 
   backdrop-filter: blur(6px);
   transform: rotate(1.4deg);
@@ -260,7 +260,7 @@
   filter:
     drop-shadow(
       0 12px 24px
-      rgb(62 58 55 / 10%)
+      rgb(41 41 37 / 10%)
     );
 }
 
@@ -339,6 +339,6 @@
 /* DESIGN SYSTEM V1 */
 .bloco-canticos__imagem,
 .bloco-canticos__detalhe {
-  border-color: rgb(138 106 82 / 13%);
+  border-color: rgb(141 111 47 / 13%);
   box-shadow: var(--sombra-sm);
 }

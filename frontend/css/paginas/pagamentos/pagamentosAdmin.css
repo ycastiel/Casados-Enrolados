@@ -309,9 +309,9 @@
 }
 
 .pagamentos-admin-cabecalho-flor {
-  right: -3rem !important;
-  bottom: -4rem !important;
-  opacity: 0.22 !important;
+  right: 1rem !important;
+  bottom: 0.8rem !important;
+  opacity: 0.38 !important;
 }
 
 .pagamentos-admin-cabecalho > *:not(.pagamentos-admin-cabecalho-flor) {
