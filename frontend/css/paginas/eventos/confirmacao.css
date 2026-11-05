@@ -10,8 +10,8 @@
   overflow: hidden;
   padding: clamp(4rem, 9vw, 7rem) 1rem;
   background:
-    radial-gradient(circle at 16% 30%, rgb(232 217 168 / 20%), transparent 21rem),
-    radial-gradient(circle at 84% 18%, rgb(183 154 200 / 10%), transparent 19rem),
+    radial-gradient(circle at 16% 30%, rgb(226 202 131 / 20%), transparent 21rem),
+    radial-gradient(circle at 84% 18%, rgb(83 99 74 / 10%), transparent 19rem),
     var(--cor-verde-50);
   isolation: isolate;
 }
@@ -113,10 +113,10 @@
   width: 100%;
   min-height: 3.2rem;
   padding: 0.8rem 1rem;
-  border: 1px solid rgb(96 119 93 / 26%);
+  border: 1px solid rgb(83 99 74 / 26%);
   border-radius: var(--raio-medio);
   outline: none;
-  background: rgb(255 253 248 / 86%);
+  background: rgb(255 253 247 / 86%);
   color: var(--cor-texto);
   transition:
     border-color var(--transicao-padrao),
@@ -131,7 +131,7 @@
 .confirmacao-busca input:focus {
   border-color: var(--cor-verde-500);
   background: white;
-  box-shadow: 0 0 0 4px rgb(143 168 138 / 12%);
+  box-shadow: 0 0 0 4px rgb(130 147 116 / 12%);
 }
 
 .confirmacao-ajuda {
@@ -162,7 +162,7 @@
   width: 2.8rem;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgb(142 59 70 / 18%);
+  border: 1px solid rgb(48 49 45 / 18%);
   border-radius: 50%;
   background: var(--cor-vinho-100);
   color: var(--cor-vinho-500);
@@ -236,7 +236,7 @@
   padding:
     clamp(4.5rem, 9vw, 7rem)
     clamp(1rem, 6vw, 5rem);
-  background: #4f5d49;
+  background: var(--cor-preto-700);
 }
 
 .confirmacao-hero-imagem,
@@ -259,15 +259,15 @@
   background:
     linear-gradient(
       90deg,
-      rgb(82 37 49 / 82%) 0%,
-      rgb(92 48 58 / 63%) 34%,
-      rgb(67 81 61 / 30%) 66%,
-      rgb(53 64 49 / 12%) 100%
+      rgb(23 24 21 / 88%) 0%,
+      rgb(36 37 33 / 72%) 34%,
+      rgb(92 73 31 / 34%) 67%,
+      rgb(83 99 74 / 16%) 100%
     ),
     linear-gradient(
       180deg,
-      rgb(45 50 42 / 7%) 50%,
-      rgb(41 46 39 / 29%) 100%
+      rgb(23 24 21 / 8%) 50%,
+      rgb(23 24 21 / 34%) 100%
     );
   pointer-events: none;
 }
@@ -281,7 +281,7 @@
 }
 
 .confirmacao-hero-conteudo .secao-etiqueta {
-  color: #dbe6d2;
+  color: var(--cor-dourado-300);
 }
 
 .confirmacao-hero h1 {
@@ -293,7 +293,7 @@
 .confirmacao-hero p {
   max-width: 35rem;
   margin-inline: 0;
-  color: #d8e2d2;
+  color: #f2ecdf;
 }
 
 .confirmacao-hero .ornamento-floral {
