@@ -34,7 +34,7 @@
   overflow: hidden;
   border-top: var(--linha-suave);
   background:
-    radial-gradient(circle at 20% 10%, rgb(183 154 200 / 8%), transparent 18rem),
-    radial-gradient(circle at 85% 70%, rgb(232 217 168 / 12%), transparent 20rem),
+    radial-gradient(circle at 20% 10%, rgb(83 99 74 / 8%), transparent 18rem),
+    radial-gradient(circle at 85% 70%, rgb(226 202 131 / 12%), transparent 20rem),
     var(--cor-papel);
 }
