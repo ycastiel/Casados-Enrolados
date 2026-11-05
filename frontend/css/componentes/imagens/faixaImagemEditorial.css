@@ -19,12 +19,12 @@
   background:
     radial-gradient(
       circle at 20% 20%,
-      rgb(183 154 200 / 17%),
+      rgb(83 99 74 / 17%),
       transparent 18rem
     ),
     radial-gradient(
       circle at 80% 78%,
-      rgb(232 217 168 / 16%),
+      rgb(226 202 131 / 16%),
       transparent 19rem
     ),
     linear-gradient(
@@ -116,12 +116,12 @@
   place-items: center;
 
   border: 1px solid
-    rgb(255 253 248 / 25%);
+    rgb(255 253 247 / 25%);
 
   border-radius: 50%;
 
   background:
-    rgb(255 253 248 / 8%);
+    rgb(255 253 247 / 8%);
 
   color:
     var(--cor-amarelo-300);
@@ -156,7 +156,7 @@
 
 .faixa-imagem-editorial cite {
   color:
-    rgb(255 253 248 / 76%);
+    rgb(255 253 247 / 76%);
 
   font-size: 0.7rem;
   font-style: normal;
