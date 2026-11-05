@@ -13,12 +13,12 @@
   background:
     radial-gradient(
       circle at 18% 20%,
-      rgb(183 154 200 / 10%),
+      rgb(83 99 74 / 10%),
       transparent 20rem
     ),
     radial-gradient(
       circle at 83% 25%,
-      rgb(232 217 168 / 18%),
+      rgb(226 202 131 / 18%),
       transparent 20rem
     ),
     var(--cor-creme);
@@ -93,7 +93,7 @@
   justify-content: space-between;
   gap: var(--espaco-4);
   padding-block: 0.75rem;
-  border-bottom: 1px solid rgb(138 106 82 / 12%);
+  border-bottom: 1px solid rgb(141 111 47 / 12%);
 }
 
 .reserva-resumo dt,
@@ -141,7 +141,7 @@
 .reserva-formulario input {
   min-height: 3.1rem;
   padding: 0.78rem 0.95rem;
-  border: 1px solid rgb(96 119 93 / 24%);
+  border: 1px solid rgb(83 99 74 / 24%);
   border-radius: var(--raio-pequeno);
   outline: none;
   background: var(--cor-marfin);
@@ -149,7 +149,7 @@
 
 .reserva-formulario input:focus {
   border-color: var(--cor-verde-500);
-  box-shadow: 0 0 0 4px rgb(143 168 138 / 10%);
+  box-shadow: 0 0 0 4px rgb(130 147 116 / 10%);
 }
 
 .reserva-formulario .botao {
@@ -317,7 +317,7 @@
 
   border:
     1px solid
-    rgb(255 253 248 / 16%);
+    rgb(255 253 247 / 16%);
 
   border-radius:
     clamp(1.6rem, 3vw, 2rem);
@@ -325,7 +325,7 @@
   background:
     radial-gradient(
       circle at 88% 14%,
-      rgb(232 217 168 / 13%),
+      rgb(226 202 131 / 13%),
       transparent 13rem
     ),
     linear-gradient(
@@ -354,7 +354,7 @@
 
   border:
     1px solid
-    rgb(255 253 248 / 9%);
+    rgb(255 253 247 / 9%);
 
   border-radius: 50%;
 
@@ -413,7 +413,7 @@
   margin: 0;
 
   color:
-    rgb(255 253 248 / 78%);
+    rgb(255 253 247 / 78%);
 
   line-height: 1.65;
 }
@@ -433,7 +433,7 @@
 
   border:
     1px solid
-    rgb(255 253 248 / 22%);
+    rgb(255 253 247 / 22%);
 
   border-radius:
     var(--raio-pequeno);
@@ -441,7 +441,7 @@
   outline: none;
 
   background:
-    rgb(255 253 248 / 95%);
+    rgb(255 253 247 / 95%);
 
   color:
     var(--cor-verde-900);
@@ -464,7 +464,7 @@
 
   box-shadow:
     0 0 0 4px
-    rgb(232 217 168 / 11%);
+    rgb(226 202 131 / 11%);
 }
 
 .pix-formulario__privacidade {
@@ -474,7 +474,7 @@
     0;
 
   color:
-    rgb(255 253 248 / 62%) !important;
+    rgb(255 253 247 / 62%) !important;
 
   font-size: 0.68rem;
 
@@ -501,13 +501,13 @@
 
   border:
     1px solid
-    rgb(255 253 248 / 18%);
+    rgb(255 253 247 / 18%);
 
   border-radius:
     var(--raio-pilula);
 
   background:
-    rgb(255 253 248 / 9%);
+    rgb(255 253 247 / 9%);
 
   color:
     var(--cor-amarelo-300);
@@ -545,7 +545,7 @@
   margin: 0;
 
   color:
-    rgb(255 253 248 / 82%) !important;
+    rgb(255 253 247 / 82%) !important;
 
   font-size:
     clamp(0.96rem, 1.4vw, 1.06rem);
@@ -578,7 +578,7 @@
 
 .pix-copia-cola__topo small {
   color:
-    rgb(255 253 248 / 52%);
+    rgb(255 253 247 / 52%);
 
   font-size: 0.63rem;
 }
@@ -653,7 +653,7 @@
   margin: 0;
 
   color:
-    rgb(255 253 248 / 58%) !important;
+    rgb(255 253 247 / 58%) !important;
 
   font-size: 0.72rem;
 
@@ -677,7 +677,7 @@
 
 .pix-gerado__qr-etiqueta {
   color:
-    rgb(255 253 248 / 72%);
+    rgb(255 253 247 / 72%);
 
   font-size: 0.68rem;
   font-weight: 850;
@@ -720,7 +720,7 @@
   max-width: 22rem;
 
   color:
-    rgb(255 253 248 / 55%);
+    rgb(255 253 247 / 55%);
 
   font-size: 0.7rem;
 
@@ -756,7 +756,7 @@
 
   border:
     1px solid
-    rgb(255 253 248 / 18%);
+    rgb(255 253 247 / 18%);
 
   border-radius: 50%;
 
@@ -783,7 +783,7 @@
   margin: 0;
 
   color:
-    rgb(255 253 248 / 74%);
+    rgb(255 253 247 / 74%);
 
   line-height: 1.6;
 }
@@ -865,8 +865,8 @@
 
 .reserva-hero-flor-viva,
 .reserva-status-flor-viva {
-  right: -3.5rem !important;
-  bottom: -4.5rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
   z-index: 1 !important;
   opacity: 0.32 !important;
 }
@@ -891,9 +891,9 @@
 }
 
 .reserva-resumo-flor-viva {
-  right: -3rem !important;
-  bottom: -3.5rem !important;
-  opacity: 0.25 !important;
+  right: 0.8rem !important;
+  bottom: 0.7rem !important;
+  opacity: 0.48 !important;
 }
 
 /* Status é informação textual; não precisa virar uma pílula decorativa. */
@@ -918,7 +918,7 @@
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: rgb(255 253 248 / 76%);
+  color: rgb(255 253 247 / 76%);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -932,8 +932,8 @@
 
 .reserva-pagamento-pix .ds-form input,
 .reserva-pagamento-pix input {
-  border-color: rgb(255 253 248 / 20%);
-  background: rgb(255 253 248 / 94%);
+  border-color: rgb(255 253 247 / 20%);
+  background: rgb(255 253 247 / 94%);
   color: var(--cor-texto);
 }
 
