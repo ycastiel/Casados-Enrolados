@@ -8,6 +8,8 @@ type BlocoImagemEditorialProps = {
   texto: string;
   referencia?: string;
   etiqueta?: string;
+  inverter?: boolean;
+  posicaoImagem?: string;
 };
 
 export function BlocoImagemEditorial({
@@ -18,14 +20,31 @@ export function BlocoImagemEditorial({
   texto,
   referencia,
   etiqueta = "Um amor que permanece",
+  inverter = false,
+  posicaoImagem = "center",
 }: BlocoImagemEditorialProps) {
   return (
-    <section className="bloco-imagem-editorial">
-      <div className="bloco-imagem-editorial__visual">
+    <section
+      className={[
+        "bloco-imagem-editorial",
+        inverter ? "bloco-imagem-editorial--invertido" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div
+        className={[
+          "bloco-imagem-editorial__visual",
+          !imagemApoio ? "bloco-imagem-editorial__visual--solo" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <img
           className="bloco-imagem-editorial__principal"
           src={imagemPrincipal}
           alt={altPrincipal}
+          style={{ objectPosition: posicaoImagem }}
         />
 
         {imagemApoio && (

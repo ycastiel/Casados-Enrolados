@@ -2,14 +2,9 @@ import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
-import { CampoEstrelado } from "../../javascript/componentes/animacoes/CampoEstrelado";
-import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
-
 import {
   Cartao,
 } from "../../javascript/componentes/cards/Cartao";
-
-import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
 
 import {
   OrnamentoFloral,
@@ -22,6 +17,8 @@ import {
   type PresenteCasamento,
   useCasamento,
 } from "../../javascript/paginas/eventos/Casamento";
+
+import presentesHero from "../../recursos/publico/imagens/presentes/presentes.webp";
 
 import "../../css/paginas/presentes/presentes.css";
 
@@ -98,19 +95,18 @@ export function Presentes() {
     dados.presentes;
 
   return (
-    <div className="pagina-presentes ds-page">
+    <div className="pagina-presentes">
       <section className="presentes-hero">
-        <CampoEstrelado
-          className="presentes-hero-estrelas"
-          quantidade={14}
-          intensidade="sutil"
-          semente={2711}
+        <img
+          className="presentes-hero-imagem"
+          src={presentesHero}
+          alt=""
+          aria-hidden="true"
         />
 
-        <FlorDesabrochando
-          className="presentes-hero-flor"
-          variante="fundo"
-          tamanho={210}
+        <div
+          className="presentes-hero-overlay"
+          aria-hidden="true"
         />
 
         <RamoFloral className="presentes-hero-floral presentes-hero-floral--esquerda" />
@@ -193,7 +189,7 @@ export function Presentes() {
 
                 return (
                   <Cartao
-                    className="presente-cartao ds-surface ds-surface--papel"
+                    className="presente-cartao"
                     key={
                       presente.id
                     }
@@ -204,13 +200,6 @@ export function Presentes() {
                     marca={false}
                   >
                     <RamoFloral className="presente-cartao-floral" />
-
-                    <EspacoImagem
-                      className="presente-cartao-imagem"
-                      src={presente.imagemUrl}
-                      alt={presente.imagemUrl ? `Imagem de ${presente.nome}` : ""}
-                      proporcao="paisagem"
-                    />
 
                     <div className="presente-cartao-conteudo">
                       <span className="presente-categoria">
@@ -238,11 +227,11 @@ export function Presentes() {
                             )}
                           </strong>
 
-                          <span>
-                            {disponivel
-                              ? `${presente.quantidadeDisponivel} ${presente.quantidadeDisponivel === 1 ? "disponível" : "disponíveis"}`
-                              : "Já escolhido"}
-                          </span>
+                          {!disponivel && (
+                            <span>
+                              Já escolhido
+                            </span>
+                          )}
                         </div>
 
                         {disponivel ? (
@@ -263,13 +252,6 @@ export function Presentes() {
                         )}
                       </div>
                     </div>
-
-                    <FlorDesabrochando
-                      className="presente-cartao-flor-viva"
-                      variante="card"
-                      tamanho={112}
-                      delayMs={420}
-                    />
                   </Cartao>
                 );
               },
