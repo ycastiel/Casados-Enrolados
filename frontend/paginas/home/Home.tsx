@@ -15,9 +15,15 @@ import {
 } from "../../javascript/componentes/imagens/FaixaImagemEditorial";
 
 import {
+  BlocoCanticos,
+} from "../../javascript/componentes/imagens/BlocoCanticos";
+
+import {
   BlocoImagemEditorial,
 } from "../../javascript/componentes/imagens/BlocoImagemEditorial";
 
+import aliancasFloral from "../../recursos/publico/imagens/home/aliancas-floral.webp";
+import oceanoCanticos from "../../recursos/publico/imagens/home/oceano-canticos.webp";
 import faixaAmor from "../../recursos/publico/imagens/home/faixa-amor.webp";
 import homeHero from "../../recursos/publico/imagens/home/home-hero.webp";
 import homeHeroFinal from "../../recursos/publico/imagens/home/home-hero-final.webp";
@@ -447,22 +453,25 @@ export function Home() {
         </LinkTransicao>
       </section>
 
-      <BlocoImagemEditorial
-        imagemPrincipal={noivosCarro}
-        altPrincipal="Mãos entrelaçadas dentro de um carro, em um gesto de parceria e cuidado."
-        etiqueta="Caminhar juntos"
-        texto="Seguir juntos também é escolher a mesma direção, um dia de cada vez."
-        posicaoImagem="center 58%"
+      <BlocoCanticos
+        imagemMar={oceanoCanticos}
+        imagemDetalhe={aliancasFloral}
+        altMar="Mar azul sob nuvens iluminadas, em um cenário calmo."
+        altDetalhe="Alianças douradas em uma composição floral delicada."
+        etiqueta="Fé, amor e aliança"
+        texto="Há amores que nem muitas águas conseguem apagar."
+        referencia="Cântico dos Cânticos 8:7"
       />
 
       <BlocoImagemEditorial
-        imagemPrincipal={vinculo}
-        altPrincipal="Pingente com coração lilás e asa metálica sobre um fundo claro."
+        imagemPrincipal={noivosCarro}
+        imagemApoio={vinculo}
+        altPrincipal="Mãos entrelaçadas dentro de um carro, em um gesto de parceria e cuidado."
+        altApoio="Pingente com coração lilás e asa metálica sobre um fundo claro."
         etiqueta="Vínculo e cuidado"
         texto="Acima de tudo, o amor é o vínculo que une com perfeição."
         referencia="Colossenses 3:14"
-        inverter
-        posicaoImagem="center 68%"
+        posicaoImagem="center 58%"
       />
 
       <section
