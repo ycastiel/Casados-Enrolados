@@ -178,9 +178,9 @@
   background:
     linear-gradient(
       145deg,
-      rgb(132 66 79) 0%,
-      rgb(111 78 70) 44%,
-      rgb(65 91 70) 100%
+      var(--cor-preto-900) 0%,
+      var(--cor-dourado-900) 46%,
+      var(--cor-verde-700) 100%
     );
 
   color:
@@ -209,7 +209,7 @@
   background:
     linear-gradient(
       90deg,
-      rgb(79 54 60 / 40%),
+      rgb(23 24 21 / 42%),
       transparent
     );
 
@@ -550,7 +550,7 @@
   background:
     linear-gradient(
       90deg,
-      rgb(226 202 131 / 85%),
+      rgb(232 204 120 / 85%),
       rgb(255 253 247 / 18%)
     );
 
@@ -745,7 +745,7 @@
     background:
       linear-gradient(
         180deg,
-        rgb(79 54 60 / 40%),
+        rgb(23 24 21 / 42%),
         transparent
       );
   }

@@ -8,12 +8,12 @@
   --cor-preto-900: #171815;
 
   /* Paleta canônica — dourado champagne */
-  --cor-dourado-50: #fcf8ec;
-  --cor-dourado-100: #f5eaca;
-  --cor-dourado-300: #e2ca83;
-  --cor-dourado-500: #c2a14f;
-  --cor-dourado-700: #8d6f2f;
-  --cor-dourado-900: #5c461d;
+  --cor-dourado-50: #fffaf0;
+  --cor-dourado-100: #f8eccb;
+  --cor-dourado-300: #e8cc78;
+  --cor-dourado-500: #cfa84a;
+  --cor-dourado-700: #95702a;
+  --cor-dourado-900: #5c451c;
 
   /* Botânica — verde de folhagem dos copos-de-leite */
   --cor-verde-50: #f2f5ef;
@@ -44,7 +44,7 @@
   --cor-bege: #e9decb;
   --cor-texto: #292925;
   --cor-texto-suave: #69655d;
-  --cor-borda: rgb(141 111 47 / 20%);
+  --cor-borda: rgb(149 112 42 / 20%);
 
   /* Semânticas */
   --cor-fundo: var(--cor-marfin);
@@ -107,8 +107,8 @@ body {
   background:
     repeating-linear-gradient(
       90deg,
-      rgb(141 111 47 / 0.75%) 0,
-      rgb(141 111 47 / 0.75%) 1px,
+      rgb(149 112 42 / 0.75%) 0,
+      rgb(149 112 42 / 0.75%) 1px,
       transparent 1px,
       transparent 7px
     ),
@@ -237,7 +237,7 @@ h2 {
 }
 
 .botao--secundario {
-  border-color: rgb(194 161 79 / 38%);
+  border-color: rgb(207 168 74 / 38%);
   background: rgb(255 253 247 / 86%);
   color: var(--cor-preto-900);
 }
@@ -249,7 +249,7 @@ h2 {
 
 .botao:focus-visible,
 a:focus-visible {
-  outline: 3px solid rgb(194 161 79 / 58%);
+  outline: 3px solid rgb(207 168 74 / 58%);
   outline-offset: 4px;
 }
 
@@ -288,8 +288,8 @@ a:focus-visible {
   /* Estados semânticos discretos */
   --cor-sucesso: #4e6247;
   --cor-sucesso-fundo: rgb(78 98 71 / 9%);
-  --cor-alerta: #8d6f2f;
-  --cor-alerta-fundo: rgb(141 111 47 / 10%);
+  --cor-alerta: var(--cor-dourado-700);
+  --cor-alerta-fundo: rgb(149 112 42 / 10%);
   --cor-erro: #7b3d40;
   --cor-erro-fundo: rgb(123 61 64 / 9%);
   --cor-info: #6f6577;
@@ -304,8 +304,8 @@ a:focus-visible {
   --cor-admin-verde: var(--cor-verde-700);
 
   /* Linhas e transparências */
-  --linha-suave: 1px solid rgb(141 111 47 / 15%);
-  --linha-media: 1px solid rgb(141 111 47 / 24%);
+  --linha-suave: 1px solid rgb(149 112 42 / 15%);
+  --linha-media: 1px solid rgb(149 112 42 / 24%);
   --linha-verde: 1px solid rgb(83 99 74 / 24%);
   --vidro-claro: rgb(255 253 247 / 84%);
   --vidro-forte: rgb(255 253 247 / 95%);
@@ -344,12 +344,12 @@ a:focus-visible {
 
 body {
   background:
-    radial-gradient(circle at 8% 12%, rgb(194 161 79 / 9%), transparent 24rem),
+    radial-gradient(circle at 8% 12%, rgb(207 168 74 / 9%), transparent 24rem),
     radial-gradient(circle at 92% 28%, rgb(83 99 74 / 8%), transparent 28rem),
     repeating-linear-gradient(
       90deg,
-      rgb(141 111 47 / 0.75%) 0,
-      rgb(141 111 47 / 0.75%) 1px,
+      rgb(149 112 42 / 0.75%) 0,
+      rgb(149 112 42 / 0.75%) 1px,
       transparent 1px,
       transparent 7px
     ),
@@ -373,10 +373,10 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: rgb(194 161 79 / 55%);
+  border-color: rgb(207 168 74 / 55%);
   outline: none;
   background: var(--cor-marfin);
-  box-shadow: 0 0 0 4px rgb(194 161 79 / 14%);
+  box-shadow: 0 0 0 4px rgb(207 168 74 / 14%);
 }
 
 input::placeholder,
@@ -403,7 +403,7 @@ button:disabled,
   z-index: -2;
   inset: 0;
   background:
-    radial-gradient(circle at 13% 18%, rgb(194 161 79 / 7%), transparent 24rem),
+    radial-gradient(circle at 13% 18%, rgb(207 168 74 / 7%), transparent 24rem),
     radial-gradient(circle at 84% 52%, rgb(83 99 74 / 6%), transparent 26rem);
   content: "";
   pointer-events: none;
@@ -419,7 +419,7 @@ button:disabled,
   padding: clamp(5.5rem, 10vw, 9rem) var(--pagina-x) clamp(4rem, 8vw, 7rem);
   background:
     linear-gradient(180deg, rgb(255 253 247 / 92%), rgb(248 242 231 / 88%)),
-    radial-gradient(circle at 50% 15%, rgb(226 202 131 / 24%), transparent 24rem);
+    radial-gradient(circle at 50% 15%, rgb(232 204 120 / 24%), transparent 24rem);
   border-bottom: var(--linha-suave);
 }
 
@@ -483,7 +483,7 @@ button:disabled,
 
 .ds-surface--vinho {
   background:
-    radial-gradient(circle at 85% 20%, rgb(226 202 131 / 18%), transparent 15rem),
+    radial-gradient(circle at 85% 20%, rgb(232 204 120 / 18%), transparent 15rem),
     linear-gradient(135deg, var(--cor-preto-900), var(--cor-preto-700) 72%, #49402d);
   color: var(--cor-marfin);
 }
@@ -523,7 +523,7 @@ button:disabled,
 .ds-divisor::after {
   flex: 1;
   height: 1px;
-  background: rgb(141 111 47 / 18%);
+  background: rgb(149 112 42 / 18%);
   content: "";
 }
 
@@ -546,7 +546,7 @@ button:disabled,
   z-index: 2;
   width: 4.4rem;
   height: 4.4rem;
-  border: 1px solid rgb(194 161 79 / 24%);
+  border: 1px solid rgb(207 168 74 / 24%);
   content: "";
   pointer-events: none;
 }
@@ -586,7 +586,7 @@ button:disabled,
   gap: 0.45rem;
   padding: 2rem;
   background:
-    radial-gradient(circle at 20% 15%, rgb(194 161 79 / 15%), transparent 12rem),
+    radial-gradient(circle at 20% 15%, rgb(207 168 74 / 15%), transparent 12rem),
     radial-gradient(circle at 82% 78%, rgb(83 99 74 / 11%), transparent 14rem),
     var(--cor-papel);
   color: var(--cor-preto-900);
@@ -688,7 +688,7 @@ button:disabled,
   border: var(--linha-suave);
   border-radius: var(--raio-lg);
   background:
-    radial-gradient(circle at 92% 10%, rgb(194 161 79 / 17%), transparent 17rem),
+    radial-gradient(circle at 92% 10%, rgb(207 168 74 / 17%), transparent 17rem),
     radial-gradient(circle at 8% 90%, rgb(83 99 74 / 9%), transparent 18rem),
     var(--cor-marfin);
   box-shadow: var(--sombra-xs);
@@ -725,7 +725,7 @@ button:disabled,
     .ds-imagem[data-interativo="true"]:hover,
     .ds-metrica[data-interativo="true"]:hover {
       transform: translateY(-4px);
-      border-color: rgb(141 111 47 / 28%);
+      border-color: rgb(149 112 42 / 28%);
       box-shadow: var(--sombra-md);
     }
   }

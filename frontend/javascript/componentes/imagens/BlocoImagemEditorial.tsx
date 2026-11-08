@@ -28,6 +28,7 @@ export function BlocoImagemEditorial({
       className={[
         "bloco-imagem-editorial",
         inverter ? "bloco-imagem-editorial--invertido" : "",
+        imagemApoio ? "bloco-imagem-editorial--com-apoio" : "",
       ]
         .filter(Boolean)
         .join(" ")}
@@ -47,19 +48,21 @@ export function BlocoImagemEditorial({
           style={{ objectPosition: posicaoImagem }}
         />
 
-        {imagemApoio && (
-          <img
-            className="bloco-imagem-editorial__apoio"
-            src={imagemApoio}
-            alt={altApoio}
-          />
-        )}
       </div>
 
-      <div className="bloco-imagem-editorial__texto">
-        <span className="secao-etiqueta">
-          {etiqueta}
-        </span>
+      <div
+        className={[
+          "bloco-imagem-editorial__texto",
+          !etiqueta ? "bloco-imagem-editorial__texto--sem-etiqueta" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        {etiqueta && (
+          <span className="secao-etiqueta">
+            {etiqueta}
+          </span>
+        )}
 
         <span
           className="bloco-imagem-editorial__simbolo"
@@ -76,6 +79,15 @@ export function BlocoImagemEditorial({
           <cite>
             Inspirado em {referencia}
           </cite>
+        )}
+
+        {imagemApoio && (
+          <figure className="bloco-imagem-editorial__apoio">
+            <img
+              src={imagemApoio}
+              alt={altApoio}
+            />
+          </figure>
         )}
       </div>
     </section>
