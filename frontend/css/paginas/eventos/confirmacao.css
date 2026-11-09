@@ -352,3 +352,25 @@
     margin-inline: auto;
   }
 }
+
+/* Botânica 2.0 — limite visual de 5% sobre o hero. */
+.confirmacao-hero-floral {
+  position: absolute;
+}
+
+.confirmacao-hero-floral--esquerda {
+  bottom: 0;
+  left: -0.75rem;
+  transform:
+    translateY(95%)
+    rotate(-3deg);
+}
+
+.confirmacao-hero-floral--direita {
+  top: 0;
+  right: -0.75rem;
+  transform:
+    translateY(-95%)
+    rotate(177deg);
+}
+

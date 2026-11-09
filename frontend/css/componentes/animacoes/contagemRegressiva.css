@@ -317,3 +317,35 @@
   border-radius: var(--raio-lg);
   box-shadow: var(--sombra-sm);
 }
+
+/* Botânica 2.0: no máximo 5% do ramo sobre o cartão. */
+.contagem-regressiva__ramo--esquerda {
+  bottom: 0;
+  left: -0.75rem;
+  transform:
+    translateY(95%)
+    rotate(-3deg);
+}
+
+.contagem-regressiva__ramo--direita {
+  top: 0;
+  right: -0.75rem;
+  transform:
+    translateY(-95%)
+    rotate(177deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contagem-regressiva:hover .contagem-regressiva__ramo--esquerda {
+    transform:
+      translateY(95%)
+      rotate(-1deg);
+  }
+
+  .contagem-regressiva:hover .contagem-regressiva__ramo--direita {
+    transform:
+      translateY(-95%)
+      rotate(179deg);
+  }
+}
+

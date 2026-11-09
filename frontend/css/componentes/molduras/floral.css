@@ -13,9 +13,8 @@
   position: relative;
   isolation: isolate;
 
-  --moldura-ramo-tamanho: clamp(8rem, 22vw, 13rem);
-  --moldura-ramo-recuo-x: -4.9rem;
-  --moldura-ramo-recuo-y: -4.6rem;
+  --moldura-ramo-tamanho: clamp(10rem, 24vw, 15rem);
+  --moldura-ramo-invasao: 5%;
 }
 
 .moldura-floral__conteudo {
@@ -29,21 +28,25 @@
   z-index: 1;
   width: var(--moldura-ramo-tamanho);
   pointer-events: none;
-  filter: drop-shadow(0 8px 14px rgb(41 41 37 / 5%));
+  filter: drop-shadow(0 10px 20px rgb(41 41 37 / 10%));
   user-select: none;
 }
 
 .moldura-floral__ramo--superior {
-  top: var(--moldura-ramo-recuo-y);
-  left: var(--moldura-ramo-recuo-x);
-  transform: rotate(-10deg);
+  top: 0;
+  left: 0;
+  transform:
+    translate(-6%, -95%)
+    rotate(-3deg);
   transform-origin: center;
 }
 
 .moldura-floral__ramo--inferior {
-  right: var(--moldura-ramo-recuo-x);
-  bottom: var(--moldura-ramo-recuo-y);
-  transform: rotate(170deg);
+  right: 0;
+  bottom: 0;
+  transform:
+    translate(6%, 95%)
+    rotate(177deg);
   transform-origin: center;
 }
 
@@ -52,9 +55,7 @@
      ========================================================= */
 
 .moldura-floral--cartao {
-  --moldura-ramo-tamanho: clamp(7.2rem, 19vw, 10.5rem);
-  --moldura-ramo-recuo-x: -4.25rem;
-  --moldura-ramo-recuo-y: -4rem;
+  --moldura-ramo-tamanho: clamp(8.5rem, 20vw, 12rem);
 }
 
 .moldura-floral--cartao .moldura-floral__ramo {
@@ -66,9 +67,7 @@
      ========================================================= */
 
 .moldura-floral--destaque {
-  --moldura-ramo-tamanho: clamp(9rem, 24vw, 14rem);
-  --moldura-ramo-recuo-x: -6.4rem;
-  --moldura-ramo-recuo-y: -5.8rem;
+  --moldura-ramo-tamanho: clamp(11rem, 27vw, 17rem);
 }
 
 .moldura-floral--destaque .moldura-floral__ramo {
@@ -80,13 +79,13 @@
      ========================================================= */
 
 .ornamento-floral {
-  width: min(13rem, 52vw);
+  width: min(11rem, 46vw);
   margin: var(--espaco-4) auto var(--espaco-6);
-  opacity: 0.94;
+  opacity: 0.98;
 }
 
 .ornamento-floral--compacto {
-  width: min(9.5rem, 42vw);
+  width: min(7.75rem, 36vw);
   margin-block: var(--espaco-2) var(--espaco-5, 1.25rem);
 }
 
@@ -94,6 +93,7 @@
   display: block;
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 7px 14px rgb(41 41 37 / 8%));
 }
 
 /* =========================================================
@@ -102,21 +102,15 @@
 
 @media (max-width: 680px) {
   .moldura-floral {
-    --moldura-ramo-tamanho: 7.2rem;
-    --moldura-ramo-recuo-x: -3.25rem;
-    --moldura-ramo-recuo-y: -3.15rem;
+    --moldura-ramo-tamanho: 8.75rem;
   }
 
   .moldura-floral--cartao {
-    --moldura-ramo-tamanho: 6.8rem;
-    --moldura-ramo-recuo-x: -3.2rem;
-    --moldura-ramo-recuo-y: -3.05rem;
+    --moldura-ramo-tamanho: 8rem;
   }
 
   .moldura-floral--destaque {
-    --moldura-ramo-tamanho: 8.5rem;
-    --moldura-ramo-recuo-x: -4.2rem;
-    --moldura-ramo-recuo-y: -4rem;
+    --moldura-ramo-tamanho: 10rem;
   }
 }
 
@@ -132,11 +126,15 @@
   }
 
   .moldura-floral:hover .moldura-floral__ramo--superior {
-    transform: rotate(-7deg) translate3d(0.15rem, -0.1rem, 0);
+    transform:
+      translate(-5%, -95%)
+      rotate(-1deg);
   }
 
   .moldura-floral:hover .moldura-floral__ramo--inferior {
-    transform: rotate(167deg) translate3d(-0.15rem, 0.1rem, 0);
+    transform:
+      translate(5%, 95%)
+      rotate(179deg);
   }
 }
 /* DESIGN SYSTEM V1 */

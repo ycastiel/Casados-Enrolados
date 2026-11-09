@@ -11,16 +11,12 @@
   overflow: hidden;
   padding: clamp(4rem, 9vw, 7rem) 1rem;
   background:
-    radial-gradient(
-      circle at 18% 20%,
+    radial-gradient(circle at 18% 20%,
       rgb(83 99 74 / 10%),
-      transparent 20rem
-    ),
-    radial-gradient(
-      circle at 83% 25%,
+      transparent 20rem),
+    radial-gradient(circle at 83% 25%,
       rgb(226 202 131 / 18%),
-      transparent 20rem
-    ),
+      transparent 20rem),
     var(--cor-creme);
   isolation: isolate;
 }
@@ -63,8 +59,7 @@
 .reserva-status-area {
   display: grid;
   grid-template-columns:
-    minmax(0, 0.85fr)
-    minmax(0, 1.15fr);
+    minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(3rem, 7vw, 7rem);
   align-items: start;
 }
@@ -74,8 +69,8 @@
   font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
-.reserva-resumo > p,
-.reserva-pagamento-pix > p {
+.reserva-resumo>p,
+.reserva-pagamento-pix>p {
   color: var(--cor-texto-suave);
 }
 
@@ -86,8 +81,8 @@
   margin-top: var(--espaco-8);
 }
 
-.reserva-resumo dl > div,
-.reserva-detalhes > div {
+.reserva-resumo dl>div,
+.reserva-detalhes>div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,11 +112,9 @@
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-grande);
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgb(255 255 255 / 96%),
-      rgb(247 242 234 / 84%)
-    );
+      rgb(247 242 234 / 84%));
   box-shadow: var(--sombra-media);
 }
 
@@ -174,8 +167,7 @@
 
 .reserva-status-area {
   grid-template-columns:
-    minmax(0, 1.2fr)
-    minmax(17rem, 0.8fr);
+    minmax(0, 1.2fr) minmax(17rem, 0.8fr);
 }
 
 .reserva-status-topo {
@@ -225,7 +217,7 @@
   text-align: center;
 }
 
-.reserva-contagem > span {
+.reserva-contagem>span {
   color: var(--cor-vinho-500);
   font-size: 0.7rem;
   font-weight: 800;
@@ -264,6 +256,7 @@
 
 
 @media (max-width: 900px) {
+
   .reserva-area,
   .reserva-status-area {
     grid-template-columns: 1fr;
@@ -297,8 +290,7 @@
  */
 .reserva-status-area {
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(30rem, 0.9fr);
+    minmax(0, 1fr) minmax(30rem, 0.9fr);
   gap: clamp(2rem, 5vw, 4.5rem);
 }
 
@@ -316,28 +308,22 @@
     clamp(1.6rem, 3vw, 2.25rem);
 
   border:
-    1px solid
-    rgb(255 253 247 / 16%);
+    1px solid rgb(255 253 247 / 16%);
 
   border-radius:
     clamp(1.6rem, 3vw, 2rem);
 
   background:
-    radial-gradient(
-      circle at 88% 14%,
+    radial-gradient(circle at 88% 14%,
       rgb(226 202 131 / 13%),
-      transparent 13rem
-    ),
-    linear-gradient(
-      145deg,
+      transparent 13rem),
+    linear-gradient(145deg,
       var(--cor-vinho-700),
       var(--cor-alerta) 48%,
-      var(--cor-verde-700)
-    );
+      var(--cor-verde-700));
 
   box-shadow:
-    0 28px 70px
-    rgb(54 39 37 / 14%);
+    0 28px 70px rgb(54 39 37 / 14%);
 
   color:
     var(--cor-marfin);
@@ -353,8 +339,7 @@
   aspect-ratio: 1;
 
   border:
-    1px solid
-    rgb(255 253 247 / 9%);
+    1px solid rgb(255 253 247 / 9%);
 
   border-radius: 50%;
 
@@ -409,7 +394,7 @@
   gap: 1rem;
 }
 
-.pix-formulario > p:first-child {
+.pix-formulario>p:first-child {
   margin: 0;
 
   color:
@@ -432,8 +417,7 @@
   width: 100%;
 
   border:
-    1px solid
-    rgb(255 253 247 / 22%);
+    1px solid rgb(255 253 247 / 22%);
 
   border-radius:
     var(--raio-pequeno);
@@ -453,8 +437,7 @@
   min-height: 3.05rem;
 
   padding:
-    0.78rem
-    0.9rem;
+    0.78rem 0.9rem;
 }
 
 .pix-formulario input:focus,
@@ -463,15 +446,12 @@
     var(--cor-amarelo-300);
 
   box-shadow:
-    0 0 0 4px
-    rgb(226 202 131 / 11%);
+    0 0 0 4px rgb(226 202 131 / 11%);
 }
 
 .pix-formulario__privacidade {
   margin:
-    -0.2rem
-    0
-    0;
+    -0.2rem 0 0;
 
   color:
     rgb(255 253 247 / 62%) !important;
@@ -500,8 +480,7 @@
     0.85rem;
 
   border:
-    1px solid
-    rgb(255 253 247 / 18%);
+    1px solid rgb(255 253 247 / 18%);
 
   border-radius:
     var(--raio-pilula);
@@ -569,7 +548,7 @@
   gap: 1rem;
 }
 
-.pix-copia-cola__topo > span {
+.pix-copia-cola__topo>span {
   font-size: 0.72rem;
   font-weight: 850;
 
@@ -589,8 +568,7 @@
   resize: none;
 
   padding:
-    0.8rem
-    0.9rem;
+    0.8rem 0.9rem;
 
   font-family:
     ui-monospace,
@@ -619,8 +597,7 @@
   flex-wrap: wrap;
 
   gap:
-    0.8rem
-    1.2rem;
+    0.8rem 1.2rem;
 
   padding-top: 0.15rem;
 }
@@ -689,10 +666,8 @@
 
 .pix-gerado__qr {
   width:
-    min(
-      100%,
-      17.5rem
-    );
+    min(100%,
+      17.5rem);
 
   padding:
     clamp(0.75rem, 2vw, 1rem);
@@ -703,8 +678,7 @@
     var(--cor-marfin);
 
   box-shadow:
-    0 18px 42px
-    rgb(31 34 28 / 22%);
+    0 18px 42px rgb(31 34 28 / 22%);
 }
 
 .pix-gerado__qr img {
@@ -716,7 +690,7 @@
   border-radius: 0.45rem;
 }
 
-.pix-gerado__qr-area > small {
+.pix-gerado__qr-area>small {
   max-width: 22rem;
 
   color:
@@ -744,7 +718,7 @@
   text-align: center;
 }
 
-.pix-sucesso > span {
+.pix-sucesso>span {
   display: grid;
 
   width: 4rem;
@@ -755,8 +729,7 @@
   margin-bottom: 0.85rem;
 
   border:
-    1px solid
-    rgb(255 253 247 / 18%);
+    1px solid rgb(255 253 247 / 18%);
 
   border-radius: 50%;
 
@@ -793,8 +766,7 @@
 @media (max-width: 1050px) {
   .reserva-status-area {
     grid-template-columns:
-      minmax(0, 1fr)
-      minmax(26rem, 0.9fr);
+      minmax(0, 1fr) minmax(26rem, 0.9fr);
 
     gap: 2.5rem;
   }
@@ -849,10 +821,8 @@
 
   .pix-gerado__qr {
     width:
-      min(
-        100%,
-        16.5rem
-      );
+      min(100%,
+        16.5rem);
   }
 }
 
@@ -861,7 +831,9 @@
    ========================================================= */
 
 .reserva-hero,
-.reserva-status-hero { isolation: isolate; }
+.reserva-status-hero {
+  isolation: isolate;
+}
 
 .reserva-hero-flor-viva,
 .reserva-status-flor-viva {
@@ -874,7 +846,10 @@
 .reserva-hero-conteudo,
 .reserva-hero-floral,
 .reserva-status-conteudo,
-.reserva-status-floral { position: relative; z-index: 2; }
+.reserva-status-floral {
+  position: relative;
+  z-index: 2;
+}
 
 .reserva-resumo,
 .reserva-formulario,
@@ -908,10 +883,18 @@
   text-transform: uppercase;
 }
 
-.reserva-status-selo--concluida { color: var(--cor-sucesso); }
-.reserva-status-selo--reservada { color: var(--cor-info); }
+.reserva-status-selo--concluida {
+  color: var(--cor-sucesso);
+}
+
+.reserva-status-selo--reservada {
+  color: var(--cor-info);
+}
+
 .reserva-status-selo--cancelada,
-.reserva-status-selo--expirada { color: var(--cor-alerta); }
+.reserva-status-selo--expirada {
+  color: var(--cor-alerta);
+}
 
 .pix-gerado__status {
   padding: 0;
@@ -941,8 +924,18 @@
   padding: clamp(1.6rem, 4vw, 2.6rem);
 }
 
-.reserva-resumo > .reserva-presente-imagem {
+.reserva-resumo>.reserva-presente-imagem {
   width: auto;
   margin: -1rem -1rem 2rem;
   border-radius: var(--raio-lg) var(--raio-lg) var(--raio-sm) var(--raio-sm);
+}
+
+/* Botânica 2.0 — ramos de reserva/status ficam 95% fora do hero. */
+.reserva-hero-floral,
+.reserva-status-floral {
+  position: absolute;
+  right: -0.75rem;
+  bottom: 0;
+  transform:
+    translateY(95%) rotate(177deg);
 }

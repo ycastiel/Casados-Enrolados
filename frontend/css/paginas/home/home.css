@@ -2126,7 +2126,7 @@
 }
 
 .home-encerramento__conteudo .secao-etiqueta {
-  color: var(--cor-preto-700);
+  color: var(--cor-dourado-300);
 }
 
 .home-encerramento__conteudo p {
@@ -2174,3 +2174,37 @@
     object-position: center 55%;
   }
 }
+
+/* =========================================================
+   BOTÂNICA 2.0 — LIMITE DE INVASÃO
+   Ramos de borda permanecem 95% fora da seção.
+   ========================================================= */
+.hero-floral,
+.convite-floral {
+  position: absolute;
+}
+
+.hero-floral--esquerda {
+  bottom: 0;
+  left: clamp(-2rem, -2vw, -0.75rem);
+  transform:
+    translateY(95%)
+    rotate(-3deg);
+}
+
+.hero-floral--direita {
+  top: 0;
+  right: clamp(-2rem, -2vw, -0.75rem);
+  transform:
+    translateY(-95%)
+    rotate(177deg);
+}
+
+.convite-floral {
+  right: clamp(-2.5rem, -2vw, -0.75rem);
+  bottom: 0;
+  transform:
+    translateY(95%)
+    rotate(176deg);
+}
+
