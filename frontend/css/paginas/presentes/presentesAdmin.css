@@ -11,7 +11,7 @@
   margin-bottom: var(--espaco-8);
 }
 
-.presentes-admin-cabecalho > div {
+.presentes-admin-cabecalho>div {
   max-width: 46rem;
 }
 
@@ -39,11 +39,9 @@
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-grande);
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgb(255 255 255 / 96%),
-      rgb(247 242 234 / 78%)
-    );
+      rgb(247 242 234 / 78%));
   box-shadow: var(--sombra-suave);
 }
 
@@ -134,8 +132,8 @@
   gap: 0.35rem;
 }
 
-.presentes-admin-filtros label > span,
-.presentes-admin-campo > span {
+.presentes-admin-filtros label>span,
+.presentes-admin-campo>span {
   color: var(--cor-texto-suave);
   font-size: 0.7rem;
   font-weight: 800;
@@ -216,11 +214,9 @@
   border: 1px solid var(--cor-borda);
   border-radius: 1.35rem;
   background:
-    radial-gradient(
-      circle at 50% 35%,
+    radial-gradient(circle at 50% 35%,
       rgb(226 202 131 / 24%),
-      transparent 60%
-    ),
+      transparent 60%),
     var(--cor-creme);
 }
 
@@ -252,7 +248,7 @@
   font-size: clamp(1.7rem, 3vw, 2.2rem);
 }
 
-.presente-admin-info > p {
+.presente-admin-info>p {
   max-width: 52rem;
   margin-bottom: var(--espaco-4);
   color: var(--cor-texto-suave);
@@ -304,7 +300,7 @@
   gap: 0.65rem 1.5rem;
 }
 
-.presente-admin-metricas > span {
+.presente-admin-metricas>span {
   display: grid;
   gap: 0.05rem;
 }
@@ -426,16 +422,14 @@
   padding: clamp(1.4rem, 4vw, 2.2rem);
   border-left: 1px solid var(--cor-borda);
   background:
-    radial-gradient(
-      circle at 90% 8%,
+    radial-gradient(circle at 90% 8%,
       rgb(83 99 74 / 12%),
-      transparent 16rem
-    ),
+      transparent 16rem),
     var(--cor-marfin);
   box-shadow: -20px 0 60px rgb(41 41 37 / 15%);
 }
 
-.presentes-admin-formulario > header {
+.presentes-admin-formulario>header {
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -634,11 +628,9 @@ textarea:disabled {
   border-radius: 1.35rem;
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgb(255 253 247 / 88%),
-      rgb(247 242 234 / 58%)
-    );
+      rgb(247 242 234 / 58%));
 }
 
 .presentes-admin-upload-preview {
@@ -652,11 +644,9 @@ textarea:disabled {
   border-radius: 1rem;
 
   background:
-    radial-gradient(
-      circle at 50% 25%,
+    radial-gradient(circle at 50% 25%,
       rgb(226 202 131 / 20%),
-      transparent 60%
-    ),
+      transparent 60%),
     var(--cor-creme);
 
   color: var(--cor-vinho-500);
@@ -669,7 +659,7 @@ textarea:disabled {
   object-fit: cover;
 }
 
-.presentes-admin-upload-preview > span {
+.presentes-admin-upload-preview>span {
   font-family: Georgia, serif;
   font-size: 1.8rem;
 }
@@ -743,7 +733,7 @@ textarea:disabled {
   margin-top: 0.65rem;
 }
 
-.presentes-admin-url-alternativa > span {
+.presentes-admin-url-alternativa>span {
   color: var(--cor-texto-suave);
   font-size: 0.68rem;
   font-weight: 800;
@@ -781,10 +771,10 @@ textarea:disabled {
   overflow: hidden;
   align-items: center;
   margin-bottom: 1rem;
-  padding: clamp(1.7rem,4vw,2.8rem);
+  padding: clamp(1.7rem, 4vw, 2.8rem);
   border: 1px solid rgb(255 253 247 / 14%);
   border-radius: var(--raio-grande);
-  background: radial-gradient(circle at 88% 12%,rgb(226 202 131 / 18%),transparent 14rem),linear-gradient(135deg,var(--cor-vinho-700),var(--cor-terra-700) 48%,var(--cor-verde-700));
+  background: radial-gradient(circle at 88% 12%, rgb(226 202 131 / 18%), transparent 14rem), linear-gradient(135deg, var(--cor-vinho-700), var(--cor-terra-700) 48%, var(--cor-verde-700));
   box-shadow: 0 24px 58px rgb(70 45 42 / 14%);
 }
 
@@ -794,7 +784,7 @@ textarea:disabled {
 
 .presentes-admin-cabecalho h1 {
   color: var(--cor-marfin);
-  font-size: clamp(3rem,6vw,4.8rem);
+  font-size: clamp(3rem, 6vw, 4.8rem);
 }
 
 .presentes-admin-cabecalho p {
@@ -817,19 +807,19 @@ textarea:disabled {
 }
 
 .presentes-admin-resumo article:nth-child(1) {
-  background: linear-gradient(145deg,rgb(244 231 232 / 80%),rgb(255 253 247 / 94%));
+  background: linear-gradient(145deg, rgb(244 231 232 / 80%), rgb(255 253 247 / 94%));
 }
 
 .presentes-admin-resumo article:nth-child(2) {
-  background: linear-gradient(145deg,rgb(229 236 225 / 90%),rgb(255 253 247 / 94%));
+  background: linear-gradient(145deg, rgb(229 236 225 / 90%), rgb(255 253 247 / 94%));
 }
 
 .presentes-admin-resumo article:nth-child(3) {
-  background: linear-gradient(145deg,rgb(251 245 223 / 90%),rgb(255 253 247 / 94%));
+  background: linear-gradient(145deg, rgb(251 245 223 / 90%), rgb(255 253 247 / 94%));
 }
 
 .presentes-admin-resumo article:nth-child(4) {
-  background: linear-gradient(145deg,rgb(83 99 74 / 12%),rgb(255 253 247 / 94%));
+  background: linear-gradient(145deg, rgb(83 99 74 / 12%), rgb(255 253 247 / 94%));
 }
 
 .presentes-admin-painel {
@@ -843,7 +833,7 @@ textarea:disabled {
   margin-bottom: .8rem;
   border: 1px solid var(--cor-borda);
   border-radius: 1.25rem;
-  background: linear-gradient(145deg,rgb(255 253 247 / 88%),rgb(247 242 234 / 68%));
+  background: linear-gradient(145deg, rgb(255 253 247 / 88%), rgb(247 242 234 / 68%));
 }
 
 .presentes-admin-lista {
@@ -853,7 +843,7 @@ textarea:disabled {
 .presente-admin-item {
   border: 1px solid rgb(141 111 47 / 13%);
   border-radius: 1.35rem;
-  background: linear-gradient(145deg,rgb(255 255 255 / 84%),rgb(247 242 234 / 56%));
+  background: linear-gradient(145deg, rgb(255 255 255 / 84%), rgb(247 242 234 / 56%));
   box-shadow: 0 12px 30px rgb(41 41 37 / 6%);
 }
 
@@ -862,17 +852,17 @@ textarea:disabled {
 }
 
 .presente-admin-item--inativo {
-  background: linear-gradient(145deg,rgb(237 228 215 / 55%),rgb(255 253 247 / 72%));
+  background: linear-gradient(145deg, rgb(237 228 215 / 55%), rgb(255 253 247 / 72%));
 }
 
 .presentes-admin-formulario {
   border-left: 1px solid rgb(255 253 247 / 15%);
-  background: radial-gradient(circle at 90% 8%,rgb(226 202 131 / 14%),transparent 15rem),linear-gradient(170deg,var(--cor-marfin),var(--cor-papel-quente));
+  background: radial-gradient(circle at 90% 8%, rgb(226 202 131 / 14%), transparent 15rem), linear-gradient(170deg, var(--cor-marfin), var(--cor-papel-quente));
 }
 
 .presentes-admin-upload {
   border-color: rgb(48 49 45 / 20%);
-  background: linear-gradient(145deg,rgb(244 231 232 / 42%),rgb(243 246 241 / 72%));
+  background: linear-gradient(145deg, rgb(244 231 232 / 42%), rgb(243 246 241 / 72%));
 }
 
 /* =========================================================
@@ -889,7 +879,7 @@ textarea:disabled {
   opacity: 0.38 !important;
 }
 
-.presentes-admin-cabecalho > *:not(.presentes-admin-cabecalho-flor) {
+.presentes-admin-cabecalho>*:not(.presentes-admin-cabecalho-flor) {
   position: relative;
   z-index: 2;
 }
@@ -898,7 +888,7 @@ textarea:disabled {
   gap: var(--gap-card);
 }
 
-.presentes-admin-resumo > article {
+.presentes-admin-resumo>article {
   border-color: rgb(141 111 47 / 13%);
   background: var(--vidro-forte);
 }
@@ -929,10 +919,21 @@ textarea:disabled {
   text-transform: uppercase;
 }
 
-.presente-admin-status--disponivel { color: var(--cor-sucesso); }
-.presente-admin-status--reservado { color: var(--cor-info); }
-.presente-admin-status--esgotado { color: var(--cor-alerta); }
-.presente-admin-status--inativo { color: var(--cor-texto-suave); }
+.presente-admin-status--disponivel {
+  color: var(--cor-sucesso);
+}
+
+.presente-admin-status--reservado {
+  color: var(--cor-info);
+}
+
+.presente-admin-status--esgotado {
+  color: var(--cor-alerta);
+}
+
+.presente-admin-status--inativo {
+  color: var(--cor-texto-suave);
+}
 
 .presente-admin-item {
   overflow: hidden;
@@ -952,4 +953,106 @@ textarea:disabled {
     radial-gradient(circle at 8% 90%, rgb(226 202 131 / 13%), transparent 18rem),
     var(--cor-marfin);
   box-shadow: var(--sombra-xs);
+}
+
+/* =========================================================
+   ETAPA 2.3 — ADMIN PRESENTES / IDENTIDADE EDITORIAL
+   ========================================================= */
+
+.presentes-admin-cabecalho.ds-admin-header {
+  border: 1px solid var(--superficie-editorial-borda);
+  background:
+    radial-gradient(circle at 90% 8%, rgb(207 168 74 / 14%), transparent 15rem),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-admin-cabecalho .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.presentes-admin-cabecalho h1 {
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-admin-cabecalho p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presentes-admin-cabecalho .botao {
+  border-color: rgb(255 231 151 / 42%);
+  background: linear-gradient(135deg, var(--cor-dourado-300), var(--cor-dourado-500));
+  color: var(--cor-preto-900);
+}
+
+.presentes-admin-resumo>article,
+.presentes-admin-filtros,
+.presente-admin-item,
+.presentes-admin-estado {
+  border: 1px solid var(--superficie-editorial-borda-suave) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgb(207 168 74 / 8%), transparent 10rem),
+    var(--superficie-editorial-fundo-elevado) !important;
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presentes-admin-resumo span,
+.presentes-admin-resumo small,
+.presente-admin-tipo,
+.presente-admin-metricas small,
+.presentes-admin-filtros label>span,
+.presentes-admin-campo>span {
+  color: var(--superficie-editorial-verde);
+}
+
+.presentes-admin-resumo strong,
+.presente-admin-info h2,
+.presente-admin-metricas strong,
+.presente-admin-reservas strong,
+.presentes-admin-estado h2 {
+  color: var(--superficie-editorial-texto);
+}
+
+.presente-admin-info>p,
+.presente-admin-reservas p,
+.presentes-admin-estado p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presentes-admin-filtros input,
+.presentes-admin-filtros select,
+.presentes-admin-formulario input,
+.presentes-admin-formulario textarea,
+.presentes-admin-formulario select {
+  border-color: rgb(232 204 120 / 28%);
+  background: rgb(255 253 247 / 96%);
+  color: var(--cor-preto-900);
+}
+
+.presentes-admin-upload {
+  border-color: rgb(232 204 120 / 30%);
+  background: rgb(255 255 255 / 4%);
+}
+
+.presente-admin-acoes button {
+  border-color: rgb(232 204 120 / 28%);
+  color: var(--cor-dourado-300);
+}
+
+.presente-admin-status--disponivel {
+  color: #b9d4b5;
+}
+
+.presente-admin-status--reservado {
+  color: var(--cor-dourado-300);
+}
+
+.presente-admin-status--esgotado {
+  color: #dba5ad;
+}
+
+.presente-admin-status--inativo {
+  color: rgb(241 246 237 / 60%);
 }

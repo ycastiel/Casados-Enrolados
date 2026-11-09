@@ -318,3 +318,195 @@
     width: 9.5rem;
   }
 }
+
+
+/* =========================================================
+   ETAPA 2.2 — SUPERFÍCIE EDITORIAL / FOTO + TEXTO
+   ========================================================= */
+
+.bloco-imagem-editorial {
+  border:
+    1.2px solid
+    var(--superficie-editorial-borda);
+
+  background:
+    radial-gradient(
+      ellipse at 82% 12%,
+      rgb(207 168 74 / 14%),
+      transparent 16rem
+    ),
+    var(--superficie-editorial-fundo-elevado);
+
+  box-shadow:
+    var(--superficie-editorial-sombra),
+    inset 0 1px 0 rgb(255 245 211 / 8%);
+}
+
+.bloco-imagem-editorial::before,
+.bloco-imagem-editorial::after {
+  position: absolute;
+  z-index: 5;
+
+  width:
+    clamp(
+      8rem,
+      13vw,
+      10.5rem
+    );
+
+  aspect-ratio: 1.65 / 1;
+
+  background:
+    url("../../../recursos/publico/imagens/florais/moldura-evento-canto-referencia.png")
+    center / contain
+    no-repeat;
+
+  content: "";
+
+  opacity: 0.7;
+
+  filter:
+    drop-shadow(0 10px 20px rgb(8 11 9 / 15%));
+
+  pointer-events: none;
+}
+
+.bloco-imagem-editorial::before {
+  top: -1.3rem;
+  right: -1rem;
+
+  transform:
+    scaleX(-1)
+    rotate(-3deg);
+}
+
+.bloco-imagem-editorial::after {
+  bottom: -1.4rem;
+  left: -1rem;
+
+  transform:
+    scaleY(-1)
+    rotate(3deg);
+}
+
+.bloco-imagem-editorial__visual {
+  border-right:
+    1px solid
+    var(--superficie-editorial-borda-suave);
+}
+
+.bloco-imagem-editorial__visual::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 48%,
+      rgb(23 24 21 / 18%) 70%,
+      rgb(23 24 21 / 82%) 100%
+    );
+}
+
+.bloco-imagem-editorial__texto::before {
+  background:
+    radial-gradient(
+      circle,
+      rgb(207 168 74 / 9%),
+      transparent 70%
+    );
+}
+
+.bloco-imagem-editorial .secao-etiqueta {
+  color:
+    var(--superficie-editorial-verde);
+}
+
+.bloco-imagem-editorial__simbolo {
+  border-color:
+    rgb(232 204 120 / 58%);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--cor-dourado-100),
+      var(--cor-dourado-300)
+    );
+
+  color:
+    var(--cor-preto-900);
+
+  box-shadow:
+    0 10px 24px rgb(8 11 9 / 20%);
+}
+
+.bloco-imagem-editorial blockquote {
+  color:
+    var(--superficie-editorial-texto);
+}
+
+.bloco-imagem-editorial cite {
+  color:
+    var(--superficie-editorial-verde);
+}
+
+.bloco-imagem-editorial__apoio {
+  border:
+    1.2px solid
+    var(--superficie-editorial-borda);
+
+  background:
+    var(--cor-preto-700);
+
+  box-shadow:
+    0 20px 45px rgb(8 11 9 / 28%),
+    0 0 18px rgb(207 168 74 / 8%);
+}
+
+.bloco-imagem-editorial--invertido
+  .bloco-imagem-editorial__visual {
+  border-right: 0;
+  border-left:
+    1px solid
+    var(--superficie-editorial-borda-suave);
+}
+
+.bloco-imagem-editorial--invertido
+  .bloco-imagem-editorial__visual::after {
+  background:
+    linear-gradient(
+      270deg,
+      transparent 0%,
+      transparent 48%,
+      rgb(23 24 21 / 18%) 70%,
+      rgb(23 24 21 / 82%) 100%
+    );
+}
+
+@media (max-width: 800px) {
+  .bloco-imagem-editorial__visual,
+  .bloco-imagem-editorial--invertido
+    .bloco-imagem-editorial__visual {
+    border-right: 0;
+    border-bottom:
+      1px solid
+      var(--superficie-editorial-borda-suave);
+    border-left: 0;
+  }
+
+  .bloco-imagem-editorial__visual::after,
+  .bloco-imagem-editorial--invertido
+    .bloco-imagem-editorial__visual::after {
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 58%,
+        rgb(23 24 21 / 88%) 100%
+      );
+  }
+
+  .bloco-imagem-editorial::before,
+  .bloco-imagem-editorial::after {
+    width: 8rem;
+    opacity: 0.56;
+  }
+}

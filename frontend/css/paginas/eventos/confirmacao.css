@@ -374,3 +374,167 @@
     rotate(177deg);
 }
 
+/* =========================================================
+   ETAPA 2.2B — IDENTIDADE EDITORIAL / CONFIRMAÇÃO
+   ========================================================= */
+
+/* Hero: preserva fotografia e florais; apenas cria uma superfície de leitura. */
+.confirmacao-hero-conteudo {
+  padding:
+    clamp(2rem, 5vw, 3.4rem);
+  border: 1px solid var(--superficie-editorial-borda-suave);
+  border-radius: var(--raio-grande);
+  background:
+    radial-gradient(
+      ellipse at 84% 9%,
+      rgb(207 168 74 / 12%),
+      transparent 36%
+    ),
+    rgb(14 14 12 / 74%);
+  box-shadow: var(--superficie-editorial-sombra);
+  backdrop-filter: blur(10px);
+}
+
+.confirmacao-hero-conteudo .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+/* Cartão principal do convite. */
+.confirmacao-cartao {
+  border-color: var(--superficie-editorial-borda);
+  background:
+    radial-gradient(
+      ellipse at 88% 8%,
+      rgb(226 172 65 / 16%),
+      transparent 34%
+    ),
+    linear-gradient(
+      118deg,
+      transparent 0%,
+      transparent 41%,
+      rgb(231 178 72 / 7%) 52%,
+      transparent 64%
+    ),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.confirmacao-cartao .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.confirmacao-cartao h2 {
+  color: var(--superficie-editorial-texto);
+}
+
+.confirmacao-cartao-cabecalho p,
+.confirmacao-ajuda {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.confirmacao-formulario label {
+  color: var(--cor-dourado-300);
+}
+
+.confirmacao-busca input {
+  border-color: var(--superficie-editorial-borda-suave);
+  background: rgb(255 253 247 / 8%);
+  color: var(--superficie-editorial-texto);
+}
+
+.confirmacao-busca input::placeholder {
+  color: rgb(241 246 237 / 48%);
+}
+
+.confirmacao-busca input:focus {
+  border-color: var(--cor-dourado-300);
+  background: rgb(255 253 247 / 11%);
+  box-shadow: 0 0 0 4px rgb(207 168 74 / 12%);
+}
+
+.confirmacao-busca .botao--primario {
+  border: 1px solid rgb(255 231 151 / 48%);
+  background:
+    linear-gradient(
+      145deg,
+      #f7d56f,
+      var(--cor-dourado-500)
+    );
+  color: var(--cor-preto-900);
+  box-shadow:
+    0 10px 24px rgb(0 0 0 / 24%),
+    inset 0 1px 0 rgb(255 248 221 / 54%);
+}
+
+/* Lado explicativo: cada passo vira um card editorial leve. */
+.confirmacao-explicacao > .secao-etiqueta {
+  color: var(--cor-dourado-700);
+}
+
+.confirmacao-explicacao > h2 {
+  color: var(--cor-preto-900);
+}
+
+.confirmacao-passos {
+  gap: var(--espaco-4);
+}
+
+.confirmacao-passo {
+  padding:
+    clamp(1.15rem, 2.4vw, 1.6rem);
+  border: 1px solid var(--superficie-editorial-borda-suave);
+  border-radius: var(--raio-grande);
+  background:
+    radial-gradient(
+      ellipse at 92% 5%,
+      rgb(207 168 74 / 10%),
+      transparent 40%
+    ),
+    var(--superficie-editorial-fundo);
+  box-shadow:
+    0 16px 36px rgb(8 11 9 / 16%);
+  color: var(--superficie-editorial-texto);
+}
+
+.confirmacao-passo > span {
+  border-color: rgb(232 204 120 / 62%);
+  background:
+    linear-gradient(
+      145deg,
+      #f7d56f,
+      var(--cor-dourado-500)
+    );
+  color: var(--cor-preto-900);
+  box-shadow:
+    0 8px 18px rgb(0 0 0 / 18%);
+}
+
+.confirmacao-passo h3 {
+  color: var(--superficie-editorial-texto);
+}
+
+.confirmacao-passo p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .confirmacao-busca .botao--primario:hover {
+    background:
+      linear-gradient(
+        145deg,
+        #ffe497,
+        #d9af48
+      );
+    color: var(--cor-preto-900);
+  }
+}
+
+@media (max-width: 760px) {
+  .confirmacao-hero-conteudo {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* A geometria dos florais não é alterada nesta etapa; os arranjos
+ * serão revisados em uma passada botânica específica depois. */

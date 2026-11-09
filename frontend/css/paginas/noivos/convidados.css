@@ -11,7 +11,7 @@
   margin-bottom: clamp(3rem, 7vw, 5rem);
 }
 
-.convidados-cabecalho > div:first-child {
+.convidados-cabecalho>div:first-child {
   max-width: 47rem;
 }
 
@@ -31,7 +31,7 @@
   gap: var(--espaco-3);
 }
 
-.convidados-resumo > div {
+.convidados-resumo>div {
   min-width: 8rem;
   padding: 1rem 1.2rem;
   border: 1px solid var(--cor-borda);
@@ -80,18 +80,15 @@
 .novo-convite {
   display: grid;
   grid-template-columns:
-    minmax(0, 0.8fr)
-    minmax(0, 1.2fr);
+    minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(2rem, 6vw, 5rem);
   padding: clamp(2rem, 5vw, 3.5rem);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-grande);
   background:
-    radial-gradient(
-      circle at 92% 14%,
+    radial-gradient(circle at 92% 14%,
       rgb(226 202 131 / 20%),
-      transparent 13rem
-    ),
+      transparent 13rem),
     var(--cor-verde-50);
 }
 
@@ -188,7 +185,7 @@
   gap: var(--espaco-6);
 }
 
-.convite-admin-cabecalho > div:first-child > span {
+.convite-admin-cabecalho>div:first-child>span {
   color: var(--cor-vinho-500);
   font-size: 0.68rem;
   font-weight: 800;
@@ -258,9 +255,7 @@
 .convidado-linha {
   display: grid;
   grid-template-columns:
-    minmax(0, 1fr)
-    auto
-    auto;
+    minmax(0, 1fr) auto auto;
   gap: var(--espaco-4);
   align-items: center;
   padding-block: 1rem;
@@ -329,9 +324,7 @@
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr)
-    auto;
+    minmax(0, 1fr) minmax(0, 1fr) auto;
   gap: var(--espaco-3);
   align-items: center;
 }
@@ -339,9 +332,7 @@
 .novo-convidado-inline {
   display: grid;
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr)
-    auto;
+    minmax(0, 1fr) minmax(0, 1fr) auto;
   gap: var(--espaco-3);
   margin-top: var(--espaco-5);
   padding: var(--espaco-4);
@@ -372,6 +363,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+
   .convite-admin-acoes button:hover,
   .convidado-acoes button:hover,
   .edicao-inline button:hover,
@@ -381,6 +373,7 @@
 }
 
 @media (max-width: 820px) {
+
   .convidados-cabecalho,
   .convite-admin-cabecalho {
     align-items: flex-start;
@@ -391,7 +384,7 @@
     width: 100%;
   }
 
-  .convidados-resumo > div {
+  .convidados-resumo>div {
     flex: 1;
   }
 
@@ -401,6 +394,7 @@
 }
 
 @media (max-width: 680px) {
+
   .novo-convite-formulario,
   .convidado-edicao,
   .novo-convidado-inline {
@@ -430,6 +424,7 @@
     grid-template-columns: 1fr;
   }
 }
+
 /* =========================================================
    DESIGN SYSTEM V1 — CONVIDADOS
    ========================================================= */
@@ -444,12 +439,12 @@
   opacity: 0.4 !important;
 }
 
-.convidados-cabecalho > *:not(.convidados-cabecalho-flor) {
+.convidados-cabecalho>*:not(.convidados-cabecalho-flor) {
   position: relative;
   z-index: 2;
 }
 
-.convidados-resumo > div,
+.convidados-resumo>div,
 .novo-convite,
 .convite-admin-card {
   border-color: rgb(141 111 47 / 13%);
@@ -472,11 +467,22 @@
   text-transform: uppercase;
 }
 
-.status-convidado--confirmado { color: var(--cor-sucesso); }
-.status-convidado--recusado { color: var(--cor-erro); }
-.status-convidado--parcial { color: var(--cor-alerta); }
+.status-convidado--confirmado {
+  color: var(--cor-sucesso);
+}
+
+.status-convidado--recusado {
+  color: var(--cor-erro);
+}
+
+.status-convidado--parcial {
+  color: var(--cor-alerta);
+}
+
 .status-convidado--pendente,
-.status-convidado--neutro { color: var(--cor-texto-suave); }
+.status-convidado--neutro {
+  color: var(--cor-texto-suave);
+}
 
 .convidados-erro {
   border: 1px solid rgb(119 57 68 / 18%);
@@ -493,4 +499,113 @@
     radial-gradient(circle at 8% 90%, rgb(226 202 131 / 13%), transparent 18rem),
     var(--cor-marfin);
   box-shadow: var(--sombra-xs);
+}
+
+/* =========================================================
+   ETAPA 2.3 — CONVIDADOS / IDENTIDADE EDITORIAL
+   ========================================================= */
+
+.convidados-cabecalho.ds-admin-header {
+  border: 1px solid var(--superficie-editorial-borda);
+  background:
+    radial-gradient(circle at 90% 8%, rgb(207 168 74 / 14%), transparent 15rem),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.convidados-cabecalho .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.convidados-cabecalho h1 {
+  color: var(--superficie-editorial-texto);
+}
+
+.convidados-cabecalho p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.convidados-resumo>div,
+.novo-convite,
+.convite-admin-card,
+.convites-estado {
+  border: 1px solid var(--superficie-editorial-borda-suave);
+  background:
+    radial-gradient(circle at 92% 8%, rgb(207 168 74 / 8%), transparent 10rem),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.convidados-resumo strong,
+.novo-convite h2,
+.convite-admin-card h3,
+.convidado-identidade strong,
+.convites-estado h3 {
+  color: var(--superficie-editorial-texto);
+}
+
+.convidados-resumo span,
+.novo-convite p,
+.convidado-identidade span,
+.convites-estado p,
+.convite-admin-cabecalho>div:first-child>span {
+  color: var(--superficie-editorial-verde);
+}
+
+.novo-convite-formulario label,
+.convite-token span {
+  color: var(--superficie-editorial-verde);
+}
+
+.novo-convite-formulario input,
+.edicao-inline input,
+.convidado-edicao input,
+.novo-convidado-inline input {
+  border-color: rgb(232 204 120 / 28%);
+  background: rgb(255 253 247 / 96%);
+  color: var(--cor-preto-900);
+}
+
+.novo-convidado-inline {
+  border: 1px solid rgb(232 204 120 / 22%);
+  background: rgb(255 255 255 / 4%);
+}
+
+.convite-token {
+  border-color: rgb(232 204 120 / 24%);
+}
+
+.convite-token code {
+  color: var(--cor-dourado-300);
+}
+
+.convidado-linha {
+  border-bottom-color: rgb(232 204 120 / 18%);
+}
+
+.adicionar-pessoa,
+.convite-admin-acoes button,
+.convidado-acoes button,
+.edicao-inline button,
+.novo-convidado-inline button:not(.botao) {
+  color: var(--cor-dourado-300);
+}
+
+.status-convidado--confirmado {
+  color: #b9d4b5;
+}
+
+.status-convidado--recusado {
+  color: #dba5ad;
+}
+
+.status-convidado--parcial {
+  color: var(--cor-dourado-300);
+}
+
+.status-convidado--pendente,
+.status-convidado--neutro {
+  color: rgb(241 246 237 / 64%);
 }

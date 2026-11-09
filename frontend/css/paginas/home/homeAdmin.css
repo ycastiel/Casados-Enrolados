@@ -349,3 +349,68 @@
     rotate(177deg);
 }
 
+/* =========================================================
+   ETAPA 2.3 — ADMIN / IDENTIDADE EDITORIAL
+   Versão mais contida da linguagem pública: preto, dourado e verde,
+   sem ampliar a presença floral nesta etapa.
+   ========================================================= */
+
+.admin-layout {
+  background:
+    radial-gradient(circle at 88% 8%, rgb(207 168 74 / 7%), transparent 24rem),
+    linear-gradient(180deg, var(--cor-marfin), #f3eee3);
+}
+
+.admin-boas-vindas {
+  border: 1px solid var(--superficie-editorial-borda);
+  background:
+    radial-gradient(circle at 85% 10%, rgb(207 168 74 / 15%), transparent 16rem),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+}
+
+.admin-boas-vindas .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.admin-boas-vindas h1 {
+  color: var(--superficie-editorial-texto);
+}
+
+.admin-boas-vindas p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.admin-acao,
+.admin-recado {
+  border: 1px solid var(--superficie-editorial-borda-suave);
+  background:
+    radial-gradient(circle at 90% 8%, rgb(207 168 74 / 9%), transparent 10rem),
+    var(--superficie-editorial-fundo-elevado) !important;
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.admin-acao h3,
+.admin-recado h2 {
+  color: var(--superficie-editorial-texto);
+}
+
+.admin-acao p,
+.admin-recado p,
+.admin-em-breve {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.admin-acao-numero {
+  border-color: rgb(232 204 120 / 46%);
+  background: linear-gradient(145deg, var(--cor-dourado-100), var(--cor-dourado-500));
+  color: var(--cor-preto-900);
+}
+
+.admin-acao .botao {
+  border-color: rgb(255 231 151 / 42%);
+  background: linear-gradient(135deg, var(--cor-dourado-300), var(--cor-dourado-500));
+  color: var(--cor-preto-900);
+}
+
