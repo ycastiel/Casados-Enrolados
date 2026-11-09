@@ -1,5 +1,5 @@
 import "../../../css/componentes/imagens/blocoCanticos.css";
-import { RamoFloral } from "../molduras/Floral";
+import { FloraisDesabrochandoConteudo } from "../animacoes/FlorDesabrochando";
 
 type BlocoCanticosProps = {
   imagemMar: string;
@@ -25,12 +25,11 @@ export function BlocoCanticos({
       className="bloco-canticos"
       aria-labelledby="titulo-bloco-canticos"
     >
-      <RamoFloral
-        className="bloco-canticos__floral bloco-canticos__floral--superior"
-      />
-
-      <RamoFloral
-        className="bloco-canticos__floral bloco-canticos__floral--inferior"
+      <FloraisDesabrochandoConteudo
+        className="bloco-canticos__florais-vivos"
+        quantidade={2}
+        tamanho={148}
+        delayMs={140}
       />
       <div className="bloco-canticos__visual">
         <img

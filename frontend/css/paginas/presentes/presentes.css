@@ -649,3 +649,63 @@
 
 /* A botânica existente fica propositalmente intacta nesta etapa.
  * A revisão dos arranjos dos cards é uma pendência visual separada. */
+
+/* =========================================================
+   ETAPA 2.4.2 — FLORAIS VIVOS CONTEXTUAIS / PRESENTES
+   ========================================================= */
+
+.presentes-hero-florais-vivos {
+  z-index: 2;
+}
+
+.presentes-hero-conteudo {
+  position: relative;
+  z-index: 3;
+}
+
+.presente-cartao {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.presente-cartao-florais-vivos {
+  z-index: 1;
+}
+
+.presente-cartao-conteudo {
+  position: relative;
+  z-index: 2;
+}
+
+.presentes-vazio,
+.presentes-recado {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.presentes-vazio-florais-vivos,
+.presentes-recado-florais-vivos {
+  z-index: 1;
+}
+
+.presentes-vazio > :not(.florais-conteudo),
+.presentes-recado > :not(.florais-conteudo) {
+  position: relative;
+  z-index: 2;
+}
+
+/* O hero de Presentes tem leitura à esquerda; as flores ficam no campo direito. */
+.presentes-hero-florais-vivos
+  .florais-conteudo__flor--superior-esquerda {
+  top: clamp(2rem, 8vw, 5.5rem);
+  right: clamp(2rem, 9vw, 7rem) !important;
+  left: auto;
+}
+
+.presentes-hero-florais-vivos
+  .florais-conteudo__flor--inferior-direita {
+  right: clamp(7rem, 18vw, 15rem);
+  bottom: clamp(1.5rem, 6vw, 4rem);
+}

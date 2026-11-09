@@ -2683,3 +2683,86 @@
     ),
     var(--superficie-editorial-fundo-elevado);
 }
+
+/* =========================================================
+   ETAPA 2.4.2 — FLORAIS VIVOS CONTEXTUAIS / HOME
+   ========================================================= */
+
+/* O hero deixa de usar os ramos estáticos nas extremidades. */
+.hero {
+  isolation: isolate;
+}
+
+.home-hero-florais-vivos {
+  z-index: 2;
+}
+
+.hero-conteudo {
+  position: relative;
+  z-index: 3;
+}
+
+/* Cards pequenos de "O Grande Dia": uma flor viva no canto inferior direito. */
+.eventos-grade--painel .evento-cartao--painel {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.eventos-grade--painel .evento-cartao--painel::before {
+  display: none;
+  content: none;
+}
+
+.eventos-grade--painel
+  .evento-cartao--painel > :not(.florais-conteudo) {
+  position: relative;
+  z-index: 2;
+}
+
+.evento-cartao__flor-viva {
+  z-index: 1;
+}
+
+/* O verso largo recebe duas flores, sempre atrás da leitura. */
+.evento-painel__verso {
+  isolation: isolate;
+}
+
+.evento-painel__verso > :not(.florais-conteudo) {
+  position: relative;
+  z-index: 2;
+}
+
+.evento-painel__verso-florais {
+  z-index: 1;
+}
+
+/* As seções editoriais largas usam duas flores contextuais. */
+.secao--convite,
+.secao--confirmacao {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.secao--convite::after,
+.secao--confirmacao::after {
+  display: none;
+  content: none;
+}
+
+.convite-florais-vivos,
+.confirmacao-home-florais-vivos {
+  z-index: 1;
+}
+
+.secao--convite > :not(.florais-conteudo),
+.secao--confirmacao > :not(.florais-conteudo) {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 680px) {
+  .home-hero-florais-vivos .flor-desabrochando {
+    --flor-opacidade-visivel: 0.48;
+  }
+}

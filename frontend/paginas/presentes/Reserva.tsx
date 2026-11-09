@@ -13,12 +13,13 @@ import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
-import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+import {
+  FloraisDesabrochandoConteudo,
+} from "../../javascript/componentes/animacoes/FlorDesabrochando";
 import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
 
 import {
   OrnamentoFloral,
-  RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
@@ -474,13 +475,13 @@ export function ReservaPresente() {
   return (
     <div className="pagina-reserva ds-page">
       <section className="reserva-status-hero">
-        <FlorDesabrochando
-          className="reserva-status-flor-viva"
+        <FloraisDesabrochandoConteudo
+          className="reserva-status-florais-vivos florais-conteudo--hero"
+          quantidade={2}
+          tamanho={180}
+          delayMs={100}
           variante="fundo"
-          tamanho={190}
         />
-
-        <RamoFloral className="reserva-status-floral" />
 
         <div className="reserva-status-conteudo">
           <span className="secao-etiqueta">
@@ -503,6 +504,13 @@ export function ReservaPresente() {
 
       <section className="secao reserva-status-area">
         <article className="reserva-status-cartao ds-surface ds-surface--papel">
+          <FloraisDesabrochandoConteudo
+            className="reserva-status-cartao-florais-vivos"
+            quantidade={2}
+            tamanho={116}
+            delayMs={120}
+          />
+
           <div className="reserva-status-topo">
             <div>
               <span className="secao-etiqueta">
@@ -636,6 +644,12 @@ export function ReservaPresente() {
           id="pagamento-pix"
           className="reserva-pagamento-pix ds-surface ds-surface--vinho"
         >
+          <FloraisDesabrochandoConteudo
+            className="reserva-pagamento-florais-vivos"
+            quantidade={2}
+            tamanho={112}
+            delayMs={150}
+          />
           <header className="pix-cabecalho">
             <div>
               <span className="secao-etiqueta">

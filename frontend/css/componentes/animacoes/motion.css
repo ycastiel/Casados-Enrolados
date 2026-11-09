@@ -1,5 +1,5 @@
 /* =========================================================
-   Casados & Enrolados — Motion System v2
+   Casados & Enrolados — Motion System v4
    ========================================================= */
 
 :root {
@@ -11,171 +11,352 @@
 }
 
 /* =========================================================
-   FLOR DESABROCHANDO
-   Inspirada na flor vinho da moldura de "O grande dia".
+   FLOR DESABROCHANDO — BOTÂNICA BRANCA / VERDE / DOURADA
+   Camadas fotográficas: folhagem → botão → lírio → copo-de-leite.
    ========================================================= */
 
 .flor-desabrochando {
   position: relative;
+  isolation: isolate;
+
+  display: block;
+
   width: var(--flor-tamanho, 180px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
+  aspect-ratio: 3 / 2;
+
+  --flor-opacidade-visivel: 1;
+
+  opacity: 0;
+
   pointer-events: none;
   user-select: none;
-  isolation: isolate;
-}
 
-.flor-desabrochando__svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  filter:
-    drop-shadow(0 14px 18px rgb(92 44 47 / 10%))
-    drop-shadow(0 3px 7px rgb(41 41 37 / 7%));
-}
-
-.flor-desabrochando__petala,
-.flor-desabrochando__folha,
-.flor-desabrochando__baga,
-.flor-desabrochando__haste,
-.flor-desabrochando__miolo {
-  transform-box: view-box;
-  transform-origin: 120px 120px;
-}
-
-.flor-desabrochando__petala {
-  opacity: 0;
-  transform: scale(0.12) rotate(-7deg);
   transition:
-    transform var(--flor-duracao, var(--motion-floral-duration))
-      var(--motion-floral-easing),
     opacity 420ms ease;
 }
 
-.flor-desabrochando__petala--principal {
-  fill: var(--flor-principal);
-  transition-delay: calc(var(--petala-indice, 0) * 68ms);
+.flor-desabrochando.is-visivel {
+  opacity: var(--flor-opacidade-visivel, 1);
 }
 
-.flor-desabrochando__petala--secundaria {
-  fill: var(--flor-secundaria);
-  opacity: 0;
-  transform: scale(0.08) rotate(8deg);
-  transition-delay: calc(90ms + (var(--petala-indice, 0) * 58ms));
-}
+.flor-desabrochando__halo {
+  position: absolute;
+  z-index: 0;
 
-.flor-desabrochando__ramos {
+  top: 15%;
+  left: 50%;
+
+  width: 72%;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgb(232 198 103 / 16%) 0%,
+      rgb(232 198 103 / 6%) 35%,
+      transparent 72%
+    );
+
   opacity: 0;
-  transform: scale(0.62);
-  transform-origin: 120px 133px;
+  transform:
+    translate(-50%, 8%)
+    scale(0.72);
+
+  filter: blur(4px);
+
   transition:
-    opacity 500ms ease,
-    transform 1050ms var(--motion-floral-easing);
+    opacity 900ms ease 420ms,
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing) 320ms;
 }
 
-.flor-desabrochando__folha {
-  fill: var(--flor-folha);
+.flor-desabrochando__camada {
+  position: absolute;
+  z-index: 1;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  opacity: 0;
+
+  filter:
+    drop-shadow(0 11px 17px rgb(12 20 14 / 14%));
+
+  will-change: opacity, transform;
 }
 
-.flor-desabrochando__folha--a,
-.flor-desabrochando__folha--c {
+.flor-desabrochando__camada--folhagem {
+  z-index: 1;
+
+  opacity: 0.08;
+
+  transform:
+    translateY(7%)
+    scale(0.86)
+    rotate(-1deg);
+
+  transform-origin: 50% 88%;
+
+  transition:
+    opacity 620ms ease,
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing);
+}
+
+.flor-desabrochando__camada--botao {
+  z-index: 2;
+
+  transform:
+    translate(-1%, 9%)
+    scale(0.68)
+    rotate(-5deg);
+
+  transform-origin: 43% 62%;
+
+  transition:
+    opacity 560ms ease 130ms,
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing) 90ms;
+}
+
+.flor-desabrochando__camada--lirio {
+  z-index: 3;
+
+  top: 34%;
+  right: auto;
+  bottom: auto;
+  left: 27%;
+
+  width: 40%;
+  height: auto;
+
+  object-fit: contain;
+
+  transform:
+    translateY(15%)
+    scale(0.48)
+    rotate(-4deg);
+
+  transform-origin: 52% 76%;
+
+  transition:
+    opacity 620ms ease 310ms,
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing) 250ms;
+}
+
+.flor-desabrochando__camada--principal {
+  z-index: 4;
+
+  transform:
+    translate(1%, 8%)
+    scale(0.48)
+    rotate(4deg);
+
+  transform-origin: 66% 68%;
+
+  transition:
+    opacity 720ms ease 430ms,
+    transform var(--flor-duracao, var(--motion-floral-duration))
+      var(--motion-floral-easing) 350ms;
+}
+
+.flor-desabrochando.is-aberta
+  .flor-desabrochando__halo {
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+}
+
+.flor-desabrochando.is-aberta
+  .flor-desabrochando__camada--folhagem {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1)
+    rotate(0deg);
+}
+
+.flor-desabrochando.is-aberta
+  .flor-desabrochando__camada--botao {
+  opacity: 0.98;
+
+  transform:
+    translate(0, 0)
+    scale(1)
+    rotate(0deg);
+}
+
+.flor-desabrochando.is-aberta
+  .flor-desabrochando__camada--lirio {
   opacity: 0.92;
+
+  transform:
+    translateY(0)
+    scale(1)
+    rotate(0deg);
 }
 
-.flor-desabrochando__folha--b,
-.flor-desabrochando__folha--d {
-  opacity: 0.82;
-}
-
-.flor-desabrochando__haste {
-  fill: none;
-  stroke: color-mix(in srgb, var(--flor-folha) 82%, #34352f 18%);
-  stroke-width: 3;
-  stroke-linecap: round;
-}
-
-.flor-desabrochando__baga {
-  fill: var(--flor-baga);
-  stroke: rgb(255 253 247 / 45%);
-  stroke-width: 1;
-}
-
-.flor-desabrochando__miolo {
-  opacity: 0;
-  transform: scale(0.18);
-  transition:
-    transform 780ms var(--motion-floral-easing) 360ms,
-    opacity 340ms ease 300ms;
-}
-
-.flor-desabrochando__miolo-base {
-  fill: var(--flor-miolo);
-}
-
-.flor-desabrochando__estame-linha {
-  stroke: color-mix(in srgb, var(--flor-estame) 88%, white 12%);
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  opacity: 0.9;
-}
-
-.flor-desabrochando__estame-ponto {
-  fill: var(--flor-estame);
-  filter: drop-shadow(0 0 2px rgb(228 193 110 / 42%));
-}
-
-.flor-desabrochando__miolo-centro {
-  fill: color-mix(in srgb, var(--flor-estame) 76%, var(--flor-miolo) 24%);
-}
-
-.flor-desabrochando__miolo-luz {
-  fill: rgb(255 243 201 / 92%);
-}
-
-.flor-desabrochando.is-aberta .flor-desabrochando__petala {
+.flor-desabrochando.is-aberta
+  .flor-desabrochando__camada--principal {
   opacity: 1;
-  transform: scale(1) rotate(0deg);
+
+  transform:
+    translate(0, 0)
+    scale(1)
+    rotate(0deg);
 }
 
-.flor-desabrochando.is-aberta .flor-desabrochando__petala--secundaria {
-  opacity: 0.58;
+/* =========================================================
+   CONJUNTO FLORAL CONTEXTUAL
+   Pequenos cards recebem uma flor; cards grandes recebem duas.
+   O wrapper ocupa apenas a superfície do próprio conteúdo.
+   ========================================================= */
+
+.florais-conteudo {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+  user-select: none;
 }
 
-.flor-desabrochando.is-aberta .flor-desabrochando__ramos {
-  opacity: 1;
-  transform: scale(1);
+.florais-conteudo__flor {
+  position: absolute !important;
 }
 
-.flor-desabrochando.is-aberta .flor-desabrochando__miolo {
-  opacity: 1;
-  transform: scale(1);
+.florais-conteudo__flor--superior-esquerda {
+  top: -1.8rem;
+  right: auto !important;
+  bottom: auto !important;
+  left: -2.1rem;
+
+  transform:
+    scaleX(-1)
+    rotate(-5deg);
+
+  transform-origin: left top;
 }
 
-.flor-desabrochando:not(.is-aberta) .flor-desabrochando__petala {
-  transition-duration: 720ms, 300ms;
-  transition-delay: 0ms;
+.florais-conteudo__flor--inferior-direita {
+  top: auto !important;
+  right: -1.8rem;
+  bottom: -1.45rem;
+  left: auto !important;
+
+  transform:
+    rotate(4deg);
+
+  transform-origin: right bottom;
 }
 
-.flor-desabrochando:not(.is-aberta) .flor-desabrochando__ramos,
-.flor-desabrochando:not(.is-aberta) .flor-desabrochando__miolo {
-  transition-delay: 0ms;
+.florais-conteudo--hero {
+  z-index: 2;
+  overflow: hidden;
 }
 
-/* A flor de card agora fica inteira dentro do card. */
+.florais-conteudo--hero
+  .florais-conteudo__flor--superior-esquerda {
+  top: clamp(1.25rem, 6vw, 4rem);
+  left: clamp(1.5rem, 9vw, 7rem);
+}
+
+.florais-conteudo--hero
+  .florais-conteudo__flor--inferior-direita {
+  right: clamp(1.5rem, 9vw, 7rem);
+  bottom: clamp(1.25rem, 6vw, 4rem);
+}
+
+.florais-conteudo--hero .flor-desabrochando--fundo {
+  --flor-opacidade-visivel: 0.64;
+}
+
+/* =========================================================
+   ÂNCORAS DE POSICIONAMENTO
+   Pequenos cards: uma flor no inferior direito.
+   Cards maiores: combinar uma inferior direita e outra superior esquerda.
+   ========================================================= */
+
 .flor-desabrochando--card {
   position: absolute;
-  right: 0.7rem;
-  bottom: 0.55rem;
   z-index: 0;
-  opacity: 0.64;
+
+  right: -0.55rem;
+  bottom: -0.3rem;
+
+  --flor-opacidade-visivel: 0.68;
+}
+
+.flor-desabrochando--card
+  .flor-desabrochando__camada--lirio {
+  display: none;
+}
+
+.flor-desabrochando--card
+  .flor-desabrochando__halo {
+  opacity: 0;
+}
+
+.flor-desabrochando--card-superior-esquerda {
+  top: -0.28rem;
+  right: auto;
+  bottom: auto;
+  left: -0.38rem;
+
+  transform: scaleX(-1);
+  transform-origin: left top;
+}
+
+.flor-desabrochando--card-inferior-direita {
+  top: auto;
+  left: auto;
+}
+
+/* Heroes e cabeçalhos: fixos, próximos do centro e nunca no miolo do conteúdo. */
+.flor-desabrochando--fundo,
+.flor-desabrochando--marca {
+  position: absolute;
+  z-index: 0;
+
+  --flor-opacidade-visivel: 0.58;
+
+  filter:
+    saturate(0.94)
+    brightness(1.02);
 }
 
 .flor-desabrochando--fundo {
-  position: absolute;
-  z-index: 0;
-  opacity: 0.34;
-  filter: saturate(0.94);
+  top: 1.35rem;
+  right: clamp(1rem, 7vw, 4rem);
+}
+
+.flor-desabrochando--fundo-esquerda {
+  right: auto;
+  left: clamp(1rem, 7vw, 4rem);
+
+  transform: scaleX(-1);
+  transform-origin: left center;
+}
+
+.flor-desabrochando--fundo-direita {
+  right: clamp(1rem, 7vw, 4rem);
 }
 
 .flor-desabrochando--solta {
@@ -183,22 +364,31 @@
 }
 
 .flor-desabrochando--marca {
-  position: absolute;
-  z-index: 0;
-  opacity: 0.74;
-  filter: saturate(0.96);
+  top: 1.25rem;
+}
+
+.flor-desabrochando--marca .flor-desabrochando__camada--lirio {
+  opacity: 0;
+}
+
+.flor-desabrochando--marca.is-aberta .flor-desabrochando__camada--lirio {
+  opacity: 0.72;
 }
 
 /* =========================================================
-   JARDIM FLORAL AMBIENTAL
-   Flores fixas nas bordas do viewport, fora dos recortes das seções.
+   JARDIM FLORAL CONTEXTUAL
+   Agora não é mais randômico nem espalhado pela viewport inteira.
+   Ele acompanha o hero/seção em duas âncoras elegantes.
    ========================================================= */
 
 .jardim-floral {
-  position: fixed;
+  position: absolute;
   z-index: 3;
+
   inset: 0;
+
   overflow: hidden;
+
   pointer-events: none;
   user-select: none;
 }
@@ -207,35 +397,25 @@
   position: absolute !important;
 }
 
-.jardim-floral__flor--1 {
-  top: 12vh;
-  left: 1.2rem;
-  transform: rotate(-9deg);
+.jardim-floral--hero .jardim-floral__flor--hero-esquerda {
+  top: 1rem;
+  left: clamp(1rem, 7vw, 4.25rem);
+
+  transform:
+    scaleX(-1)
+    rotate(-6deg);
+
+  transform-origin: left top;
 }
 
-.jardim-floral__flor--2 {
-  top: 36vh;
-  right: 1.35rem;
-  transform: rotate(8deg);
-}
+.jardim-floral--hero .jardim-floral__flor--hero-direita {
+  right: clamp(1rem, 7vw, 4.25rem);
+  bottom: 1rem;
 
-.jardim-floral__flor--3 {
-  bottom: 18vh;
-  left: clamp(1rem, 4vw, 3.5rem);
-  transform: rotate(12deg);
-}
+  transform:
+    rotate(5deg);
 
-.jardim-floral__flor--4 {
-  right: clamp(1rem, 5vw, 4rem);
-  bottom: 4.5vh;
-  transform: rotate(-5deg);
-}
-
-.jardim-floral__flor--5 {
-  top: 7vh;
-  right: clamp(8rem, 16vw, 15rem);
-  opacity: 0.56;
-  transform: rotate(14deg);
+  transform-origin: right bottom;
 }
 
 /* =========================================================
@@ -336,30 +516,49 @@
 }
 
 @media (max-width: 760px) {
-  .jardim-floral__flor--3,
-  .jardim-floral__flor--5 {
-    display: none;
+  .jardim-floral--hero .jardim-floral__flor--hero-esquerda,
+  .jardim-floral--hero .jardim-floral__flor--hero-direita {
+    opacity: 0.5;
+    scale: 0.84;
   }
 
-  .jardim-floral__flor--1,
-  .jardim-floral__flor--2,
-  .jardim-floral__flor--4 {
-    opacity: 0.58;
-    transform: scale(0.78);
+  .jardim-floral--hero .jardim-floral__flor--hero-esquerda {
+    left: 0.65rem;
+  }
+
+  .jardim-floral--hero .jardim-floral__flor--hero-direita {
+    right: 0.65rem;
+    bottom: 0.75rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flor-desabrochando__petala,
-  .flor-desabrochando__ramos,
-  .flor-desabrochando__miolo {
+  .flor-desabrochando,
+  .flor-desabrochando__halo,
+  .flor-desabrochando__camada {
     transition: none !important;
-    opacity: 1 !important;
-    transform: scale(1) rotate(0deg) !important;
   }
 
-  .jardim-floral__flor {
-    opacity: 0.34;
+  .flor-desabrochando {
+    opacity: 1 !important;
+  }
+
+  .flor-desabrochando__halo {
+    opacity: 0.5 !important;
+    transform: translate(-50%, 0) scale(1) !important;
+  }
+
+  .flor-desabrochando__camada {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .flor-desabrochando__camada--lirio {
+    transform: none !important;
+  }
+
+  .flor-desabrochando--card .flor-desabrochando__camada--lirio {
+    display: none !important;
   }
 
   .campo-estrelado__estrela {

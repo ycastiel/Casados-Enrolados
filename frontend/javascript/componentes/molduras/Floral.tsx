@@ -1,5 +1,9 @@
 import type { ReactNode } from "react";
 
+import {
+  FloraisDesabrochandoConteudo,
+} from "../animacoes/FlorDesabrochando";
+
 import ramoFloral from "../../../recursos/publico/imagens/florais/ramo-floral-botanico.png";
 import ornamentoFloral from "../../../recursos/publico/imagens/florais/ornamento-floral-botanico.png";
 
@@ -39,6 +43,8 @@ export function MolduraFloral({
   className = "",
   variante = "cartao",
 }: MolduraFloralProps) {
+  const destaque = variante === "destaque";
+
   return (
     <div
       className={[
@@ -49,8 +55,12 @@ export function MolduraFloral({
         .filter(Boolean)
         .join(" ")}
     >
-      <RamoFloral className="moldura-floral__ramo moldura-floral__ramo--superior" />
-      <RamoFloral className="moldura-floral__ramo moldura-floral__ramo--inferior" />
+      <FloraisDesabrochandoConteudo
+        className="moldura-floral__florais-vivos"
+        quantidade={destaque ? 2 : 1}
+        tamanho={destaque ? 138 : 112}
+        delayMs={120}
+      />
 
       <div className="moldura-floral__conteudo">
         {children}

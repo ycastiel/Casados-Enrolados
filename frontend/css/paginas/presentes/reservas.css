@@ -1124,3 +1124,51 @@
 .reserva-status-imagem {
   border: 1px solid rgb(232 204 120 / 28%);
 }
+
+
+/* =========================================================
+   ETAPA 2.4.2 — FLORAIS VIVOS CONTEXTUAIS / RESERVA + PIX
+   ========================================================= */
+
+.reserva-hero-florais-vivos,
+.reserva-status-florais-vivos {
+  z-index: 1;
+}
+
+.reserva-hero-conteudo,
+.reserva-status-conteudo {
+  position: relative;
+  z-index: 2;
+}
+
+.reserva-resumo,
+.reserva-formulario,
+.reserva-status-cartao {
+  isolation: isolate;
+}
+
+.reserva-resumo-florais-vivos,
+.reserva-formulario-florais-vivos,
+.reserva-status-cartao-florais-vivos {
+  z-index: 1;
+}
+
+.reserva-resumo > :not(.florais-conteudo),
+.reserva-formulario > :not(.florais-conteudo),
+.reserva-status-cartao > :not(.florais-conteudo) {
+  position: relative;
+  z-index: 2;
+}
+
+.reserva-pagamento-pix {
+  isolation: isolate;
+}
+
+.reserva-pagamento-florais-vivos {
+  z-index: 1;
+}
+
+.reserva-pagamento-pix > :not(.florais-conteudo) {
+  position: relative;
+  z-index: 2;
+}

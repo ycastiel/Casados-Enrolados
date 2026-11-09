@@ -505,3 +505,23 @@
     opacity: 0.58;
   }
 }
+
+/* =========================================================
+   ETAPA 2.4.2 — CÂNTICOS / FLORAIS VIVOS
+   ========================================================= */
+
+.bloco-canticos::before,
+.bloco-canticos::after {
+  display: none;
+  content: none;
+}
+
+.bloco-canticos__florais-vivos {
+  z-index: 4;
+}
+
+.bloco-canticos__visual,
+.bloco-canticos__conteudo {
+  position: relative;
+  z-index: 3;
+}

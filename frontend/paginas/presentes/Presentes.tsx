@@ -1,4 +1,8 @@
 import {
+  FloraisDesabrochandoConteudo,
+} from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
+import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
@@ -8,7 +12,6 @@ import {
 
 import {
   OrnamentoFloral,
-  RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
@@ -109,8 +112,13 @@ export function Presentes() {
           aria-hidden="true"
         />
 
-        <RamoFloral className="presentes-hero-floral presentes-hero-floral--esquerda" />
-        <RamoFloral className="presentes-hero-floral presentes-hero-floral--direita" />
+        <FloraisDesabrochandoConteudo
+          className="presentes-hero-florais-vivos florais-conteudo--hero"
+          quantidade={2}
+          tamanho={176}
+          delayMs={100}
+          variante="fundo"
+        />
 
         <div className="presentes-hero-conteudo">
           <span className="secao-etiqueta">
@@ -159,6 +167,13 @@ export function Presentes() {
         {presentes.length ===
         0 ? (
           <div className="presentes-vazio">
+            <FloraisDesabrochandoConteudo
+              className="presentes-vazio-florais-vivos"
+              quantidade={2}
+              tamanho={122}
+              delayMs={120}
+            />
+
             <OrnamentoFloral
               compacto
             />
@@ -199,7 +214,12 @@ export function Presentes() {
                     }
                     marca={false}
                   >
-                    <RamoFloral className="presente-cartao-floral" />
+                    <FloraisDesabrochandoConteudo
+                      className="presente-cartao-florais-vivos"
+                      quantidade={2}
+                      tamanho={116}
+                      delayMs={120}
+                    />
 
                     <div className="presente-cartao-conteudo">
                       <span className="presente-categoria">
@@ -261,6 +281,13 @@ export function Presentes() {
       </section>
 
       <section className="presentes-recado">
+        <FloraisDesabrochandoConteudo
+          className="presentes-recado-florais-vivos"
+          quantidade={2}
+          tamanho={132}
+          delayMs={120}
+        />
+
         <div>
           <span className="secao-etiqueta">
             Sem obrigação

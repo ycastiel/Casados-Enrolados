@@ -1,7 +1,10 @@
 import {
+  FloraisDesabrochandoConteudo,
+} from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
+import {
   MolduraFloral,
   OrnamentoFloral,
-  RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 
 import convidadosCerimonia from "../../recursos/publico/imagens/convidados/convidados-cerimonia.webp";
@@ -28,8 +31,13 @@ export function Confirmacao() {
           aria-hidden="true"
         />
 
-        <RamoFloral className="confirmacao-hero-floral confirmacao-hero-floral--esquerda" />
-        <RamoFloral className="confirmacao-hero-floral confirmacao-hero-floral--direita" />
+        <FloraisDesabrochandoConteudo
+          className="confirmacao-hero-florais-vivos florais-conteudo--hero"
+          quantidade={2}
+          tamanho={176}
+          delayMs={100}
+          variante="fundo"
+        />
 
         <div className="confirmacao-hero-conteudo">
           <span className="secao-etiqueta">Esperamos você</span>
@@ -98,6 +106,13 @@ export function Confirmacao() {
 
           <div className="confirmacao-passos">
             <div className="confirmacao-passo">
+              <FloraisDesabrochandoConteudo
+                className="confirmacao-passo-flor-viva"
+                quantidade={1}
+                tamanho={82}
+                delayMs={120}
+              />
+
               <span>01</span>
               <div>
                 <h3>Encontre o convite</h3>
@@ -108,6 +123,13 @@ export function Confirmacao() {
             </div>
 
             <div className="confirmacao-passo">
+              <FloraisDesabrochandoConteudo
+                className="confirmacao-passo-flor-viva"
+                quantidade={1}
+                tamanho={82}
+                delayMs={170}
+              />
+
               <span>02</span>
               <div>
                 <h3>Escolha quem vai</h3>
@@ -118,6 +140,13 @@ export function Confirmacao() {
             </div>
 
             <div className="confirmacao-passo">
+              <FloraisDesabrochandoConteudo
+                className="confirmacao-passo-flor-viva"
+                quantidade={1}
+                tamanho={82}
+                delayMs={220}
+              />
+
               <span>03</span>
               <div>
                 <h3>Pronto</h3>

@@ -510,3 +510,27 @@
     opacity: 0.56;
   }
 }
+
+/* =========================================================
+   ETAPA 2.4.2 — BLOCO EDITORIAL / FLORAIS VIVOS
+   ========================================================= */
+
+.bloco-imagem-editorial {
+  isolation: isolate;
+}
+
+.bloco-imagem-editorial::before,
+.bloco-imagem-editorial::after {
+  display: none;
+  content: none;
+}
+
+.bloco-imagem-editorial__florais-vivos {
+  z-index: 4;
+}
+
+.bloco-imagem-editorial__visual,
+.bloco-imagem-editorial__texto {
+  position: relative;
+  z-index: 3;
+}
