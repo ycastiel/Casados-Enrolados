@@ -490,3 +490,162 @@
     rotate(2deg);
 }
 
+/* =========================================================
+   ETAPA 2.2B — IDENTIDADE EDITORIAL / PRESENTES
+   ========================================================= */
+
+/* Hero: mantém a fotografia e transforma apenas o cartão de leitura. */
+.presentes-hero-conteudo {
+  border-color: var(--superficie-editorial-borda);
+  background:
+    radial-gradient(
+      ellipse at 86% 10%,
+      rgb(207 168 74 / 15%),
+      transparent 34%
+    ),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-hero-conteudo .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.presentes-hero-conteudo h1 {
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-hero-conteudo p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+/* Introdução: permanece no respiro claro, usando o dourado como elo. */
+.presentes-introducao .secao-etiqueta {
+  color: var(--cor-dourado-700);
+}
+
+.presentes-introducao h2 {
+  color: var(--cor-preto-900);
+}
+
+/* Cards: identidade forte, porém abaixo da intensidade de O Grande Dia. */
+.presente-cartao.cartao-ui {
+  border-color: var(--superficie-editorial-borda);
+  background:
+    radial-gradient(
+      ellipse at 88% 7%,
+      rgb(226 172 65 / 16%),
+      transparent 36%
+    ),
+    linear-gradient(
+      118deg,
+      transparent 0%,
+      transparent 42%,
+      rgb(231 178 72 / 7%) 52%,
+      transparent 64%
+    ),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.presente-cartao.cartao-ui::before {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(255 245 211 / 4%),
+      transparent 28%
+    );
+  opacity: 1;
+}
+
+.presente-categoria {
+  color: var(--superficie-editorial-verde);
+}
+
+.presente-cartao h3 {
+  color: var(--superficie-editorial-texto);
+}
+
+.presente-cartao p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presente-cartao-rodape strong {
+  color: var(--cor-dourado-300);
+}
+
+.presente-valor span {
+  color: var(--superficie-editorial-verde);
+}
+
+.presente-cartao-rodape .botao--primario {
+  border: 1px solid rgb(255 231 151 / 46%);
+  background:
+    linear-gradient(
+      145deg,
+      #f7d56f,
+      var(--cor-dourado-500)
+    );
+  color: var(--cor-preto-900);
+  box-shadow:
+    0 10px 24px rgb(0 0 0 / 24%),
+    inset 0 1px 0 rgb(255 248 221 / 54%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .presente-cartao.cartao-ui--interativo:hover {
+    border-color: rgb(243 203 97 / 92%);
+    box-shadow:
+      0 28px 64px rgb(8 11 9 / 34%),
+      0 0 0 1px rgb(232 204 120 / 14%);
+  }
+
+  .presente-cartao-rodape .botao--primario:hover {
+    background:
+      linear-gradient(
+        145deg,
+        #ffe497,
+        #d9af48
+      );
+    color: var(--cor-preto-900);
+  }
+}
+
+/* Estado vazio e recado final seguem a mesma família, com menor densidade. */
+.presentes-vazio,
+.presentes-recado {
+  border-color: var(--superficie-editorial-borda-suave);
+  background:
+    radial-gradient(
+      ellipse at 82% 12%,
+      rgb(207 168 74 / 11%),
+      transparent 38%
+    ),
+    var(--superficie-editorial-fundo);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-vazio h3,
+.presentes-recado h2 {
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-vazio p,
+.presentes-recado p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presentes-recado .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.presentes-recado {
+  border: 1px solid var(--superficie-editorial-borda-suave);
+  border-radius: var(--raio-grande);
+}
+
+/* A botânica existente fica propositalmente intacta nesta etapa.
+ * A revisão dos arranjos dos cards é uma pendência visual separada. */

@@ -16,7 +16,7 @@
   color: var(--cor-marfin);
 }
 
-.pagamentos-admin-cabecalho > div {
+.pagamentos-admin-cabecalho>div {
   max-width: 49rem;
 }
 
@@ -41,7 +41,7 @@
 
 .pagamentos-admin-resumo {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: .85rem;
   margin-bottom: 1.5rem;
 }
@@ -66,7 +66,8 @@
   background: linear-gradient(145deg, rgb(251 245 223 / 88%), rgb(255 253 247 / 92%));
 }
 
-.pagamentos-admin-resumo span, .pagamentos-admin-resumo small {
+.pagamentos-admin-resumo span,
+.pagamentos-admin-resumo small {
   display: block;
   color: var(--cor-texto-suave);
 }
@@ -84,7 +85,7 @@
   margin-top: .15rem;
   color: var(--cor-verde-900);
   font-family: var(--fonte-titulo);
-  font-size: clamp(1.75rem,3vw,2.5rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   line-height: 1;
 }
 
@@ -120,7 +121,7 @@
 
 .pagamento-admin-card {
   display: grid;
-  grid-template-columns: 5.4rem minmax(0,1fr) auto;
+  grid-template-columns: 5.4rem minmax(0, 1fr) auto;
   gap: 1.1rem;
   align-items: center;
   padding: 1rem;
@@ -169,7 +170,7 @@
 
 .pagamento-admin-topo h2 {
   margin: .15rem 0 .7rem;
-  font-size: clamp(1.65rem,3vw,2rem);
+  font-size: clamp(1.65rem, 3vw, 2rem);
 }
 
 .pagamento-admin-status {
@@ -185,12 +186,16 @@
   color: var(--cor-verde-900);
 }
 
-.pagamento-admin-status--pendente, .pagamento-admin-status--processando {
+.pagamento-admin-status--pendente,
+.pagamento-admin-status--processando {
   background: var(--cor-amarelo-100);
   color: var(--cor-marrom);
 }
 
-.pagamento-admin-status--recusado, .pagamento-admin-status--cancelado, .pagamento-admin-status--estornado, .pagamento-admin-status--expirado {
+.pagamento-admin-status--recusado,
+.pagamento-admin-status--cancelado,
+.pagamento-admin-status--estornado,
+.pagamento-admin-status--expirado {
   background: var(--cor-vinho-100);
   color: var(--cor-vinho-700);
 }
@@ -228,7 +233,7 @@
   padding: .6rem .85rem;
   border: 1px solid rgb(255 253 247 / 30%);
   border-radius: 999px;
-  background: linear-gradient(125deg,var(--cor-vinho-500),var(--cor-verde-700));
+  background: linear-gradient(125deg, var(--cor-vinho-500), var(--cor-verde-700));
   color: var(--cor-marfin);
   font-size: .72rem;
   font-weight: 800;
@@ -253,12 +258,13 @@
   text-align: center;
 }
 
-.pagamentos-admin-vazio > span {
+.pagamentos-admin-vazio>span {
   color: var(--cor-vinho-500);
   font-size: 2rem;
 }
 
-.pagamentos-admin-vazio h2,.pagamentos-admin-vazio p {
+.pagamentos-admin-vazio h2,
+.pagamentos-admin-vazio p {
   margin: 0;
 }
 
@@ -268,14 +274,17 @@
 
 @media (max-width: 900px) {
   .pagamentos-admin-resumo {
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .pagamento-admin-card {
-    grid-template-columns: 4.5rem minmax(0,1fr);
+    grid-template-columns: 4.5rem minmax(0, 1fr);
   }
+
   .pagamento-admin-imagem {
     width: 4.5rem;
   }
+
   .pagamento-admin-acoes {
     grid-column: 2;
     text-align: left;
@@ -286,15 +295,19 @@
   .pagamentos-admin-resumo {
     grid-template-columns: 1fr 1fr;
   }
+
   .pagamento-admin-card {
     grid-template-columns: 1fr;
   }
+
   .pagamento-admin-imagem {
     width: 5rem;
   }
+
   .pagamento-admin-acoes {
     grid-column: auto;
   }
+
   .pagamento-admin-topo {
     flex-direction: column;
   }
@@ -314,7 +327,7 @@
   opacity: 0.38 !important;
 }
 
-.pagamentos-admin-cabecalho > *:not(.pagamentos-admin-cabecalho-flor) {
+.pagamentos-admin-cabecalho>*:not(.pagamentos-admin-cabecalho-flor) {
   position: relative;
   z-index: 2;
 }
@@ -323,7 +336,7 @@
   gap: var(--gap-card);
 }
 
-.pagamentos-admin-resumo > article {
+.pagamentos-admin-resumo>article {
   border-color: rgb(141 111 47 / 13%);
   background: var(--vidro-forte);
 }
@@ -345,16 +358,115 @@
   text-transform: uppercase;
 }
 
-.pagamento-admin-status--aprovado { color: var(--cor-sucesso); }
+.pagamento-admin-status--aprovado {
+  color: var(--cor-sucesso);
+}
+
 .pagamento-admin-status--pendente,
-.pagamento-admin-status--processando { color: var(--cor-info); }
+.pagamento-admin-status--processando {
+  color: var(--cor-info);
+}
+
 .pagamento-admin-status--recusado,
 .pagamento-admin-status--cancelado,
-.pagamento-admin-status--expirado { color: var(--cor-alerta); }
-.pagamento-admin-status--estornado { color: var(--cor-texto-suave); }
+.pagamento-admin-status--expirado {
+  color: var(--cor-alerta);
+}
+
+.pagamento-admin-status--estornado {
+  color: var(--cor-texto-suave);
+}
 
 .pagamentos-admin-aviso {
   border-color: rgb(119 57 68 / 18%);
   background: var(--cor-erro-fundo);
   color: var(--cor-erro);
+}
+
+/* =========================================================
+   ETAPA 2.3 — ADMIN PAGAMENTOS / IDENTIDADE EDITORIAL
+   ========================================================= */
+
+.pagamentos-admin-cabecalho {
+  border: 1px solid var(--superficie-editorial-borda);
+  background:
+    radial-gradient(circle at 90% 8%, rgb(207 168 74 / 14%), transparent 15rem),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto);
+}
+
+.pagamentos-admin-cabecalho .secao-etiqueta {
+  color: var(--superficie-editorial-verde);
+}
+
+.pagamentos-admin-cabecalho h1 {
+  color: var(--superficie-editorial-texto);
+}
+
+.pagamentos-admin-cabecalho p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.pagamentos-admin-resumo>article,
+.pagamento-admin-card,
+.pagamentos-admin-vazio {
+  border: 1px solid var(--superficie-editorial-borda-suave);
+  background:
+    radial-gradient(circle at 92% 8%, rgb(207 168 74 / 8%), transparent 10rem),
+    var(--superficie-editorial-fundo-elevado);
+  box-shadow: var(--superficie-editorial-sombra);
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.pagamentos-admin-resumo span,
+.pagamentos-admin-resumo small,
+.pagamento-admin-presente,
+.pagamento-admin-detalhes small {
+  color: var(--superficie-editorial-verde);
+}
+
+.pagamentos-admin-resumo strong,
+.pagamento-admin-topo h2,
+.pagamento-admin-detalhes strong,
+.pagamentos-admin-vazio h2 {
+  color: var(--superficie-editorial-texto);
+}
+
+.pagamentos-admin-vazio p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.pagamento-admin-imagem {
+  border: 1px solid rgb(232 204 120 / 24%);
+  background: rgb(255 255 255 / 5%);
+}
+
+.pagamento-admin-acoes button {
+  border-color: rgb(255 231 151 / 42%);
+  background: linear-gradient(135deg, var(--cor-dourado-300), var(--cor-dourado-500));
+  color: var(--cor-preto-900);
+}
+
+.pagamento-admin-concluido {
+  color: var(--superficie-editorial-verde);
+}
+
+.pagamento-admin-status--aprovado {
+  color: #b9d4b5;
+}
+
+.pagamento-admin-status--pendente,
+.pagamento-admin-status--processando {
+  color: var(--cor-dourado-300);
+}
+
+.pagamento-admin-status--recusado,
+.pagamento-admin-status--cancelado,
+.pagamento-admin-status--expirado {
+  color: #dba5ad;
+}
+
+.pagamento-admin-status--estornado {
+  color: rgb(241 246 237 / 60%);
 }

@@ -53,6 +53,24 @@
   --cor-secundaria: var(--cor-dourado-500);
   --cor-destaque: var(--cor-dourado-300);
 
+  /* Superfícies editoriais — identidade preto + dourado + botânica */
+  --superficie-editorial-fundo: var(--cor-preto-900);
+  --superficie-editorial-fundo-elevado:
+    linear-gradient(
+      145deg,
+      var(--cor-preto-900) 0%,
+      #211b0c 58%,
+      #243024 100%
+    );
+  --superficie-editorial-borda: rgb(232 204 120 / 72%);
+  --superficie-editorial-borda-suave: rgb(232 204 120 / 34%);
+  --superficie-editorial-texto: rgb(255 253 247 / 96%);
+  --superficie-editorial-texto-suave: rgb(241 246 237 / 82%);
+  --superficie-editorial-verde: rgb(205 226 199 / 92%);
+  --superficie-editorial-sombra:
+    0 24px 58px rgb(8 11 9 / 26%),
+    0 0 22px rgb(207 168 74 / 7%);
+
   /* Tipografia */
   --fonte-titulo: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --fonte-corpo: "Nunito Sans", Arial, Helvetica, sans-serif;
