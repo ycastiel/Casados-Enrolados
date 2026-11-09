@@ -7,71 +7,25 @@
 
 /* =========================================================
      MOLDURA FLORAL
+     A moldura antiga de ramos estáticos foi substituída pelo
+     desabrochar contextual: 1 flor em cartão, 2 em destaque.
      ========================================================= */
 
 .moldura-floral {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
+  border-radius: inherit;
+}
 
-  --moldura-ramo-tamanho: clamp(10rem, 24vw, 15rem);
-  --moldura-ramo-invasao: 5%;
+.moldura-floral__florais-vivos {
+  z-index: 3;
 }
 
 .moldura-floral__conteudo {
   position: relative;
   z-index: 2;
   height: 100%;
-}
-
-.moldura-floral__ramo {
-  position: absolute;
-  z-index: 1;
-  width: var(--moldura-ramo-tamanho);
-  pointer-events: none;
-  filter: drop-shadow(0 10px 20px rgb(41 41 37 / 10%));
-  user-select: none;
-}
-
-.moldura-floral__ramo--superior {
-  top: 0;
-  left: 0;
-  transform:
-    translate(-6%, -95%)
-    rotate(-3deg);
-  transform-origin: center;
-}
-
-.moldura-floral__ramo--inferior {
-  right: 0;
-  bottom: 0;
-  transform:
-    translate(6%, 95%)
-    rotate(177deg);
-  transform-origin: center;
-}
-
-/* =========================================================
-     VARIANTE: CARTÃO
-     ========================================================= */
-
-.moldura-floral--cartao {
-  --moldura-ramo-tamanho: clamp(8.5rem, 20vw, 12rem);
-}
-
-.moldura-floral--cartao .moldura-floral__ramo {
-  opacity: 0.9;
-}
-
-/* =========================================================
-     VARIANTE: DESTAQUE
-     ========================================================= */
-
-.moldura-floral--destaque {
-  --moldura-ramo-tamanho: clamp(11rem, 27vw, 17rem);
-}
-
-.moldura-floral--destaque .moldura-floral__ramo {
-  opacity: 0.94;
 }
 
 /* =========================================================
@@ -94,52 +48,4 @@
   width: 100%;
   height: auto;
   filter: drop-shadow(0 7px 14px rgb(41 41 37 / 8%));
-}
-
-/* =========================================================
-     RESPONSIVIDADE
-     ========================================================= */
-
-@media (max-width: 680px) {
-  .moldura-floral {
-    --moldura-ramo-tamanho: 8.75rem;
-  }
-
-  .moldura-floral--cartao {
-    --moldura-ramo-tamanho: 8rem;
-  }
-
-  .moldura-floral--destaque {
-    --moldura-ramo-tamanho: 10rem;
-  }
-}
-
-/* =========================================================
-     MICROINTERAÇÃO
-     ========================================================= */
-
-@media (prefers-reduced-motion: no-preference) {
-  .moldura-floral__ramo {
-    transition:
-      transform var(--transicao-lenta),
-      filter var(--transicao-padrao);
-  }
-
-  .moldura-floral:hover .moldura-floral__ramo--superior {
-    transform:
-      translate(-5%, -95%)
-      rotate(-1deg);
-  }
-
-  .moldura-floral:hover .moldura-floral__ramo--inferior {
-    transform:
-      translate(5%, 95%)
-      rotate(179deg);
-  }
-}
-/* DESIGN SYSTEM V1 */
-.moldura-floral__ramo {
-  transition:
-    transform var(--motion-padrao) var(--ease-suave),
-    filter var(--motion-padrao) ease;
 }

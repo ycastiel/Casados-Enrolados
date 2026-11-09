@@ -5,8 +5,11 @@ import {
 } from "react";
 
 import {
+  FloraisDesabrochandoConteudo,
+} from "../../componentes/animacoes/FlorDesabrochando";
+
+import {
   OrnamentoFloral,
-  RamoFloral,
 } from "../../componentes/molduras/Floral";
 
 import type {
@@ -446,10 +449,13 @@ export function ContagemRegressiva({
         .join(" ")}
       aria-labelledby="titulo-contagem-regressiva"
     >
-      <RamoFloral className="contagem-regressiva__ramo contagem-regressiva__ramo--esquerda" />
-      <RamoFloral className="contagem-regressiva__ramo contagem-regressiva__ramo--direita" />
-
       <div className="contagem-regressiva__papel">
+        <FloraisDesabrochandoConteudo
+          className="contagem-regressiva__florais-vivos"
+          quantidade={2}
+          tamanho={122}
+          delayMs={120}
+        />
         <span className="contagem-regressiva__etiqueta">
           Falta pouco
         </span>

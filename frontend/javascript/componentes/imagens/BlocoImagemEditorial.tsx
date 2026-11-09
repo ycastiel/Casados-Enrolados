@@ -1,3 +1,7 @@
+import {
+  FloraisDesabrochandoConteudo,
+} from "../animacoes/FlorDesabrochando";
+
 import "../../../css/componentes/imagens/blocoImagemEditorial.css";
 
 type BlocoImagemEditorialProps = {
@@ -33,6 +37,13 @@ export function BlocoImagemEditorial({
         .filter(Boolean)
         .join(" ")}
     >
+      <FloraisDesabrochandoConteudo
+        className="bloco-imagem-editorial__florais-vivos"
+        quantidade={2}
+        tamanho={142}
+        delayMs={140}
+      />
+
       <div
         className={[
           "bloco-imagem-editorial__visual",

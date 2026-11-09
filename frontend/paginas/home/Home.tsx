@@ -1,4 +1,8 @@
 import {
+  FloraisDesabrochandoConteudo,
+} from "../../javascript/componentes/animacoes/FlorDesabrochando";
+
+import {
   LinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
@@ -32,7 +36,6 @@ import vinculo from "../../recursos/publico/imagens/home/vinculo.webp";
 
 import {
   OrnamentoFloral,
-  RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 import { MolduraFaixaEvento } from "../../javascript/componentes/molduras/MolduraFaixaEvento";
 
@@ -183,8 +186,13 @@ export function Home() {
           aria-hidden="true"
         />
 
-        <RamoFloral className="hero-floral hero-floral--esquerda" />
-        <RamoFloral className="hero-floral hero-floral--direita" />
+        <FloraisDesabrochandoConteudo
+          className="home-hero-florais-vivos florais-conteudo--hero"
+          quantidade={2}
+          tamanho={178}
+          delayMs={100}
+          variante="fundo"
+        />
 
         <div className="hero-conteudo">
           <p className="hero-sobretitulo">
@@ -331,6 +339,13 @@ export function Home() {
           <div className="evento-painel__conteudo">
             <div className="eventos-grade eventos-grade--painel">
               <article className="evento-cartao evento-cartao--painel evento-cartao--introducao">
+                <FloraisDesabrochandoConteudo
+                  className="evento-cartao__flor-viva"
+                  quantidade={1}
+                  tamanho={102}
+                  delayMs={120}
+                />
+
                 <span className="secao-etiqueta">
                   Reserve a data
                 </span>
@@ -353,6 +368,13 @@ export function Home() {
                     className="evento-cartao evento-cartao--painel"
                     key={evento.id}
                   >
+                    <FloraisDesabrochandoConteudo
+                      className="evento-cartao__flor-viva"
+                      quantidade={1}
+                      tamanho={102}
+                      delayMs={160}
+                    />
+
                     <span
                       className="evento-icone"
                       aria-hidden="true"
@@ -401,6 +423,13 @@ export function Home() {
             </div>
 
             <div className="evento-painel__verso">
+              <FloraisDesabrochandoConteudo
+                className="evento-painel__verso-florais"
+                quantidade={2}
+                tamanho={104}
+                delayMs={120}
+              />
+
               <span
                 className="evento-painel__verso-simbolo"
                 aria-hidden="true"
@@ -427,7 +456,12 @@ export function Home() {
         id="presentes"
         className="secao secao--convite"
       >
-        <RamoFloral className="convite-floral" />
+        <FloraisDesabrochandoConteudo
+          className="convite-florais-vivos"
+          quantidade={2}
+          tamanho={136}
+          delayMs={120}
+        />
 
         <div className="convite-conteudo">
           <span className="secao-etiqueta">
@@ -478,6 +512,13 @@ export function Home() {
         id="confirmacao"
         className="secao secao--confirmacao"
       >
+        <FloraisDesabrochandoConteudo
+          className="confirmacao-home-florais-vivos"
+          quantidade={2}
+          tamanho={132}
+          delayMs={120}
+        />
+
         <div className="confirmacao-conteudo">
           <span className="secao-etiqueta">
             Esperamos você

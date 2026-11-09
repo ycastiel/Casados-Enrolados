@@ -8,7 +8,9 @@ import {
   useParams,
 } from "react-router-dom";
 
-import { FlorDesabrochando } from "../../javascript/componentes/animacoes/FlorDesabrochando";
+import {
+  FloraisDesabrochandoConteudo,
+} from "../../javascript/componentes/animacoes/FlorDesabrochando";
 import { EspacoImagem } from "../../javascript/componentes/imagens/EspacoImagem";
 
 import {
@@ -18,7 +20,6 @@ import {
 
 import {
   OrnamentoFloral,
-  RamoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
@@ -180,13 +181,13 @@ export function ReservarPresente() {
   return (
     <div className="pagina-reserva ds-page">
       <section className="reserva-hero">
-        <FlorDesabrochando
-          className="reserva-hero-flor-viva"
+        <FloraisDesabrochandoConteudo
+          className="reserva-hero-florais-vivos florais-conteudo--hero"
+          quantidade={2}
+          tamanho={180}
+          delayMs={100}
           variante="fundo"
-          tamanho={190}
         />
-
-        <RamoFloral className="reserva-hero-floral" />
 
         <div className="reserva-hero-conteudo">
           <span className="secao-etiqueta">
@@ -270,11 +271,11 @@ export function ReservarPresente() {
             )}
           </dl>
 
-          <FlorDesabrochando
-            className="reserva-resumo-flor-viva"
-            variante="card"
-            tamanho={125}
-            delayMs={360}
+          <FloraisDesabrochandoConteudo
+            className="reserva-resumo-florais-vivos"
+            quantidade={2}
+            tamanho={118}
+            delayMs={120}
           />
         </div>
 
@@ -282,6 +283,12 @@ export function ReservarPresente() {
           className="reserva-formulario ds-form ds-surface ds-surface--papel"
           onSubmit={reservar}
         >
+          <FloraisDesabrochandoConteudo
+            className="reserva-formulario-florais-vivos"
+            quantidade={2}
+            tamanho={112}
+            delayMs={140}
+          />
           <span className="secao-etiqueta">
             Seus dados
           </span>
