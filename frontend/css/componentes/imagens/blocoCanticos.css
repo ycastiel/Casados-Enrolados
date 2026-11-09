@@ -342,3 +342,21 @@
   border-color: rgb(141 111 47 / 13%);
   box-shadow: var(--sombra-sm);
 }
+
+/* Botânica 2.0: ramos funcionam como coroa, sem cobrir o conteúdo. */
+.bloco-canticos__floral--superior {
+  top: 0;
+  left: clamp(-2rem, -2vw, -0.75rem);
+  transform:
+    translateY(-95%)
+    rotate(-3deg);
+}
+
+.bloco-canticos__floral--inferior {
+  right: clamp(-2rem, -2vw, -0.75rem);
+  bottom: 0;
+  transform:
+    translateY(95%)
+    rotate(177deg);
+}
+

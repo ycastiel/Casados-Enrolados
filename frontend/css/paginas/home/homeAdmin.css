@@ -338,3 +338,14 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
+/* Botânica 2.0 — ramo do painel administrativo sem cobrir conteúdo. */
+.admin-boas-vindas-floral {
+  position: absolute;
+  right: -0.75rem;
+  bottom: 0;
+  transform:
+    translateY(95%)
+    rotate(177deg);
+}
+

@@ -460,3 +460,33 @@
     margin-inline: auto;
   }
 }
+
+/* Botânica 2.0 — limite visual de 5% sobre heros/cards. */
+.presentes-hero-floral {
+  position: absolute;
+}
+
+.presentes-hero-floral--esquerda {
+  bottom: 0;
+  left: -0.75rem;
+  transform:
+    translateY(95%)
+    rotate(-3deg);
+}
+
+.presentes-hero-floral--direita {
+  top: 0;
+  right: -0.75rem;
+  transform:
+    translateY(-95%)
+    rotate(177deg);
+}
+
+.presente-cartao-floral {
+  top: 0;
+  right: -0.5rem;
+  transform:
+    translateY(-95%)
+    rotate(2deg);
+}
+

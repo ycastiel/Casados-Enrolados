@@ -80,19 +80,66 @@
 
   min-height: 0;
 
+  gap:
+    clamp(
+      0.6rem,
+      0.9vw,
+      0.9rem
+    );
+
   margin: 0;
+
+  padding:
+    clamp(
+      0.55rem,
+      0.8vw,
+      0.8rem
+    );
 
   overflow: hidden;
 
-  border: 0;
-  border-radius: 0;
+  border:
+    1.4px solid
+    rgb(239 201 102 / 78%);
+  border-radius:
+    clamp(
+      1.1rem,
+      1.7vw,
+      1.6rem
+    );
 
   background:
-    rgb(61 82 67);
+    radial-gradient(
+      ellipse at 18% 2%,
+      rgb(223 170 68 / 24%),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 78% 18%,
+      rgb(199 145 49 / 18%),
+      transparent 31%
+    ),
+    linear-gradient(
+      118deg,
+      transparent 0%,
+      transparent 38%,
+      rgb(225 171 65 / 10%) 49%,
+      transparent 61%
+    ),
+    linear-gradient(
+      145deg,
+      rgb(8 9 7) 0%,
+      rgb(30 22 8) 48%,
+      rgb(48 34 12) 69%,
+      rgb(20 32 23) 100%
+    );
 
   box-shadow:
     0 28px 75px
-    rgb(31 43 30 / 15%);
+    rgb(10 13 11 / 34%),
+    0 0 28px rgb(224 170 64 / 10%),
+    inset 0 1px 0 rgb(255 244 207 / 11%),
+    inset 0 0 0 1px rgb(239 201 102 / 9%);
 }
 
 /* =========================================================
@@ -110,8 +157,22 @@
 
   overflow: hidden;
 
+  border:
+    1.3px solid
+    rgb(239 201 102 / 74%);
+  border-radius:
+    clamp(
+      0.9rem,
+      1.4vw,
+      1.3rem
+    );
+
   background:
-    rgb(42 57 58);
+    rgb(18 22 20);
+
+  box-shadow:
+    0 0 18px rgb(224 170 64 / 8%),
+    inset 0 0 0 1px rgb(255 245 214 / 7%);
 }
 
 .evento-painel__imagem img {
@@ -175,16 +236,23 @@
       3rem
     );
 
-  background:
-    linear-gradient(
-      145deg,
-      var(--cor-preto-900) 0%,
-      var(--cor-dourado-900) 46%,
-      var(--cor-verde-700) 100%
+  border-radius:
+    clamp(
+      0.9rem,
+      1.4vw,
+      1.3rem
     );
 
-  color:
-    rgb(255 253 247 / 96%);
+ background:
+  linear-gradient(
+    145deg,
+    var(--cor-preto-900) 0%,
+    var(--cor-preto-900) 72%,
+    rgb(28 38 31) 100%
+  );
+
+color:
+  rgb(255 253 247 / 96%);
 }
 
 /*
@@ -209,7 +277,7 @@
   background:
     linear-gradient(
       90deg,
-      rgb(23 24 21 / 42%),
+      rgb(4 5 4 / 54%),
       transparent
     );
 
@@ -247,6 +315,9 @@
  */
 .eventos-grade--painel
   .evento-cartao--painel {
+  position: relative;
+  isolation: isolate;
+
   display: grid;
   align-content: start;
   justify-items: center;
@@ -270,8 +341,8 @@
   overflow: hidden;
 
   border:
-    1px solid
-    rgb(255 253 247 / 72%);
+    1.35px solid
+    rgb(243 203 97 / 90%);
 
   border-radius:
     clamp(
@@ -281,19 +352,101 @@
     );
 
   background:
-    rgb(255 252 248 / 91%);
+    radial-gradient(
+      ellipse at 82% 8%,
+      rgb(225 170 64 / 22%),
+      transparent 34%
+    ),
+    linear-gradient(
+      118deg,
+      transparent 0%,
+      transparent 38%,
+      rgb(231 178 72 / 10%) 50%,
+      transparent 62%
+    ),
+    linear-gradient(
+      150deg,
+      rgb(7 8 6 / 99%) 0%,
+      rgb(28 21 8 / 99%) 52%,
+      rgb(51 35 11 / 98%) 72%,
+      rgb(22 31 22 / 98%) 100%
+    );
 
   box-shadow:
-    0 18px 42px
-    rgb(28 38 31 / 14%);
+    0 20px 46px
+    rgb(4 6 5 / 38%),
+    0 0 22px rgb(224 170 64 / 8%),
+    inset 0 1px 0 rgb(255 245 211 / 13%),
+    inset 0 0 0 1px rgb(243 203 97 / 13%);
 
   color:
-    var(--cor-texto-suave);
+    rgb(255 253 247 / 90%);
 
   text-align: center;
 
   backdrop-filter:
     blur(2px);
+}
+
+.eventos-grade--painel
+  .evento-cartao--painel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.eventos-grade--painel
+  .evento-cartao--painel::before,
+.eventos-grade--painel
+  .evento-cartao--painel::after {
+  position: absolute;
+  z-index: 0;
+
+  width:
+    clamp(
+      4.75rem,
+      7vw,
+      6.2rem
+    );
+
+  aspect-ratio: 1.65 / 1;
+
+  background-image:
+    url("../../../recursos/publico/imagens/florais/moldura-evento-canto-referencia.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 0.94;
+
+  filter:
+    drop-shadow(0 7px 14px rgb(15 20 17 / 18%));
+
+  content: "";
+
+  pointer-events: none;
+}
+
+.eventos-grade--painel
+  .evento-cartao--painel::before {
+  top: 0;
+  left: 0;
+
+  transform:
+    translate(-18%, -18%)
+    scaleX(-1)
+    rotate(-5deg);
+}
+
+.eventos-grade--painel
+  .evento-cartao--painel::after {
+  right: 0;
+  bottom: 0;
+
+  transform:
+    translate(30%, 28%)
+    rotate(177deg);
+
+  opacity: 0.28;
 }
 
 /* ---------------------------------------------------------
@@ -309,7 +462,7 @@
   margin-bottom: 0.65rem;
 
   color:
-    var(--cor-vinho-500);
+    rgb(220 235 217 / 86%);
 
   font-size: 0.59rem;
   letter-spacing: 0.16em;
@@ -324,7 +477,7 @@
     0.65rem;
 
   color:
-    var(--cor-verde-900);
+    rgb(255 253 247 / 98%);
 
   font-size:
     clamp(
@@ -357,7 +510,7 @@
   margin: 0 auto;
 
   color:
-    var(--cor-texto-suave);
+    rgb(255 253 247 / 84%);
 
   font-size:
     clamp(
@@ -509,8 +662,8 @@
   overflow: hidden;
 
   border:
-    1px solid
-    rgb(255 253 247 / 28%);
+    1.35px solid
+    rgb(243 203 97 / 86%);
 
   border-radius:
     clamp(
@@ -520,15 +673,31 @@
     );
 
   background:
+    radial-gradient(
+      ellipse at 72% 0%,
+      rgb(225 170 64 / 20%),
+      transparent 35%
+    ),
     linear-gradient(
-      120deg,
-      rgb(255 253 247 / 14%),
-      rgb(255 253 247 / 7%)
+      115deg,
+      transparent 0%,
+      transparent 38%,
+      rgb(229 177 72 / 9%) 51%,
+      transparent 64%
+    ),
+    linear-gradient(
+      145deg,
+      rgb(7 8 6 / 99%) 0%,
+      rgb(27 20 8 / 99%) 56%,
+      rgb(42 30 10 / 98%) 75%,
+      rgb(20 29 22 / 98%) 100%
     );
 
   box-shadow:
     0 16px 38px
-    rgb(22 31 26 / 12%);
+    rgb(8 11 9 / 28%),
+    0 0 20px rgb(224 170 64 / 8%),
+    inset 0 1px 0 rgb(255 245 211 / 10%);
 
   backdrop-filter:
     blur(6px);
@@ -550,8 +719,8 @@
   background:
     linear-gradient(
       90deg,
-      rgb(232 204 120 / 85%),
-      rgb(255 253 247 / 18%)
+      rgb(246 204 92 / 96%),
+      rgb(255 231 151 / 32%)
     );
 
   content: "";
@@ -581,7 +750,7 @@
     rgb(255 253 247 / 8%);
 
   color:
-    var(--cor-amarelo-300);
+    var(--cor-dourado-500);
 
   font-family:
     Georgia,
@@ -626,7 +795,7 @@
 
 .evento-painel__verso cite {
   color:
-    rgb(255 253 247 / 68%);
+    rgb(217 232 210 / 82%);
 
   font-size:
     clamp(
@@ -650,6 +819,121 @@
   display: none !important;
 }
 
+/* ---------------------------------------------------------
+   CORES / HIERARQUIA DOS CARDS DO EVENTO
+   --------------------------------------------------------- */
+
+.eventos-grade--painel
+  .evento-icone {
+  border:
+    1px solid
+    rgb(232 204 120 / 56%);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgb(255 242 190 / 99%),
+      rgb(232 190 76 / 98%)
+    );
+
+  color:
+    rgb(61 44 12);
+
+  box-shadow:
+    0 10px 24px rgb(11 16 13 / 22%);
+}
+
+.eventos-grade--painel
+  .evento-tipo,
+.evento-cartao--introducao
+  .secao-etiqueta {
+  color:
+    rgb(205 226 199 / 92%);
+}
+
+.evento-cartao--introducao h2,
+.eventos-grade--painel
+  .evento-cartao h3 {
+  color:
+    rgb(255 253 247 / 98%);
+}
+
+.eventos-grade--painel
+  .evento-data,
+.eventos-grade--painel
+  .evento-detalhes,
+.evento-cartao__resumo {
+  color:
+    rgb(241 246 237 / 86%);
+}
+
+.eventos-grade--painel
+  .evento-detalhes strong {
+  color:
+    rgb(221 237 214 / 96%);
+}
+
+.eventos-grade--painel
+  .evento-divisor {
+  color:
+    var(--cor-dourado-500);
+}
+
+.eventos-grade--painel
+  .evento-divisor > span:not(:nth-child(2)) {
+  background:
+    rgb(232 204 120 / 72%);
+}
+
+.eventos-grade--painel
+  .evento-cartao::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgb(232 204 120 / 0%),
+      rgb(232 204 120 / 72%),
+      rgb(232 204 120 / 0%)
+    );
+}
+
+.evento-painel__verso {
+  border:
+    1.35px solid
+    rgb(243 203 97 / 86%);
+}
+
+.evento-painel__verso-simbolo {
+  border:
+    1px solid
+    rgb(232 204 120 / 48%);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgb(255 248 221 / 12%),
+      rgb(232 204 120 / 16%)
+    );
+
+  color:
+    var(--cor-dourado-500);
+}
+
+.evento-painel__verso cite {
+  color:
+    rgb(217 232 210 / 82%);
+}
+
+/* ---------------------------------------------------------
+   MOLDURINHAS BOTÂNICAS NOS CARDS
+   --------------------------------------------------------- */
+
+.evento-cartao--introducao
+  .ornamento-floral {
+  filter:
+    saturate(0.92)
+    brightness(1.03);
+}
+
 /* =========================================================
    HOVER
    ========================================================= */
@@ -670,8 +954,9 @@
       translateY(-0.25rem);
 
     box-shadow:
-      0 23px 50px
-      rgb(25 35 29 / 18%);
+      0 24px 54px
+      rgb(4 6 5 / 48%),
+      0 0 0 1px rgb(232 204 120 / 14%);
   }
 }
 
@@ -818,19 +1103,62 @@
 
 .home .secao.secao--evento {
   /*
-   * Os ornamentos precisam ultrapassar um pouco as bordas
-   * superior e inferior da faixa.
+   * A botânica pertence às bordas da faixa, portanto precisa
+   * ultrapassar o retângulo sem ser recortada.
    */
   overflow: visible;
 }
 
 /*
- * Camada decorativa independente.
- *
- * Ela cobre a área da seção, mas não participa do layout e não
- * altera a altura da faixa.
+ * A moldura não participa do fluxo e não altera a altura do evento.
+ * A referência visual aprovada usa quatro cantos independentes,
+ * deixando centro, fotografia e cards completamente livres.
  */
-.moldura-evento-especial {
+ .moldura-evento-especial {
+  --moldura-evento-invasao-canto:
+    clamp(
+      3.8rem,
+      4.45rem,
+      4.9rem
+    );
+
+  --moldura-evento-invasao-centro:
+    clamp(
+      2.9rem,
+      3.7rem,
+      4.25rem
+    );
+
+  --moldura-evento-canto:
+    clamp(
+      16rem,
+      21vw,
+      23rem
+    );
+
+  --moldura-evento-canto-escala: 1.18;
+
+  --moldura-evento-centro:
+    clamp(
+      21rem,
+      27vw,
+      29rem
+    );
+
+  --moldura-evento-faixa-verde-altura:
+    clamp(
+      7.5rem,
+      5.4vw,
+      5.2rem
+    );
+
+  --moldura-evento-faixa-verde-largura:
+    clamp(
+      25rem,
+      16vw,
+      18rem
+    );
+
   position: absolute;
   z-index: 6;
 
@@ -843,73 +1171,217 @@
 }
 
 /*
- * O ornamento foi criado especificamente em formato horizontal.
- * Controlamos pela largura; a proporção baixa do SVG mantém
- * a altura delicada.
+ * Faixas verdes auxiliares para preencher o respiro entre os ornamentos
+ * laterais e centrais. Mantêm o branco como respiro principal, mas evitam
+ * “buracos” grandes demais nas bordas superior e inferior.
+ */
+.moldura-evento-especial::before,
+.moldura-evento-especial::after {
+  position: absolute;
+  z-index: 0;
+
+  left: 0;
+  right: 0;
+
+  height:
+    var(--moldura-evento-faixa-verde-altura);
+
+  background-image:
+    url("../../../recursos/publico/imagens/florais/ramo-floral-preenchimento-lirios.png"),
+    url("../../../recursos/publico/imagens/florais/ramo-floral-preenchimento-lirios.png");
+  background-repeat:
+    no-repeat,
+    no-repeat;
+  background-position:
+    25% center,
+    75% center;
+  background-size:
+    var(--moldura-evento-faixa-verde-largura) auto,
+    var(--moldura-evento-faixa-verde-largura) auto;
+
+  opacity: 0.94;
+
+  filter:
+    saturate(0.94)
+    brightness(0.93)
+    contrast(1.04)
+    drop-shadow(0 8px 16px rgb(30 45 34 / 10%));
+
+  content: "";
+
+  pointer-events: none;
+}
+
+.moldura-evento-especial::before {
+  top: 0;
+
+  transform:
+    translateY(
+      calc(-100% + 2.6rem)
+    );
+}
+
+.moldura-evento-especial::after {
+  bottom: 0;
+
+  transform:
+    translateY(
+      calc(100% - 2.6rem)
+    )
+    scaleY(-1);
+}
+
+/*
+ * O asset é recortado rente à arte. Em vez de deslocá-lo por uma
+ * porcentagem arbitrária da seção, cada canto fica preso à própria
+ * borda e deixa apenas --moldura-evento-invasao entrar no painel.
+ * Isso evita o efeito de "flor flutuando" no respiro branco.
  */
 .moldura-evento-especial__ornamento {
   position: absolute;
 
-  left: 50%;
-
   display: block;
 
   width:
-    clamp(
-      34rem,
-      52vw,
-      60rem
-    );
+    var(--moldura-evento-canto);
 
   max-width:
-    calc(100vw - 2rem);
+    26vw;
 
   height: auto;
 
   object-fit: contain;
 
-  opacity: 0.98;
+  opacity: 0.96;
 
   filter:
     drop-shadow(
       0 12px 24px
-      rgb(55 40 36 / 13%)
+      rgb(30 45 34 / 14%)
     );
-
-  transform:
-    translateX(-50%);
 
   transform-origin: center center;
 }
 
-/*
- * Só uma pequena parte do floral entra sobre a faixa.
- * A maior parte fica no respiro branco ao redor dela.
+.moldura-evento-especial__ornamento--topo,
+.moldura-evento-especial__ornamento--base {
+  z-index: 1;
+}
+
+.moldura-evento-especial__ornamento--superior-esquerda,
+.moldura-evento-especial__ornamento--superior-direita,
+.moldura-evento-especial__ornamento--inferior-esquerda,
+.moldura-evento-especial__ornamento--inferior-direita,
+.moldura-evento-especial__ornamento--superior-centro,
+.moldura-evento-especial__ornamento--inferior-centro {
+  z-index: 2;
+}
+
+.moldura-evento-especial__ornamento--superior-esquerda,
+.moldura-evento-especial__ornamento--superior-direita,
+.moldura-evento-especial__ornamento--inferior-esquerda,
+.moldura-evento-especial__ornamento--inferior-direita {
+  scale: 1;
+}
+
+.moldura-evento-especial__ornamento--superior-centro,
+.moldura-evento-especial__ornamento--inferior-centro {
+  width: var(--moldura-evento-centro);
+  max-width: 32vw;
+}
+
+/* Canto superior esquerdo: buquê no vértice externo e folhagens apontando para o centro. */
+.moldura-evento-especial__ornamento--superior-esquerda {
+  top: 35px;
+  left: 0;
+
+  transform-origin: left bottom;
+
+  transform:
+    translate(
+      -5%,
+      calc(-100% + var(--moldura-evento-invasao-canto))
+    )
+    scale(var(--moldura-evento-canto-escala))
+    rotate(-2deg);
+}
+
+/* Canto superior direito: buquê no vértice externo e folhagens apontando para o centro. */
+.moldura-evento-especial__ornamento--superior-direita {
+  top: 15px;
+  right: 0;
+
+  /* Espelhamos pelo centro da própria caixa para que scaleX(-1)
+   * não projete o asset para fora do right: 0. */
+  transform-origin: center bottom;
+  transform:
+    translate(
+      -5%,
+      calc(-100% + var(--moldura-evento-invasao-canto))
+    )
+    scale(var(--moldura-evento-canto-escala))
+    scaleX(-1)
+    rotate(2deg);
+}
+
+/* Canto inferior esquerdo: buquê no vértice externo e folhagens apontando para o centro. */
+.moldura-evento-especial__ornamento--inferior-esquerda {
+  bottom: -140px;
+  left: 0;
+
+  transform-origin: left top;
+
+  transform:
+    translate(
+      -5%,
+      calc(100% - var(--moldura-evento-invasao-canto))
+    )
+    scaleY(-1)
+    scale(var(--moldura-evento-canto-escala))
+    rotate(2deg);
+}
+
+/* Canto inferior direito: buquê no vértice externo e folhagens apontando para o centro. */
+.moldura-evento-especial__ornamento--inferior-direita {
+  right: 0;
+  bottom: -117px;
+
+  /* Mesma lógica da superior direita: o espelhamento acontece dentro
+   * da própria caixa, preservando right: 0 como âncora responsiva. */
+  transform-origin: center top;
+  transform:
+    translate(
+      -5%,
+      calc(100% - var(--moldura-evento-invasao-canto))
+    )
+    scale(var(--moldura-evento-canto-escala))
+    scale(-1, -1)
+    rotate(-2deg);
+}
+
+/* Centro superior/inferior: acompanha a referência aprovada,
+ * reforçando o eixo da seção sem encobrir o conteúdo.
  */
-.moldura-evento-especial__ornamento--topo {
-  top:
-    clamp(
-      -7rem,
-      -5.2vw,
-      -4.3rem
+.moldura-evento-especial__ornamento--superior-centro {
+  top: 0;
+  left: 50%;
+
+  transform:
+    translate(
+      -50%,
+      calc(-100% + var(--moldura-evento-invasao-centro))
     );
 }
 
-/*
- * A peça inferior é exatamente o MESMO SVG.
- * Rotacionar 180° mantém a identidade e cria uma coroa
- * complementar na borda inferior.
- */
-.moldura-evento-especial__ornamento--base {
-  bottom:
-    clamp(
-      -7rem,
-      -5.2vw,
-      -4.3rem
-    );
+.moldura-evento-especial__ornamento--inferior-centro {
+  bottom: 0;
+  left: 50%;
 
   transform:
-    translateX(-50%)
+    translate(
+      -50%,
+      calc(100% - var(--moldura-evento-invasao-centro))
+    )
     rotate(180deg);
 }
 
@@ -918,67 +1390,150 @@
    ========================================================= */
 
 @media (max-width: 1050px) {
-  .moldura-evento-especial__ornamento {
-    width:
+  .moldura-evento-especial {
+    --moldura-evento-invasao-canto: 4.05rem;
+    --moldura-evento-invasao-centro: 3.6rem;
+    --moldura-evento-canto:
       clamp(
-        31rem,
-        64vw,
-        48rem
+        14rem,
+        19vw,
+        18rem
       );
-  }
-
-  .moldura-evento-especial__ornamento--topo {
-    top: -5rem;
-  }
-
-  .moldura-evento-especial__ornamento--base {
-    bottom: -5rem;
+    --moldura-evento-canto-escala: 1.24;
+    --moldura-evento-centro:
+      clamp(
+        15.5rem,
+        20.5vw,
+        20.5rem
+      );
+    --moldura-evento-faixa-verde-altura:
+      clamp(
+        3.3rem,
+        4.7vw,
+        4.3rem
+      );
+    --moldura-evento-faixa-verde-largura:
+      clamp(
+        11rem,
+        14vw,
+        13rem
+      );
   }
 }
 
 @media (max-width: 860px) {
-  /*
-   * Como a própria seção empilha foto/conteúdo neste breakpoint,
-   * o floral também fica um pouco menor para não disputar espaço
-   * com os cards.
-   */
-  .moldura-evento-especial__ornamento {
-    width:
+  .moldura-evento-especial {
+    --moldura-evento-invasao-canto: 2.8rem;
+    --moldura-evento-invasao-centro: 2.65rem;
+    --moldura-evento-canto:
       min(
-        88vw,
-        38rem
+        31vw,
+        13rem
       );
-
-    opacity: 0.9;
+    --moldura-evento-canto-escala: 1.2;
+    --moldura-evento-centro:
+      min(
+        36vw,
+        14rem
+      );
+    --moldura-evento-faixa-verde-altura:
+      min(
+        8vw,
+        3.2rem
+      );
+    --moldura-evento-faixa-verde-largura:
+      min(
+        15vw,
+        7rem
+      );
   }
 
-  .moldura-evento-especial__ornamento--topo {
-    top: -4rem;
+  .moldura-evento-especial__ornamento {
+    max-width: 35vw;
+    opacity: 0.94;
   }
 
-  .moldura-evento-especial__ornamento--base {
-    bottom: -4rem;
+  .moldura-evento-especial__ornamento--superior-centro,
+  .moldura-evento-especial__ornamento--inferior-centro {
+    max-width: 42vw;
+  }
+
+  .moldura-evento-especial::before,
+  .moldura-evento-especial::after {
+    left: min(20vw, 4rem);
+    right: min(20vw, 4rem);
+  }
+
+  .moldura-evento-especial::before,
+  .moldura-evento-especial::after {
+    left: min(16vw, 5rem);
+    right: min(16vw, 5rem);
   }
 }
 
 @media (max-width: 560px) {
-  .moldura-evento-especial__ornamento {
-    width: 94vw;
+  .moldura-evento-especial {
+    --moldura-evento-invasao-canto: 2.05rem;
+    --moldura-evento-invasao-centro: 2.1rem;
+    --moldura-evento-canto:
+      min(
+        34vw,
+        9.75rem
+      );
+    --moldura-evento-canto-escala: 1.16;
+    --moldura-evento-centro:
+      min(
+        42vw,
+        12.25rem
+      );
+    --moldura-evento-faixa-verde-altura:
+      min(
+        8.4vw,
+        2.75rem
+      );
+    --moldura-evento-faixa-verde-largura:
+      min(
+        16vw,
+        6.2rem
+      );
+  }
 
-    opacity: 0.82;
+  .moldura-evento-especial__ornamento {
+    max-width: 38vw;
+    opacity: 0.9;
 
     filter:
       drop-shadow(
         0 8px 16px
-        rgb(55 40 36 / 10%)
+        rgb(30 45 34 / 11%)
       );
   }
 
-  .moldura-evento-especial__ornamento--topo {
-    top: -3.1rem;
+  .moldura-evento-especial__ornamento--superior-centro,
+  .moldura-evento-especial__ornamento--inferior-centro {
+    max-width: 36vw;
   }
+}
 
-  .moldura-evento-especial__ornamento--base {
-    bottom: -3.1rem;
+
+/* Ramos de preenchimento: duas peças independentes ocupando apenas os vãos
+ * entre as molduras laterais e o arranjo central. */
+@media (max-width: 860px) {
+  .moldura-evento-especial::before,
+  .moldura-evento-especial::after {
+    left: 0;
+    right: 0;
+    background-position:
+      27% center,
+      73% center;
+  }
+}
+
+@media (max-width: 560px) {
+  .moldura-evento-especial::before,
+  .moldura-evento-especial::after {
+    background-position:
+      25% center,
+      75% center;
   }
 }
