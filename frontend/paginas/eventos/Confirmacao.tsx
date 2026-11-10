@@ -6,6 +6,7 @@ import {
   MolduraFloral,
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
+import { MarcaFloral } from "../../javascript/componentes/marca/MarcaFloral";
 
 import convidadosCerimonia from "../../recursos/publico/imagens/convidados/convidados-cerimonia.webp";
 
@@ -113,6 +114,11 @@ export function Confirmacao() {
                 delayMs={120}
               />
 
+              <MarcaFloral
+                className="confirmacao-passo-marca"
+                variante="card"
+              />
+
               <span>01</span>
               <div>
                 <h3>Encontre o convite</h3>
@@ -130,6 +136,11 @@ export function Confirmacao() {
                 delayMs={170}
               />
 
+              <MarcaFloral
+                className="confirmacao-passo-marca"
+                variante="card"
+              />
+
               <span>02</span>
               <div>
                 <h3>Escolha quem vai</h3>
@@ -145,6 +156,11 @@ export function Confirmacao() {
                 quantidade={1}
                 tamanho={82}
                 delayMs={220}
+              />
+
+              <MarcaFloral
+                className="confirmacao-passo-marca"
+                variante="card"
               />
 
               <span>03</span>

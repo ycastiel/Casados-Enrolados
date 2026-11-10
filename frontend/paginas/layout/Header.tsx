@@ -3,6 +3,8 @@ import {
   NavLinkTransicao,
 } from "../../javascript/componentes/animacoes/TransicaoPagina";
 
+import { MarcaFloral } from "../../javascript/componentes/marca/MarcaFloral";
+
 import "../../css/layout/header.css";
 
 export function Header() {
@@ -14,15 +16,18 @@ export function Header() {
           to="/"
           aria-label="Casados & Enrolados - página inicial"
         >
-          <span
-            className="cabecalho-marca-simbolo"
-            aria-hidden="true"
-          >
-            ❦
-          </span>
+          <MarcaFloral
+            className="cabecalho-marca-imagem"
+            variante="cabecalho"
+          />
 
-          <span>
-            Casados &amp; Enrolados
+          <span className="cabecalho-marca-textos">
+            <span className="cabecalho-marca-titulo">
+              Casados &amp; Enrolados
+            </span>
+            <span className="cabecalho-marca-subtitulo">
+              Noemi &amp; Maurício
+            </span>
           </span>
         </LinkTransicao>
 

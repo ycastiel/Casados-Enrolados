@@ -795,3 +795,187 @@ button:disabled,
   position: relative;
   z-index: 1;
 }
+
+/* =========================================================
+   ETAPA 2.5 — AMBIENTE NOTURNO BOTÂNICO
+   Fundo público escuro, com profundidade verde + champagne.
+   O Admin mantém sua superfície clara própria.
+   ========================================================= */
+
+body {
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgb(75 97 63 / 17%),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 84% 28%,
+      rgb(164 126 46 / 12%),
+      transparent 36rem
+    ),
+    radial-gradient(
+      circle at 34% 78%,
+      rgb(46 67 42 / 11%),
+      transparent 32rem
+    ),
+    linear-gradient(
+      145deg,
+      #070906 0%,
+      #0d100b 34%,
+      #17140b 66%,
+      #0a0f0b 100%
+    );
+
+  color:
+    rgb(244 246 240 / 88%);
+}
+
+.layout-publico {
+  position: relative;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgb(207 168 74 / 7%),
+      transparent 34rem
+    ),
+    radial-gradient(
+      ellipse at 4% 42%,
+      rgb(72 94 62 / 10%),
+      transparent 32rem
+    ),
+    radial-gradient(
+      ellipse at 96% 70%,
+      rgb(142 106 37 / 7%),
+      transparent 36rem
+    ),
+    transparent;
+
+  color:
+    var(--superficie-editorial-texto-suave);
+}
+
+.layout-publico::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgb(232 204 120 / 0.8%) 0,
+      rgb(232 204 120 / 0.8%) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+
+  content: "";
+  opacity: 0.34;
+  pointer-events: none;
+}
+
+.layout-publico .conteudo-principal {
+  color:
+    var(--superficie-editorial-texto-suave);
+}
+
+.layout-publico .ds-page::before {
+  background:
+    radial-gradient(
+      circle at 14% 18%,
+      rgb(207 168 74 / 7%),
+      transparent 26rem
+    ),
+    radial-gradient(
+      circle at 86% 56%,
+      rgb(83 99 74 / 9%),
+      transparent 29rem
+    );
+}
+
+.layout-publico .secao-etiqueta,
+.layout-publico .ds-eyebrow {
+  color:
+    var(--cor-dourado-300);
+}
+
+.layout-publico .secao-cabecalho > p,
+.layout-publico .ds-texto-suave {
+  color:
+    var(--superficie-editorial-texto-suave);
+}
+
+/* Superfícies públicas ganham mais recorte contra o novo fundo. */
+.layout-publico .ds-surface,
+.layout-publico .cartao-ui {
+  border-color:
+    rgb(232 204 120 / 42%);
+
+  box-shadow:
+    0 30px 72px rgb(0 0 0 / 38%),
+    0 0 30px rgb(207 168 74 / 6%),
+    inset 0 1px 0 rgb(255 245 211 / 9%);
+}
+
+.layout-publico .ds-surface--papel,
+.layout-publico .ds-surface--botanica {
+  background:
+    radial-gradient(
+      ellipse at 86% 8%,
+      rgb(207 168 74 / 13%),
+      transparent 16rem
+    ),
+    radial-gradient(
+      ellipse at 10% 92%,
+      rgb(83 99 74 / 10%),
+      transparent 18rem
+    ),
+    var(--superficie-editorial-fundo-elevado);
+
+  color:
+    var(--superficie-editorial-texto);
+}
+
+.layout-publico .ds-surface--papel :is(h1, h2, h3, strong),
+.layout-publico .ds-surface--botanica :is(h1, h2, h3, strong) {
+  color:
+    var(--superficie-editorial-texto);
+}
+
+/* Inputs públicos continuam legíveis, mas deixam de parecer blocos brancos soltos. */
+.layout-publico :is(input, textarea, select) {
+  border-color:
+    rgb(232 204 120 / 28%);
+
+  background:
+    rgb(255 253 247 / 8%);
+
+  color:
+    var(--superficie-editorial-texto);
+}
+
+.layout-publico :is(input, textarea)::placeholder {
+  color:
+    rgb(241 246 237 / 48%);
+}
+
+.layout-publico :is(input, textarea, select):focus {
+  border-color:
+    var(--cor-dourado-300);
+
+  background:
+    rgb(255 253 247 / 11%);
+
+  box-shadow:
+    0 0 0 4px rgb(207 168 74 / 12%);
+}
+
+/* O campo estrelado vira textura de luz, não céu estrelado. */
+.layout-estrelas {
+  opacity: 0.58;
+  filter:
+    saturate(0.72)
+    brightness(1.05);
+}

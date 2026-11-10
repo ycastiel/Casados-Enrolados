@@ -21,6 +21,7 @@ import {
 import {
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
+import { MarcaFloral } from "../../javascript/componentes/marca/MarcaFloral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
@@ -209,6 +210,8 @@ export function ReservarPresente() {
 
       <section className="secao reserva-area">
         <div className="reserva-resumo ds-surface ds-surface--botanica">
+          <MarcaFloral className="reserva-resumo-marca" variante="card" />
+
           <EspacoImagem
             className="reserva-presente-imagem"
             src={presente.imagemUrl}
@@ -283,6 +286,8 @@ export function ReservarPresente() {
           className="reserva-formulario ds-form ds-surface ds-surface--papel"
           onSubmit={reservar}
         >
+          <MarcaFloral className="reserva-formulario-marca" variante="card" />
+
           <FloraisDesabrochandoConteudo
             className="reserva-formulario-florais-vivos"
             quantidade={2}

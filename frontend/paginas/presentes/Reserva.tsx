@@ -22,6 +22,8 @@ import {
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
 
+import { MarcaFloral } from "../../javascript/componentes/marca/MarcaFloral";
+
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
 import {
@@ -504,6 +506,8 @@ export function ReservaPresente() {
 
       <section className="secao reserva-status-area">
         <article className="reserva-status-cartao ds-surface ds-surface--papel">
+          <MarcaFloral className="reserva-status-cartao-marca" variante="card" />
+
           <FloraisDesabrochandoConteudo
             className="reserva-status-cartao-florais-vivos"
             quantidade={2}
@@ -644,6 +648,8 @@ export function ReservaPresente() {
           id="pagamento-pix"
           className="reserva-pagamento-pix ds-surface ds-surface--vinho"
         >
+          <MarcaFloral className="reserva-pagamento-marca" variante="card" />
+
           <FloraisDesabrochandoConteudo
             className="reserva-pagamento-florais-vivos"
             quantidade={2}

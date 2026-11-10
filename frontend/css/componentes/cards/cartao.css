@@ -217,3 +217,37 @@
     box-shadow: var(--sombra-md);
   }
 }
+
+/* =========================================================
+   ETAPA 2.5 — MARCA FLORAL DO SITE NOS CARDS
+   ========================================================= */
+
+.cartao-ui .cartao-ui__marca.marca-floral {
+  position: absolute;
+  z-index: 4;
+  top: 0.52rem;
+  right: 0.62rem;
+
+  width: clamp(2.2rem, 4vw, 2.9rem);
+  height: auto;
+  aspect-ratio: auto;
+
+  border-radius: 0;
+  background: none;
+
+  box-shadow: none;
+
+  opacity: 0.84;
+
+  filter:
+    drop-shadow(0 8px 16px rgb(0 0 0 / 22%))
+    saturate(1.06)
+    brightness(1.06);
+
+  transform: rotate(5deg);
+}
+
+.cartao-ui--vinho .cartao-ui__marca.marca-floral {
+  background: none;
+  box-shadow: none;
+}

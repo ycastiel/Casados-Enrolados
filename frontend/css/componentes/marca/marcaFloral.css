@@ -1,0 +1,66 @@
+.marca-floral {
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.marca-floral--card {
+  position: absolute;
+  z-index: 4;
+  top: 0.55rem;
+  right: 0.65rem;
+
+  width: clamp(2.15rem, 4.2vw, 3rem);
+  height: auto;
+
+  opacity: 0.82;
+
+  filter:
+    drop-shadow(0 8px 16px rgb(0 0 0 / 20%))
+    saturate(1.05)
+    brightness(1.06);
+
+  transform: rotate(5deg);
+  transform-origin: center;
+}
+
+.marca-floral--cabecalho {
+  width: clamp(3.7rem, 5vw, 4.8rem);
+  height: auto;
+
+  filter:
+    drop-shadow(0 12px 24px rgb(0 0 0 / 22%))
+    saturate(1.04)
+    brightness(1.04);
+}
+
+.marca-floral--rodape {
+  width: clamp(4.8rem, 7vw, 6.6rem);
+  height: auto;
+
+  filter:
+    drop-shadow(0 14px 28px rgb(0 0 0 / 22%))
+    saturate(1.06)
+    brightness(1.04);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cartao-ui--interativo:hover .marca-floral--card {
+    transform:
+      rotate(1deg)
+      scale(1.06);
+
+    transition:
+      transform var(--transicao-padrao);
+  }
+}
+
+@media (max-width: 560px) {
+  .marca-floral--card {
+    top: 0.45rem;
+    right: 0.5rem;
+    width: 2.2rem;
+    opacity: 0.76;
+  }
+}

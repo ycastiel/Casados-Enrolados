@@ -37,6 +37,7 @@ import vinculo from "../../recursos/publico/imagens/home/vinculo.webp";
 import {
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
+import { MarcaFloral } from "../../javascript/componentes/marca/MarcaFloral";
 import { MolduraFaixaEvento } from "../../javascript/componentes/molduras/MolduraFaixaEvento";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
@@ -346,6 +347,11 @@ export function Home() {
                   delayMs={120}
                 />
 
+                <MarcaFloral
+                  className="evento-cartao__marca"
+                  variante="card"
+                />
+
                 <span className="secao-etiqueta">
                   Reserve a data
                 </span>
@@ -373,6 +379,11 @@ export function Home() {
                       quantidade={1}
                       tamanho={102}
                       delayMs={160}
+                    />
+
+                    <MarcaFloral
+                      className="evento-cartao__marca"
+                      variante="card"
                     />
 
                     <span
@@ -430,6 +441,11 @@ export function Home() {
                 delayMs={120}
               />
 
+              <MarcaFloral
+                className="evento-painel__verso-marca"
+                variante="card"
+              />
+
               <span
                 className="evento-painel__verso-simbolo"
                 aria-hidden="true"
@@ -461,6 +477,11 @@ export function Home() {
           quantidade={2}
           tamanho={136}
           delayMs={120}
+        />
+
+        <MarcaFloral
+          className="convite-marca"
+          variante="card"
         />
 
         <div className="convite-conteudo">
@@ -517,6 +538,11 @@ export function Home() {
           quantidade={2}
           tamanho={132}
           delayMs={120}
+        />
+
+        <MarcaFloral
+          className="confirmacao-home-marca"
+          variante="card"
         />
 
         <div className="confirmacao-conteudo">

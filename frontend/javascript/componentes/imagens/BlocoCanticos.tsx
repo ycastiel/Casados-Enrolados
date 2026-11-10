@@ -1,5 +1,6 @@
 import "../../../css/componentes/imagens/blocoCanticos.css";
 import { FloraisDesabrochandoConteudo } from "../animacoes/FlorDesabrochando";
+import { MarcaFloral } from "../marca/MarcaFloral";
 
 type BlocoCanticosProps = {
   imagemMar: string;
@@ -30,6 +31,11 @@ export function BlocoCanticos({
         quantidade={2}
         tamanho={148}
         delayMs={140}
+      />
+
+      <MarcaFloral
+        className="bloco-canticos__marca"
+        variante="card"
       />
       <div className="bloco-canticos__visual">
         <img

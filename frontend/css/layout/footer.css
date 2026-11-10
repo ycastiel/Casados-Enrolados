@@ -1,40 +1,98 @@
 .rodape-principal {
   position: relative;
   z-index: 2;
-  padding: 4rem 1rem 3rem;
-  border-top: 1px solid var(--cor-borda);
-  background: var(--cor-creme);
+  overflow: hidden;
+  padding: 4.8rem 1rem 3.8rem;
+  border-top: 1px solid rgb(226 202 131 / 24%);
+  background:
+    radial-gradient(
+      ellipse at 18% 20%,
+      rgb(83 99 74 / 16%),
+      transparent 22rem
+    ),
+    radial-gradient(
+      ellipse at 82% 14%,
+      rgb(219 164 58 / 18%),
+      transparent 20rem
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 35%,
+      rgb(224 168 61 / 8%) 49%,
+      transparent 63%
+    ),
+    linear-gradient(
+      145deg,
+      rgb(8 9 7) 0%,
+      rgb(26 20 8) 46%,
+      rgb(45 31 10) 69%,
+      rgb(19 31 23) 100%
+    );
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 2%);
   text-align: center;
 }
 
-.rodape-ornamento {
-  margin-bottom: var(--espaco-3);
-  color: var(--cor-vinho-500);
-  font-family: var(--fonte-titulo);
-  font-size: 1.8rem;
+.rodape-principal::before,
+.rodape-principal::after {
+  position: absolute;
+  left: 50%;
+  width: min(92vw, 920px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(226 202 131 / 12%) 10%,
+    rgb(226 202 131 / 54%) 50%,
+    rgb(226 202 131 / 12%) 90%,
+    transparent 100%
+  );
+  content: "";
+  transform: translateX(-50%);
+}
+
+.rodape-principal::before {
+  top: 1rem;
+}
+
+.rodape-principal::after {
+  bottom: 1rem;
+}
+
+.rodape-marca-visual {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.rodape-marca-imagem {
+  width: clamp(4.8rem, 7vw, 6.6rem);
+  height: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 12px 24px rgb(0 0 0 / 16%))
+    saturate(1.04);
 }
 
 .rodape-frase {
-  max-width: 34rem;
-  margin: 0 auto var(--espaco-3);
-  color: var(--cor-texto-suave);
+  max-width: 36rem;
+  margin: 0 auto 0.9rem;
+  color: rgb(255 253 247 / 88%);
 }
 
 .rodape-marca {
   margin: 0;
-  color: var(--cor-verde-900);
+  color: rgb(255 253 247 / 98%);
   font-family: var(--fonte-titulo);
-  font-size: 1.35rem;
+  font-size: 1.58rem;
   font-weight: 600;
 }
 
-/* DESIGN SYSTEM V1 */
-.rodape-principal {
-  position: relative;
-  overflow: hidden;
-  border-top: var(--linha-suave);
-  background:
-    radial-gradient(circle at 20% 10%, rgb(83 99 74 / 8%), transparent 18rem),
-    radial-gradient(circle at 85% 70%, rgb(226 202 131 / 12%), transparent 20rem),
-    var(--cor-papel);
+.rodape-submarca {
+  margin: 0.45rem 0 0;
+  color: rgb(185 198 174 / 86%);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }

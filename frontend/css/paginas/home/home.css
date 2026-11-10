@@ -2766,3 +2766,57 @@
     --flor-opacidade-visivel: 0.48;
   }
 }
+
+/* =========================================================
+   ETAPA 2.5 — HOME / RESPIRO NOTURNO
+   ========================================================= */
+
+.home {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.secao--historia > .secao-cabecalho h2,
+.secao--historia > .secao-cabecalho p {
+  color: var(--superficie-editorial-texto);
+}
+
+.secao--historia > .secao-cabecalho p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.home-contagem,
+.secao--historia,
+.secao--evento,
+.secao--convite,
+.bloco-canticos,
+.bloco-imagem-editorial,
+.secao--confirmacao {
+  position: relative;
+}
+
+/* Marca floral: assinatura do site nos painéis da Home. */
+.evento-cartao__marca,
+.evento-painel__verso-marca,
+.convite-marca,
+.confirmacao-home-marca {
+  z-index: 4;
+}
+
+.evento-cartao__marca {
+  top: 0.48rem;
+  right: 0.55rem;
+  width: clamp(2rem, 3.2vw, 2.7rem);
+}
+
+.evento-painel__verso-marca {
+  top: 0.55rem;
+  right: 0.7rem;
+  width: clamp(2.2rem, 3vw, 2.85rem);
+}
+
+.convite-marca,
+.confirmacao-home-marca {
+  top: 0.75rem;
+  right: 0.85rem;
+  width: clamp(2.5rem, 3.8vw, 3.2rem);
+}

@@ -1172,3 +1172,32 @@
   position: relative;
   z-index: 2;
 }
+
+/* =========================================================
+   ETAPA 2.5 — RESERVA / PIX SOBRE AMBIENTE NOTURNO
+   ========================================================= */
+
+.reserva-area,
+.reserva-status-area {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.reserva-resumo,
+.reserva-formulario,
+.reserva-status-cartao,
+.reserva-pagamento-pix {
+  box-shadow:
+    0 30px 72px rgb(0 0 0 / 38%),
+    0 0 28px rgb(207 168 74 / 6%),
+    inset 0 1px 0 rgb(255 245 211 / 8%);
+}
+
+.reserva-resumo-marca,
+.reserva-formulario-marca,
+.reserva-status-cartao-marca,
+.reserva-pagamento-marca {
+  z-index: 4;
+  top: 0.7rem;
+  right: 0.8rem;
+  width: clamp(2.45rem, 4vw, 3.15rem);
+}
