@@ -4,6 +4,8 @@ import {
   FloraisDesabrochandoConteudo,
 } from "../animacoes/FlorDesabrochando";
 
+import { MarcaFloral } from "../marca/MarcaFloral";
+
 import ramoFloral from "../../../recursos/publico/imagens/florais/ramo-floral-botanico.png";
 import ornamentoFloral from "../../../recursos/publico/imagens/florais/ornamento-floral-botanico.png";
 
@@ -60,6 +62,11 @@ export function MolduraFloral({
         quantidade={destaque ? 2 : 1}
         tamanho={destaque ? 138 : 112}
         delayMs={120}
+      />
+
+      <MarcaFloral
+        className="moldura-floral__marca"
+        variante="card"
       />
 
       <div className="moldura-floral__conteudo">

@@ -13,6 +13,7 @@ import {
 import {
   OrnamentoFloral,
 } from "../../javascript/componentes/molduras/Floral";
+import { MarcaFloral } from "../../javascript/componentes/marca/MarcaFloral";
 
 import { EstadoPagina } from "../../javascript/helpers/EstadoPagina";
 
@@ -174,6 +175,11 @@ export function Presentes() {
               delayMs={120}
             />
 
+            <MarcaFloral
+              className="presentes-vazio-marca"
+              variante="card"
+            />
+
             <OrnamentoFloral
               compacto
             />
@@ -212,7 +218,7 @@ export function Presentes() {
                     interativo={
                       disponivel
                     }
-                    marca={false}
+                    marca
                   >
                     <FloraisDesabrochandoConteudo
                       className="presente-cartao-florais-vivos"
@@ -286,6 +292,11 @@ export function Presentes() {
           quantidade={2}
           tamanho={132}
           delayMs={120}
+        />
+
+        <MarcaFloral
+          className="presentes-recado-marca"
+          variante="card"
         />
 
         <div>

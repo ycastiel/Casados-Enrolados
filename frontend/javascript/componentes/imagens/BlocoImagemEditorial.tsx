@@ -2,6 +2,8 @@ import {
   FloraisDesabrochandoConteudo,
 } from "../animacoes/FlorDesabrochando";
 
+import { MarcaFloral } from "../marca/MarcaFloral";
+
 import "../../../css/componentes/imagens/blocoImagemEditorial.css";
 
 type BlocoImagemEditorialProps = {
@@ -42,6 +44,11 @@ export function BlocoImagemEditorial({
         quantidade={2}
         tamanho={142}
         delayMs={140}
+      />
+
+      <MarcaFloral
+        className="bloco-imagem-editorial__marca"
+        variante="card"
       />
 
       <div

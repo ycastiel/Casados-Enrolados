@@ -534,3 +534,11 @@
   position: relative;
   z-index: 3;
 }
+
+.bloco-imagem-editorial__marca {
+  z-index: 5;
+  top: 0.85rem;
+  right: 0.95rem;
+  width: clamp(2.7rem, 4vw, 3.5rem);
+  opacity: 0.84;
+}

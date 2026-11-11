@@ -2,6 +2,8 @@ import type {
   ReactNode,
 } from "react";
 
+import { MarcaFloral } from "../marca/MarcaFloral";
+
 import "../../../css/componentes/cards/cartao.css";
 
 type VarianteCartao =
@@ -39,9 +41,9 @@ export function Cartao({
         .join(" ")}
     >
       {marca && (
-        <span
+        <MarcaFloral
           className="cartao-ui__marca"
-          aria-hidden="true"
+          variante="card"
         />
       )}
 

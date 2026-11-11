@@ -709,3 +709,39 @@
   right: clamp(7rem, 18vw, 15rem);
   bottom: clamp(1.5rem, 6vw, 4rem);
 }
+
+/* =========================================================
+   ETAPA 2.5 — PRESENTES SOBRE AMBIENTE NOTURNO
+   ========================================================= */
+
+.presentes-lista {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presentes-introducao .secao-etiqueta {
+  color: var(--cor-dourado-300);
+}
+
+.presentes-introducao h2 {
+  color: var(--superficie-editorial-texto);
+}
+
+.presentes-introducao > p {
+  color: var(--superficie-editorial-texto-suave);
+}
+
+.presentes-vazio,
+.presentes-recado {
+  box-shadow:
+    0 28px 68px rgb(0 0 0 / 34%),
+    0 0 28px rgb(207 168 74 / 6%),
+    inset 0 1px 0 rgb(255 245 211 / 8%);
+}
+
+.presentes-vazio-marca,
+.presentes-recado-marca {
+  z-index: 4;
+  top: 0.7rem;
+  right: 0.8rem;
+  width: clamp(2.45rem, 4vw, 3.15rem);
+}
